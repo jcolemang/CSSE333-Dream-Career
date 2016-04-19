@@ -6,10 +6,81 @@ using System.Collections.Generic;
 class Generator
 {
     protected Random RandomGenerator;
+    protected string[] PossibleRoadNames;
+    protected string[] PossibleRoadEndings; // I dont know what to call this (Ave, Rd, etc)
+    protected string[] PossibleCities;
+    protected string[] PossibleDirections;
+    protected string[] PossibleStates;
+    protected int MaxRoadNumber; 
 
     public Generator()
     {
         this.RandomGenerator = new Random();
+
+        this.MaxRoadNumber = 9999;
+
+        this.PossibleDirections = new string[] {
+            "N", "S", "E", "W", ""
+        };
+
+        this.PossibleRoadNames = new string[] {
+            "Hulman", "40th",
+            "Hickory"
+        };
+
+        this.PossibleRoadEndings = new string[] {
+            "Ave", "Rd", "St"
+        };
+
+        this.PossibleCities = new string[] {
+            "Houston", "Boston",
+            "Terre Haute", "Indianapolis",
+            "Kalamazoo", "Seatle"
+        };
+
+        this.PossibleStates = new string[] {
+            "AL", "AK", "AZ", "AR", "CA", "CO",
+            "CT", "DE", "FL", "GA", "HI", "MI"
+        };
+    }
+
+
+    protected string GenerateAddress()
+    {
+        int ZipCodeLength = 5;
+
+        string RoadNum = this.RandomGenerator.Next(this.MaxRoadNumber).ToString();
+        string Direction = this.PossibleDirections[
+                this.RandomGenerator.Next(this.PossibleDirections.Length)];
+        string RoadName = this.PossibleRoadNames[
+            this.RandomGenerator.Next(this.PossibleRoadNames.Length)];
+        string RoadEnding = this.PossibleRoadEndings[
+            this.RandomGenerator.Next(this.PossibleRoadEndings.Length)];
+        string City = this.PossibleCities[
+            this.RandomGenerator.Next(this.PossibleCities.Length)];
+        string State = this.PossibleStates[
+            this.RandomGenerator.Next(this.PossibleStates.Length)];
+
+        string Zip = "";
+        int i;
+        for (i = 0; i < ZipCodeLength; i++)
+            Zip += this.RandomGenerator.Next(10).ToString();
+
+        string address = RoadNum + " " + Direction + " " + RoadName + " " +
+            RoadEnding + "\n" + City + " " + State + "  " + Zip;
+
+        return address;
+    }
+
+    protected string RandomString(int MaxLength)
+    {
+        // python string.printable
+        string chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c";
+        string S = "";
+        int i;
+        for (i = 0; i < MaxLength; i++)
+            S += chars[this.RandomGenerator.Next(chars.Length)];
+        return S;
     }
 
 }
@@ -77,20 +148,14 @@ class UserGenerator : Generator
 
     }
 
-    public void PopulateUser(int numUsers)
+    public void GenerateUsers(int numUsers)
     {
         // Note that ProfileID should probably be 
         // autoincremented by the database itself
-
-        int i;
-        for (i = 0; i < numUsers; i++)
-        {
-            // insert into user
-        }
     }
 
 
-    public string GenerateUsername(string FirstName, string LastName)
+    private string GenerateUsername(string FirstName, string LastName)
     {
         string baseString = FirstName + LastName;
         string username = baseString;
@@ -114,22 +179,22 @@ class UserGenerator : Generator
      * to generate a potential email. If the generated email
      * is already in use it starts adding numbers to it.
      */
-    public string GenerateEmail(string FirstName, string LastName)
+    private string GenerateEmail(string FirstName, string LastName)
     {
         string BaseString = "";
 
         if (LastName.Length < this.NumFromLast)
-            BaseString = BaseString + LastName.Substring(0, LastName.Length - 1);
+            BaseString = BaseString + LastName.Substring(0, LastName.Length);
         else
             BaseString = BaseString + LastName.Substring(0, this.NumFromLast);
 
         if (FirstName.Length < this.NumFromFirst)
-            BaseString = BaseString + FirstName.Substring(0, FirstName.Length - 1);
+            BaseString = BaseString + FirstName.Substring(0, FirstName.Length);
         else
             BaseString = BaseString + FirstName.Substring(0, this.NumFromFirst);
 
         string EmailExtension = this.PossibleEmailExtensions[
-                this.RandomGenerator.Next(this.PossibleEmailExtensions.Length - 1)
+                this.RandomGenerator.Next(this.PossibleEmailExtensions.Length)
             ];
 
         string email = BaseString + EmailExtension;
@@ -151,10 +216,10 @@ class UserGenerator : Generator
      * Just grabs a random first name from the list defined in the 
      * constructor
      */
-    public string GenerateFirstName()
+    private string GenerateFirstName()
     {
         return this.PossibleFirstNames[
-            this.RandomGenerator.Next(this.PossibleFirstNames.Length-1)];
+            this.RandomGenerator.Next(this.PossibleFirstNames.Length)];
     }
 
     
@@ -162,7 +227,7 @@ class UserGenerator : Generator
      * Works the name as GenerateFirstName. Grabs a random last
      * name from the list given in the constructor
      */
-    public string GenerateLastName()
+    private string GenerateLastName()
     {
         return this.PossibleLastNames[
             this.RandomGenerator.Next(this.PossibleLastNames.Length)];
@@ -173,17 +238,139 @@ class UserGenerator : Generator
 
 class CompanyGenerator : Generator
 {
-
-    private string PossibleAddresses;
-    private int MaxSize;
-    private string[] PossibleNames;
-
+    private int MaxCompanySize;
+    private string[] PossibleNamesStart;
+    private string[] PossibleNamesMiddle;
+    private string[] PossibleNamesEnd;
+    private int MaxDescriptionLength;
 
 
     public CompanyGenerator() : base()
     {
 
+        this.MaxCompanySize = 100000;
+
+        this.PossibleNamesStart = new string[] {
+            "", "The"
+        };
+
+        this.PossibleNamesMiddle = new string[] {
+            "Technology", "Steel", "Car",
+            "Bicycle", "Dog", "Toy", "Baby",
+            "People"
+        };
+
+        this.PossibleNamesEnd = new string[] {
+            "People", "Builders", "Creators"
+        };
+
+        this.MaxDescriptionLength = 500;
     }
 
 
+    private int GenerateSize()
+    {
+        return this.RandomGenerator.Next(this.MaxCompanySize);
+    }
+   
+
+    private string GenerateName()
+    {
+        string Name = "";
+        Name += this.PossibleNamesStart[
+            this.RandomGenerator.Next(this.PossibleNamesStart.Length)];
+        Name += " ";
+        Name += this.PossibleNamesMiddle[
+            this.RandomGenerator.Next(this.PossibleNamesMiddle.Length)];
+        Name += " ";
+        Name += this.PossibleNamesEnd[
+            this.RandomGenerator.Next(this.PossibleNamesEnd.Length)];
+        return Name;
+    }
+
+
+    private string GenerateDescription()
+    {
+        return this.RandomString(this.MaxDescriptionLength);
+    }
+
+
+    public void GenerateCompanies(int NumCompanies)
+    {
+        
+    }
+
+}
+
+
+class PositionGenerator : Generator
+{
+    private string[] PossibleTypes;
+    private int MaxSalary;
+    private int MinSalary;
+    private string[] PossibleTags;
+    private int MaxNumTags;
+    private int MaxDescriptionLength;
+
+
+    public PositionGenerator() : base()
+    {
+        this.MaxDescriptionLength = 500;
+
+        this.PossibleTypes = new string[] {
+            "Internship", "Full Time",
+            "Part Time"
+        };
+
+        this.MaxSalary = 2000000;
+        this.MinSalary = 10000;
+
+        this.PossibleTags = new string[] {
+            "SQL", "C#", "Web", "Design",
+            "Python", "Ruby", "Systems",
+            "Security"
+        };
+    }
+
+
+    private string GenerateType()
+    {
+        return this.PossibleTypes[
+            this.RandomGenerator.Next(this.PossibleTypes.Length)];
+    }
+
+
+    private string GenerateLocation()
+    {
+        return this.PossibleCities[
+            this.RandomGenerator.Next(this.PossibleCities.Length)];
+    }
+
+
+    private int GenerateSalary()
+    {
+        return this.RandomGenerator.Next(this.MinSalary, this.MaxSalary);
+    }
+
+
+    private string[] GenerateTags()
+    {
+        int NumTags = this.RandomGenerator.Next(this.MaxNumTags);
+        string[] Tags = new string[NumTags];
+        int i;
+
+        for (i = 0; i < NumTags; i++)
+        {
+            Tags[i] = this.PossibleTags[
+                this.RandomGenerator.Next(this.PossibleTags.Length)];
+        }
+
+        return Tags;
+    }
+
+    
+    private string GenerateDecription()
+    {
+        return this.RandomString(this.MaxDescriptionLength);
+    }
 }
