@@ -3,6 +3,14 @@ using System;
 using System.Collections.Generic;
 
 
+/*
+ * Really this should probably be more than one 
+ * class but this is less typing and this isn't 
+ * a significant part of the project so I'm 
+ * choosing laziness. I would just put the contents
+ * of this class outside of the class but I don't
+ * think that is possible in C#
+ */
 class Generator
 {
     protected Random RandomGenerator;
@@ -12,6 +20,8 @@ class Generator
     protected string[] PossibleDirections;
     protected string[] PossibleStates;
     protected int MaxRoadNumber; 
+    protected string[] PossibleFirstNames;
+    protected string[] PossibleLastNames;
 
     public Generator()
     {
@@ -41,6 +51,41 @@ class Generator
         this.PossibleStates = new string[] {
             "AL", "AK", "AZ", "AR", "CA", "CO",
             "CT", "DE", "FL", "GA", "HI", "MI"
+        };
+
+        string[] PossibleFirstNames = new string[] {
+            "Santiago", "Mateo",
+            "Juan", "Matias",
+            "Daniel", "Kevin",
+            "Miguel", "Liam",
+            "Jackson", "Logan",
+            "Lucas", "Jackson",
+            "Justin", "Ethan",
+            "Ryan", "Lucas",
+            "Aya", "Isabel",
+            "Sarah", "Marwa",
+            "Mariam", "Adrienne",
+            "Coleman", "James",
+            "Joyce", "Fatima",
+            "Aaradhana", "Esperanza",
+            "Sofia", "Emma",
+            "Alica", "Gabrielle"
+        };
+
+        this.PossibleLastNames = new string[] {
+            "Gibson", "Yue",
+            "Bharill", "Mohan",
+            "Smith", "Robinson",
+            "Rickert", "Williams",
+            "Jones", "Johnson",
+            "Miller", "Taylor",
+            "Anderson", "Martin",
+            "Harris", "Garcia",
+            "Martinez", "Davis",
+            "Baker", "Mitchell",
+            "Trout", "Perez",
+            "Roberts", "Turner",
+            "Hall"
         };
     }
 
@@ -88,8 +133,6 @@ class Generator
 
 class UserGenerator : Generator
 {
-    private string[] PossibleFirstNames;
-    private string[] PossibleLastNames;
     private string[] PossibleEmailExtensions;
     private HashSet<string> UsedEmails;
     private HashSet<string> UsedUsernames;
@@ -105,40 +148,7 @@ class UserGenerator : Generator
         this.NumFromFirst = 2;
         this.NumFromLast = 5;
 
-        string[] PossibleFirstNames = new string[] {
-            "Santiago", "Mateo",
-            "Juan", "Matias",
-            "Daniel", "Kevin",
-            "Miguel", "Liam",
-            "Jackson", "Logan",
-            "Lucas", "Jackson",
-            "Justin", "Ethan",
-            "Ryan", "Lucas",
-            "Aya", "Isabel",
-            "Sarah", "Marwa",
-            "Mariam", "Adrienne",
-            "Coleman", "James",
-            "Joyce", "Fatima",
-            "Aaradhana", "Esperanza",
-            "Sofia", "Emma",
-            "Alica", "Gabrielle"
-        };
 
-        this.PossibleLastNames = new string[] {
-            "Gibson", "Yue",
-            "Bharill", "Mohan",
-            "Smith", "Robinson",
-            "Rickert", "Williams",
-            "Jones", "Johnson",
-            "Miller", "Taylor",
-            "Anderson", "Martin",
-            "Harris", "Garcia",
-            "Martinez", "Davis",
-            "Baker", "Mitchell",
-            "Trout", "Perez",
-            "Roberts", "Turner",
-            "Hall"
-        };
 
         this.PossibleEmailExtensions = new string[] {
             "@rose-hulman.edu",
@@ -373,4 +383,59 @@ class PositionGenerator : Generator
     {
         return this.RandomString(this.MaxDescriptionLength);
     }
+}
+
+
+class ProfileGenerator : Generator
+{
+    private string[] PossibleGenders;
+    private string[] PossibleMajors;
+    private int MaxExperienceLength;
+
+    public ProfileGenerator() : base()
+    {
+        this.MaxExperienceLength = 500;
+
+        this.PossibleGenders = new string[] {
+            "M", "F", "Other" 
+            //prefer not to respond will probably be 
+            // represented as a null value
+        };
+
+
+        this.PossibleMajors = new string[] {
+            "Computer Science",
+            "Software Engineering",
+            "Mechanical Engineering",
+            "Mathematics"
+        };
+    }
+
+
+    private string GenerateGender()
+    {
+        return this.PossibleGenders[
+            this.RandomGenerator.Next(this.PossibleGenders.Length)];
+    }
+
+
+    private string GenerateMajor()
+    {
+        return this.PossibleMajors[
+            this.RandomGenerator.Next(this.PossibleMajors.Length)];
+    }
+
+
+    private string GenerateExperience()
+    {
+        return this.RandomString(this.MaxExperienceLength);
+    }
+
+
+    public void GenerateProfiles(int NumProfiles)
+    {
+        
+    }
+
+
 }
