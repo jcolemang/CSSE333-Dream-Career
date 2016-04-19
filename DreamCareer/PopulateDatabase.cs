@@ -3,20 +3,36 @@ using System;
 using System.Collections.Generic;
 
 
-class UserGenerator
+class Generator
+{
+    protected Random RandomGenerator;
+
+    public Generator()
+    {
+        this.RandomGenerator = new Random();
+    }
+
+}
+
+
+class UserGenerator : Generator
 {
     private string[] PossibleFirstNames;
     private string[] PossibleLastNames;
     private string[] PossibleEmailExtensions;
-    private Random RandomGenerator;
     private HashSet<string> UsedEmails;
     private HashSet<string> UsedUsernames;
+    private int NumFromLast;
+    private int NumFromFirst;
 
-    public UserGenerator()
+    public UserGenerator() : base()
     {
         this.RandomGenerator = new Random();
         this.UsedEmails = new HashSet<string>();
         this.UsedUsernames = new HashSet<string>();
+
+        this.NumFromFirst = 2;
+        this.NumFromLast = 5;
 
         string[] PossibleFirstNames = new string[] {
             "Santiago", "Mateo",
@@ -101,18 +117,16 @@ class UserGenerator
     public string GenerateEmail(string FirstName, string LastName)
     {
         string BaseString = "";
-        int NumFromLast = 5;
-        int NumFromFirst = 2;
 
-        if (LastName.Length < NumFromLast)
+        if (LastName.Length < this.NumFromLast)
             BaseString = BaseString + LastName.Substring(0, LastName.Length - 1);
         else
-            BaseString = BaseString + LastName.Substring(0, NumFromLast);
+            BaseString = BaseString + LastName.Substring(0, this.NumFromLast);
 
-        if (FirstName.Length < NumFromFirst)
+        if (FirstName.Length < this.NumFromFirst)
             BaseString = BaseString + FirstName.Substring(0, FirstName.Length - 1);
         else
-            BaseString = BaseString + FirstName.Substring(0, NumFromFirst);
+            BaseString = BaseString + FirstName.Substring(0, this.NumFromFirst);
 
         string EmailExtension = this.PossibleEmailExtensions[
                 this.RandomGenerator.Next(this.PossibleEmailExtensions.Length - 1)
@@ -154,4 +168,22 @@ class UserGenerator
             this.RandomGenerator.Next(this.PossibleLastNames.Length)];
     }
     
+}
+
+
+class CompanyGenerator : Generator
+{
+
+    private string PossibleAddresses;
+    private int MaxSize;
+    private string[] PossibleNames;
+
+
+
+    public CompanyGenerator() : base()
+    {
+
+    }
+
+
 }
