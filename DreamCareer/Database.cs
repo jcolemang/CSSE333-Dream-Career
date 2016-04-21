@@ -1,0 +1,118 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+using System.Data.SqlClient;
+
+namespace DreamCareer
+{
+    /*
+     * Basically just a whole bunch of wrappers for
+     * SQL stored procedures
+     */
+    public class Database
+    {
+        public static SqlConnection GetSqlConnection()
+        {
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString =
+                "Data Source=localhost;" +
+                "Initial Catalog=DreamCareer;" +
+                "Integrated Security=True;" +
+                "User Instance=False;";
+            connection.Open();
+            return connection;
+        }
+
+        public static void CreateUser( string Username, string Password, string Email )
+        {
+            SqlConnection connection = GetSqlConnection();
+
+            string sp_name = "insert_new_user";
+            SqlCommand insert_user_sp = new SqlCommand(sp_name, connection);
+            insert_user_sp.CommandType = System.Data.CommandType.StoredProcedure;
+
+            insert_user_sp.Parameters.Add(
+                new SqlParameter("@Uname", Username));
+            insert_user_sp.Parameters.Add(
+                new SqlParameter("@pass", Password));
+            insert_user_sp.Parameters.Add(
+                new SqlParameter("@email", Email));
+
+            int rows = insert_user_sp.ExecuteNonQuery();
+        }
+
+
+        public static void CreateUserProfile( string name, string gender,
+            string major, string address, string experience, int userid )
+        {
+            string sp_name = "insert_new_user_profile";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand insert_profile_sp = new SqlCommand(sp_name, connection);
+            insert_profile_sp.CommandType = System.Data.CommandType.StoredProcedure;
+
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@name", name));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@gender", gender));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@major", major));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@address", address));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@experience", experience));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@userid", userid));
+
+            insert_profile_sp.ExecuteNonQuery();
+        }
+
+
+        public static void CreateCompany(string address, int size, 
+            string name, string description)
+        {
+            string sp_name = "insert_new_company";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand insert_new_company_sp = new SqlCommand(sp_name, connection);
+            insert_new_company_sp.CommandType = System.Data.CommandType.StoredProcedure;
+
+            insert_new_company_sp.Parameters.Add(
+                new SqlParameter("@address", address));
+            insert_new_company_sp.Parameters.Add(
+                new SqlParameter("@size", size));
+            insert_new_company_sp.Parameters.Add(
+                new SqlParameter("@name", name));
+            insert_new_company_sp.Parameters.Add(
+                new SqlParameter("@description", description));
+
+            insert_new_company_sp.ExecuteNonQuery();
+        }
+
+
+        public static void CreatePosition(int companyid, string postype,
+            string posloc, int salary)
+        {
+            string sp_name = "insert_new_position";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand insert_new_pos_sp = new SqlCommand(sp_name, connection);
+            insert_new_pos_sp.CommandType = System.Data.CommandType.StoredProcedure;
+
+            insert_new_pos_sp.Parameters.Add(
+                new SqlParameter("@companyid", companyid));
+            insert_new_pos_sp.Parameters.Add(
+                new SqlParameter("@postype", postype));
+            insert_new_pos_sp.Parameters.Add(
+                new SqlParameter("@posloc", posloc));
+            insert_new_pos_sp.Parameters.Add(
+                new SqlParameter("@salary", salary));
+
+            insert_new_pos_sp.ExecuteNonQuery();
+        }
+
+
+
+    }
+
+}
+
