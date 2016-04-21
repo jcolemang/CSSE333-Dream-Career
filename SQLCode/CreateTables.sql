@@ -15,7 +15,7 @@ GO
 CREATE TABLE DREAMCAREERUSER
 (
 	UserID int IDENTITY(1,1) PRIMARY KEY,
-	Username varchar(20) NOT NULL,
+	Username varchar(20) UNIQUE NOT NULL,
 	ProfileID int REFERENCES USERPROFILE(ProfileID),
 	UserPassword varchar(20) NOT NULL,
 	Email varchar(20) NOT NULL
@@ -32,21 +32,21 @@ CREATE TABLE COMPANY
 )
 
 GO
-CREATE TABLE TAG
-(
-	TagID int IDENTITY(1,1) PRIMARY KEY,
-	TagWord varchar(20) NOT NULL
-)
-
-GO
 CREATE TABLE POSITION
 (
 	PositionID int IDENTITY(1,1) PRIMARY KEY,
 	CompanyID int REFERENCES COMPANY(CompanyID),
 	PositionType varchar(20),
 	PositionLocation varchar(20),
-	Salary money,
-	Tag int REFERENCES TAG(TagID)
+	Salary money
+)
+
+GO
+CREATE TABLE TAG
+(
+	TagID int IDENTITY(1,1) PRIMARY KEY,
+	PositionID int REFERENCES POSITION(PositionID),
+	TagWord varchar(20) NOT NULL
 )
 
 
