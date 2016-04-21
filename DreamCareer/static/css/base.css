@@ -1,0 +1,49 @@
+﻿
+body {
+    margin: 0px;
+}
+
+#toolbar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: black;
+    margin: 0px;
+}
+
+#toolbar li {
+    list-style-type: none;
+    padding-top: 0px;
+    margin: 0px;
+    display: inline;
+
+}
+
+#toolbar ul {
+    padding: 0px;
+}
+
+a.link-button {
+    background-color: darkgray;
+    color: black;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 1px;
+}
+
+a.link-button:hover {
+    background-color: black;
+    color: darkgray;
+}
+
+a, a:visited {
+    text-decoration: none;
+}
+
+#child-content {
+    padding-top: 40px
+}
+

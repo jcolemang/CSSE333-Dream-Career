@@ -1,0 +1,64 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="base.master.cs" Inherits="DreamCareer._base" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+
+    <!-- Apparently this needs to be here -->
+    <title></title>
+
+    <!-- css and javascript -->
+    <link rel="Stylesheet" href="~/static/css/base.css" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <!-- For 'children' pages -->
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+
+    <div id="toolbar">
+        <ul id="toolbar-links">
+
+            <li>
+                <a class="link-button" href="Default.aspx" runat="server">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a class="link-button" href="" runat="server">
+                    Login
+                </a>
+            </li>
+
+            <li>
+                <a class="link-button" href="CreateUser.aspx" runat="server">
+                    Create User
+                </a>
+            </li>
+
+            <li>
+                <a class="link-button" href="CreateProfile.aspx" runat="server">
+                    Create Profile
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    
+    <div id="child-content">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
+        
+            <h1>
+                Header
+            </h1>
+            <p>
+                Content
+            </p>
+
+        </asp:ContentPlaceHolder>
+    </div>
+</body>
+</html>

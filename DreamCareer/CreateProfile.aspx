@@ -1,52 +1,50 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateProfile.aspx.cs" Inherits="DreamCareer.CreateProfile" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="CreateProfile.aspx.cs" Inherits="DreamCareer.CreateProfile" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
+
     <form id="form1" runat="server">
-    <div>
-        <h1>Create a Profile</h1>
-        <label>
-            Username 
+        <div>
+            <h1>Create a Profile</h1>
+            <label>
+                Username 
             <asp:TextBox type="text" ID="prof_username" runat="server"></asp:TextBox>
-        </label>
-        <br />
-        <label>
-            Name
+            </label>
+            <br />
+            <label>
+                Name
             <asp:TextBox type="text" ID="name" runat="server"></asp:TextBox>
-        </label>
-        <br />
-        <label>
-            Gender
+            </label>
+            <br />
+            <label>
+                Gender
             <asp:TextBox type="text" ID="gender" runat="server"></asp:TextBox>
-        </label>
-        <br />
-        <label>
-            Major
+            </label>
+            <br />
+            <label>
+                Major
             <asp:TextBox type="text" ID="major" runat="server"></asp:TextBox>
-        </label>
-        <br />
-        <label>
-            Address
+            </label>
+            <br />
+            <label>
+                Address
             <asp:TextBox type="text" ID="address" runat="server"></asp:TextBox>
-        </label>
-        <br />
-        <label>
-            Experience
+            </label>
+            <br />
+            <label>
+                Experience
             <asp:TextBox type="text" ID="experience" runat="server"></asp:TextBox>
-        </label>
-        <br />
+            </label>
+            <br />
 
-        <asp:Button ID="profile_button" runat="server" Text="Insert Profile"
-            OnClick="InsertProfileButton_OnClick" />
-    </div>
-    <div>
-        <asp:Label ID="error_label" runat="server"></asp:Label>
-    </div>
+            <asp:Button ID="profile_button" runat="server" Text="Insert Profile"
+                OnClick="InsertProfileButton_OnClick" />
+        </div>
+        <div>
+            <asp:Label ID="error_label" runat="server"></asp:Label>
+        </div>
     </form>
-</body>
-</html>
+</asp:Content>
