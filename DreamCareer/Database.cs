@@ -15,12 +15,18 @@ namespace DreamCareer
     {
         public static SqlConnection GetSqlConnection()
         {
+            throw new Exception("Replace the *'s below with your password. " +
+                "I would strongly recommend NOT committing with your password " +
+                "in there. Be sure this is uncommented before you commit.");
+                
+
             SqlConnection connection = new SqlConnection();
             connection.ConnectionString =
-                "Data Source=localhost;" +
+                "Data Source=titan.csse.rose-hulman.edu;" +
                 "Initial Catalog=DreamCareer;" +
-                "Integrated Security=True;" +
-                "User Instance=False;";
+                "Persist Security Info=True;" +
+                "User ID=gibsonjc;" +
+                "Password=************;";
             connection.Open();
             return connection;
         }

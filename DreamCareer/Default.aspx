@@ -9,6 +9,7 @@
     <h1 id="page-header-text">
         Welcome to Dream Career
     </h1>
+
     <p>
         Created by Aaradhana, Coleman, and Joyce for CSSE333 Databases
     </p>
