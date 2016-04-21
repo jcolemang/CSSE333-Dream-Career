@@ -1,0 +1,12 @@
+
+IMPORTANT:
+1. Alter Position/Tag. The way it is currently set up each position can only 
+    have a single tag.
+2. Add autoincrementing to PositionID in Position table
+
+MODERATE:
+1. 
+
+PROBABLY DON'T EVEN WORRY ABOUT IT:
+1. 
+
