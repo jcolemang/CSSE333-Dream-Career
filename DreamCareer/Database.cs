@@ -40,14 +40,14 @@ namespace DreamCareer
             insert_user_sp.Parameters.Add(
                 new SqlParameter("@email", Email));
 
-            int rows = insert_user_sp.ExecuteNonQuery();
+            insert_user_sp.ExecuteNonQuery();
         }
 
 
         public static void CreateUserProfile( string name, string gender,
             string major, string address, string experience, int userid )
         {
-            string sp_name = "insert_new_user_profile";
+            string sp_name = "insert_new_user_profile_id";
             SqlConnection connection = GetSqlConnection();
             SqlCommand insert_profile_sp = new SqlCommand(sp_name, connection);
             insert_profile_sp.CommandType = System.Data.CommandType.StoredProcedure;
@@ -64,6 +64,30 @@ namespace DreamCareer
                 new SqlParameter("@experience", experience));
             insert_profile_sp.Parameters.Add(
                 new SqlParameter("@userid", userid));
+
+            insert_profile_sp.ExecuteNonQuery();
+        }
+
+        public static void CreateUserProfile( string name, string gender,
+            string major, string address, string experience, string username )
+        {
+            string sp_name = "insert_new_user_profile_username";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand insert_profile_sp = new SqlCommand(sp_name, connection);
+            insert_profile_sp.CommandType = System.Data.CommandType.StoredProcedure;
+
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@name", name));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@gender", gender));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@major", major));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@address", address));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@experience", experience));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@username", username));
 
             insert_profile_sp.ExecuteNonQuery();
         }

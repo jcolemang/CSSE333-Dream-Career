@@ -16,7 +16,7 @@ Go
 exec insert_new_user @Uname="Coleman", @pass="123", @email="b@b"
 
 Go
-CREATE PROCEDURE insert_new_user_profile
+CREATE PROCEDURE insert_new_user_profile_id
 @name varchar(20),
 @gender varchar(20),
 @major varchar(20),
@@ -33,6 +33,25 @@ VALUES
 UPDATE DREAMCAREERUSER
 SET ProfileID = (SELECT SCOPE_IDENTITY())
 WHERE UserID = @userid
+
+Go
+CREATE PROCEDURE insert_new_user_profile_username
+@name varchar(20),
+@gender varchar(20),
+@major varchar(20),
+@address varchar(20),
+@experience varchar(100),
+@username varchar(20)
+AS
+
+INSERT INTO USERPROFILE
+(Name, Gender, Major, Address, Experience)
+VALUES
+(@name, @gender, @major, @address, @experience)
+
+UPDATE DREAMCAREERUSER
+SET ProfileID = (SELECT SCOPE_IDENTITY())
+WHERE Username = @username
 
 Go
 exec insert_new_user_profile @name="Coleman Gibson", @gender="M",
