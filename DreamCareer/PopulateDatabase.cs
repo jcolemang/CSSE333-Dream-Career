@@ -2,6 +2,13 @@
 using System;
 using System.Collections.Generic;
 
+/*
+ * A set of classes meant to make populating our database 
+ * easy. Wont have exactly real world data but it should
+ * make it easier to find database issues.
+ * 
+ * @author Coleman Gibson
+ */ 
 
 /*
  * Really this should probably be more than one 
@@ -13,13 +20,18 @@ using System.Collections.Generic;
  */
 class Generator
 {
+    // For random numbers
     protected Random RandomGenerator;
+
+    // for addresses
     protected string[] PossibleRoadNames;
     protected string[] PossibleRoadEndings; // I dont know what to call this (Ave, Rd, etc)
     protected string[] PossibleCities;
     protected string[] PossibleDirections;
     protected string[] PossibleStates;
     protected int MaxRoadNumber; 
+
+    // for names
     protected string[] PossibleFirstNames;
     protected string[] PossibleLastNames;
 
