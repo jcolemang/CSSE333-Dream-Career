@@ -94,10 +94,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin.aspx" />
     <Content Include="CreateProfile.aspx" />
     <Content Include="CreateUser.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="Dummy.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
@@ -117,9 +118,17 @@
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="static\css\base.css" />
     <Content Include="static\css\home.css" />
+    <Content Include="static\css\login.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.aspx.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.aspx.designer.cs">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="base.Master.cs">
       <DependentUpon>base.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -149,12 +158,12 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Dummy.aspx.cs">
-      <DependentUpon>Dummy.aspx</DependentUpon>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Dummy.aspx.designer.cs">
-      <DependentUpon>Dummy.aspx</DependentUpon>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="PopulateDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

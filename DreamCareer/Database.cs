@@ -15,9 +15,9 @@ namespace DreamCareer
     {
         public static SqlConnection GetSqlConnection()
         {
-            throw new Exception("Replace the *'s below with your password. " +
-                "I would strongly recommend NOT committing with your password " +
-                "in there. Be sure this is uncommented before you commit.");
+            //throw new Exception("Replace the *'s below with your password. " +
+            //    "I would strongly recommend NOT committing with your password " +
+            //    "in there. Be sure this is uncommented before you commit.");
                 
 
             SqlConnection connection = new SqlConnection();
@@ -47,6 +47,19 @@ namespace DreamCareer
                 new SqlParameter("@email", Email));
 
             insert_user_sp.ExecuteNonQuery();
+        }
+
+        public static bool IsAUser( string Username, string Password )
+        {
+            SqlConnection connection = GetSqlConnection();
+
+            string sp_name = "get_user";
+            SqlCommand get_user_sp = new SqlCommand(sp_name, connection);
+            get_user_sp.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlDataReader reader = get_user_sp.ExecuteReader();
+
+            return reader.HasRows;
         }
 
 
@@ -138,6 +151,29 @@ namespace DreamCareer
                 new SqlParameter("@salary", salary));
 
             insert_new_pos_sp.ExecuteNonQuery();
+        }
+
+        public static void CreateTag(string TagWord, 
+            int PositionID)
+        {
+            //TODO this
+        }
+
+        public static void ApplyToPosition(string Username, 
+            int PositionID)
+        {
+            //TODO this
+        }
+
+        public static void LikeProfile(string Username, 
+            int ProfileID)
+        {
+            //TODO this
+        }
+
+        public static void SearchByTag(string TagWord)
+        {
+            //TODO this
         }
 
 

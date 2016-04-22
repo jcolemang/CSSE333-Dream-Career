@@ -134,3 +134,16 @@ AS
 	VALUES
 	(@tagtext, @posid)
 
+
+-- A select to help with logins
+GO
+CREATE PROCEDURE get_user
+@username varchar(20),
+@password varchar(20)
+AS
+
+	SELECT *
+	FROM DreamCareerUser
+	WHERE Username=@username AND
+			Password=@password
+
