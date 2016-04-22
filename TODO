@@ -1,12 +1,15 @@
 
 IMPORTANT:
-1. Alter Position/Tag. The way it is currently set up each position can only 
-    have a single tag.
-2. Add autoincrementing to PositionID in Position table
+1. It would probably make sense to make a relation for tag.
+    As it is we are storing the same tag many times for every
+    time a position references it.
 
 MODERATE:
-1. 
+1. Add a constrain to 'Like' so a user cannot like their own profile
+2. Add a constraint limiting the number of tags a position can have
+    (probably something like 10)
 
 PROBABLY DON'T EVEN WORRY ABOUT IT:
-1. 
+1. Apparently the parameter adding I am doing with C#'s SqlCommand class
+    is deprecated. Look in to the differences and probably switch over
 

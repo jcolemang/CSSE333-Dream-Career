@@ -178,23 +178,82 @@ namespace DreamCareer
         }
 
 
+        // TODO I have not yet tested this
+        // (nor the stored procedure it is based on)
         public static void ApplyToPosition(string Username, 
             int PositionID)
         {
-            //TODO this
+            string sp_name = "apply_to_position";
+            SqlConnection connection = GetSqlConnection();
+
+            SqlCommand apply = 
+                new SqlCommand(sp_name, connection);
+            apply.CommandType = 
+                System.Data.CommandType.StoredProcedure;
+
+            apply.Parameters.Add(
+                new SqlParameter("@username", Username));
+            apply.Parameters.Add(
+                new SqlParameter("@posid", PositionID));
+
+            apply.ExecuteNonQuery();
+            connection.Close();
         }
 
 
         public static void LikeProfile(string Username, 
             int ProfileID)
         {
-            //TODO this
+            string sp_name = "like_profile";
+            SqlConnection connection = GetSqlConnection();
+
+            SqlCommand like = 
+                new SqlCommand(sp_name, connection);
+            like.CommandType =
+                System.Data.CommandType.StoredProcedure;
+
+            like.Parameters.Add(
+                new SqlParameter("@username", Username));
+            like.Parameters.Add(
+                new SqlParameter("@posid", ProfileID));
+
+            like.ExecuteNonQuery();
+            connection.Close();
         }
 
 
-        public static void SearchByTag(string TagWord)
+        // This link will be helpful later
+        // http://stackoverflow.com/questions/11561465/sql-query-filtering-by-list-of-parameters
+        // TODO test that this works
+        public static List<int> SearchByTag(string TagWord)
         {
-            //TODO this
+            SqlConnection connection = GetSqlConnection();
+            string sp_name = "search_by_tag";
+
+            SqlCommand command =
+                new SqlCommand(sp_name, connection);
+            command.CommandType =
+                System.Data.CommandType.StoredProcedure;
+            command.Parameters.Add(
+                new SqlParameter("@tagtext", TagWord));
+
+            SqlDataReader reader =
+                command.ExecuteReader();
+
+            List<int> position_ids =
+                new List<int>();
+
+            if (reader.HasRows)
+            {
+                // TODO Does this skip the first row?
+                while (reader.Read())
+                {
+                    position_ids.Add(
+                        reader.GetInt32(0));
+                }
+            }
+
+            return position_ids;
         }
 
 

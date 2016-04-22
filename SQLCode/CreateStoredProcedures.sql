@@ -135,7 +135,50 @@ AS
 	(@tagtext, @posid)
 
 
+-- Simple insert to 'apply' for a position
+-- TODO not yet tested
+GO
+CREATE PROCEDURE apply_to_position
+@username varchar(20),
+@posid int
+AS
+	INSERT INTO Apply
+	(Username, PositionID)
+	VALUES
+	(@username, @posid)
+
+
+-- Simple insert to 'like' a position
+-- TODO not yet tested
+GO
+CREATE PROCEDURE like_profile
+@username varchar(20),
+@profileid int
+AS
+	INSERT INTO Like
+	(Username, ProfileID)
+	VALUES
+	(@username, @profileid)
+
+
+-- TODO not yet tested
+-- joins positions and tags
+-- on their id's 
+GO 
+CREATE PROCEDURE search_by_tag
+@tagtext
+AS
+	SELECT Position.PositionID
+	FROM Tag, Position
+	WHERE Tag.PositionID = Position.PositionID
+			AND Tag.TagWord = @tagtext
+
+
+
 -- A select to help with logins
+-- TODO The entire way we do passwords is
+-- not even slightly secure. 
+-- it really should change
 GO
 CREATE PROCEDURE get_user
 @username varchar(20),
