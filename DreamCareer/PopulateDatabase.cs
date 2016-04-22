@@ -461,6 +461,7 @@ namespace DreamCareer
             return this.RandomString(this.MaxExperienceLength);
         }
 
+        /*
 
         public void GenerateProfiles(int NumProfiles)
         {
@@ -484,6 +485,7 @@ namespace DreamCareer
                 Database.CreateUserProfile()
             }
         }
+        */
 
 
     }

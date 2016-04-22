@@ -26,7 +26,7 @@ namespace DreamCareer
                 "Initial Catalog=DreamCareer;" +
                 "Persist Security Info=True;" +
                 "User ID=gibsonjc;" +
-                "Password=************;";
+                "Password=;";
             connection.Open();
             return connection;
         }
