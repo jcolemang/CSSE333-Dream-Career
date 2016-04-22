@@ -47,6 +47,7 @@ namespace DreamCareer
                 new SqlParameter("@email", Email));
 
             insert_user_sp.ExecuteNonQuery();
+            connection.Close();
         }
 
         public static bool IsAUser( string Username, string Password )
@@ -59,7 +60,9 @@ namespace DreamCareer
 
             SqlDataReader reader = get_user_sp.ExecuteReader();
 
-            return reader.HasRows;
+            bool contains_data = reader.HasRows;
+            reader.Close();
+            return contains_data;
         }
 
 
@@ -85,6 +88,7 @@ namespace DreamCareer
                 new SqlParameter("@userid", userid));
 
             insert_profile_sp.ExecuteNonQuery();
+            connection.Close();
         }
 
         public static void CreateUserProfile( string name, string gender,
@@ -109,6 +113,7 @@ namespace DreamCareer
                 new SqlParameter("@username", username));
 
             insert_profile_sp.ExecuteNonQuery();
+            connection.Close();
         }
 
 
@@ -130,6 +135,7 @@ namespace DreamCareer
                 new SqlParameter("@description", description));
 
             insert_new_company_sp.ExecuteNonQuery();
+            connection.Close();
         }
 
 
@@ -151,13 +157,26 @@ namespace DreamCareer
                 new SqlParameter("@salary", salary));
 
             insert_new_pos_sp.ExecuteNonQuery();
+            connection.Close();
         }
 
         public static void CreateTag(string TagWord, 
             int PositionID)
         {
-            //TODO this
+            string sp_name = "insert_position_tag";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand insert_new_pos_sp = new SqlCommand(sp_name, connection);
+            insert_new_pos_sp.CommandType = System.Data.CommandType.StoredProcedure;
+
+            insert_new_pos_sp.Parameters.Add(
+                new SqlParameter("@tagtext", TagWord));
+            insert_new_pos_sp.Parameters.Add(
+                new SqlParameter("@posid", PositionID));
+
+            insert_new_pos_sp.ExecuteNonQuery();
+            connection.Close();
         }
+
 
         public static void ApplyToPosition(string Username, 
             int PositionID)
@@ -165,17 +184,122 @@ namespace DreamCareer
             //TODO this
         }
 
+
         public static void LikeProfile(string Username, 
             int ProfileID)
         {
             //TODO this
         }
 
+
         public static void SearchByTag(string TagWord)
         {
             //TODO this
         }
 
+
+        public static string GetRandomUsername()
+        {
+            SqlConnection connection = GetSqlConnection();
+            string sp_name = "get_random_username";
+
+            SqlCommand get_random_username =
+                new SqlCommand(sp_name, connection);
+            get_random_username.CommandType =
+                System.Data.CommandType.StoredProcedure;
+
+            SqlDataReader reader = get_random_username.ExecuteReader();
+
+            string username;
+            if (reader.HasRows)
+                username = reader.GetString(0);
+            else
+            {
+                reader.Close();
+                throw new Exception("No data in table.");
+            }
+
+            reader.Close();
+            return username;
+        }
+
+        public static int GetRandomPositionID()
+        {
+            SqlConnection connection = GetSqlConnection();
+            string sp_name = "get_random_position_id";
+
+            SqlCommand get_random_position_id =
+                new SqlCommand(sp_name, connection);
+            get_random_position_id.CommandType =
+                System.Data.CommandType.StoredProcedure;
+
+            SqlDataReader reader = 
+                get_random_position_id.ExecuteReader();
+
+            int posid;
+            if (reader.HasRows)
+                posid = reader.GetInt32(0);
+            else
+            {
+                reader.Close();
+                throw new Exception("No data in table.");
+            }
+
+            reader.Close();
+            return posid;
+        }
+
+        public static int GetRandomCompanyID()
+        {
+            SqlConnection connection = GetSqlConnection();
+            string sp_name = "get_random_company_id";
+
+            SqlCommand get_random_company_id =
+                new SqlCommand(sp_name, connection);
+            get_random_company_id.CommandType =
+                System.Data.CommandType.StoredProcedure;
+
+            SqlDataReader reader = 
+                get_random_company_id.ExecuteReader();
+
+            int companyid;
+            if (reader.HasRows)
+                companyid = reader.GetInt32(0);
+            else
+            {
+                reader.Close();
+                throw new Exception("No data in table.");
+            }
+
+            reader.Close();
+            return companyid; 
+        }
+
+        public static int GetRandomProfileID()
+        {
+            SqlConnection connection = GetSqlConnection();
+            string sp_name = "get_random_profile_id";
+
+            SqlCommand get_random_profile_id =
+                new SqlCommand(sp_name, connection);
+            get_random_profile_id.CommandType =
+                System.Data.CommandType.StoredProcedure;
+
+            SqlDataReader reader = 
+                get_random_profile_id.ExecuteReader();
+
+            int profileid;
+            if (reader.HasRows)
+                profileid = reader.GetInt32(0);
+            else
+            {
+                reader.Close();
+                throw new Exception("No data in table.");
+            }
+
+            reader.Close();
+            return profileid; 
+        }
 
 
     }
