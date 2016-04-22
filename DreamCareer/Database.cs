@@ -15,7 +15,7 @@ namespace DreamCareer
     {
         public static SqlConnection GetSqlConnection()
         {
-            throw new Exception("Replace the *'s below with your password. " +
+            throw new Exception("  Replace the *'s below with your password. " +
                 "I would strongly recommend NOT committing with your password " +
                 "in there. Be sure this is uncommented before you commit.");
                 
@@ -136,6 +136,7 @@ namespace DreamCareer
                 new SqlParameter("@posloc", posloc));
             insert_new_pos_sp.Parameters.Add(
                 new SqlParameter("@salary", salary));
+
 
             insert_new_pos_sp.ExecuteNonQuery();
         }
