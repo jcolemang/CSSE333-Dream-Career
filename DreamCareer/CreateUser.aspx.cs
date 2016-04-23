@@ -11,7 +11,15 @@ namespace DreamCareer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // I would like it documented that I think
+            // this is an absurd was to have tp include
+            // javascript.
+            /*Page.ClientScript.RegisterClientScriptInclude(
+                "selective", ResolveUrl("scripts/CreateUser.js"));
 
+            Page.ClientScript.RegisterClientScriptInclude(
+                "selective", ResolveUrl("scripts/jquery-2.2.3.min.js"));
+                */
         }
         protected void InsertUserButton_OnClick(object sender, EventArgs e)
         {

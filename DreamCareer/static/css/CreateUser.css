@@ -1,0 +1,29 @@
+﻿
+#submit-button-container {
+
+}
+
+#create-new-user-table {
+    padding-left: 10%;
+}
+
+.submit-button {
+    width: 100%;
+}
+
+.error-label {
+    color: red;
+}
+
+#table-header {
+    padding-left: 15%;
+}
+
+td {
+    padding-right: 25px;
+}
+
+td p {
+    padding-bottom: 10px;
+    text-align: right;
+}

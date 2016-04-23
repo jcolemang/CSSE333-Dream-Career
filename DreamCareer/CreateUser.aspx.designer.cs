@@ -40,6 +40,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox password;
         
         /// <summary>
+        /// confirm_password control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox confirm_password;
+        
+        /// <summary>
         /// email control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox email;
+        
+        /// <summary>
+        /// confirm_email control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox confirm_email;
         
         /// <summary>
         /// user_button control.

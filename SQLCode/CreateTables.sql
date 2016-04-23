@@ -1,7 +1,7 @@
 use DreamCareer
 go
 
-CREATE TABLE USERPROFILE
+CREATE TABLE UserProfile
 (
 	ProfileID int IDENTITY(1,1) PRIMARY KEY,
 	Name varchar(20) NOT NULL,
@@ -13,37 +13,38 @@ CREATE TABLE USERPROFILE
 
 
 GO
-CREATE TABLE DREAMCAREERUSER
+CREATE TABLE DreamCareerUser
 (
 	UserID int IDENTITY(1,1) PRIMARY KEY,
 	Username varchar(20) UNIQUE NOT NULL,
 	ProfileID int REFERENCES USERPROFILE(ProfileID),
-	UserPassword varchar(20) NOT NULL,
+	Password varchar(20) NOT NULL,
 	Email varchar(20) NOT NULL
 )
 
 GO
-CREATE TABLE COMPANY
+CREATE TABLE Company
 (
 	CompanyID int IDENTITY(1,1) PRIMARY KEY,
-	CompanyAddress varchar(20) NOT NULL,
+	Address varchar(20) NOT NULL,
 	Size int NOT NULL,
 	Name varchar(20) NOT NULL,
 	Description varchar(100)
 )
 
 GO
-CREATE TABLE POSITION
+CREATE TABLE Position
 (
 	PositionID int IDENTITY(1,1) PRIMARY KEY,
 	CompanyID int REFERENCES COMPANY(CompanyID),
-	PositionType varchar(20),
-	PositionLocation varchar(20),
-	Salary money
+	[Type] varchar(20),
+	Location varchar(20),
+	Salary money,
+	Description varchar(256)
 )
 
 GO
-CREATE TABLE TAG
+CREATE TABLE Tag
 (
 	TagID int IDENTITY(1,1) PRIMARY KEY,
 	PositionID int REFERENCES POSITION(PositionID),

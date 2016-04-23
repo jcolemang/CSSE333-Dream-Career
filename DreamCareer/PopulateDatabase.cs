@@ -67,7 +67,7 @@ namespace DreamCareer
             "CT", "DE", "FL", "GA", "HI", "MI"
         };
 
-            string[] PossibleFirstNames = new string[] {
+            this.PossibleFirstNames = new string[] {
             "Santiago", "Mateo",
             "Juan", "Matias",
             "Daniel", "Kevin",
@@ -107,7 +107,7 @@ namespace DreamCareer
          * Just grabs a random first name from the list defined in the 
          * constructor
          */
-        protected string GenerateFirstName()
+        public string GenerateFirstName()
         {
             return this.PossibleFirstNames[
                 this.RandomGenerator.Next(this.PossibleFirstNames.Length)];
@@ -118,14 +118,14 @@ namespace DreamCareer
          * Works the name as GenerateFirstName. Grabs a random last
          * name from the list given in the constructor
          */
-        protected string GenerateLastName()
+        public string GenerateLastName()
         {
             return this.PossibleLastNames[
                 this.RandomGenerator.Next(this.PossibleLastNames.Length)];
         }
 
 
-        protected string GenerateAddress()
+        public string GenerateAddress()
         {
             int ZipCodeLength = 5;
 
@@ -210,6 +210,9 @@ namespace DreamCareer
                 username = this.GenerateUsername(fname, lname);
                 email = this.GenerateEmail(fname, lname);
                 password = this.RandomString(10);
+
+                Console.WriteLine(username, email, password);
+
                 Database.CreateUser(username, password, email);
             }
         }
@@ -221,7 +224,7 @@ namespace DreamCareer
             string username = baseString;
             int counter = 0;
 
-            while (!(this.UsedUsernames.Contains(username)))
+            while (this.UsedUsernames.Contains(username))
             {
                 username = baseString + counter.ToString();
                 counter++;
@@ -259,7 +262,7 @@ namespace DreamCareer
 
             string email = BaseString + EmailExtension;
             int counter = 0;
-            while (!this.UsedEmails.Contains(email))
+            while (this.UsedEmails.Contains(email))
             {
                 email = BaseString + counter.ToString() + EmailExtension;
                 counter++;
@@ -337,7 +340,21 @@ namespace DreamCareer
 
         public void GenerateCompanies(int NumCompanies)
         {
+            string address;
+            int size;
+            string name;
+            string description;
 
+            int i;
+            for (i = 0; i < NumCompanies; i++)
+            {
+                address = this.GenerateAddress();
+                size = this.GenerateSize();
+                name = this.GenerateName();
+                description = this.GenerateDescription();
+
+                Database.CreateCompany(address, size, name, description);
+            }
         }
 
     }
@@ -421,9 +438,11 @@ namespace DreamCareer
         private string[] PossibleGenders;
         private string[] PossibleMajors;
         private int MaxExperienceLength;
+        HashSet<int> UsedUserIDs;
 
         public ProfileGenerator() : base()
         {
+            this.UsedUserIDs = new HashSet<int>();
             this.MaxExperienceLength = 500;
 
             this.PossibleGenders = new string[] {
@@ -461,8 +480,6 @@ namespace DreamCareer
             return this.RandomString(this.MaxExperienceLength);
         }
 
-        /*
-
         public void GenerateProfiles(int NumProfiles)
         {
             string name;
@@ -475,18 +492,28 @@ namespace DreamCareer
             int i;
             for (i = 0; i < NumProfiles; i++)
             {
-                name = this.GenerateFirstName() +
+                name = this.GenerateFirstName() + " " + 
                     this.GenerateLastName();
                 gender = this.GenerateGender();
                 major = this.GenerateMajor();
                 address = this.GenerateAddress();
                 experience = this.GenerateExperience();
-                userid = Database.Ra
-                Database.CreateUserProfile()
+                userid = Database.GetRandomUserID();
+
+                int counter = 0;
+                while (this.UsedUserIDs.Contains(userid))
+                {
+                    userid = Database.GetRandomUserID();
+                    counter++;
+                    if (counter > 20)
+                        return;
+                }
+
+                this.UsedUserIDs.Add(userid);
+
+                Database.CreateUserProfile(name, gender, major,
+                    address, experience, userid);
             }
         }
-        */
-
-
     }
 }

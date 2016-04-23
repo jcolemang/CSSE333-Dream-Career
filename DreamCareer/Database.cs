@@ -18,15 +18,21 @@ namespace DreamCareer
             //throw new Exception("Replace the *'s below with your password. " +
             //    "I would strongly recommend NOT committing with your password " +
             //    "in there. Be sure this is uncommented before you commit.");
-                
 
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString =
+            string remote_db_string = 
                 "Data Source=titan.csse.rose-hulman.edu;" +
                 "Initial Catalog=DreamCareer;" +
                 "Persist Security Info=True;" +
-                "User ID=gibsonjc;" +
-                "Password=;";
+                "User ID=dreamcareer;" +
+                "Password=csse333;";
+
+            string local_db_string = 
+                "Data Source=localhost;" +
+                "Initial Catalog=DreamCareer;" +
+                "Integrated Security=True;";
+
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = local_db_string;
             connection.Open();
             return connection;
         }
@@ -62,6 +68,7 @@ namespace DreamCareer
 
             bool contains_data = reader.HasRows;
             reader.Close();
+            connection.Close();
             return contains_data;
         }
 
@@ -253,6 +260,8 @@ namespace DreamCareer
                 }
             }
 
+            connection.Close();
+            reader.Close();
             return position_ids;
         }
 
@@ -279,7 +288,35 @@ namespace DreamCareer
             }
 
             reader.Close();
+            connection.Close();
             return username;
+        }
+
+        public static int GetRandomUserID()
+        {
+            string sp_name = "get_random_userid";
+            SqlConnection connection = GetSqlConnection();
+
+            SqlCommand get_random_userid =
+                new SqlCommand(sp_name, connection);
+            get_random_userid.CommandType = 
+                System.Data.CommandType.StoredProcedure;
+
+            SqlDataReader reader = get_random_userid.ExecuteReader();
+
+            int userid;
+            if (reader.Read())
+                userid = reader.GetInt32(0);
+            else
+            {
+                reader.Close();
+                throw new Exception("No data in table");
+            }
+
+            reader.Close();
+            connection.Close();
+            return userid;
+
         }
 
         public static int GetRandomPositionID()
@@ -296,7 +333,7 @@ namespace DreamCareer
                 get_random_position_id.ExecuteReader();
 
             int posid;
-            if (reader.HasRows)
+            if (reader.Read())
                 posid = reader.GetInt32(0);
             else
             {
@@ -305,6 +342,7 @@ namespace DreamCareer
             }
 
             reader.Close();
+            connection.Close();
             return posid;
         }
 
@@ -331,6 +369,7 @@ namespace DreamCareer
             }
 
             reader.Close();
+            connection.Close();
             return companyid; 
         }
 
@@ -357,6 +396,7 @@ namespace DreamCareer
             }
 
             reader.Close();
+            connection.Close();
             return profileid; 
         }
 

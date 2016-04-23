@@ -166,7 +166,7 @@ AS
 -- on their id's 
 GO 
 CREATE PROCEDURE search_by_tag
-@tagtext
+@tagtext varchar(20)
 AS
 	SELECT Position.PositionID
 	FROM Tag, Position
@@ -180,7 +180,7 @@ AS
 -- not even slightly secure. 
 -- it really should change
 GO
-CREATE PROCEDURE get_user
+CREATE PROCEDURE is_valid_user
 @username varchar(20),
 @password varchar(20)
 AS
@@ -189,6 +189,8 @@ AS
 	FROM DreamCareerUser
 	WHERE Username=@username AND
 			Password=@password
+
+
 
 
 -- THE REST ARE REALLY JUST FOR POPULATING THE DATABASE
@@ -219,7 +221,15 @@ AS
 GO
 CREATE PROCEDURE get_random_company_id
 AS
-	SELECT TOP 1 CompandID
+	SELECT TOP 1 CompanyID
 	FROM Company
+	ORDER BY NEWID()
+
+GO
+CREATE PROCEDURE get_random_userid
+AS
+
+	SELECT TOP 1 UserID
+	FROM DreamCareerUser
 	ORDER BY NEWID()
 
