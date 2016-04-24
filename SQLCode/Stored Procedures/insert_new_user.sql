@@ -14,3 +14,6 @@ AS
 	(Username, Password, Email)	
 	VALUES
 	(@Uname, @pass, @email)
+
+GO
+GRANT EXECUTE ON insert_new_user TO dreamcareer

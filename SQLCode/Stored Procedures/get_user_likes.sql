@@ -7,3 +7,5 @@ AS
 	SELECT ProfileID
 	FROM Likes
 	WHERE UserID = @userid
+
+GRANT EXECUTE ON get_user_likes TO dreamcareer

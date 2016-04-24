@@ -13,3 +13,5 @@ AS
 	(UserID, PositionID)
 	VALUES
 	(@username, @posid)
+
+GRANT EXECUTE ON insert_new_apply TO dreamcareer

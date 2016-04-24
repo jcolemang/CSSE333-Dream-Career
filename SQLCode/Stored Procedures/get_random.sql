@@ -37,3 +37,10 @@ AS
 	SELECT TOP 1 UserID
 	FROM DreamCareerUser
 	ORDER BY NEWID()
+
+GO
+GRANT EXECUTE ON get_random_username TO dreamcareer
+GRANT EXECUTE ON get_random_position_id TO dreamcareer
+GRANT EXECUTE ON get_random_profile_id TO dreamcareer
+GRANT EXECUTE ON get_random_company_id TO dreamcareer
+GRANT EXECUTE ON get_random_userid TO dreamcareer

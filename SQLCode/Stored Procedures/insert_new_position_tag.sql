@@ -12,3 +12,6 @@ AS
 	(TagWord, PositionID)
 	VALUES
 	(@tagtext, @posid)
+
+GO
+GRANT EXECUTE ON insert_new_position_tag TO dreamcareer

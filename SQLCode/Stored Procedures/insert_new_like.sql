@@ -11,3 +11,6 @@ AS
 	(UserID, ProfileID)
 	VALUES
 	(@username, @profileid)
+
+GO
+GRANT EXECUTE ON insert_new_like TO dreamcareer

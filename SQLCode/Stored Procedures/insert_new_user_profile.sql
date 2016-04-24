@@ -32,3 +32,6 @@ AS
 		PRINT 'Must use only one of userid and username'
 		RETURN @InputError
 	END
+
+GO
+GRANT EXECUTE ON insert_new_user_profile TO dreamcareer

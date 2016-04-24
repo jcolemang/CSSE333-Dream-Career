@@ -16,3 +16,6 @@ AS
 	(CompanyID, Type, Location, Salary, Description)
 	VALUES
 	(@companyid, @postype, @posloc, @salary, @description)
+
+GO
+GRANT EXECUTE ON insert_new_position TO dreamcareer

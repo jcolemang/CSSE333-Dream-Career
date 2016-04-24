@@ -14,3 +14,6 @@ AS
 	FROM DreamCareerUser
 	WHERE Username=@username AND
 			Password=@password
+
+GO
+GRANT EXECUTE ON check_username_password TO dreamcareer

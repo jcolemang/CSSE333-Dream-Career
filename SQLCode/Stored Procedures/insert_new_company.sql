@@ -4,13 +4,19 @@ USE DreamCareer
 -- Inserts a company into the database
 Go
 CREATE PROCEDURE insert_new_company
-	(@address varchar(20),
-	@size int,
+	(@size int,
 	@name varchar(20),
-	@description varchar(100))
+	@description varchar(100),
+	@street varchar(20),
+	@city varchar(20),
+	@state varchar(20),
+	@zip varchar(10))
 AS
 	-- Just an insert
 	INSERT INTO Company
-	(Address, Size, Name, Description)
+	(Size, Name, CompanyDescription, Street, City, State, Zipcode)
 	VALUES
-	(@address, @size, @name, @description)
+	(@size, @name, @description, @street, @city, @state, @zip)
+
+GO
+GRANT EXECUTE ON insert_new_company TO dreamcareer
