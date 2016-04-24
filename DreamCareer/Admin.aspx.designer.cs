@@ -10,78 +10,78 @@
 namespace DreamCareer {
     
     
-    public partial class CreateUser {
+    public partial class Admin {
         
         /// <summary>
-        /// user_form control.
+        /// GenerateUsersButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm user_form;
+        protected global::System.Web.UI.WebControls.Button GenerateUsersButton;
         
         /// <summary>
-        /// username control.
+        /// GenerateUsersText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox username;
+        protected global::System.Web.UI.WebControls.Label GenerateUsersText;
         
         /// <summary>
-        /// password control.
+        /// GenerateProfilesButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password;
+        protected global::System.Web.UI.WebControls.Button GenerateProfilesButton;
         
         /// <summary>
-        /// confirm_password control.
+        /// GenerateProfilesText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirm_password;
+        protected global::System.Web.UI.WebControls.Label GenerateProfilesText;
         
         /// <summary>
-        /// email control.
+        /// GenerateCompaniesButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
+        protected global::System.Web.UI.WebControls.Button GenerateCompaniesButton;
         
         /// <summary>
-        /// confirm_email control.
+        /// GenerateCompaniesLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirm_email;
+        protected global::System.Web.UI.WebControls.Label GenerateCompaniesLabel;
         
         /// <summary>
-        /// user_button control.
+        /// GeneratePositionsButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button user_button;
+        protected global::System.Web.UI.WebControls.Button GeneratePositionsButton;
         
         /// <summary>
-        /// error_label control.
+        /// GeneratePositionsLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label error_label;
+        protected global::System.Web.UI.WebControls.Label GeneratePositionsLabel;
     }
 }

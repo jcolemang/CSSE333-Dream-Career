@@ -9,7 +9,6 @@ body {
     left: 0px;
     right: 0px;
     background-color: black;
-    margin: 0px;
 }
 
 #toolbar li {
@@ -22,6 +21,14 @@ body {
 
 #toolbar ul {
     padding: 0px;
+}
+
+#logo {
+    color: white;
+    position: absolute;
+    right: 10%;
+    top: -30px;
+    font-size: 30px;
 }
 
 a.link-button {
@@ -44,6 +51,6 @@ a, a:visited {
 }
 
 #child-content {
-    padding-top: 40px
+    padding-top: 60px;
 }
 

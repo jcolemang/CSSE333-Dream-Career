@@ -10,7 +10,7 @@
 namespace DreamCareer {
     
     
-    public partial class CreateUser {
+    public partial class Login {
         
         /// <summary>
         /// user_form control.
@@ -40,48 +40,12 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox password;
         
         /// <summary>
-        /// confirm_password control.
+        /// login_button control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirm_password;
-        
-        /// <summary>
-        /// email control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
-        
-        /// <summary>
-        /// confirm_email control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirm_email;
-        
-        /// <summary>
-        /// user_button control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button user_button;
-        
-        /// <summary>
-        /// error_label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label error_label;
+        protected global::System.Web.UI.WebControls.Button login_button;
     }
 }
