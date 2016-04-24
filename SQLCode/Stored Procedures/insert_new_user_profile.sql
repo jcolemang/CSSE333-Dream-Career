@@ -4,6 +4,9 @@ USE DreamCareer
 -- to find a user and attach a new profile 
 -- them. Checks to see if there was already 
 -- a profile before it completes the insert
+
+-- TODO this is incomplete
+
 GO
 CREATE PROCEDURE insert_new_user_profile
 	(@name varchar(20),
