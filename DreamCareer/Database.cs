@@ -4,14 +4,18 @@ using System.Linq;
 using System.Web;
 
 using System.Data.SqlClient;
+using System.Media;
 
 namespace DreamCareer
 {
     /*
      * Basically just a whole bunch of wrappers for
-     * SQL stored procedures
+     * SQL stored procedures. Most of them are nearly
+     * identical. I could probably compress a lot of
+     * them into a standard 'insert' but I don't think
+     * the refactoring would be worth the time right now.
      */
-    public class Database
+    public static class Database
     {
         public static SqlConnection GetSqlConnection()
         {
@@ -265,6 +269,53 @@ namespace DreamCareer
             return position_ids;
         }
 
+        public static List<int> GetAllUserIDs()
+        {
+            string sp_name = "get_all_userids";
+            SqlConnection connection = GetSqlConnection();
+            List<int> ids = new List<int>();
+
+            SqlCommand get_all_ids = new SqlCommand(
+                sp_name, connection);
+            get_all_ids.CommandType =
+                System.Data.CommandType.StoredProcedure;
+
+            SqlDataReader reader = get_all_ids.ExecuteReader();
+
+            while (reader.Read())
+                ids.Add(reader.GetInt32(0));
+
+            reader.Close();
+            connection.Close();
+            return ids;
+        }
+
+        public static List<int> GetUserLikes( int user )
+        {
+            string sp_name = "get_user_likes";
+            SqlConnection connection = GetSqlConnection();
+            List<int> likes = new List<int>();
+
+            SqlCommand get_likes = new SqlCommand(
+                sp_name, connection);
+            get_likes.CommandType =
+                System.Data.CommandType.StoredProcedure;
+            get_likes.Parameters.Add(
+                new SqlParameter("@userid", user));
+
+            SqlDataReader reader = get_likes.ExecuteReader();
+
+            while (reader.Read())
+                likes.Add(reader.GetInt32(0));
+
+            reader.Close();
+            connection.Close();
+            return likes;
+        }
+
+
+        // These really wont be used in the actual product. 
+        // Just for testing with batch inserts
 
         public static string GetRandomUsername()
         {
