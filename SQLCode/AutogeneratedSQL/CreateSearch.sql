@@ -1,0 +1,45 @@
+USE [DreamCareer]
+GO
+
+/****** Object:  Table [dbo].[Search]    Script Date: 4/24/2016 6:50:58 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Search](
+	[UserID] [int] NOT NULL,
+	[PositionID] [int] NOT NULL,
+	[Key] [varchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[UserID] ASC,
+	[PositionID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[Search]  WITH CHECK ADD  CONSTRAINT [FK__Search__Position__3D5E1FD2] FOREIGN KEY([PositionID])
+REFERENCES [dbo].[Position] ([PositionID])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[Search] CHECK CONSTRAINT [FK__Search__Position__3D5E1FD2]
+GO
+
+ALTER TABLE [dbo].[Search]  WITH CHECK ADD  CONSTRAINT [userIDsearchRef] FOREIGN KEY([UserID])
+REFERENCES [dbo].[DreamCareerUser] ([UserID])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[Search] CHECK CONSTRAINT [userIDsearchRef]
+GO
+
