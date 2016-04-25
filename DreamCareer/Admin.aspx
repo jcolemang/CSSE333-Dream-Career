@@ -73,6 +73,27 @@
                 </td>
             </tr>
 
+            <%-- Generating random likes --%>
+            <tr>
+                <td>
+                    <asp:Button ID="GenerateLikesButton"
+                        runat="server" Text="Insert Likes"
+                        OnClick="GenerateLikesButton_OnClick" />
+                </td>
+                <td>
+                    <asp:Label ID="GenerateLikesLabel"
+                        runat="server" Text=""></asp:Label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <asp:Button ID="PageRankButton"
+                        runat="server" Text="Rank Profiles"
+                        OnClick="PageRankButton_OnClick" />
+                </td>
+            </tr>
+
         </table>
     </form>
 </asp:Content>

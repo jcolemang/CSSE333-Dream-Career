@@ -9,17 +9,26 @@ namespace DreamCareer
 {
     public partial class Admin : System.Web.UI.Page
     {
+        private string[] AllowedUsers = new string[] { "coleman" };
+
         UserGenerator userGenerator;
         ProfileGenerator profileGenerator;
         CompanyGenerator companyGenerator;
         PositionGenerator positionGenerator;
+        RelationGenerator relationGenerator;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["username"] == null)
+                Response.Redirect("Login.aspx");
+            if (!AllowedUsers.Contains(Session["username"].ToString()))
+                Response.Redirect("Login.aspx");
+
             this.userGenerator = new UserGenerator();
             this.profileGenerator = new ProfileGenerator();
             this.companyGenerator = new CompanyGenerator();
             this.positionGenerator = new PositionGenerator();
+            this.relationGenerator = new RelationGenerator();
         }
 
         protected void ClearLabelText()
@@ -28,6 +37,7 @@ namespace DreamCareer
             GenerateProfilesText.Text = "";
             GenerateCompaniesLabel.Text = "";
             GeneratePositionsLabel.Text = "";
+            GenerateLikesLabel.Text = "";
         }
 
         protected void GenerateUsersButton_OnClick(object sender, 
@@ -65,6 +75,24 @@ namespace DreamCareer
             int NumToGenerate = 250;
             //this.positionGenerator.Ge
             GeneratePositionsLabel.Text = "Insertions Complete";
+        }
+
+        protected void GenerateLikesButton_OnClick(
+            object sender, EventArgs e)
+        {
+            this.ClearLabelText();
+
+            int NumToGenerate = 100;
+
+            this.relationGenerator.GenerateLikes(NumToGenerate);
+
+            GenerateLikesLabel.Text = "Insertions Complete";
+        }
+
+        protected void PageRankButton_OnClick(
+            object sender, EventArgs e)
+        {
+            PageRank.RankProfiles();
         }
     }
 }

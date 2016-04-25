@@ -74,13 +74,24 @@ namespace DreamCareer
 
         public SparseMatrix(int rows, int cols)
         {
+            this.Rows = rows;
+            this.Cols = cols;
             this.Values = new Dictionary<int, Dictionary<int, double>>();
         }
 
         public void SetValue(int row, int col, double val)
         {
-            if (row > this.Rows || row <= 0 || col >= this.Cols || col < 0)
-                throw new FieldAccessException("Invalid row/column.");
+            //if (row >= this.Rows || row < 0 || col >= this.Cols || col < 0)
+                //throw new FieldAccessException("Invalid row/column.");
+            if (row < 0)
+                throw new FieldAccessException("Row less than 0");
+            if (col < 0)
+                throw new FieldAccessException("Column less than 0");
+            if (row >= this.Rows)
+                throw new FieldAccessException("Row too large");
+            if (col >= this.Cols)
+                throw new FieldAccessException("Column too large");
+
             // doesn't contain any entries for that row
             if (!this.Values.ContainsKey(row))
                 this.Values[row] = new Dictionary<int, double>();
@@ -111,9 +122,16 @@ namespace DreamCareer
 
         public void MultiplyByConstant(double constant)
         {
-            foreach (int row in this.Values.Keys)
-                foreach (int col in this.Values[row].Keys)
+            int[] keys1 = this.Values.Keys.ToArray<int>();
+            int[] keys2;
+            foreach (int row in keys1)
+            {
+                keys2 = this.Values[row].Keys.ToArray<int>();
+                foreach (int col in keys2)
+                {
                     this.Values[row][col] /= constant;
+                }
+            }
         }
 
         public void AddConstant(double constant)

@@ -42,9 +42,14 @@
                     </td>
 
                     <td>
-                        <label id="username-input-error-label">
 
+                        <%-- For the client --%>
+                        <label id="username-input-error-label">
                         </label>
+
+                        <%-- For the server --%>
+                        <asp:Label ID="username_input_error_label"
+                            class="error-label" runat="server"></asp:Label>
                     </td>
                 </tr>
 
@@ -71,7 +76,6 @@
                     <td>
                         <label id="password-input-error-label"
                             class="error-label">
-
                         </label>
                     </td>
 
@@ -97,10 +101,14 @@
                     </td>
 
                     <td>
+                        <%-- For the client --%>
                         <label id="email-input-error-label"
                             class="error-label">
-
                         </label>
+
+                        <%-- For the server --%>
+                        <asp:Label ID="email_input_error_label"
+                            class="error-label" runat="server"></asp:Label>
                     </td>
                 </tr>
 
@@ -118,9 +126,5 @@
             </table>
         </div>
     </form>
-
-    <div>
-        <asp:Label ID="error_label" runat="server"></asp:Label>
-    </div>
 
 </asp:Content>

@@ -9,33 +9,37 @@ namespace DreamCareer
 {
     public partial class CreateUser : System.Web.UI.Page
     {
+        
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            // I would like it documented that I think
-            // this is an absurd was to have tp include
-            // javascript.
-            /*Page.ClientScript.RegisterClientScriptInclude(
-                "selective", ResolveUrl("scripts/CreateUser.js"));
-
-            Page.ClientScript.RegisterClientScriptInclude(
-                "selective", ResolveUrl("scripts/jquery-2.2.3.min.js"));
-                */
         }
+
+
         protected void InsertUserButton_OnClick(object sender, EventArgs e)
         {
-            string un = username.Text;
-            string em = email.Text;
-            string pw = password.Text;
+            // strip username
+            string UName = username.Text.ToLower().Trim();
+            string UserEmail = email.Text;
+            string UserPassword = password.Text;
 
             try
             {
-                Database.CreateUser(un, pw, em);
-                error_label.Text = "Inserted user";
+                Database.CreateUser(UName, UserPassword, UserEmail);
+                // Probably redirect to Create Profile page?
             }
-            catch (System.Data.SqlClient.SqlException)
+            catch (RepeatUsernameException)
             {
-                error_label.Text = "ERROR!";
+                username_input_error_label.Text = "Username already in use.";
             }
+            catch (RepeatEmailException)
+            {
+                email_input_error_label.Text = "Email already in use.";
+            }
+
+            Session["username"] = UName;
+            Response.Redirect("Home.aspx");
         }
     }
 }

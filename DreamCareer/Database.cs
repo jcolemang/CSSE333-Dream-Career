@@ -17,6 +17,10 @@ namespace DreamCareer
      */
     public static class Database
     {
+        // constants used by the commands
+        public const int RepeatEmailError = -1;
+        public const int RepeatUsernameError = -1;
+
         public static SqlConnection GetSqlConnection()
         {
             //throw new Exception("Replace the *'s below with your password. " +
@@ -36,7 +40,7 @@ namespace DreamCareer
                 "Integrated Security=True;";
 
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = local_db_string;
+            connection.ConnectionString = remote_db_string;
             connection.Open();
             return connection;
         }
@@ -45,20 +49,42 @@ namespace DreamCareer
         {
             SqlConnection connection = GetSqlConnection();
 
+            // Setting up the command
             string sp_name = "insert_new_user";
-            SqlCommand insert_user_sp = new SqlCommand(sp_name, connection);
-            insert_user_sp.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlCommand insert_user = new SqlCommand(sp_name, connection);
+            insert_user.CommandType = System.Data.CommandType.StoredProcedure;
 
-            insert_user_sp.Parameters.Add(
+            // Adding parameters
+            insert_user.Parameters.Add(
                 new SqlParameter("@Uname", Username));
-            insert_user_sp.Parameters.Add(
+            insert_user.Parameters.Add(
                 new SqlParameter("@pass", Password));
-            insert_user_sp.Parameters.Add(
+            insert_user.Parameters.Add(
                 new SqlParameter("@email", Email));
 
-            insert_user_sp.ExecuteNonQuery();
+            // Setting up a return value container
+            SqlParameter ReturnVal = new SqlParameter("RetVal", 
+                System.Data.SqlDbType.Int);
+            ReturnVal.Direction = 
+                System.Data.ParameterDirection.ReturnValue;
+            insert_user.Parameters.Add(ReturnVal);
+
+            // Executing the query and closing connection
+            insert_user.ExecuteNonQuery();
             connection.Close();
+
+            // checking the return value
+            int val = (int)ReturnVal.Value;
+            if (val == Database.RepeatEmailError)
+                throw new RepeatEmailException();
+            if (val == Database.RepeatUsernameError)
+                throw new RepeatUsernameException();
+            if (val != 0)
+                throw new Exception("Unknown error");
+
+            // nothing to return
         }
+
 
         public static bool IsAUser( string Username, string Password )
         {
@@ -77,8 +103,43 @@ namespace DreamCareer
         }
 
 
+
         public static void CreateUserProfile( string name, string gender,
-            string major, string address, string experience, int userid )
+            string major, string experience, string street,
+            string city, string state, string zip, int userid)
+        {
+            string sp_name = "insert_new_user_profile";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand insert_profile_sp = new SqlCommand(sp_name, connection);
+            insert_profile_sp.CommandType = System.Data.CommandType.StoredProcedure;
+
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@name", name));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@gender", gender));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@major", major));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@experience", experience));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@street", street));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@city", city));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@state", state));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@zip", zip));
+            insert_profile_sp.Parameters.Add(
+                new SqlParameter("@userid", userid));
+
+            insert_profile_sp.ExecuteNonQuery();
+            connection.Close();
+        }
+
+
+        public static void CreateUserProfile( string name, string gender,
+            string major, string experience, string street,
+            string city, string state, string zip, string username) 
         {
             string sp_name = "insert_new_user_profile_id";
             SqlConnection connection = GetSqlConnection();
@@ -92,34 +153,15 @@ namespace DreamCareer
             insert_profile_sp.Parameters.Add(
                 new SqlParameter("@major", major));
             insert_profile_sp.Parameters.Add(
-                new SqlParameter("@address", address));
-            insert_profile_sp.Parameters.Add(
                 new SqlParameter("@experience", experience));
             insert_profile_sp.Parameters.Add(
-                new SqlParameter("@userid", userid));
-
-            insert_profile_sp.ExecuteNonQuery();
-            connection.Close();
-        }
-
-        public static void CreateUserProfile( string name, string gender,
-            string major, string address, string experience, string username )
-        {
-            string sp_name = "insert_new_user_profile_username";
-            SqlConnection connection = GetSqlConnection();
-            SqlCommand insert_profile_sp = new SqlCommand(sp_name, connection);
-            insert_profile_sp.CommandType = System.Data.CommandType.StoredProcedure;
-
+                new SqlParameter("@street", street));
             insert_profile_sp.Parameters.Add(
-                new SqlParameter("@name", name));
+                new SqlParameter("@city", city));
             insert_profile_sp.Parameters.Add(
-                new SqlParameter("@gender", gender));
+                new SqlParameter("@state", state));
             insert_profile_sp.Parameters.Add(
-                new SqlParameter("@major", major));
-            insert_profile_sp.Parameters.Add(
-                new SqlParameter("@address", address));
-            insert_profile_sp.Parameters.Add(
-                new SqlParameter("@experience", experience));
+                new SqlParameter("@zip", zip));
             insert_profile_sp.Parameters.Add(
                 new SqlParameter("@username", username));
 
@@ -128,8 +170,9 @@ namespace DreamCareer
         }
 
 
-        public static void CreateCompany(string address, int size, 
-            string name, string description)
+        public static void CreateCompany(int size, 
+            string name, string description, string street,
+            string city, string state, string zip)
         {
             string sp_name = "insert_new_company";
             SqlConnection connection = GetSqlConnection();
@@ -137,13 +180,19 @@ namespace DreamCareer
             insert_new_company_sp.CommandType = System.Data.CommandType.StoredProcedure;
 
             insert_new_company_sp.Parameters.Add(
-                new SqlParameter("@address", address));
-            insert_new_company_sp.Parameters.Add(
                 new SqlParameter("@size", size));
             insert_new_company_sp.Parameters.Add(
                 new SqlParameter("@name", name));
             insert_new_company_sp.Parameters.Add(
                 new SqlParameter("@description", description));
+            insert_new_company_sp.Parameters.Add(
+                new SqlParameter("@street", street));
+            insert_new_company_sp.Parameters.Add(
+                new SqlParameter("@city", city));
+            insert_new_company_sp.Parameters.Add(
+                new SqlParameter("@state", state));
+            insert_new_company_sp.Parameters.Add(
+                new SqlParameter("@zip", zip));
 
             insert_new_company_sp.ExecuteNonQuery();
             connection.Close();
@@ -212,7 +261,7 @@ namespace DreamCareer
         }
 
 
-        public static void LikeProfile(string Username, 
+        public static void LikeProfile(int UserID, 
             int ProfileID)
         {
             string sp_name = "like_profile";
@@ -224,7 +273,7 @@ namespace DreamCareer
                 System.Data.CommandType.StoredProcedure;
 
             like.Parameters.Add(
-                new SqlParameter("@username", Username));
+                new SqlParameter("@userid", UserID));
             like.Parameters.Add(
                 new SqlParameter("@posid", ProfileID));
 
@@ -288,6 +337,37 @@ namespace DreamCareer
             reader.Close();
             connection.Close();
             return ids;
+        }
+
+        public static void CreateUserLikes(int UserID, int ProfileID)
+        {
+            string sp_name = "insert_new_like";
+            SqlConnection connection = GetSqlConnection();
+
+            SqlCommand insert_like = new SqlCommand(
+                sp_name, connection);
+            insert_like.CommandType =
+                System.Data.CommandType.StoredProcedure;
+            insert_like.Parameters.Add(
+                new SqlParameter("@userid", UserID));
+            insert_like.Parameters.Add(
+                new SqlParameter("@profileid", ProfileID));
+
+            // This is an absurd amount of code just to get 
+            // a return value. Note that "RetVal" does NOT
+            // need to be a parameter in the stored proc
+            SqlParameter ReturnVal = new SqlParameter("RetVal", 
+                System.Data.SqlDbType.Int);
+            ReturnVal.Direction = 
+                System.Data.ParameterDirection.ReturnValue;
+            insert_like.Parameters.Add(ReturnVal);
+            
+            insert_like.ExecuteNonQuery();
+            connection.Close();
+
+            int ReturnValue = (int)ReturnVal.Value;
+            if (ReturnValue != 0)
+                throw new Exception("Problem in SQL code");
         }
 
         public static List<int> GetUserLikes( int user )
@@ -438,7 +518,7 @@ namespace DreamCareer
                 get_random_profile_id.ExecuteReader();
 
             int profileid;
-            if (reader.HasRows)
+            if (reader.Read())
                 profileid = reader.GetInt32(0);
             else
             {
@@ -451,6 +531,33 @@ namespace DreamCareer
             return profileid; 
         }
 
+
+    }
+
+    public class RepeatEmailException : ApplicationException
+    {
+        public RepeatEmailException()
+        {
+
+        }
+
+        public RepeatEmailException(string message) : base(message)
+        {
+
+        }
+    }
+
+    public class RepeatUsernameException : ApplicationException
+    {
+        public RepeatUsernameException()
+        {
+
+        }
+
+        public RepeatUsernameException(string message) : base(message)
+        {
+
+        }
 
     }
 

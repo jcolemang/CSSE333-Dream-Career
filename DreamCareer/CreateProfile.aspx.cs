@@ -24,10 +24,9 @@ namespace DreamCareer
             string exp = experience.Text;
             string uname = prof_username.Text;
 
-
             try
             {
-                Database.CreateUserProfile(n, gend, maj, add, exp, uname);
+                //Database.CreateUserProfile(n, gend, maj, add, exp, uname);
                 error_label.Text = "Inserted profile";
             }
             catch (System.Data.SqlClient.SqlException)

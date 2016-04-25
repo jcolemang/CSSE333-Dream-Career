@@ -1,7 +1,7 @@
 USE [DreamCareer]
 GO
 
-/****** Object:  Table [dbo].[UserProfile]    Script Date: 4/24/2016 6:51:19 PM ******/
+/****** Object:  Table [dbo].[UserProfile]    Script Date: 4/25/2016 2:04:43 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -18,9 +18,9 @@ CREATE TABLE [dbo].[UserProfile](
 	[Major] [char](50) NULL,
 	[Experience] [varchar](max) NULL,
 	[Street] [varchar](128) NULL,
-	[District, City] [varchar](128) NULL,
+	[City] [varchar](128) NULL,
 	[State] [varchar](50) NULL,
-	[Zipcode] [smallint] NULL,
+	[Zipcode] [char](5) NULL,
  CONSTRAINT [profileIDprimary] PRIMARY KEY CLUSTERED 
 (
 	[ProfileID] ASC

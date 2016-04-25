@@ -1,7 +1,7 @@
 USE [DreamCareer]
 GO
 
-/****** Object:  Table [dbo].[Likes]    Script Date: 4/24/2016 6:50:10 PM ******/
+/****** Object:  Table [dbo].[Likes]    Script Date: 4/25/2016 1:50:03 PM ******/
 SET ANSI_NULLS ON
 GO
 
