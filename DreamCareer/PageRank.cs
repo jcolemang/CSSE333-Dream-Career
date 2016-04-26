@@ -7,22 +7,34 @@ namespace DreamCareer
 {
     public static class PageRank
     {
-        public static Vector RankProfiles()
+        public static List<int> RankProfiles(int NumberToReturn)
         {
             int PowerMethodIterations = 75;
             double m = 0.15;
 
-            SparseMatrix A = ConstructLikeMatrix();
+            // just the user ids
+            List<int> UserIDs = Database.GetAllUserIDs();
+
+            // stores the likes for each user
+            Dictionary<int, List<int>> UserLikes = new Dictionary<int, List<int>>();
+
+
+            // The matrix we care about
+            SparseMatrix A = ConstructLikeMatrix(UserIDs, UserLikes);
+
+            // For the theoretical matrix S (We just store the constant)
             double s = 1 / A.Rows;
 
+            // M = (1-m)A + mS, this is (1-m)A
             A.MultiplyByConstant((1 - m));
-            Vector v = new Vector(A.Rows);
 
+            // The 'random' vector for the power method
+            Vector v = new Vector(A.Rows);
             int i;
             for (i = 0; i < v.Rows; i++)
                 v.Values[i] = 1;
 
-            // Basically just the power method to get the eigenvector
+            // the power method to get the largest eigenvector of M
             for (i = 0; i < PowerMethodIterations; i++)
             {
                 // Mv = (1-m)Av + mSv = (1-m)Av + ms
@@ -36,21 +48,39 @@ namespace DreamCareer
                 v.Normalize();
             }
 
-            return v;
+            SortedDictionary<double, int> ImportanceScores = new SortedDictionary<double, int>();
+            double MinValue = 0;
+            for (i = 0; i < v.Rows; i++)
+            {
+                if (ImportanceScores.Count < NumberToReturn)
+                    ImportanceScores.Add(v.GetValue(i), UserIDs[i]);
+                else if (v.GetValue(i) > MinValue)
+                {
+                    ImportanceScores.Add(v.GetValue(i), UserIDs[i]);
+                    MinValue = ImportanceScores.Keys.Min();
+                }
+            }
+
+            List<int> MostImportant = new List<int>();
+            double[] HighestScores = ImportanceScores.Keys.ToArray<double>();
+            double dummy;
+            int n = ImportanceScores.Count < NumberToReturn ? ImportanceScores.Count : NumberToReturn;
+            for (i = 0; i < n; i++)
+            {
+                dummy = HighestScores[i]; 
+            }
+
+            return MostImportant;
+
         }
 
-        public static SparseMatrix ConstructLikeMatrix()
+        public static SparseMatrix ConstructLikeMatrix(List<int> UserIDs, Dictionary<int, 
+            List<int>> UserLikes)
         {
-            // just the user ids
-            List<int> UserIDs = Database.GetAllUserIDs();
-
-            // stores the likes for each user
-            Dictionary<int, List<int>> UserLikes = new Dictionary<int, List<int>>();
+            int NumUsers = UserIDs.Count;
 
             // stores the column in which any given id is stored
-            Dictionary<int, int> UserMatrixColumn = new Dictionary<int, int>();
-
-            int NumUsers = UserIDs.Count;
+            Dictionary<int, int> UserInColumn = new Dictionary<int, int>();
 
             // building datastructures to easily access each user's likes
             int i;
@@ -59,7 +89,7 @@ namespace DreamCareer
             {
                 id = UserIDs[i];
                 UserLikes[id] = Database.GetUserLikes(id);
-                UserMatrixColumn[id] = i;
+                UserInColumn[id] = i;
             }
 
             // the good stuff
@@ -80,7 +110,7 @@ namespace DreamCareer
 
                 foreach (int liked in UserLikes.Keys)
                 {
-                    col = UserMatrixColumn[liked];
+                    col = UserInColumn[liked];
                     LikeMatrix.SetValue(i, col, ContributionFraction);
                 }
             }

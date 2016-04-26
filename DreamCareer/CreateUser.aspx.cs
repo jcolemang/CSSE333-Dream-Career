@@ -14,6 +14,7 @@ namespace DreamCareer
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
         }
 
 
@@ -24,10 +25,12 @@ namespace DreamCareer
             string UserEmail = email.Text;
             string UserPassword = password.Text;
 
+            username_input_error_label.Text = "";
+            email_input_error_label.Text = "";
+
             try
             {
                 Database.CreateUser(UName, UserPassword, UserEmail);
-                // Probably redirect to Create Profile page?
             }
             catch (RepeatUsernameException)
             {
@@ -37,9 +40,9 @@ namespace DreamCareer
             {
                 email_input_error_label.Text = "Email already in use.";
             }
-
+            
             Session["username"] = UName;
-            Response.Redirect("Home.aspx");
+            //Response.Redirect("Default.aspx");
         }
     }
 }

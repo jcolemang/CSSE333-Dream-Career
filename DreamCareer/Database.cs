@@ -18,8 +18,8 @@ namespace DreamCareer
     public static class Database
     {
         // constants used by the commands
-        public const int RepeatEmailError = -1;
         public const int RepeatUsernameError = -1;
+        public const int RepeatEmailError = -2;
 
         public static SqlConnection GetSqlConnection()
         {
@@ -90,9 +90,14 @@ namespace DreamCareer
         {
             SqlConnection connection = GetSqlConnection();
 
-            string sp_name = "get_user";
+            string sp_name = "check_username_password";
             SqlCommand get_user_sp = new SqlCommand(sp_name, connection);
             get_user_sp.CommandType = System.Data.CommandType.StoredProcedure;
+
+            get_user_sp.Parameters.Add(
+                new SqlParameter("@username", Username));
+            get_user_sp.Parameters.Add(
+                new SqlParameter("@password", Password));
 
             SqlDataReader reader = get_user_sp.ExecuteReader();
 
@@ -305,7 +310,6 @@ namespace DreamCareer
 
             if (reader.HasRows)
             {
-                // TODO Does this skip the first row?
                 while (reader.Read())
                 {
                     position_ids.Add(
@@ -391,6 +395,49 @@ namespace DreamCareer
             reader.Close();
             connection.Close();
             return likes;
+        }
+
+
+        public static Dictionary<string, string> GetProfile(string Username)
+        {
+            int InputError = -1;
+
+            SqlConnection connection = GetSqlConnection();
+            string sp_name = "get_profile";
+
+            SqlCommand get_profile = new SqlCommand(sp_name, connection);
+            get_profile.Parameters.Add(
+                new SqlParameter("@username", Username));
+
+            SqlParameter ReturnVal = new SqlParameter("RetVal", 
+                System.Data.SqlDbType.Int);
+            ReturnVal.Direction = 
+                System.Data.ParameterDirection.ReturnValue;
+            get_profile.Parameters.Add(ReturnVal);
+
+            SqlDataReader reader = get_profile.ExecuteReader();
+            int val = (int)ReturnVal.Value;
+
+            if (val == InputError)
+            {
+                ;// TODO this should probably do something
+            }
+
+            Dictionary<string, string> Profile = new Dictionary<string, string>();
+            if (reader.Read())
+            {
+                Profile["Username"] = Username;
+                Profile["Name"] = reader.GetString(0);
+                Profile["Gender"] = reader.GetString(1);
+                Profile["Major"] = reader.GetString(2);
+                Profile["Experience"] = reader.GetString(3);
+            }
+            else
+            {
+                throw new NoDataException();
+            }
+
+            return Profile;
         }
 
 
@@ -559,6 +606,19 @@ namespace DreamCareer
 
         }
 
+    }
+
+    public class NoDataException : ApplicationException
+    {
+        public NoDataException()
+        {
+
+        }
+
+        public NoDataException( string message ) : base(message)
+        {
+
+        }
     }
 
 }

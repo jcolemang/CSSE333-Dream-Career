@@ -9,7 +9,7 @@ namespace DreamCareer
 {
     public partial class Admin : System.Web.UI.Page
     {
-        private string[] AllowedUsers = new string[] { "coleman" };
+        private string[] AllowedUsers = new string[] { "coleman", "Coleman" };
 
         UserGenerator userGenerator;
         ProfileGenerator profileGenerator;
@@ -92,7 +92,7 @@ namespace DreamCareer
         protected void PageRankButton_OnClick(
             object sender, EventArgs e)
         {
-            PageRank.RankProfiles();
+            PageRank.RankProfiles(10);
         }
     }
 }

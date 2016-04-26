@@ -15,20 +15,26 @@ AS
 	DECLARE @RepeatRowError smallint
 	SET @RepeatRowError = -2
 
+	DECLARE @LikedSelfError smallint
+	SET @LikedSelfError = -3
+
 	-- Validating the parameters
 
+	-- Neither username nor userid given
 	IF ( @username IS NULL AND @userid IS NULL )
 	BEGIN
 		PRINT 'Must give either username or userid'
 		RETURN @InputError
 	END
 
+	-- Both username and userid given
 	IF ( @username IS NOT NULL AND @userid IS NOT NULL )
 	BEGIN
 		PRINT 'Cannot give both username and userid'
 		RETURN @InputError
 	END
 
+	-- So I can just use userid from here on out
 	IF ( @userid IS NULL )
 	BEGIN
 		SET @userid = (SELECT UserId
@@ -50,6 +56,13 @@ AS
 	BEGIN 
 		PRINT 'Not a valid Profile'
 		RETURN @InputError
+	END
+
+	-- checking if they liked themselved
+	IF ( @userid = @profileid )
+	BEGIN
+		PRINT 'Users cannot like themselves'
+		RETURN @LikedSelfError
 	END
 
 	-- Parameters are valid!

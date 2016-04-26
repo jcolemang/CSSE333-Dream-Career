@@ -38,7 +38,9 @@
                         </p>
                     </td>
                     <td>
-                        <asp:TextBox type="text" ID="username" runat="server"></asp:TextBox>
+                        <asp:TextBox type="text" ID="username" 
+                            CssClass="asp-username-input" 
+                            runat="server"></asp:TextBox>
                     </td>
 
                     <td>
@@ -49,7 +51,8 @@
 
                         <%-- For the server --%>
                         <asp:Label ID="username_input_error_label"
-                            class="error-label" runat="server"></asp:Label>
+                            CssClass="error-label asp-username-input-error-label"
+                             runat="server"></asp:Label>
                     </td>
                 </tr>
 
@@ -108,7 +111,8 @@
 
                         <%-- For the server --%>
                         <asp:Label ID="email_input_error_label"
-                            class="error-label" runat="server"></asp:Label>
+                            class="error-label asp-email-input-error-label" 
+                            runat="server"></asp:Label>
                     </td>
                 </tr>
 

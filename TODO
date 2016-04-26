@@ -9,13 +9,13 @@ IMPORTANT:
     overlap.
 
 MODERATE:
-1. Add a constrain to 'Like' so a user cannot like their own profile
 2. Add a constraint limiting the number of tags a position can have
     (probably something like 10)
 3. Fix Dream Career logo so it doesn't overlap with the buttons
 4. Make passwords secure
 5. Make emails unique
 6. Move the connection string to a config file
+7. Make a default Profile page (Default to their own?)
 
 PROBABLY DON'T EVEN WORRY ABOUT IT:
 1. In the admin page the insert profile thing doesn't always insert all of them.
@@ -23,4 +23,8 @@ PROBABLY DON'T EVEN WORRY ABOUT IT:
 User Page - Coleman
 Profile Page - Aaradhana
 Login Page - Joyce
+
+IN THE MEETING DISCUSS
+Security
+Reasoning behind deletion policies
 
