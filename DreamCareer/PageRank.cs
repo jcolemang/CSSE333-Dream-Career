@@ -9,20 +9,31 @@ namespace DreamCareer
     {
         public static Vector RankProfiles()
         {
-            int PowerMethodIterations = 50;
+            int PowerMethodIterations = 75;
             double m = 0.15;
 
             SparseMatrix A = ConstructLikeMatrix();
+            double s = 1 / A.Rows;
 
             A.MultiplyByConstant((1 - m));
+            Vector v = new Vector(A.Rows);
 
             int i;
+            for (i = 0; i < v.Rows; i++)
+                v.Values[i] = 1;
+
+            // Basically just the power method to get the eigenvector
             for (i = 0; i < PowerMethodIterations; i++)
             {
-                
+                // Mv = (1-m)Av + mSv = (1-m)Av + ms
+                // The last step is only valid if the rows of v add up to 1
+                // A was multiplied by (1-m) above.
+                v = A.MultiplyOnRight(v);
+                v.AddConstant(m * s);
+                v.Normalize();
             }
 
-            return null;
+            return v;
         }
 
         public static SparseMatrix ConstructLikeMatrix()

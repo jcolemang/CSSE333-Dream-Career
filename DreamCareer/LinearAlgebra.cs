@@ -29,12 +29,12 @@ namespace DreamCareer
             this.Values = new double[rows];
         }
 
-        public Vector(int rows, double[] StartValues)
+        public Vector(double[] StartValues)
         {
-            this.Rows = rows;
-            this.Values = new double[rows];
+            this.Rows = StartValues.Length;
+            this.Values = new double[this.Rows];
             int i;
-            for (i = 0; i < rows; i++)
+            for (i = 0; i < this.Rows; i++)
                 this.Values[i] = StartValues[i];
         }
 
@@ -48,7 +48,7 @@ namespace DreamCareer
             double sum = 0;
             int i;
             for (i = 0; i < this.Rows; i++)
-                sum += this.Values[i];
+                sum += Math.Abs(this.Values[i]);
 
             return sum;
         }
@@ -63,6 +63,13 @@ namespace DreamCareer
             int i;
             for (i = 0; i < this.Rows; i++)
                 this.Values[i] /= val;
+        }
+
+        public void AddConstant(double Constant)
+        {
+            int i;
+            for (i = 0; i < this.Rows; i++)
+                this.Values[i] += Constant;
         }
     }
 
@@ -81,16 +88,8 @@ namespace DreamCareer
 
         public void SetValue(int row, int col, double val)
         {
-            //if (row >= this.Rows || row < 0 || col >= this.Cols || col < 0)
-                //throw new FieldAccessException("Invalid row/column.");
-            if (row < 0)
-                throw new FieldAccessException("Row less than 0");
-            if (col < 0)
-                throw new FieldAccessException("Column less than 0");
-            if (row >= this.Rows)
-                throw new FieldAccessException("Row too large");
-            if (col >= this.Cols)
-                throw new FieldAccessException("Column too large");
+            if (row >= this.Rows || row < 0 || col >= this.Cols || col < 0)
+                throw new IndexOutOfRangeException("Invalid row/column.");
 
             // doesn't contain any entries for that row
             if (!this.Values.ContainsKey(row))
@@ -104,14 +103,14 @@ namespace DreamCareer
             if (row < 0 || row >= this.Rows || col < 0 || col >= this.Cols)
                 throw new FieldAccessException("Row or column out of range.");
 
-            if (this.ContainsValue(row, col))
+            if (this.ContainsEntryAt(row, col))
                 return this.Values[row][col];
 
             // Because of sparse assumption
             return 0;
         }
 
-        public bool ContainsValue(int row, int col)
+        public bool ContainsEntryAt(int row, int col)
         {
             if (!this.Values.ContainsKey(row))
                 return false;
@@ -129,33 +128,11 @@ namespace DreamCareer
                 keys2 = this.Values[row].Keys.ToArray<int>();
                 foreach (int col in keys2)
                 {
-                    this.Values[row][col] /= constant;
+                    this.Values[row][col] *= constant;
                 }
             }
         }
 
-        public void AddConstant(double constant)
-        {
-            foreach (int row in this.Values.Keys)
-                foreach (int col in this.Values[row].Keys)
-                    this.Values[row][col] += constant;
-        }
-
-        public SparseMatrix Transpose()
-        {
-            SparseMatrix transposed = new SparseMatrix(this.Rows, this.Cols);
-            foreach (int row in this.Values.Keys)
-            {
-                foreach (int col in this.Values[row].Keys)
-                {
-                    if (!transposed.Values.ContainsKey(col))
-                        transposed.Values[col] = new Dictionary<int, double>();
-
-                    transposed.Values[col][row] = this.Values[row][col];
-                }
-            }
-            return transposed;
-        }
 
         public Vector MultiplyOnRight(Vector vec)
         {

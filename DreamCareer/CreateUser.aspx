@@ -118,7 +118,7 @@
 
                     <td id="submit-button-container">
                         <asp:Button CssClass="submit-button" 
-                            ID="user_button" runat="server" Text="Insert User"
+                            ID="user_button" runat="server" Text="Create User"
                             OnClick="InsertUserButton_OnClick" />
                     </td>
 

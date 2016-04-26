@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamCareer", "DreamCareer\DreamCareer.csproj", "{0082B0A3-D5E8-40F6-A3FE-10B8CBB95027}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamCareerTests", "DreamCareerTests\DreamCareerTests.csproj", "{60F4023D-C8B8-4334-9070-D88F9ECC5D72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0082B0A3-D5E8-40F6-A3FE-10B8CBB95027}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0082B0A3-D5E8-40F6-A3FE-10B8CBB95027}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0082B0A3-D5E8-40F6-A3FE-10B8CBB95027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60F4023D-C8B8-4334-9070-D88F9ECC5D72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60F4023D-C8B8-4334-9070-D88F9ECC5D72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60F4023D-C8B8-4334-9070-D88F9ECC5D72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60F4023D-C8B8-4334-9070-D88F9ECC5D72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
