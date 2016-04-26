@@ -26,7 +26,10 @@ namespace DreamCareer
             for (i = 0; i < PowerMethodIterations; i++)
             {
                 // Mv = (1-m)Av + mSv = (1-m)Av + ms
-                // The last step is only valid if the rows of v add up to 1
+                // The last step is only valid if the rows of v add up to 1.
+                // I can make this assumption because I normalize it every 
+                // step using the one norm, which is by definition the sum 
+                // of the rows.
                 // A was multiplied by (1-m) above.
                 v = A.MultiplyOnRight(v);
                 v.AddConstant(m * s);
