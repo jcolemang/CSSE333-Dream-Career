@@ -1,7 +1,7 @@
 USE [DreamCareer]
 GO
 
-/****** Object:  Table [dbo].[Company]    Script Date: 4/25/2016 1:49:32 PM ******/
+/****** Object:  Table [dbo].[Company]    Script Date: 4/26/2016 6:18:30 PM ******/
 SET ANSI_NULLS ON
 GO
 

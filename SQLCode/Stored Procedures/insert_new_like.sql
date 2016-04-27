@@ -3,7 +3,7 @@ USE DreamCareer
 -- Simple insert to 'like' a position
 -- TODO not yet tested
 GO
-ALTER PROCEDURE insert_new_like
+CREATE PROCEDURE insert_new_like
 	(@username varchar(20) = NULL,
 	@userid int = NULL,
 	@profileid int)
