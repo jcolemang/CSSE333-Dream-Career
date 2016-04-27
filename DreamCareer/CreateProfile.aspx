@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <link href="static/css/Create Profile.css" rel="stylesheet" type="text/css" />
+<script src="scripts/CreateProfile.js" type="text/javascript"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
@@ -43,13 +44,20 @@
             <br />
 
             <tr>
-                <td>
+ <td>
                     <p id = "Gender">
                         Gender
                     </p>
                 </td>
                 <td>
-                    <asp:TextBox type="text" ID="gender" runat="server"></asp:TextBox>
+                     <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <div id="myDropdown" class="dropdown-content">
+    <p>Male</p>
+    <p>Female</p>
+    <p>Other</p>
+  </div>
+</div>
                 </td>
             </tr>
 
@@ -100,6 +108,8 @@
                         OnClick="InsertProfileButton_OnClick" />
                 </td>
             </tr>
+</table>
+
         </div>
         <div>
             <asp:Label ID="error_label" runat="server"></asp:Label>
