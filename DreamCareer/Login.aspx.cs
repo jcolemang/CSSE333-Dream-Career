@@ -22,11 +22,13 @@ namespace DreamCareer
             if (!Database.IsAUser(Username, Password))
             {
                 // Write an error
+                Response.Redirect("CreateUser.aspx");
             }
             else
             {
                 Session["username"] = Username;
                 // logged in
+                Response.Redirect("Default.aspx");
             }
 
 

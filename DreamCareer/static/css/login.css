@@ -1,4 +1,35 @@
-﻿
+﻿#login-button-container{
+
+}
+
+#user-login-table{
+
+}
+
+#login-table-div{
+
+}
+
+#table_header{
+    padding-left: 15%;
+}
+
+.login-button{
+    width: 100%;
+}
+
+.error-label {
+    color: red;
+}
+
+td {
+    padding-right: 25px;
+}
+
+td p {
+    padding-bottom: 10px;
+    text-align: right;
+}
 
 .hello {
 

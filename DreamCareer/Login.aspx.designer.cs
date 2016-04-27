@@ -31,6 +31,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox username;
         
         /// <summary>
+        /// login-username_input_error control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label login_username_input_error;
+        
+        /// <summary>
         /// password control.
         /// </summary>
         /// <remarks>
@@ -40,12 +49,12 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox password;
         
         /// <summary>
-        /// login_button control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button login_button;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }
