@@ -48,29 +48,39 @@ namespace DreamCareer
                 v.Normalize();
             }
 
-            SortedDictionary<double, int> ImportanceScores = new SortedDictionary<double, int>();
-            double MinValue = 0;
+            // TODO I am storing far more than I need to.
+            SortedDictionary<double, List<int>> ImportanceScores = new SortedDictionary<double, List<int>>();
             for (i = 0; i < v.Rows; i++)
             {
-                if (ImportanceScores.Count < NumberToReturn)
-                    ImportanceScores.Add(v.GetValue(i), UserIDs[i]);
-                else if (v.GetValue(i) > MinValue)
+                if (ImportanceScores.ContainsKey(v.GetValue(i)))
                 {
-                    ImportanceScores.Add(v.GetValue(i), UserIDs[i]);
-                    MinValue = ImportanceScores.Keys.Min();
+                    ImportanceScores[v.GetValue(i)].Add(UserIDs[i]);
+                }
+                else
+                {
+                    ImportanceScores.Add(v.GetValue(i), 
+                        new List<int>(new int[] { UserIDs[i] }));
                 }
             }
 
             List<int> MostImportant = new List<int>();
             double[] HighestScores = ImportanceScores.Keys.ToArray<double>();
-            double dummy;
+            double max = HighestScores.Max();
+            Array.Sort(HighestScores);
+            HighestScores.Reverse();
             int n = ImportanceScores.Count < NumberToReturn ? ImportanceScores.Count : NumberToReturn;
-            for (i = 0; i < n; i++)
+            i = 0;
+            while (true)
             {
-                dummy = HighestScores[i]; 
+                foreach (int id in ImportanceScores[HighestScores[i]])
+                {
+                    MostImportant.Add(id);
+                    double score = HighestScores[i];
+                    if (MostImportant.Count >= n)
+                        return MostImportant;
+                }
+                i++;
             }
-
-            return MostImportant;
 
         }
 
