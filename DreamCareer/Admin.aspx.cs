@@ -34,7 +34,7 @@ namespace DreamCareer
             EventArgs e)
         {
             this.ClearLabelText();
-            int NumToGenerate = 1000;
+            int NumToGenerate = 50;
             this.userGenerator.GenerateUsers(NumToGenerate);
             GenerateUsersText.Text = "Insertions Complete";
         }
