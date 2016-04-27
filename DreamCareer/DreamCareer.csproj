@@ -119,6 +119,7 @@
     <Content Include="scripts\CreateUser.js" />
     <Content Include="scripts\jquery-2.2.3.min.js" />
     <Content Include="static\css\base.css" />
+    <Content Include="static\css\Create Profile.css" />
     <Content Include="static\css\CreateUser.css" />
     <Content Include="static\css\home.css" />
     <Content Include="static\css\login.css" />
