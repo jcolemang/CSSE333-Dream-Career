@@ -53,9 +53,9 @@
                      <div class="dropdown">
   <button onclick="myFunction()" class="dropbtn">Dropdown</button>
   <div id="myDropdown" class="dropdown-content">
-    <p>Male</p>
-    <p>Female</p>
-    <p>Other</p>
+    <p id="m">Male</p>
+    <p id="f">Female</p>
+    <p if="o">Other</p>
   </div>
 </div>
                 </td>
@@ -78,12 +78,42 @@
 
             <tr>
                 <td>
-                    <p id = "Address">
-                        Address
+                    <p id = "Street">
+                        Street
                     </p>
                 </td>
                 <td>
-                    <asp:TextBox type="text" ID="address" runat="server"></asp:TextBox>
+                    <asp:TextBox type="text" ID="street" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+<tr>
+                <td>
+                    <p id = "City">
+                        City
+                    </p>
+                </td>
+                <td>
+                    <asp:TextBox type="text" ID="city" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+<tr>
+                <td>
+                    <p id = "State">
+                        State
+                    </p>
+                </td>
+                <td>
+                    <asp:TextBox type="text" ID="state" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+<tr>
+                <td>
+                    <p id = "Zip">
+                        Zip
+                    </p>
+                </td>
+                <td>
+                    <asp:TextBox type="text" ID="zip" runat="server"></asp:TextBox>
                 </td>
             </tr>
 

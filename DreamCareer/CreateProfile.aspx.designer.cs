@@ -64,8 +64,11 @@ namespace DreamCareer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox address;
-        
+        protected global::System.Web.UI.WebControls.TextBox street;
+        protected global::System.Web.UI.WebControls.TextBox city;
+        protected global::System.Web.UI.WebControls.TextBox state;
+        protected global::System.Web.UI.WebControls.TextBox zip;
+
         /// <summary>
         /// experience control.
         /// </summary>
@@ -91,6 +94,7 @@ namespace DreamCareer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label error_label;
+        protected global::System.Web.UI.WebControls.Label username_error_label;
+
     }
 }

@@ -343,6 +343,22 @@ namespace DreamCareer
             return ids;
         }
 
+        public static List<string> GetAllUsernamesFromUserTable()
+        {
+            string sp_name = "get_all_usernames_from_user_table";
+            SqlConnection connection = GetSqlConnection();
+            List<string> unames = new List<string>();
+
+            SqlCommand get_all_usernames_from_user_table = new SqlCommand(sp_name, connection);
+            get_all_usernames_from_user_table.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlDataReader reader = get_all_usernames_from_user_table.ExecuteReader();
+            //anything need to be added?-------------------------------------------------------------------------------------------------
+            reader.Close();
+            connection.Close();
+            return unames;
+        }
+
         public static void CreateUserLikes(int UserID, int ProfileID)
         {
             string sp_name = "insert_new_like";

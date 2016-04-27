@@ -1,20 +1,20 @@
 ﻿body {
-    background-color:black;
+    background-color:white;
 }
 
 #create-new-profile-table {
     padding-left: 10%;
 }
 p{
-    color:antiquewhite;
+    color:black;
 }
 
 h2{
-    color:antiquewhite;
+    color:black;
 }
 
 #profile_button{
-    color:aquamarine;
+    color:black;
 }
 
  /* Dropdown Button */
