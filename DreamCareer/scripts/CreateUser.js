@@ -6,7 +6,12 @@ $(document).ready(function()
     })
 
     $('.email-input').change(function () {
+        $('.asp-email-input-error-label').html("");
         validate_email();
+    })
+
+    $('.asp-username-input').change(function () {
+        $('.asp-username-input-error-label').html("");
     })
 
 
@@ -38,8 +43,17 @@ $(document).ready(function()
             $('#email-input-error-label').show();
             return;
         }
+        else if (!is_an_email(email1)) {
+            $('#email-input-error-label')
+                .text('That doesn\'t look like an email...');
+            $('#email-input-error-label').show();
+        }
         else {
             $('#email-input-error-label').hide();
         }
+    }
+
+    function is_an_email(email) {
+        return /[abcdefghijklmnopqrstuvwxyz][abcdefghijklmnopqrstuvwxyz.-_]*@[abcdefghijklmnopqrstuvwxyz.-_]+(.com|.net|.edu)/.test(email)
     }
 })

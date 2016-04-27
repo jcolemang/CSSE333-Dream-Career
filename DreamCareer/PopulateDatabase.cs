@@ -124,11 +124,8 @@ namespace DreamCareer
                 this.RandomGenerator.Next(this.PossibleLastNames.Length)];
         }
 
-
-        public string GenerateAddress()
+        public string GenerateStreet()
         {
-            int ZipCodeLength = 5;
-
             string RoadNum = this.RandomGenerator.Next(this.MaxRoadNumber).ToString();
             string Direction = this.PossibleDirections[
                     this.RandomGenerator.Next(this.PossibleDirections.Length)];
@@ -136,20 +133,30 @@ namespace DreamCareer
                 this.RandomGenerator.Next(this.PossibleRoadNames.Length)];
             string RoadEnding = this.PossibleRoadEndings[
                 this.RandomGenerator.Next(this.PossibleRoadEndings.Length)];
-            string City = this.PossibleCities[
-                this.RandomGenerator.Next(this.PossibleCities.Length)];
-            string State = this.PossibleStates[
-                this.RandomGenerator.Next(this.PossibleStates.Length)];
+            return RoadNum + " " + Direction + " " +
+                RoadName + " " + RoadEnding;
+        }
 
+        public string GenerateCity()
+        {
+            return this.PossibleCities[
+                this.RandomGenerator.Next(this.PossibleCities.Length)];
+        }
+
+        public string GenerateState()
+        {
+            return this.PossibleStates[
+                this.RandomGenerator.Next(this.PossibleStates.Length)];
+        }
+
+        public string GenerateZip()
+        {
+            int ZipCodeLength = 5;
             string Zip = "";
             int i;
             for (i = 0; i < ZipCodeLength; i++)
                 Zip += this.RandomGenerator.Next(10).ToString();
-
-            string address = RoadNum + " " + Direction + " " + RoadName + " " +
-                RoadEnding + "\n" + City + " " + State + "  " + Zip;
-
-            return address;
+            return Zip;
         }
 
         protected string RandomString(int MaxLength)
@@ -340,20 +347,28 @@ namespace DreamCareer
 
         public void GenerateCompanies(int NumCompanies)
         {
-            string address;
             int size;
             string name;
             string description;
+            string street;
+            string city;
+            string state;
+            string zip;
 
             int i;
             for (i = 0; i < NumCompanies; i++)
             {
-                address = this.GenerateAddress();
                 size = this.GenerateSize();
                 name = this.GenerateName();
                 description = this.GenerateDescription();
+                street = this.GenerateStreet();
+                city = this.GenerateCity();
+                state = this.GenerateState();
+                zip = this.GenerateZip();
 
-                Database.CreateCompany(address, size, name, description);
+                Database.CreateCompany(size, name, 
+                    description, street, city, state,
+                    zip);
             }
         }
 
@@ -485,8 +500,11 @@ namespace DreamCareer
             string name;
             string gender;
             string major;
-            string address;
             string experience;
+            string street;
+            string city;
+            string state;
+            string zip;
             int userid;
 
             int i;
@@ -496,8 +514,11 @@ namespace DreamCareer
                     this.GenerateLastName();
                 gender = this.GenerateGender();
                 major = this.GenerateMajor();
-                address = this.GenerateAddress();
                 experience = this.GenerateExperience();
+                street = this.GenerateStreet();
+                city = this.GenerateCity();
+                state = this.GenerateState();
+                zip = this.GenerateZip();
                 userid = Database.GetRandomUserID();
 
                 int counter = 0;
@@ -511,8 +532,30 @@ namespace DreamCareer
 
                 this.UsedUserIDs.Add(userid);
 
-                Database.CreateUserProfile(name, gender, major,
-                    address, experience, userid);
+                Database.CreateUserProfile(name, gender,
+                    major, experience, street, city,
+                    state, zip, userid);
+            }
+        }
+
+    }
+    class RelationGenerator : Generator
+    {
+        public RelationGenerator()
+        {
+
+        }
+
+        public void GenerateLikes(int num)
+        {
+            int i;
+            int userid;
+            int profileid;
+            for (i = 0; i < num; i++)
+            {
+                userid = Database.GetRandomUserID();
+                profileid = Database.GetRandomProfileID();
+                Database.CreateUserLikes(userid, profileid);
             }
         }
     }

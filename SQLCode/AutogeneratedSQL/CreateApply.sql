@@ -1,0 +1,38 @@
+USE [DreamCareer]
+GO
+
+/****** Object:  Table [dbo].[Apply]    Script Date: 4/25/2016 1:49:21 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Apply](
+	[UserID] [int] NOT NULL,
+	[PositionID] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[UserID] ASC,
+	[PositionID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Apply]  WITH CHECK ADD  CONSTRAINT [FK__Apply__PositionI__239E4DCF] FOREIGN KEY([PositionID])
+REFERENCES [dbo].[Position] ([PositionID])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[Apply] CHECK CONSTRAINT [FK__Apply__PositionI__239E4DCF]
+GO
+
+ALTER TABLE [dbo].[Apply]  WITH CHECK ADD  CONSTRAINT [userIDref] FOREIGN KEY([UserID])
+REFERENCES [dbo].[DreamCareerUser] ([UserID])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[Apply] CHECK CONSTRAINT [userIDref]
+GO
+

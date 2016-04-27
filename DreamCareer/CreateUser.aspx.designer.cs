@@ -31,6 +31,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox username;
         
         /// <summary>
+        /// username_input_error_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label username_input_error_label;
+        
+        /// <summary>
         /// password control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox confirm_email;
         
         /// <summary>
+        /// email_input_error_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label email_input_error_label;
+        
+        /// <summary>
         /// user_button control.
         /// </summary>
         /// <remarks>
@@ -74,14 +92,5 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button user_button;
-        
-        /// <summary>
-        /// error_label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label error_label;
     }
 }

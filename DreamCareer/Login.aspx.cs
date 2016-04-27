@@ -25,6 +25,7 @@ namespace DreamCareer
             }
             else
             {
+                Session["username"] = Username;
                 // logged in
             }
 
