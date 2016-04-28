@@ -19,10 +19,16 @@ namespace DreamCareer
             string Username = username.Text;
             string Password = password.Text;
 
+ //           try
+  //          {
+  //              Database.
+   //         }
             if (!Database.IsAUser(Username, Password))
             {
+
                 // Write an error
-                Response.Redirect("CreateUser.aspx");
+                //Response.Redirect("CreateUser.aspx");
+                login_username_input_error.Text = "The password and username don't match, try again!";
             }
             else
             {
