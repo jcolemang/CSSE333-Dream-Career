@@ -25,7 +25,8 @@
             </asp:TextBox>
 
             <asp:Button ID="SearchBarButton" runat="server"
-                Text="Search" CssClass="inline-button"/>
+                Text="Search" CssClass="inline-button"
+                OnClick="SearchBarButton_OnClick"/>
             <asp:Button ID="AdvancedSearchBarButton" runat="server"
                 Text="Advanced" CssClass="inline-button"/>
         </form>
