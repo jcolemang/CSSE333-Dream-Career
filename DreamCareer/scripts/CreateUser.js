@@ -69,7 +69,6 @@ function is_an_email(email) {
 
 
 function validate() {
-    alert("CALLED");
     if (!validate_email()) {
         alert("Please fix the problem with " +
             "your email before you submit");

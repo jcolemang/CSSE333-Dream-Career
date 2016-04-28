@@ -23,17 +23,24 @@ namespace DreamCareer
             else
             {
                 // The default if they gave no parameter
-                Response.Redirect(Session["username"] + ".aspx");
+                // Response.Redirect(Session["username"] + ".aspx");
                 return;
             }
 
-            Dictionary<string, string> Profile = 
-                Database.GetProfile(UsernameParameter);
+            try
+            {
+                Dictionary<string, string> Profile = 
+                    Database.GetProfile(UsernameParameter);
 
-            NameLabel.Text = Profile["Name"];
-            GenderLabel.Text = Profile["Gender"];
-            MajorLabel.Text = Profile["Major"];
-            ExperienceLabel.Text = Profile["Experience"];
+                NameLabel.Text = Profile["Name"];
+                GenderLabel.Text = Profile["Gender"];
+                MajorLabel.Text = Profile["Major"];
+                ExperienceLabel.Text = Profile["Experience"];
+            }
+            catch (NoDataException)
+            {
+                Response.Redirect("ViewProfile.aspx");
+            }
 
 
         }

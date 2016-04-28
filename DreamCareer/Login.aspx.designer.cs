@@ -31,7 +31,7 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox username;
         
         /// <summary>
-        /// login-username_input_error control.
+        /// login_username_input_error control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
