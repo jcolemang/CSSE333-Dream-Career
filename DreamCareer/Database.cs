@@ -422,22 +422,12 @@ namespace DreamCareer
             string sp_name = "get_profile";
 
             SqlCommand get_profile = new SqlCommand(sp_name, connection);
+            get_profile.CommandType =
+                System.Data.CommandType.StoredProcedure;
             get_profile.Parameters.Add(
                 new SqlParameter("@username", Username));
 
-            SqlParameter ReturnVal = new SqlParameter("RetVal", 
-                System.Data.SqlDbType.Int);
-            ReturnVal.Direction = 
-                System.Data.ParameterDirection.ReturnValue;
-            get_profile.Parameters.Add(ReturnVal);
-
             SqlDataReader reader = get_profile.ExecuteReader();
-            int val = (int)ReturnVal.Value;
-
-            if (val == InputError)
-            {
-                ;// TODO this should probably do something
-            }
 
             Dictionary<string, string> Profile = new Dictionary<string, string>();
             if (reader.Read())
