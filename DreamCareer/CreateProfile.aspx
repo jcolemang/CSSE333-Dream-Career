@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="CreateProfile.aspx.cs" Inherits="DreamCareer.CreateProfile" %>
-
+ <%--<button onclick="return myFunction()" class="dropbtn">Dropdown</button>        --%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <link href="static/css/Create Profile.css" rel="stylesheet" type="text/css" />
 <script src="scripts/CreateProfile.js" type="text/javascript"></script>
@@ -28,7 +28,6 @@
                 </td>
             </tr>
 
-            <br />
 
             <tr>
                 <td>
@@ -41,27 +40,34 @@
                 </td>
             </tr>
 
-            <br />
 
             <tr>
- <td>
+				<td>
                     <p id = "Gender">
                         Gender
                     </p>
                 </td>
                 <td>
-                     <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-  <div id="myDropdown" class="dropdown-content">
-    <p id="m">Male</p>
-    <p id="f">Female</p>
-    <p if="o">Other</p>
-  </div>
-</div>
+                        
+  <asp:DropDownList 
+      type ="dropdownlist"
+      id="gender" 
+      runat="server" >
+
+      <asp:ListItem Text="Select" Value="1" Selected="True"></asp:ListItem>
+                 <asp:ListItem Text="Male" Value="2"></asp:ListItem>
+
+                        <asp:ListItem Text="Female" Value="3"></asp:ListItem>
+
+                        <asp:ListItem Text="Other" Value="4"></asp:ListItem>
+
+                        
+
+                    </asp:DropDownList>
+
+ 
                 </td>
             </tr>
-
-            <br />
 
             <tr>
                 <td>
@@ -73,8 +79,6 @@
                     <asp:TextBox type="text" ID="major" runat="server"></asp:TextBox>
                 </td>
             </tr>
-
-            <br />
 
             <tr>
                 <td>
@@ -117,8 +121,6 @@
                 </td>
             </tr>
 
-            <br />
-
             <tr>
                 <td>
                     <p id = "Experience">
@@ -129,8 +131,6 @@
                     <asp:TextBox type="text" ID="experience" runat="server"></asp:TextBox>
                 </td>
             </tr>
-
-            <br />
 
             <tr>
                 <td>
