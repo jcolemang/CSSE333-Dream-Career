@@ -35,10 +35,12 @@ namespace DreamCareer
             catch (RepeatUsernameException)
             {
                 username_input_error_label.Text = "Username already in use.";
+                return;
             }
             catch (RepeatEmailException)
             {
                 email_input_error_label.Text = "Email already in use.";
+                return;
             }
             
             Session["username"] = UName;
