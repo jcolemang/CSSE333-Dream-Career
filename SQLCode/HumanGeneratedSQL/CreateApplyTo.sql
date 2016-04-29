@@ -1,0 +1,16 @@
+USE DreamCareer
+GO
+
+CREATE TABLE ApplyTo
+(
+	UserID int,
+	PositionID int,
+
+	FOREIGN KEY (UserID) REFERENCES DreamCareerUser(UserID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+
+	FOREIGN KEY (PositionID) REFERENCES Position(PositionID)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+)

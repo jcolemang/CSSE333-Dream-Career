@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 
 using System.Data.SqlClient;
-using System.Media;
+using System.Security.Cryptography;
 
 namespace DreamCareer
 {
+    
+
     /*
      * Basically just a whole bunch of wrappers for
      * SQL stored procedures. Most of them are nearly
@@ -20,6 +22,19 @@ namespace DreamCareer
         // constants used by the commands
         public const int RepeatUsernameError = -1;
         public const int RepeatEmailError = -2;
+
+        public static RNGCryptoServiceProvider RNGCSP = 
+            new RNGCryptoServiceProvider();
+
+        public static void GenerateSaltValue()
+        {
+
+        }
+
+        public static void HashPassword()
+        {
+
+        }
 
         public static SqlConnection GetSqlConnection()
         {
@@ -48,6 +63,8 @@ namespace DreamCareer
         public static void CreateUser( string Username, string Password, string Email )
         {
             SqlConnection connection = GetSqlConnection();
+            string PasswordHash;
+            string Salt;
 
             // Setting up the command
             string sp_name = "insert_new_user";
@@ -59,6 +76,8 @@ namespace DreamCareer
                 new SqlParameter("@Uname", Username));
             insert_user.Parameters.Add(
                 new SqlParameter("@pass", Password));
+            //insert_user.Parameters.Add(
+                //new SqlParameter("@salt", Salt));
             insert_user.Parameters.Add(
                 new SqlParameter("@email", Email));
 
@@ -402,22 +421,12 @@ namespace DreamCareer
             string sp_name = "get_profile";
 
             SqlCommand get_profile = new SqlCommand(sp_name, connection);
+            get_profile.CommandType =
+                System.Data.CommandType.StoredProcedure;
             get_profile.Parameters.Add(
                 new SqlParameter("@username", Username));
 
-            SqlParameter ReturnVal = new SqlParameter("RetVal", 
-                System.Data.SqlDbType.Int);
-            ReturnVal.Direction = 
-                System.Data.ParameterDirection.ReturnValue;
-            get_profile.Parameters.Add(ReturnVal);
-
             SqlDataReader reader = get_profile.ExecuteReader();
-            int val = (int)ReturnVal.Value;
-
-            if (val == InputError)
-            {
-                ;// TODO this should probably do something
-            }
 
             Dictionary<string, string> Profile = new Dictionary<string, string>();
             if (reader.Read())
