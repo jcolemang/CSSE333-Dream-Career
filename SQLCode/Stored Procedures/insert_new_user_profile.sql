@@ -8,7 +8,7 @@ USE DreamCareer
 -- TODO this is incomplete
 
 GO
-CREATE PROCEDURE insert_new_user_profile
+alter PROCEDURE insert_new_user_profile
 	(@name varchar(20),
 	@gender varchar(20),
 	@major varchar(20),
@@ -17,18 +17,25 @@ CREATE PROCEDURE insert_new_user_profile
 	@city varchar(20),
 	@state varchar(20),
 	@zip varchar(10),
-	@userid int)
+	@uname varchar(50))
 AS
-
+	declare @id int
 	DECLARE @InputError int
 	SET @InputError = -1
 
 	-- Need error checking 
-
+	set @id = (select profileid from userprofile 
+	where exists (select username from DreamCareerUser where username = @uname))
+	--checking username doesn't already exist in user table
+	if((select count(profileid) from userprofile where @id = profileid) is not null)
+		begin
+		print 'Trying to insert username that already exists in profile'
+		return @InputError
+		end
 	INSERT INTO UserProfile
 	(Name, Gender, Major, Experience, Street, City, State, Zipcode, ProfileID)
 	VALUES
-	(@name, @gender, @major, @experience, @street, @city, @state, @zip, @userid)
+	(@name, @gender, @major, @experience, @street, @city, @state, @zip, @id)
 
 GO
 GRANT EXECUTE ON insert_new_user_profile TO dreamcareer

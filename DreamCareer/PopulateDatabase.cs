@@ -532,9 +532,9 @@ namespace DreamCareer
 
                 this.UsedUserIDs.Add(userid);
 
-                Database.CreateUserProfile(name, gender,
-                    major, experience, street, city,
-                    state, zip, userid);
+                //Database.CreateUserProfile(name, gender,
+                //    major, experience, street, city,
+                //    state, zip, userid);
             }
         }
 

@@ -107,38 +107,18 @@ namespace DreamCareer
             return contains_data;
         }
 
-
-
-        public static void CreateUserProfile( string name, string gender,
-            string major, string experience, string street,
-            string city, string state, string zip, int userid)
+        public static bool checkIfUsernameInDatabase(string uname)
         {
-            string sp_name = "insert_new_user_profile";
             SqlConnection connection = GetSqlConnection();
-            SqlCommand insert_profile_sp = new SqlCommand(sp_name, connection);
-            insert_profile_sp.CommandType = System.Data.CommandType.StoredProcedure;
-
-            insert_profile_sp.Parameters.Add(
-                new SqlParameter("@name", name));
-            insert_profile_sp.Parameters.Add(
-                new SqlParameter("@gender", gender));
-            insert_profile_sp.Parameters.Add(
-                new SqlParameter("@major", major));
-            insert_profile_sp.Parameters.Add(
-                new SqlParameter("@experience", experience));
-            insert_profile_sp.Parameters.Add(
-                new SqlParameter("@street", street));
-            insert_profile_sp.Parameters.Add(
-                new SqlParameter("@city", city));
-            insert_profile_sp.Parameters.Add(
-                new SqlParameter("@state", state));
-            insert_profile_sp.Parameters.Add(
-                new SqlParameter("@zip", zip));
-            insert_profile_sp.Parameters.Add(
-                new SqlParameter("@userid", userid));
-
-            insert_profile_sp.ExecuteNonQuery();
+            string sp_name = "checkif_username_in_database";
+            SqlCommand get_user_sp = new SqlCommand(sp_name, connection);
+            get_user_sp.CommandType = System.Data.CommandType.StoredProcedure;
+            get_user_sp.Parameters.Add(new SqlParameter("@uname", uname));
+            SqlDataReader reader = get_user_sp.ExecuteReader();
+            bool contains_data = reader.HasRows;
+            reader.Close();
             connection.Close();
+            return contains_data;
         }
 
 
@@ -146,7 +126,7 @@ namespace DreamCareer
             string major, string experience, string street,
             string city, string state, string zip, string username) 
         {
-            string sp_name = "insert_new_user_profile_id";
+            string sp_name = "insert_new_user_profile";
             SqlConnection connection = GetSqlConnection();
             SqlCommand insert_profile_sp = new SqlCommand(sp_name, connection);
             insert_profile_sp.CommandType = System.Data.CommandType.StoredProcedure;
@@ -172,7 +152,7 @@ namespace DreamCareer
 
             insert_profile_sp.ExecuteNonQuery();
             connection.Close();
-        }
+        }       
 
 
         public static void CreateCompany(int size, 

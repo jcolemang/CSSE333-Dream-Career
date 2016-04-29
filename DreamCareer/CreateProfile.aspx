@@ -52,7 +52,8 @@
   <asp:DropDownList 
       type ="dropdownlist"
       id="gender" 
-      runat="server" >
+      runat="server" 
+      CssClass="gender-select">
 
       <asp:ListItem Text="Select" Value="1" Selected="True"></asp:ListItem>
                  <asp:ListItem Text="Male" Value="2"></asp:ListItem>
@@ -67,6 +68,9 @@
 
  
                 </td>
+                <td>
+                 <label id="gender-not-selected-error"></label>
+                    </td>
             </tr>
 
             <tr>
@@ -135,14 +139,12 @@
             <tr>
                 <td>
                     <asp:Button ID="profile_button" runat="server" Text="Insert Profile"
-                        OnClick="InsertProfileButton_OnClick" />
+                        OnClick="InsertProfileButton_OnClick" OnClientClick="return genderCheck()"/>
                 </td>
             </tr>
 </table>
 
         </div>
-        <div>
-            <asp:Label ID="error_label" runat="server"></asp:Label>
-        </div>
+        
     </form>
 </asp:Content>

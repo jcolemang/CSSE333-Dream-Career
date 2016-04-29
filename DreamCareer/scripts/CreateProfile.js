@@ -1,10 +1,8 @@
-﻿$(document).ready(function () {
-	
-});
+﻿
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function myFunction()
+/*function myFunction()
 {
 	$('#myDropdown').show();
 	return false;
@@ -22,9 +20,22 @@ function myFunction()
 				$(openDropdown).hide();
 			}
 		}
-	}
-	function genderCheck() {
-	    var gen = document.getSelection('.gender');
-        if(gen ==)
+	}  */
 
+$(document).ready(function () {
+    $('.gender-select').change(function () {
+        genderCheck();
+    })
+})
+
+function genderCheck() {
+	var gen = $('.gender-select').val();
+	if (gen == 1) {
+	    $('#gender-not-selected-error').text('Gender not selected');
+	    $('#gender-not-selected-error').show();
+	    return false;
 	}
+
+	$('#gender-not-selected-error').hide();
+	return true;
+}
