@@ -15,6 +15,7 @@ $(document).ready(function () {
 });
 
 
+
 function validate_password() {
 
     var password_inputs = $('.password-input');

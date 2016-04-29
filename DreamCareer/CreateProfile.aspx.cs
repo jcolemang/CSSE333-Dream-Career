@@ -26,36 +26,25 @@ namespace DreamCareer
             if (gend == 2) { gende = "Male"; }
             else if (gend == 3) { gende = "Female"; }
             else if (gend == 4) { gende = "Other"; }
-
-
-            //else if(gend == 1) { gende = "Select"; }
-            // else { gende = "exc"; }
-            // try
-            //{
-            //    Database.CreateUserProfile(n, gende, maj, exp, stree, cit, stat, zi, uname);
-            //}
-            /*catch  (ArgumentException)
-            {
-                gender_not_selected_error.Text = "Gender not selected";
-            }  */
-
-            /*var enumerator = Database.GetAllUsernamesFromUserTable().GetEnumerator();
             Boolean boo = false;
-            while (enumerator.Current != null)
+            try
             {
-
-                if (enumerator.Current == uname)
+                if (Database.checkIfUsernameInDatabase(uname))
                 {
                     boo = true;
                 }
             }
-            if (boo.Equals(false))
+            finally
             {
-                throw new MissingMemberException("Username doesn't exist in User Table");
+                if (boo)
+                {
+                    username_input_error_label.Text = "";
+
+                    username_input_error_label.Text = "Username doesn't exist.";
+                }
             }
-        }     */
-
-
+            Session["username"] = uname;
+            Response.Redirect("CreateProfile.aspx");
         }
     }
 }

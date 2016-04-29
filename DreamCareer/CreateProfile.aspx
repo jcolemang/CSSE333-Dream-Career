@@ -24,8 +24,9 @@
                     </p>
                 </td>
                 <td>
-                    <asp:TextBox type="text" ID="prof_username" runat="server"></asp:TextBox>
+                    <asp:TextBox type="text" ID="prof_username" CssClass="user-name" runat="server"></asp:TextBox>
                 </td>
+                <td><label id="username-input-error-label"></label></td>
             </tr>
 
 

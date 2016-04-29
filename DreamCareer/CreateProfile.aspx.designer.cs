@@ -110,5 +110,7 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button profile_button;
+        protected global::System.Web.UI.WebControls.Label username_input_error_label;
+
     }
 }
