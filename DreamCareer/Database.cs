@@ -139,6 +139,19 @@ namespace DreamCareer
             connection.Close();
             return contains_data;
         }
+        public static bool checkIfUsernameInProfile(string uname)
+        {
+            SqlConnection connection = GetSqlConnection();
+            string sp_name = "checkif_username_in_profile";
+            SqlCommand get_user_sp = new SqlCommand(sp_name, connection);
+            get_user_sp.CommandType = System.Data.CommandType.StoredProcedure;
+            get_user_sp.Parameters.Add(new SqlParameter("@uname", uname));
+            SqlDataReader reader = get_user_sp.ExecuteReader();
+            bool contains_data = reader.HasRows;
+            reader.Close();
+            connection.Close();
+            return contains_data;
+        }
 
 
         public static void CreateUserProfile( string name, string gender,
@@ -167,7 +180,7 @@ namespace DreamCareer
             insert_profile_sp.Parameters.Add(
                 new SqlParameter("@zip", zip));
             insert_profile_sp.Parameters.Add(
-                new SqlParameter("@username", username));
+                new SqlParameter("@uname", username));
 
             insert_profile_sp.ExecuteNonQuery();
             connection.Close();

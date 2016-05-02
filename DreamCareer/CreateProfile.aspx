@@ -26,7 +26,9 @@
                 <td>
                     <asp:TextBox type="text" ID="prof_username" CssClass="user-name" runat="server"></asp:TextBox>
                 </td>
-                <td><label id="username-input-error-label"></label></td>
+                <td><asp:Label ID="username_input_error_label" runat="server">
+
+                    </asp:Label></td>
             </tr>
 
 
