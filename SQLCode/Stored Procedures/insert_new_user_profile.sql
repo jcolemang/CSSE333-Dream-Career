@@ -24,14 +24,16 @@ AS
 	SET @InputError = -1
 
 	-- Need error checking 
-	set @id = (select profileid from userprofile 
-	where exists (select username from DreamCareerUser where username = @uname))
+	set @id = (select userid from DreamCareerUser 
+				where username = @uname)
+
 	--checking username doesn't already exist in user table
-	if((select count(profileid) from userprofile where @id = profileid) is not null)
-		begin
+	if((select count(profileid) from userprofile where @id = profileid) != 0)
+	begin
 		print 'Trying to insert username that already exists in profile'
 		return @InputError
-		end
+	end
+
 	INSERT INTO UserProfile
 	(Name, Gender, Major, Experience, Street, City, State, Zipcode, ProfileID)
 	VALUES

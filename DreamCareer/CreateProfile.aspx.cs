@@ -27,24 +27,30 @@ namespace DreamCareer
             else if (gend == 3) { gende = "Female"; }
             else if (gend == 4) { gende = "Other"; }
             Boolean boo = false;
-            try
+            
+            
+            if (!Database.checkIfUsernameInDatabase(uname))
             {
-                if (Database.checkIfUsernameInDatabase(uname))
-                {
-                    boo = true;
-                }
+                boo = true;
             }
-            finally
+            
+            
+            
+            if (boo)
             {
-                if (boo)
-                {
-                    username_input_error_label.Text = "";
+               
 
-                    username_input_error_label.Text = "Username doesn't exist.";
-                }
+                username_input_error_label.Text = "Username doesn't exist.";
+                return;
             }
+            else
+            {
+                username_input_error_label.Text = "";
+                Database.CreateUserProfile(n, gende, maj, exp, stree, cit, stat, zi, uname);
+            }
+            
             Session["username"] = uname;
-            Response.Redirect("CreateProfile.aspx");
+            //Response.Redirect("CreateProfile.aspx");
         }
     }
 }
