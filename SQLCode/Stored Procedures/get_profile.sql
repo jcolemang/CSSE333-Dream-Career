@@ -2,7 +2,7 @@
 
 USE DreamCareer
 GO
-ALTER PROCEDURE get_profile
+CREATE PROCEDURE get_profile
 	(@username varchar(20))
 AS
 	DECLARE @InputError smallint

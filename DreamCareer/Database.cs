@@ -55,8 +55,16 @@ namespace DreamCareer
                 "Integrated Security=True;";
 
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = remote_db_string;
-            connection.Open();
+            try
+            {
+                connection.ConnectionString = remote_db_string;
+                connection.Open();
+            }
+            catch (Exception e) 
+            {
+                connection.ConnectionString = local_db_string;
+                connection.Open();
+            }
             return connection;
         }
 

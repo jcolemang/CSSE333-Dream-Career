@@ -12,7 +12,7 @@ CREATE TABLE Position
 	State varchar(50),
 	Zipcode char(5),
 	Salary money,
-	PositionDescription varchar(500),
+	PositionDescription varchar(5000),
 
 	PRIMARY KEY (PositionID),
 	FOREIGN KEY (CompanyID) REFERENCES Company(CompanyID)

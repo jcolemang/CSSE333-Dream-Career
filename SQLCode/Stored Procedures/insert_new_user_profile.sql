@@ -8,7 +8,7 @@ USE DreamCareer
 -- TODO this is incomplete
 
 GO
-alter PROCEDURE insert_new_user_profile
+CREATE PROCEDURE insert_new_user_profile
 	(@name varchar(20),
 	@gender varchar(20),
 	@major varchar(20),

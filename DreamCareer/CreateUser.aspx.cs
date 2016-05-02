@@ -22,8 +22,8 @@ namespace DreamCareer
         {
             // strip username
             string UName = username.Text.ToLower().Trim();
-            string UserEmail = email.Text;
-            string UserPassword = password.Text;
+            string UserEmail = email.Text.ToLower().Trim();
+            string UserPassword = password.Text.ToLower().Trim();
 
             username_input_error_label.Text = "";
             email_input_error_label.Text = "";
