@@ -44,7 +44,7 @@ namespace DreamCareer
             }
             
             Session["username"] = UName;
-            Response.Redirect("Default.aspx");
+            Response.Redirect("CreateProfile.aspx");
         }
     }
 }

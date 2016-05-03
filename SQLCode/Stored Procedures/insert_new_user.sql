@@ -7,7 +7,7 @@ USE DreamCareer
 GO
 CREATE PROCEDURE insert_new_user 
 	(@Uname varchar(20),
-	@hashedpass varchar(512),
+	@password varchar(512),
 	@salt varchar(512),
 	@email varchar(20))
 AS
@@ -37,7 +37,8 @@ AS
 	INSERT INTO DreamCareerUser
 	(Username, HashedPassword, Salt, Email)	
 	VALUES
-	(@Uname, @hashedpass, @salt, @email)
+	(@Uname, HASHBYTES('SHA1', @password + @salt), @salt, @email)
+
 	RETURN 0
 
 GO

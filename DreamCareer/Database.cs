@@ -22,18 +22,39 @@ namespace DreamCareer
         // constants used by the commands
         public const int RepeatUsernameError = -1;
         public const int RepeatEmailError = -2;
-
+        public const int UsernameDoesntExistError = -3;
+        public const int ProfileAlreadyExistsError = -4;
+        
         public static RNGCryptoServiceProvider RNGCSP = 
             new RNGCryptoServiceProvider();
+        public static SHA256 PasswordHasher = new System.Security.Cryptography.SHA256Managed();
+        public static int SaltLength = 128;
 
-        public static void GenerateSaltValue()
+        /*
+         * 
+         */ 
+        public static string GenerateSaltValue()
         {
-
+             return GetRandomString(SaltLength);
         }
 
-        public static void HashPassword()
+        public static string HashPasswordAndSalt(string PlainText, string Salt)
         {
+            return HashPassword(PlainText + Salt);
+        }
 
+        public static string HashPassword(string PlainText)
+        {
+            byte[] PlainTextBytes = System.Text.Encoding.ASCII.GetBytes(PlainText);
+            byte[] HashedBytes = PasswordHasher.ComputeHash(PlainTextBytes);
+            return System.Text.Encoding.ASCII.GetString(HashedBytes);
+        }
+
+        public static string GetRandomString(int length)
+        {
+            byte[] Bytes = new byte[length];
+            RNGCSP.GetBytes(Bytes);
+            return System.Text.Encoding.ASCII.GetString(Bytes);
         }
 
         public static SqlConnection GetSqlConnection()
@@ -55,24 +76,16 @@ namespace DreamCareer
                 "Integrated Security=True;";
 
             SqlConnection connection = new SqlConnection();
-            try
-            {
-                connection.ConnectionString = remote_db_string;
-                connection.Open();
-            }
-            catch (Exception e) 
-            {
-                connection.ConnectionString = local_db_string;
-                connection.Open();
-            }
+            connection.ConnectionString = remote_db_string;
+            connection.Open();
             return connection;
         }
 
         public static void CreateUser( string Username, string Password, string Email )
         {
+            string Salt = GenerateSaltValue();
+
             SqlConnection connection = GetSqlConnection();
-            string PasswordHash;
-            string Salt;
 
             // Setting up the command
             string sp_name = "insert_new_user";
@@ -82,10 +95,12 @@ namespace DreamCareer
             // Adding parameters
             insert_user.Parameters.Add(
                 new SqlParameter("@Uname", Username));
-            insert_user.Parameters.Add(
-                new SqlParameter("@pass", Password));
             //insert_user.Parameters.Add(
-                //new SqlParameter("@salt", Salt));
+            //new SqlParameter("@pass", Password));
+            insert_user.Parameters.Add(
+                new SqlParameter("@password", Password));
+            insert_user.Parameters.Add(
+                new SqlParameter("@salt", Salt));
             insert_user.Parameters.Add(
                 new SqlParameter("@email", Email));
 
@@ -113,10 +128,51 @@ namespace DreamCareer
         }
 
 
+        public static string GetUserSalt(string Username)
+        {
+            SqlConnection connection = GetSqlConnection();
+
+            string sp_name = "get_user_salt";
+            SqlCommand get_salt = new SqlCommand(sp_name, connection);
+            get_salt.CommandType = System.Data.CommandType.StoredProcedure;
+
+            get_salt.Parameters.Add(
+                new SqlParameter("@uname", Username));
+            
+            SqlParameter ReturnVal = new SqlParameter("RetVal", 
+                System.Data.SqlDbType.Int);
+            ReturnVal.Direction = 
+                System.Data.ParameterDirection.ReturnValue;
+            get_salt.Parameters.Add(ReturnVal);
+
+            SqlDataReader reader = get_salt.ExecuteReader();
+
+            if (!reader.Read())
+            {
+                reader.Close();
+                connection.Close();
+
+                if ((int)ReturnVal.Value == Database.UsernameDoesntExistError)
+                    throw new UsernameDoesntExistException();
+                throw new Exception("Unknown error.");
+            }
+
+            string Salt = reader.GetString(0);
+            reader.Close();
+            connection.Close();
+            return Salt;
+        }
+
+
+        /*
+         * Hashes the password and salt in the database to verify that
+         * the credentials given are valid.
+         */
         public static bool IsAUser( string Username, string Password )
         {
             SqlConnection connection = GetSqlConnection();
 
+            // The stored procedure
             string sp_name = "check_username_password";
             SqlCommand get_user_sp = new SqlCommand(sp_name, connection);
             get_user_sp.CommandType = System.Data.CommandType.StoredProcedure;
@@ -124,13 +180,14 @@ namespace DreamCareer
             get_user_sp.Parameters.Add(
                 new SqlParameter("@username", Username));
             get_user_sp.Parameters.Add(
-                new SqlParameter("@password", Password));
+                new SqlParameter("@pass", Password));
 
             SqlDataReader reader = get_user_sp.ExecuteReader();
-
             bool contains_data = reader.HasRows;
             reader.Close();
             connection.Close();
+
+            // If there is a matching username and password the credentials must be valid
             return contains_data;
         }
 
@@ -190,7 +247,23 @@ namespace DreamCareer
             insert_profile_sp.Parameters.Add(
                 new SqlParameter("@uname", username));
 
+            SqlParameter ReturnVal = new SqlParameter("RetVal", 
+                System.Data.SqlDbType.Int);
+            ReturnVal.Direction = 
+                System.Data.ParameterDirection.ReturnValue;
             insert_profile_sp.ExecuteNonQuery();
+            insert_profile_sp.Parameters.Add(ReturnVal);
+
+            insert_profile_sp.ExecuteNonQuery();
+
+            int ReturnValue = (int)ReturnVal.Value;
+
+            if (ReturnValue == Database.ProfileAlreadyExistsError)
+            {
+                connection.Close();
+                throw new ProfileAlreadyExistsException();
+            }
+
             connection.Close();
         }       
 
@@ -341,6 +414,29 @@ namespace DreamCareer
             reader.Close();
             return position_ids;
         }
+
+
+        public static void SearchByTags(List<string> TagWords)
+        {
+            string CommandString =
+                "SELECT * " +
+                "FROM Position ";
+            if (TagWords.Count > 0)
+            {
+                CommandString += 
+                    "WHERE Position.PositionID = HasTag.PositionID AND " +
+                    "HasTag.TagID = Tag.TagID " +
+                    "HAVING ";
+
+                foreach (string TagWord in TagWords)
+                {
+                    //CommandString +=
+                        //"AND "I
+                }
+            }
+        }
+
+
 
         public static List<int> GetAllUserIDs()
         {
@@ -632,6 +728,32 @@ namespace DreamCareer
 
         }
 
+    }
+
+    public class UsernameDoesntExistException : ApplicationException
+    {
+        public UsernameDoesntExistException() : base()
+        {
+
+        }
+
+        public UsernameDoesntExistException(string message) : base(message)
+        {
+
+        }
+    }
+
+    public class ProfileAlreadyExistsException : ApplicationException
+    {
+        public ProfileAlreadyExistsException() : base()
+        {
+
+        }
+
+        public ProfileAlreadyExistsException(string message) : base(message)
+        {
+
+        }
     }
 
     public class NoDataException : ApplicationException

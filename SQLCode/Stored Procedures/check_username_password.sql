@@ -7,13 +7,17 @@ USE DreamCareer
 GO
 CREATE PROCEDURE check_username_password
 	(@username varchar(20),
-	@hashedpass varchar(20))
+	@pass varchar(20))
 AS
+	DECLARE @salt varchar(512)
+	SET @salt=(SELECT Salt
+				FROM DreamCareerUser
+				WHERE Username=@username)
 
 	SELECT *
 	FROM DreamCareerUser
 	WHERE Username=@username AND
-			HashedPassword=@hashedpass
+			HashedPassword=HASHBYTES('SHA1', @pass+@salt)
 
 GO
 GRANT EXECUTE ON check_username_password TO dreamcareer
