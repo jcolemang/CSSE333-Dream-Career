@@ -69,15 +69,15 @@ AS
 
 	IF ( EXISTS (SELECT *
 					FROM Likes
-					WHERE UserID = @userid AND
-							ProfileID = @profileid) )
+					WHERE UserIDLikes = @userid AND
+							ProfileLikedUserID = @profileid) )
 	BEGIN
 		PRINT 'User already liked profile'
 		RETURN @RepeatRowError
 	END
 
 	INSERT INTO Likes
-	(UserID, ProfileID)
+	(UserIDLikes, ProfileLikedUserID)
 	VALUES
 	(@userid, @profileid)
 

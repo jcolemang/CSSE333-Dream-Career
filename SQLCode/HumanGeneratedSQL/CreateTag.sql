@@ -8,3 +8,6 @@ CREATE TABLE Tag
 	TagWord varchar(20)
 	PRIMARY KEY (TagID)
 )
+
+ALTER TABLE Tag
+ADD UNIQUE(TagWord)

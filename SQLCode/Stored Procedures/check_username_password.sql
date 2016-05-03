@@ -7,13 +7,13 @@ USE DreamCareer
 GO
 CREATE PROCEDURE check_username_password
 	(@username varchar(20),
-	@password varchar(20))
+	@hashedpass varchar(20))
 AS
 
 	SELECT *
 	FROM DreamCareerUser
 	WHERE Username=@username AND
-			Password=@password
+			HashedPassword=@hashedpass
 
 GO
 GRANT EXECUTE ON check_username_password TO dreamcareer

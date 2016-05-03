@@ -1,14 +1,6 @@
 
 IMPORTANT:
-1. It would probably make sense to make a relation for tag.
-    As it is we are storing the same tag many times for every
-    time a position references it.
 2. Fix permissions for get_all_userids
-3. Fix the errors on the CreateUser page. As it is
-    the Javascript errors and the C# errors sort of
-    overlap.
-4. Create Triggers on the Dream Career User table to delete
-    from the likes table when one of them is deleted
 
 MODERATE:
 2. Add a constraint limiting the number of tags a position can have

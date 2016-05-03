@@ -7,11 +7,21 @@ CREATE PROCEDURE insert_new_position_tag
 	(@tagtext varchar(20),
 	@posid int)
 AS
-	-- Performing the insert on tag
-	INSERT INTO Tag
-	(TagWord, PositionID)
+	
+	DECLARE @tagid int
+	SET @tagid = (SELECT TagID FROM Tag WHERE TagWord=@tagtext)
+
+	-- Create new tag
+	IF ( @tagid IS NULL )
+	BEGIN
+		exec insert_new_tag @tagword=@tagtext
+	END
+
+	INSERT INTO HasTag
+	(TagID, PositionID)
 	VALUES
-	(@tagtext, @posid)
+	(@tagid, @posid)
+	
 
 GO
 GRANT EXECUTE ON insert_new_position_tag TO dreamcareer

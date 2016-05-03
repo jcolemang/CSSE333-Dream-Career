@@ -20,10 +20,9 @@ CREATE PROCEDURE insert_new_user_profile
 	@uname varchar(50))
 AS
 	declare @id int
-	DECLARE @InputError int
-	SET @InputError = -1
+	DECLARE @ProfileExists int
+	SET @ProfileExists = -4
 
-	-- Need error checking 
 	set @id = (select userid from DreamCareerUser 
 				where username = @uname)
 
@@ -31,13 +30,13 @@ AS
 	if((select count(profileid) from userprofile where @id = profileid) != 0)
 	begin
 		print 'Trying to insert username that already exists in profile'
-		return @InputError
+		return @ProfileExists
 	end
 
 	INSERT INTO UserProfile
 	(Name, Gender, Major, Experience, Street, City, State, Zipcode, ProfileID)
 	VALUES
 	(@name, @gender, @major, @experience, @street, @city, @state, @zip, @id)
-
+	RETURN 0
 GO
 GRANT EXECUTE ON insert_new_user_profile TO dreamcareer
