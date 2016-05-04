@@ -22,14 +22,15 @@ AS
 			Position.Salary AS Salary
 	FROM Position, HasTag, Tag
 	WHERE Position.PositionID = HasTag.PositionID AND
-			HasTag.TagID = Tag.TagID
+			HasTag.TagID = Tag.TagID AND
+			Tag.TagWord IN (SELECT TagWords FROM @Tags)
 
 	-- Extra groups so I can select those columns
 	GROUP BY Position.PositionID, PositionTitle, PositionType, 
 			PositionDescription, Salary
 
 	-- I can only use this because the actual tag words are unique
-	HAVING COUNT(Position.PositionID) >= @NumTags
+	HAVING COUNT(Position.PositionID) = @NumTags
 	
 	
 

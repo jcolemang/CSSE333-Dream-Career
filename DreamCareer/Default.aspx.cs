@@ -16,7 +16,13 @@ namespace DreamCareer
 
         protected void SearchBarButton_OnClick(object sender, EventArgs e)
         {
-            
+            string SearchBarInput = SearchBar.Text;
+            string[] tags = SearchBarInput.Split(new char[] { ',' });
+            List<Dictionary<string, string>> Positions =
+                Database.SearchForPositionsWithTags(new List<string>(tags));
+
+            SearchBar.Text = Positions.Count.ToString();
+          
         }
     }
 }

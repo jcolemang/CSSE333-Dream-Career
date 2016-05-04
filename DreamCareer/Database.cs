@@ -5,6 +5,7 @@ using System.Web;
 
 using System.Data.SqlClient;
 using System.Security.Cryptography;
+using System.Data;
 
 namespace DreamCareer
 {
@@ -76,7 +77,7 @@ namespace DreamCareer
                 "Integrated Security=True;";
 
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = remote_db_string;
+            connection.ConnectionString = local_db_string;
             connection.Open();
             return connection;
         }
@@ -190,6 +191,59 @@ namespace DreamCareer
             // If there is a matching username and password the credentials must be valid
             return contains_data;
         }
+
+
+        public static DataTable CreateTagsTable(List<string> tags)
+        {
+            DataTable TagsTable = new DataTable();
+            TagsTable.Columns.Add("TagWords", typeof(string));
+
+            foreach (string tag in tags)
+                TagsTable.Rows.Add(tag);
+
+            return TagsTable;
+        }
+
+
+        public static List<Dictionary<string, string>> SearchForPositionsWithTags(List<string> Tags)
+        {
+            string sp_name = "search_by_tags";
+            SqlConnection connection = GetSqlConnection();
+
+            // Setting up the command
+            SqlCommand search = new SqlCommand(
+                sp_name, connection);
+            search.CommandType = CommandType.StoredProcedure;
+
+            // Setting up the parameter
+            // 'Structured' means this is a table valued parameter
+            SqlParameter TagsTableParameter =
+                new SqlParameter("@Tags", System.Data.SqlDbType.Structured);
+            TagsTableParameter.TypeName = "TagWordsTableType";
+            TagsTableParameter.Value = Database.CreateTagsTable(Tags);
+            search.Parameters.Add(TagsTableParameter);
+
+            // Executing the query
+            SqlDataReader reader = search.ExecuteReader();
+
+            // Getting back the data
+            List<Dictionary<string, string>> Rows = new List<Dictionary<string, string>>();
+            Dictionary<string, string> CurrentRow;
+            while (reader.Read())
+            {
+                CurrentRow = new Dictionary<string, string>();
+                CurrentRow["Title"] = reader.GetString(0);
+                CurrentRow["Type"] = reader.GetString(1);
+                CurrentRow["Description"] = reader.GetString(2);
+                CurrentRow["Salary"] = reader.GetSqlMoney(3).ToString();
+                Rows.Add(CurrentRow);
+            }
+
+            connection.Close();
+            reader.Close();
+            return Rows;
+        }
+
 
         public static bool checkIfUsernameInDatabase(string uname)
         {
@@ -378,64 +432,6 @@ namespace DreamCareer
             like.ExecuteNonQuery();
             connection.Close();
         }
-
-
-        // This link will be helpful later
-        // http://stackoverflow.com/questions/11561465/sql-query-filtering-by-list-of-parameters
-        // TODO test that this works
-        public static List<int> SearchByTag(string TagWord)
-        {
-            SqlConnection connection = GetSqlConnection();
-            string sp_name = "search_by_tag";
-
-            SqlCommand command =
-                new SqlCommand(sp_name, connection);
-            command.CommandType =
-                System.Data.CommandType.StoredProcedure;
-            command.Parameters.Add(
-                new SqlParameter("@tagtext", TagWord));
-
-            SqlDataReader reader =
-                command.ExecuteReader();
-
-            List<int> position_ids =
-                new List<int>();
-
-            if (reader.HasRows)
-            {
-                while (reader.Read())
-                {
-                    position_ids.Add(
-                        reader.GetInt32(0));
-                }
-            }
-
-            connection.Close();
-            reader.Close();
-            return position_ids;
-        }
-
-
-        public static void SearchByTags(List<string> TagWords)
-        {
-            string CommandString =
-                "SELECT * " +
-                "FROM Position ";
-            if (TagWords.Count > 0)
-            {
-                CommandString += 
-                    "WHERE Position.PositionID = HasTag.PositionID AND " +
-                    "HasTag.TagID = Tag.TagID " +
-                    "HAVING ";
-
-                foreach (string TagWord in TagWords)
-                {
-                    //CommandString +=
-                        //"AND "I
-                }
-            }
-        }
-
 
 
         public static List<int> GetAllUserIDs()
