@@ -61,7 +61,7 @@
             </li>
 
              <li>
-                <a class="user-button" herf="Profile.aspx" runat="server">
+                <a class="user-button" href="Profile.aspx" runat="server">
                     Welcome back!
                 </a>
             </li>

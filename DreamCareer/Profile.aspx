@@ -12,7 +12,7 @@
         <div id="new-profile-table-div" style="text-align:center">
           
              <table id="user_profile-table">
-
+                
                 <tr id="title-row">
                     <th colspan="2" headers="">
                         <h1>
@@ -20,7 +20,7 @@
                         </h1>
                     </th>
                 </tr>
-
+               
             </table>
         </div>
     </form>
