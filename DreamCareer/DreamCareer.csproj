@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.aspx" />
+    <Content Include="Profile.aspx" />
     <Content Include="CreateProfile.aspx" />
     <Content Include="CreateUser.aspx" />
     <Content Include="Default.aspx" />
@@ -122,6 +123,7 @@
     <Content Include="scripts\jquery-2.2.3.min.js" />
     <Content Include="SearchResults.aspx" />
     <Content Include="static\css\base.css" />
+    <Content Include="static\css\Profile.css" />
     <Content Include="static\css\Create Profile.css" />
     <Content Include="static\css\CreateUser.css" />
     <Content Include="static\css\home.css" />
@@ -143,6 +145,13 @@
     </Compile>
     <Compile Include="base.Master.designer.cs">
       <DependentUpon>base.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreateProfile.aspx.cs">
       <DependentUpon>CreateProfile.aspx</DependentUpon>

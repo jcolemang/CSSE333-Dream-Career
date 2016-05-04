@@ -54,11 +54,19 @@
                 </a>
             </li>
 
+             <li>
+                <a class="user-button" herf="Profile.aspx" runat="server">
+                    Welcome back!
+                </a>
+            </li>
+
             <li>
                 <h4 id="logo">
                     DREAM CAREER
                 </h4>
             </li>
+
+           
 
         </ul>
     </div>
