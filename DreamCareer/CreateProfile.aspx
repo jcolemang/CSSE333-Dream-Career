@@ -17,20 +17,6 @@
                         </h2>
                     </th>
                 </tr>
-                <tr>
-                    <td>
-                        <p id="Username">
-                            Username 
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="prof_username" CssClass="user-name" runat="server"></asp:TextBox>
-                    </td>
-                    <td>
-                        <asp:Label ID="username_input_error_label" runat="server">
-
-                        </asp:Label></td>
-                </tr>
 
 
                 <tr>
@@ -61,12 +47,8 @@
 
                             <asp:ListItem Text="Select" Value="1" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="Male" Value="2"></asp:ListItem>
-
                             <asp:ListItem Text="Female" Value="3"></asp:ListItem>
-
                             <asp:ListItem Text="Other" Value="4"></asp:ListItem>
-
-
 
                         </asp:DropDownList>
 

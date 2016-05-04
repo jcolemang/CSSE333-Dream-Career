@@ -3,11 +3,7 @@
         genderCheck();
     })
 })
-$(document).ready(function () {
-    $('.prof-username').change(function () {
-        usernameExistCheck();
-    })
-})
+
 
 function genderCheck() {
 	var gen = $('.gender-select').val();
@@ -19,13 +15,3 @@ function genderCheck() {
 	$('#gender-not-selected-error').hide();
 	return true;
 }
-/*function usernameExistCheck() {
-      
-    // if () {
-   
-        $('#username-input-error-label')
-            .text('Passwords do not match');
-        $('#username-input-error-label').show();
-        return false;
-   // }
-}    */

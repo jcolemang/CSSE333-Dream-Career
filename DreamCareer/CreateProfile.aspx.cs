@@ -12,7 +12,10 @@ namespace DreamCareer
 
         protected void InsertProfileButton_OnClick(object sender, EventArgs e)
         {
-            string uname = prof_username.Text;
+            if (Session["username"] == null)
+                Response.Redirect("Login.aspx");
+
+            string uname = (string)Session["username"];
             string n = name.Text;
             int gend = gender.SelectedIndex;
             //string gend = gender.Text; not sure about gender part----------------------------------------------------------------------
@@ -40,17 +43,15 @@ namespace DreamCareer
             {
                
 
-                username_input_error_label.Text = "Username doesn't exist.";
+                //username_input_error_label.Text = "Username doesn't exist.";
                 return;
             }
             else
             {
-                username_input_error_label.Text = "";
+                //username_input_error_label.Text = "";
                 Database.CreateUserProfile(n, gende, maj, exp, stree, cit, stat, zi, uname);
             }
             
-            Session["username"] = uname;
-            //Response.Redirect("CreateProfile.aspx");
         }
     }
 }

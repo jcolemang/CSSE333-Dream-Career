@@ -22,15 +22,6 @@ namespace DreamCareer {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// prof_username control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox prof_username;
-        
-        /// <summary>
         /// name control.
         /// </summary>
         /// <remarks>
@@ -110,7 +101,5 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button profile_button;
-        protected global::System.Web.UI.WebControls.Label username_input_error_label;
-
     }
 }
