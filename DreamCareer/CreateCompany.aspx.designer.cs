@@ -10,7 +10,7 @@
 namespace DreamCareer {
     
     
-    public partial class Position {
+    public partial class CreateCompany {
         
         /// <summary>
         /// form1 control.
@@ -22,22 +22,22 @@ namespace DreamCareer {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// titl control.
+        /// compname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox titl;
+        protected global::System.Web.UI.WebControls.TextBox compname;
         
         /// <summary>
-        /// typ control.
+        /// comsize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox typ;
+        protected global::System.Web.UI.WebControls.TextBox comsize;
         
         /// <summary>
         /// strname control.
@@ -76,21 +76,12 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox zipcode;
         
         /// <summary>
-        /// salaryam control.
+        /// compdes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox salaryam;
-        
-        /// <summary>
-        /// jobdes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox jobdes;
+        protected global::System.Web.UI.WebControls.TextBox compdes;
     }
 }

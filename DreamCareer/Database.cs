@@ -77,7 +77,7 @@ namespace DreamCareer
                 "Integrated Security=True;";
 
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = local_db_string;
+            connection.ConnectionString = remote_db_string;
             connection.Open();
             return connection;
         }
@@ -351,24 +351,48 @@ namespace DreamCareer
         }
 
 
-        public static void CreatePosition(int companyid, string postype,
-            string posloc, int salary)
+        public static void CreatePosition(string pos, string ty, string stree, 
+            string cit, string stat, int zi, int sal, string jobdesc)
         {
-            string sp_name = "insert_new_position";
+            string sp_name = "insert_new_position_gui";
             SqlConnection connection = GetSqlConnection();
             SqlCommand insert_new_pos_sp = new SqlCommand(sp_name, connection);
             insert_new_pos_sp.CommandType = System.Data.CommandType.StoredProcedure;
 
             insert_new_pos_sp.Parameters.Add(
-                new SqlParameter("@companyid", companyid));
+                new SqlParameter("@title", pos));
             insert_new_pos_sp.Parameters.Add(
-                new SqlParameter("@postype", postype));
+                new SqlParameter("@type", ty));
             insert_new_pos_sp.Parameters.Add(
-                new SqlParameter("@posloc", posloc));
+                new SqlParameter("@street", stree));
             insert_new_pos_sp.Parameters.Add(
-                new SqlParameter("@salary", salary));
+                new SqlParameter("@city", cit));
+            insert_new_pos_sp.Parameters.Add(
+                new SqlParameter("@statename", stat));
+            insert_new_pos_sp.Parameters.Add(
+                new SqlParameter("@zipcode", zi));
+            insert_new_pos_sp.Parameters.Add(
+                new SqlParameter("@salary", sal));
+            insert_new_pos_sp.Parameters.Add(
+                new SqlParameter("@jobdes", jobdesc));
+
+            SqlParameter ReturnVal = new SqlParameter("RetVal",
+                System.Data.SqlDbType.Int);
+            ReturnVal.Direction =
+                System.Data.ParameterDirection.ReturnValue;
+            insert_new_pos_sp.ExecuteNonQuery();
+            insert_new_pos_sp.Parameters.Add(ReturnVal);
 
             insert_new_pos_sp.ExecuteNonQuery();
+
+            int ReturnValue = (int)ReturnVal.Value;
+
+            if (ReturnValue == Database.ProfileAlreadyExistsError)
+            {
+                connection.Close();
+                throw new ProfileAlreadyExistsException();
+            }
+
             connection.Close();
         }
 

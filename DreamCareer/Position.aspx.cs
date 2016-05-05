@@ -12,6 +12,23 @@ namespace DreamCareer
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            string pos = titl.Text;
+            string ty = typ.Text;
+            string stree = strname.Text;
+            string cit = cityname.Text;
+            string stat = statename.Text;
+            string zi = zipcode.Text;
+            string sal = salaryam.Text;
+            string jobdesc = jobdes.Text;
+
+            if (Session["title"] == null)
+                Response.Redirect("Login.aspx");
+
+
+
+            //Database.CreatePosition(pos, ty, stree, cit, stat, cit, stat, zi, sal, jobdesc);
+       
+
         }
     }
 }

@@ -50,6 +50,12 @@
 
             <li>
                 <a class="link-button" href="Position.aspx" runat="server">
+                    Create Company
+                </a>
+            </li>
+            
+            <li>
+                <a class="link-button" href="Position.aspx" runat="server">
                     Create Position
                 </a>
             </li>
