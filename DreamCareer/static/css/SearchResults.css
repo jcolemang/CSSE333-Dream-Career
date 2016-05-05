@@ -1,0 +1,54 @@
+﻿
+
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(-1000px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+#search-results-div {
+    margin-left: 5%;
+    margin-right: 5%;
+    animation: slide-in;
+    animation-duration: 2s;
+}
+
+#results-title-div {
+    margin-top: 4%;
+    margin-bottom: 3%;
+}
+
+#results-title {
+    display: inline;
+}
+
+.search-result {
+    color: black;
+    transition: 0.2s;
+}
+
+.search-result:hover {
+    color: red;
+    transition: 0.2s;
+}
+
+
+.repeat-search-box {
+    margin-top: 6px;
+    float: right;
+    width: 50%;
+}
+
+.repeat-search-button {
+    margin-top: 5px;
+    float: right;
+}
+
+#results-content-div {
+    margin-left: 5%;
+}

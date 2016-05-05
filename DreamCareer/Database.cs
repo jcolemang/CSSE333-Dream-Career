@@ -66,7 +66,7 @@ namespace DreamCareer
                 "Integrated Security=True;";
 
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = local_db_string;
+            connection.ConnectionString = remote_db_string;
             connection.Open();
             return connection;
         }
@@ -221,11 +221,16 @@ namespace DreamCareer
             while (reader.Read())
             {
                 CurrentRow = new Dictionary<string, string>();
-                CurrentRow["Title"] = reader.GetString(0);
-                CurrentRow["Type"] = reader.GetString(1);
-                CurrentRow["Description"] = reader.GetString(2);
-                CurrentRow["Salary"] = reader.GetSqlMoney(3).ToString();
-                CurrentRow["PositionID"] = reader.GetInt32(4).ToString();
+                var test1 = reader.GetValue(0);
+                var test2 = reader.GetValue(1);
+                var test3 = reader.GetValue(2);
+                var test4 = reader.GetValue(3);
+                var test5 = reader.GetValue(4);
+                CurrentRow["PositionID"] = reader.GetInt32(0).ToString();
+                CurrentRow["Title"] = reader.GetString(1);
+                CurrentRow["Salary"] = reader.GetSqlMoney(2).ToString();
+                CurrentRow["City"] = reader.GetString(3);
+                CurrentRow["State"] = reader.GetString(4);
                 Rows.Add(CurrentRow);
             }
 
