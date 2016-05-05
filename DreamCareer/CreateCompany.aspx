@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="CreateCompany.aspx.cs" Inherits="DreamCareer.CreateCompany" %>
 
        <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="static/css/Company.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/CreateCompany.css" rel="stylesheet" type="text/css" />
    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
