@@ -187,7 +187,6 @@
     </Compile>
     <Compile Include="ViewPosition.aspx.cs">
       <DependentUpon>ViewPosition.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewPosition.aspx.designer.cs">
       <DependentUpon>ViewPosition.aspx</DependentUpon>
