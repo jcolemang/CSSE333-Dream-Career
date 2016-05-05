@@ -61,8 +61,8 @@
             </li>
 
              <li>
-                <a class="user-button" href="Profile.aspx" runat="server">
-                    Welcome back!
+                <a class="user-button" href="ViewProfile.aspx" runat="server">
+                    Welcome back <%:Session["username"] %>!
                 </a>
             </li>
 

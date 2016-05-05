@@ -15,7 +15,16 @@ namespace DreamCareer
 
         protected void getData(object sender, EventArgs e)
         {
-       //     var temp = Database.GetProfile("xuy2");
+            //     var temp = Database.GetProfile("xuy2");
+            string Name = Request.QueryString["Name"];
+            string Gender = Request.QueryString["Gender"];
+            string Major = Request.QueryString["Major"];
+            string Experience = Request.QueryString["Experience"];
+            string Street = Request.QueryString["Street"];
+            string City = Request.QueryString["City"];
+            string State = Request.QueryString["State"];
+            string Zipcode = Request.QueryString["Zipcode"];
+
 
         }
     }
