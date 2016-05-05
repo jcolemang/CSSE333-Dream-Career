@@ -49,6 +49,12 @@
             </li>
 
             <li>
+                <a class="link-button" href="Position.aspx" runat="server">
+                    Create Position
+                </a>
+            </li>
+
+            <li>
                 <a class="link-button" href="Admin.aspx" runat="server">
                     Admin
                 </a>

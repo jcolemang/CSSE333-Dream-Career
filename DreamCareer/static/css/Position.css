@@ -2,7 +2,7 @@
     background-color: orange;
 }
 
-#create-new-profile-table {
+#create-new-position-table {
     padding-left: 10%;
 }
 p{
@@ -10,9 +10,5 @@ p{
 }
 
 h2{
-    color:black;
-}
-
-#profile_button{
     color:black;
 }
