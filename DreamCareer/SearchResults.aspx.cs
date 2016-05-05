@@ -30,7 +30,8 @@ namespace DreamCareer
             if (Search == "" || Search == null)
             {
                 // do something
-                return "<h1>Coleman needs to fix this.</h1>";
+                Response.Redirect("Default.aspx");
+                return "";
             }
 
             string[] Tags = Search.Split(new char[] { ',' });

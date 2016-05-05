@@ -39,17 +39,6 @@ namespace DreamCareer
              return GetRandomString(SaltLength);
         }
 
-        public static string HashPasswordAndSalt(string PlainText, string Salt)
-        {
-            return HashPassword(PlainText + Salt);
-        }
-
-        public static string HashPassword(string PlainText)
-        {
-            byte[] PlainTextBytes = System.Text.Encoding.ASCII.GetBytes(PlainText);
-            byte[] HashedBytes = PasswordHasher.ComputeHash(PlainTextBytes);
-            return System.Text.Encoding.ASCII.GetString(HashedBytes);
-        }
 
         public static string GetRandomString(int length)
         {
