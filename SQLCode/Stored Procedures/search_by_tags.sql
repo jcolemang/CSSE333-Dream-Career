@@ -3,14 +3,17 @@ GO
 
 -- A table type
 
-CREATE TYPE TagWordsTableType as TABLE
+CREATE TYPE TagWordsTableType AS TABLE
 (
 	TagWords varchar(20)
 )
 
+GO
+GRANT EXECUTE ON TYPE :: TagWordsTableType TO dreamcareer
+
 
 GO
-CREATE PROCEDURE search_by_tags
+ALTER PROCEDURE search_by_tags
 	(@Tags AS TagWordsTableType READONLY)
 AS	
 	-- Used later
@@ -19,7 +22,7 @@ AS
 	
 	SELECT Position.PositionTitle AS Title, Position.PositionType AS PositionType,
 			Position.PositionDescription AS PositionDescription, 
-			Position.Salary AS Salary
+			Position.Salary AS Salary, Position.PositionID
 	FROM Position, HasTag, Tag
 	WHERE Position.PositionID = HasTag.PositionID AND
 			HasTag.TagID = Tag.TagID AND
@@ -32,6 +35,8 @@ AS
 	-- I can only use this because the actual tag words are unique
 	HAVING COUNT(Position.PositionID) = @NumTags
 	
+GO
+GRANT EXECUTE ON search_by_tags TO dreamcareer
 	
 
 	

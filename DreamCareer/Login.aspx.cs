@@ -18,11 +18,12 @@ namespace DreamCareer
         {
             string Username = username.Text;
             string Password = password.Text;
-
- //           try
-  //          {
-  //              Database.
-   //         }
+       //     var temp = Database.GetProfile("xuy2");
+        //    Console.WriteLine("test");
+            //           try
+            //          {
+            //              Database.
+            //         }
             if (!Database.IsAUser(Username, Password))
             {
 

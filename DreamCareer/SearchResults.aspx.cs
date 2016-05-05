@@ -43,17 +43,14 @@ namespace DreamCareer
 
             foreach (Dictionary<string, string> Row in Results)
             {
-                foreach (string Key in Row.Keys)
-                {
-                    response += "<tr>";
-                    response += "<td>";
-                    response += HttpUtility.HtmlEncode(Key);
-                    response += "</td>";
-                    response += "<td>";
-                    response += HttpUtility.HtmlEncode(Row[Key]);
-                    response += "</td>";
-                    response += "</tr>";
-                }
+                response += "<tr>";
+                response += "<td>";
+                response += "<a href=\"ViewPosition.aspx?PositionID=" +
+                    HttpUtility.HtmlEncode(Row["PositionID"]) +
+                    "\">" + HttpUtility.HtmlEncode(Row["Title"]) +
+                    "</a>";
+                response += "</td>";
+                response += "</tr>";
             }
 
             response += "</table>";

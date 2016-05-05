@@ -95,8 +95,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.aspx" />
-    <Content Include="CreateCompany.aspx" />
-    <Content Include="Profile.aspx" />
     <Content Include="CreateProfile.aspx" />
     <Content Include="CreateUser.aspx" />
     <Content Include="Default.aspx" />
@@ -108,7 +106,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="base.Master" />
-    <Content Include="Position.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -125,13 +122,11 @@
     <Content Include="scripts\jquery-2.2.3.min.js" />
     <Content Include="SearchResults.aspx" />
     <Content Include="static\css\base.css" />
-    <Content Include="static\css\CreateCompany.css" />
-    <Content Include="static\css\Profile.css" />
     <Content Include="static\css\Create Profile.css" />
     <Content Include="static\css\CreateUser.css" />
     <Content Include="static\css\home.css" />
     <Content Include="static\css\login.css" />
-    <Content Include="static\css\Position.css" />
+    <Content Include="ViewPosition.aspx" />
     <Content Include="ViewProfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -149,20 +144,6 @@
     </Compile>
     <Compile Include="base.Master.designer.cs">
       <DependentUpon>base.Master</DependentUpon>
-    </Compile>
-    <Compile Include="CreateCompany.aspx.cs">
-      <DependentUpon>CreateCompany.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CreateCompany.aspx.designer.cs">
-      <DependentUpon>CreateCompany.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Profile.aspx.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Profile.aspx.designer.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreateProfile.aspx.cs">
       <DependentUpon>CreateProfile.aspx</DependentUpon>
@@ -204,19 +185,19 @@
     <Compile Include="SearchResults.aspx.designer.cs">
       <DependentUpon>SearchResults.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewPosition.aspx.cs">
+      <DependentUpon>ViewPosition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewPosition.aspx.designer.cs">
+      <DependentUpon>ViewPosition.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewProfile.aspx.cs">
       <DependentUpon>ViewProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewProfile.aspx.designer.cs">
       <DependentUpon>ViewProfile.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Position.aspx.cs">
-      <DependentUpon>Position.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Position.aspx.designer.cs">
-      <DependentUpon>Position.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />

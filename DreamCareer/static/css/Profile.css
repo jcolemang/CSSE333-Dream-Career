@@ -3,12 +3,26 @@
 }
 
 #title-row {
-    background-color:aqua;
+    
     color:black;
 }
 
+
+
 #title {
     text-align:center;
+}
+
+.profile-label {
+    height:200%;
+    line-height:600%;
+    text-align:center;
+    font-size:x-large;
+    color: black;
+    padding-left:800px;
+    padding-right:800px;
+    margin-top:50px;
+    margin-right:200px;
 }
 
 /* Change color of dropdown links on hover */

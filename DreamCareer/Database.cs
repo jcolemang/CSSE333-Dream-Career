@@ -236,6 +236,7 @@ namespace DreamCareer
                 CurrentRow["Type"] = reader.GetString(1);
                 CurrentRow["Description"] = reader.GetString(2);
                 CurrentRow["Salary"] = reader.GetSqlMoney(3).ToString();
+                CurrentRow["PositionID"] = reader.GetInt32(4).ToString();
                 Rows.Add(CurrentRow);
             }
 
@@ -320,6 +321,40 @@ namespace DreamCareer
 
             connection.Close();
         }       
+
+        public static Dictionary<string, string> GetPosition(int PositionID)
+        {
+            SqlConnection connection = Database.GetSqlConnection();
+            string sp_name = "get_position";
+
+            SqlCommand get_position = new SqlCommand(
+                sp_name, connection);
+            get_position.Parameters.Add(
+                new SqlParameter("@posid", PositionID));
+
+            SqlDataReader reader = get_position.ExecuteReader();
+
+            Dictionary<string, string> Position = new Dictionary<string, string>();
+            if (reader.Read())
+            {
+                Position["Title"] = reader.GetString(0);
+                Position["Type"] = reader.GetString(1);
+                Position["Salary"] = reader.GetSqlMoney(2).ToString();
+                Position["Description"] = reader.GetString(3);
+                Position["Street"] = reader.GetString(4);
+                Position["City"] = reader.GetString(5);
+                Position["State"] = reader.GetString(6);
+                Position["Zipcode"] = reader.GetString(7);
+            }
+            else
+            {
+                throw new NoDataException();
+            }
+
+            reader.Close();
+            connection.Close();
+            return Position;
+        }
 
 
         public static void CreateCompany(int size, 
