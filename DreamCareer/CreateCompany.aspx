@@ -36,10 +36,17 @@
                         </p>
                     </td>
                     <td>
+                       <asp:DropDownList
+                            type="dropdownlist"
+                            ID="comsize"
+                            runat="server"
+                            CssClass="gender-select">
 
-                              <asp:TextBox type="text" ID="comsize" runat="server"></asp:TextBox>
-
-
+                            <asp:ListItem Text="Select" Value="1" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="Small" Value="2"></asp:ListItem>
+                            <asp:ListItem Text="Medium" Value="3"></asp:ListItem>
+                            <asp:ListItem Text="Big" Value="4"></asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                 </tr>
 
