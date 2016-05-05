@@ -10,29 +10,28 @@
         <form id="username" runat="server">
             <div id="username-table-div" style="text-align:center">
                 <h2>
-                    <%: Session["username"] %>
+                    My Profile
                 </h2>
             </div>
         </form>
     </asp:Label>
 
-
-    <asp:Label ID="NameLabel" runat="server">
+    <asp:Label ID="NameLabel" CssClass="profile-label asp-user-profile-label" style="text-align:center" runat="server">
          
     </asp:Label>
 
     
-    <asp:Label ID="GenderLabel" runat="server">
+    <asp:Label ID="GenderLabel" CssClass="profile-label asp-user-profile-label" runat="server">
 
     </asp:Label>
 
 
-    <asp:Label ID="MajorLabel" runat="server">
+    <asp:Label ID="MajorLabel" CssClass="profile-label asp-user-profile-label" runat="server">
 
     </asp:Label>
 
 
-    <asp:Label ID="ExperienceLabel" runat="server">
+    <asp:Label ID="ExperienceLabel" CssClass="profile-label asp-user-profile-label" runat="server">
 
     </asp:Label>
 
