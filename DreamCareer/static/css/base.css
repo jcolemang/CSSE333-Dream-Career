@@ -42,6 +42,15 @@ a.link-button {
     margin-right: 1px;
 }
 
+a.user-button {
+    position: relative;
+    float:right;
+    background-color: black;
+    color: white;
+    font-weight: 500;
+    padding-right: 25px;
+}
+
 a.link-button:hover {
     background-color: black;
     color: darkgray;
