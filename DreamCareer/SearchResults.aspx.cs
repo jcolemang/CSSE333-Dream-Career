@@ -30,7 +30,8 @@ namespace DreamCareer
             if (Search == "" || Search == null)
             {
                 // do something
-                return "<h1>Coleman needs to fix this.</h1>";
+                Response.Redirect("Default.aspx");
+                return "";
             }
 
             string[] Tags = Search.Split(new char[] { ',' });
@@ -38,16 +39,22 @@ namespace DreamCareer
                 Database.SearchForPositionsWithTags(new List<string>(Tags));
 
             string response = "";
-            response += "<table>";
-            response += "<td><h1>Results</h1></td>";
+            response += "<table id=\"search-results-table\">";
 
             foreach (Dictionary<string, string> Row in Results)
             {
+
                 response += "<tr>";
                 response += "<td>";
-                response += "<a href=\"ViewPosition.aspx?PositionID=" +
+                response += "<a class=\"search-result\" " + 
+                    "href=\"ViewPosition.aspx?PositionID=" +
                     HttpUtility.HtmlEncode(Row["PositionID"]) +
-                    "\">" + HttpUtility.HtmlEncode(Row["Title"]) +
+                    "\">" +
+                    HttpUtility.HtmlEncode(Row["Title"]) +
+                    ", " +
+                    HttpUtility.HtmlEncode(Row["City"]) +
+                    ", " +
+                    HttpUtility.HtmlEncode("$" + Row["Salary"]) +
                     "</a>";
                 response += "</td>";
                 response += "</tr>";
@@ -57,6 +64,13 @@ namespace DreamCareer
 
 
             return response;
+        }
+
+        protected void RepeatSearchButton_Click(object sender, EventArgs e)
+        {
+            string NewSearch = RepeatSearchTextBox.Text;
+            Response.Redirect("SearchResults.aspx?Search=" +
+                NewSearch);
         }
     }
 }

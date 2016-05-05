@@ -20,17 +20,18 @@ AS
 	DECLARE @NumTags int
 	SET @NumTags = (SELECT COUNT(*) FROM @Tags)
 	
-	SELECT Position.PositionTitle AS Title, Position.PositionType AS PositionType,
-			Position.PositionDescription AS PositionDescription, 
-			Position.Salary AS Salary, Position.PositionID
+	SELECT Position.PositionID, 
+			Position.PositionTitle AS Title,
+			Position.Salary AS Salary, 
+			Position.City AS City, Position.State as State
 	FROM Position, HasTag, Tag
 	WHERE Position.PositionID = HasTag.PositionID AND
 			HasTag.TagID = Tag.TagID AND
-			Tag.TagWord IN (SELECT TagWords FROM @Tags)
+			LOWER(Tag.TagWord) IN (SELECT TagWords FROM @Tags)
 
 	-- Extra groups so I can select those columns
-	GROUP BY Position.PositionID, PositionTitle, PositionType, 
-			PositionDescription, Salary
+	GROUP BY Position.PositionID, PositionTitle, Salary, 
+			Position.City, Position.State
 
 	-- I can only use this because the actual tag words are unique
 	HAVING COUNT(Position.PositionID) = @NumTags
