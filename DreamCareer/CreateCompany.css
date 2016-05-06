@@ -1,0 +1,18 @@
+﻿body {
+    background-color: orange;
+}
+
+#create-new-profile-table {
+    padding-left: 10%;
+}
+p{
+    color:black;
+}
+
+h2{
+    color:black;
+}
+
+#profile_button{
+    color:black;
+}

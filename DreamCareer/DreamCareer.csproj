@@ -95,7 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.aspx" />
-    <Content Include="Company.aspx" />
+    <Content Include="CreateCompany.aspx" />
+    <Content Include="CreateCompany.css" />
     <Content Include="CreateProfile.aspx" />
     <Content Include="CreateUser.aspx" />
     <Content Include="Default.aspx" />
@@ -115,6 +116,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Position.aspx" />
+    <Content Include="Position.css" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="scripts\CreateProfile.js" />
@@ -129,7 +132,6 @@
     <Content Include="static\css\home.css" />
     <Content Include="static\css\login.css" />
     <Content Include="static\css\SearchResults.css" />
-    <Content Include="ViewPosition.aspx" />
     <Content Include="ViewProfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -148,12 +150,12 @@
     <Compile Include="base.Master.designer.cs">
       <DependentUpon>base.Master</DependentUpon>
     </Compile>
-    <Compile Include="Company.aspx.cs">
-      <DependentUpon>Company.aspx</DependentUpon>
+    <Compile Include="CreateCompany.aspx.cs">
+      <DependentUpon>CreateCompany.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Company.aspx.designer.cs">
-      <DependentUpon>Company.aspx</DependentUpon>
+    <Compile Include="CreateCompany.aspx.designer.cs">
+      <DependentUpon>CreateCompany.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreateProfile.aspx.cs">
       <DependentUpon>CreateProfile.aspx</DependentUpon>
@@ -187,6 +189,13 @@
     </Compile>
     <Compile Include="PageRank.cs" />
     <Compile Include="PopulateDatabase.cs" />
+    <Compile Include="Position.aspx.cs">
+      <DependentUpon>Position.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Position.aspx.designer.cs">
+      <DependentUpon>Position.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchResults.aspx.cs">
       <DependentUpon>SearchResults.aspx</DependentUpon>
@@ -194,12 +203,6 @@
     </Compile>
     <Compile Include="SearchResults.aspx.designer.cs">
       <DependentUpon>SearchResults.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewPosition.aspx.cs">
-      <DependentUpon>ViewPosition.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewPosition.aspx.designer.cs">
-      <DependentUpon>ViewPosition.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewProfile.aspx.cs">
       <DependentUpon>ViewProfile.aspx</DependentUpon>
