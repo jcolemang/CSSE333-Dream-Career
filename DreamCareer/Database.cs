@@ -244,6 +244,20 @@ namespace DreamCareer
             return Rows;
         }
 
+        public static bool checkIfNameInDatabase(string name)
+        {
+            SqlConnection connection = GetSqlConnection();
+            string sp_name = "checkif_name_in_database";
+            SqlCommand get_user_sp = new SqlCommand(sp_name, connection);
+            get_user_sp.CommandType = System.Data.CommandType.StoredProcedure;
+            get_user_sp.Parameters.Add(new SqlParameter("@name", name));
+            SqlDataReader reader = get_user_sp.ExecuteReader();
+            bool contains_data = reader.HasRows;
+            reader.Close();
+            connection.Close();
+            return contains_data;
+        }
+
 
         public static bool checkIfUsernameInDatabase(string uname)
         {

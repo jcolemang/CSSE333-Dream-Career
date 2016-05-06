@@ -102,6 +102,12 @@
                         <asp:TextBox type="text" ID="compdes" runat="server" MaxLength="1000" style="width: 800px" ></asp:TextBox>
                     </td>
                 </tr>
+                 <tr>
+                    <td>
+                        <asp:Button ID="company_button" runat="server" Text="Insert Company"
+                            OnClick="InsertCompanyButton_OnClick" OnClientClick="return sizeCheck()" />
+                    </td>
+                </tr>
             </table>
 
         </div>

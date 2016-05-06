@@ -121,7 +121,6 @@
                         <asp:TextBox type="text" ID="experience" runat="server"></asp:TextBox>
                     </td>
                 </tr>
-
                 <tr>
                     <td>
                         <asp:Button ID="profile_button" runat="server" Text="Insert Profile"

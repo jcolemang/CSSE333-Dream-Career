@@ -30,7 +30,7 @@ namespace DreamCareer
             Boolean boo = false;
 
 
-            if (!Database.checkIfUsernameInDatabase(nam))
+            if (!Database.checkIfNameInDatabase(nam))
             {
                 boo = true;
             }
