@@ -15,7 +15,8 @@
     margin-left: 5%;
     margin-right: 5%;
     animation: slide-in;
-    animation-duration: 2s;
+    animation-duration: 1.5s;
+    animation-timing-function: ease;
 }
 
 #results-title-div {
@@ -32,9 +33,36 @@
     transition: 0.2s;
 }
 
+@keyframes result-animate {
+    0% {
+
+    }
+
+    100% {
+        color: blue;
+        
+    }
+}
+
+.search-result:after {
+    content: '';
+    background-color: transparent;
+    display: block;
+    margin: auto;
+    width: 0px;
+    height: 1px;
+    transition: 0.75s;
+}
+
+.search-result:hover:after {
+    width: 100%;
+    transition: 0.25s;
+    background-color: black;
+}
+
 .search-result:hover {
-    color: red;
-    transition: 0.2s;
+    color: blue;
+    transition: 0.3s;
 }
 
 

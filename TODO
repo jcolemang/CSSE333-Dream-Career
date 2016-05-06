@@ -5,11 +5,7 @@ IMPORTANT:
 MODERATE:
 2. Add a constraint limiting the number of tags a position can have
     (probably something like 10)
-3. Fix Dream Career logo so it doesn't overlap with the buttons
-4. Make passwords secure
 6. Move the connection string to a config file
-7. Make a default Profile page (Default to their own?)
-8. Add a salt and encryption to password storage
 
 PROBABLY DON'T EVEN WORRY ABOUT IT:
 1. In the admin page the insert profile thing doesn't always insert all of them.

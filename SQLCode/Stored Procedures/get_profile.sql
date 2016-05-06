@@ -11,7 +11,7 @@ AS
 	SELECT Username, Name, Gender, Major, Experience
 	FROM UserProfile, DreamCareerUser
 	WHERE DreamCareerUser.UserID = UserProfile.ProfileID AND
-			DreamCareerUser.Username = @username
+			LOWER(DreamCareerUser.Username) = LOWER(@username)
 	RETURN 0
 
 GO

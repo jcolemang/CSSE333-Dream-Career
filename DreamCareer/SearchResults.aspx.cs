@@ -12,16 +12,22 @@ namespace DreamCareer
         protected void Page_Load(object sender, EventArgs e)
         {
 
-                
+        }
 
-            /*
-            string SearchBarInput = SearchBar.Text;
-            string[] tags = SearchBarInput.Split(new char[] { ',' });
-            List<Dictionary<string, string>> Positions =
-                Database.SearchForPositionsWithTags(new List<string>(tags));
+        private List<string> ParseTags(string TagString)
+        {
+            List<string> Tags = new List<string>();
+            char[] Separators = new char[] { ',', ' ' };
 
-            SearchBar.Text = Positions.Count.ToString();
-            */
+            foreach (string tag in TagString.Split(Separators))
+            {
+                // Why does split give me the empty string?
+                if (tag.Length < 1)
+                    continue;
+                Tags.Add(tag);
+            }
+
+            return Tags;
         }
 
         protected string WriteResults()
@@ -29,17 +35,17 @@ namespace DreamCareer
             string Search = Request.QueryString["Search"];
             if (Search == "" || Search == null)
             {
-                // do something
                 Response.Redirect("Default.aspx");
                 return "";
             }
 
-            string[] Tags = Search.Split(new char[] { ',' });
+            List<string> Tags = ParseTags(Request.QueryString["Search"]);
             List<Dictionary<string, string>> Results =
-                Database.SearchForPositionsWithTags(new List<string>(Tags));
+                Database.SearchForPositionsWithTags(Tags);
 
             string response = "";
             response += "<table id=\"search-results-table\">";
+
 
             foreach (Dictionary<string, string> Row in Results)
             {
@@ -60,9 +66,18 @@ namespace DreamCareer
                 response += "</tr>";
             }
 
+            if (Results.Count == 0)
+            {
+                response += "<tr>";
+                response += "<td>";
+                response += "<p>";
+                response += "No results to show <strong>:(</strong>";
+                response += "</p>";
+                response += "</td>";
+                response += "</tr>";
+            }
+
             response += "</table>";
-
-
             return response;
         }
 
