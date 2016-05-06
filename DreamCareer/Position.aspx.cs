@@ -21,13 +21,10 @@ namespace DreamCareer
             string sal = salaryam.Text;
             string jobdesc = jobdes.Text;
 
-            if (Session["title"] == null)
-                Response.Redirect("Login.aspx");
+            //Database.Position(pos, ty, stree, cit, stat, cit, stat, zi, sal, jobdesc);
 
-
-
-            //Database.CreatePosition(pos, ty, stree, cit, stat, cit, stat, zi, sal, jobdesc);
-       
+            //if (Session["title"] == null)
+            //    Response.Redirect("Login.aspx");       
 
         }
     }

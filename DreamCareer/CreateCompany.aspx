@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="CreateCompany.aspx.cs" Inherits="DreamCareer.CreateCompany" %>
 
        <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="static/css/Company.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/CreateCompany.css" rel="stylesheet" type="text/css" />
    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
@@ -36,10 +36,17 @@
                         </p>
                     </td>
                     <td>
+                       <asp:DropDownList
+                            type="dropdownlist"
+                            ID="comsize"
+                            runat="server"
+                            CssClass="gender-select">
 
-                              <asp:TextBox type="text" ID="comsize" runat="server"></asp:TextBox>
-
-
+                            <asp:ListItem Text="Select" Value="1" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="Small" Value="2"></asp:ListItem>
+                            <asp:ListItem Text="Medium" Value="3"></asp:ListItem>
+                            <asp:ListItem Text="Big" Value="4"></asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                 </tr>
 
@@ -93,6 +100,12 @@
                     </td>
                     <td>
                         <asp:TextBox type="text" ID="compdes" runat="server" MaxLength="1000" style="width: 800px" ></asp:TextBox>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <asp:Button ID="company_button" runat="server" Text="Insert Company"
+                            OnClick="InsertCompanyButton_OnClick" OnClientClick="return sizeCheck()" />
                     </td>
                 </tr>
             </table>
