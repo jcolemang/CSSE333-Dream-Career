@@ -85,8 +85,6 @@ namespace DreamCareer
             // Adding parameters
             insert_user.Parameters.Add(
                 new SqlParameter("@Uname", Username));
-            //insert_user.Parameters.Add(
-            //new SqlParameter("@pass", Password));
             insert_user.Parameters.Add(
                 new SqlParameter("@password", Password));
             insert_user.Parameters.Add(
@@ -323,6 +321,7 @@ namespace DreamCareer
 
             SqlCommand get_position = new SqlCommand(
                 sp_name, connection);
+            get_position.CommandType = System.Data.CommandType.StoredProcedure;
             get_position.Parameters.Add(
                 new SqlParameter("@posid", PositionID));
 

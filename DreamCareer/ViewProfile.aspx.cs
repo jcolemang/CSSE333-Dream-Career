@@ -15,7 +15,7 @@ namespace DreamCareer
             if (Session["username"] == null)
                 Response.Redirect("Login.aspx");
 
-            string UsernameParameter="";
+            string UsernameParameter = "";
             if (Request.QueryString["username"] != null)
             {
                 UsernameParameter = Request.QueryString["username"];
@@ -39,7 +39,7 @@ namespace DreamCareer
             }
             catch (NoDataException)
             {
-                Response.Redirect("ViewProfile.aspx?username="+Session["username"]);
+                Response.Redirect("CreateProfile.aspx");
             }
 
 

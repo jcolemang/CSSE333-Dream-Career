@@ -29,20 +29,10 @@
 }
 
 .search-result {
-    color: black;
+    color: blue;
     transition: 0.2s;
 }
 
-@keyframes result-animate {
-    0% {
-
-    }
-
-    100% {
-        color: blue;
-        
-    }
-}
 
 .search-result:after {
     content: '';
@@ -51,17 +41,17 @@
     margin: auto;
     width: 0px;
     height: 1px;
-    transition: 0.75s;
+    transition: 1s;
 }
 
 .search-result:hover:after {
     width: 100%;
-    transition: 0.25s;
+    transition: 0.3s;
     background-color: black;
 }
 
 .search-result:hover {
-    color: blue;
+    color: black;
     transition: 0.3s;
 }
 
