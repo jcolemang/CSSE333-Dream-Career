@@ -312,13 +312,11 @@ namespace DreamCareer
                 System.Data.SqlDbType.Int);
             ReturnVal.Direction = 
                 System.Data.ParameterDirection.ReturnValue;
-            insert_profile_sp.ExecuteNonQuery();
             insert_profile_sp.Parameters.Add(ReturnVal);
 
             insert_profile_sp.ExecuteNonQuery();
 
             int ReturnValue = (int)ReturnVal.Value;
-
             if (ReturnValue == Database.ProfileAlreadyExistsError)
             {
                 connection.Close();
