@@ -9,6 +9,7 @@
     <form runat="server">
         <table id="insert-data-table">
             <tr>
+
                 <th colspan="2">
                     <h2>
                         Insert Data
