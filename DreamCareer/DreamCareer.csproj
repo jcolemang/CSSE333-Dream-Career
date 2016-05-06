@@ -128,6 +128,7 @@
     <Content Include="static\css\CreateUser.css" />
     <Content Include="static\css\home.css" />
     <Content Include="static\css\login.css" />
+    <Content Include="static\css\SearchResults.css" />
     <Content Include="ViewPosition.aspx" />
     <Content Include="ViewProfile.aspx" />
     <Content Include="Web.config" />

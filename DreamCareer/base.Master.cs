@@ -13,5 +13,11 @@ namespace DreamCareer
         {
 
         }
+
+        protected void LogoutButton_OnClick(object sender, EventArgs e)
+        {
+            Session["username"] = null;
+            Response.Redirect("Default.aspx");
+        }
     }
 }
