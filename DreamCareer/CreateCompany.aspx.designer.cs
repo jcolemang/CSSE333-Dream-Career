@@ -31,6 +31,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox compname;
         
         /// <summary>
+        /// name_input_error_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label name_input_error_label;
+        
+        /// <summary>
         /// comsize control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,15 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox zipcode;
+        
+        /// <summary>
+        /// zip_input_error_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label zip_input_error_label;
         
         /// <summary>
         /// compdes control.

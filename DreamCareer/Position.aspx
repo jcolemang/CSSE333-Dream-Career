@@ -25,6 +25,11 @@
                     <td>
                         <asp:TextBox type="text" ID="titl" runat="server"></asp:TextBox>
                     </td>
+                     <td>
+                        <asp:Label ID="name_input_error_label"
+                            class="error-label asp-name-input-error-label" 
+                            runat="server"></asp:Label>
+                    </td>
                 </tr>
 
 
@@ -85,6 +90,11 @@
                     <td>
                         <asp:TextBox type="text" ID="zipcode" runat="server"></asp:TextBox>
                     </td>
+                    <td>
+                        <asp:Label ID="zip_input_error_label"
+                            class="error-label asp-zip-input-error-label" 
+                            runat="server"></asp:Label>
+                    </td>
                 </tr>
 
                 <tr>
@@ -106,6 +116,12 @@
                     </td>
                     <td>
                         <asp:TextBox type="text" ID="jobdes" runat="server" MaxLength="1000" style="width: 800px" ></asp:TextBox>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <asp:Button ID="position_button" runat="server" Text="Insert Position"
+                            OnClick="InsertPositionButton_OnClick" OnClientClick="return nameCheck()" />
                     </td>
                 </tr>
             </table>

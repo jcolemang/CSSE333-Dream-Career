@@ -26,6 +26,11 @@
                     <td>
                         <asp:TextBox type="text" ID="compname" runat="server"></asp:TextBox>
                     </td>
+                    <td>
+                        <asp:Label ID="name_input_error_label"
+                            class="error-label asp-name-input-error-label" 
+                            runat="server"></asp:Label>
+                    </td>
                 </tr>
 
 
@@ -40,7 +45,7 @@
                             type="dropdownlist"
                             ID="comsize"
                             runat="server"
-                            CssClass="gender-select">
+                            CssClass="size-select">
 
                             <asp:ListItem Text="Select" Value="1" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="Small" Value="2"></asp:ListItem>
@@ -90,6 +95,11 @@
                     <td>
                         <asp:TextBox type="text" ID="zipcode" runat="server"></asp:TextBox>
                     </td>
+                     <td>
+                        <asp:Label ID="zip_input_error_label"
+                            class="error-label asp-zip-input-error-label" 
+                            runat="server"></asp:Label>
+                    </td>
                 </tr>
 
                 <tr>
@@ -105,7 +115,7 @@
                  <tr>
                     <td>
                         <asp:Button ID="company_button" runat="server" Text="Insert Company"
-                            OnClick="InsertCompanyButton_OnClick" OnClientClick="return sizeCheck()" />
+                            OnClick="InsertCompanyButton_OnClick" />
                     </td>
                 </tr>
             </table>
