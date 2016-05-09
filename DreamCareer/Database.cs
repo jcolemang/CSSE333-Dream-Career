@@ -391,7 +391,7 @@ namespace DreamCareer
         }
 
 
-        public static void CreatePosition(string pos, string ty, string stree, 
+        public static void CreatePosition(int companyid, string pos, string ty, string stree, 
             string cit, string stat, string zi, string sal, string jobdesc)
         {
             string sp_name = "insert_new_position_gui";
@@ -399,6 +399,8 @@ namespace DreamCareer
             SqlCommand insert_new_pos_sp = new SqlCommand(sp_name, connection);
             insert_new_pos_sp.CommandType = System.Data.CommandType.StoredProcedure;
 
+            insert_new_pos_sp.Parameters.Add(
+               new SqlParameter("@conmpanyid", companyid));
             insert_new_pos_sp.Parameters.Add(
                 new SqlParameter("@positiontitle", pos));
             insert_new_pos_sp.Parameters.Add(
@@ -519,6 +521,7 @@ namespace DreamCareer
             return ids;
         }
 
+
         public static List<string> GetAllUsernamesFromUserTable()
         {
             string sp_name = "get_all_usernames_from_user_table";
@@ -533,6 +536,29 @@ namespace DreamCareer
             reader.Close();
             connection.Close();
             return unames;
+        }
+
+        public static int GetCompanyID(string @name)
+        {
+            string sp_name = "get_inserted_companyid";
+            SqlConnection connection = GetSqlConnection();
+            int companyid = 0;
+
+            SqlCommand get_companyid = new SqlCommand(
+                sp_name, connection);
+            get_companyid.CommandType =
+                System.Data.CommandType.StoredProcedure;
+
+            try
+            {
+                connection.Open();
+                companyid = (int)get_companyid.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return (int)companyid;
         }
 
         public static void CreateUserLikes(int UserID, int ProfileID)

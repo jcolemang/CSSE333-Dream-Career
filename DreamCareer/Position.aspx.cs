@@ -37,8 +37,11 @@ namespace DreamCareer
                 name_input_error_label.Text = "Need title to make position.";
                 return;
             }
-           
-            Database.CreatePosition(pos, ty, stree, cit, stat, zi, sal, jobdesc);
+            //Request.QueryString.GetValues(Page.PreviousPage.FindControl("nam"));
+            //Database.GetCompanyID(Page.PreviousPage.)
+            String s = Request.QueryString["value1"];
+            int compid = Database.GetCompanyID(s);
+            Database.CreatePosition(compid, pos, ty, stree, cit, stat, zi, sal, jobdesc);
             System.Windows.Forms.MessageBox.Show("Created!");
             Response.Redirect("Login.aspx");
 
