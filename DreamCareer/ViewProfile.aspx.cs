@@ -29,7 +29,7 @@ namespace DreamCareer
 
             try
             {
-                Dictionary<string, string> Profile = 
+                Dictionary<string, string> Profile =
                     Database.GetProfile(UsernameParameter);
 
                 NameLabel.Text = Profile["Name"];
@@ -42,6 +42,11 @@ namespace DreamCareer
                 Response.Redirect("CreateProfile.aspx");
             }
 
+
+        }
+
+        protected void EditButton_OnClick(object sender, EventArgs e)
+        {
 
         }
     }

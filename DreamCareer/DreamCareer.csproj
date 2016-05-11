@@ -130,6 +130,7 @@
     <Content Include="static\css\base.css" />
     <Content Include="static\css\Company.css" />
     <Content Include="static\css\Create Profile.css" />
+    <Content Include="static\css\ViewProfile.css" />
     <Content Include="static\css\CreateUser.css" />
     <Content Include="static\css\home.css" />
     <Content Include="static\css\login.css" />
