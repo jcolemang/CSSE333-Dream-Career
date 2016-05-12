@@ -18,6 +18,21 @@
 
                 <tr>
                     <td>
+                        <p id="comptitle">
+                            Company Name
+                        </p>
+                    </td>
+                    <td>
+                        <asp:TextBox type="text" ID="compname" runat="server"></asp:TextBox>
+                    </td>
+                     <td>
+                        <asp:Label ID="compname_input_error_label"
+                            class="error-label asp-compname-input-error-label" 
+                            runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <p id="PosTitle">
                             Title
                         </p>

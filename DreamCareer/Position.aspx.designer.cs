@@ -22,6 +22,24 @@ namespace DreamCareer {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// compname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox compname;
+        
+        /// <summary>
+        /// compname_input_error_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label compname_input_error_label;
+        
+        /// <summary>
         /// titl control.
         /// </summary>
         /// <remarks>

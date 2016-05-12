@@ -17,6 +17,9 @@ namespace DreamCareer
         }
         protected void InsertPositionButton_OnClick(object sender, EventArgs e)
         {
+            //comment out later START//
+            string s = compname.Text;
+            //comment out later END//
             string pos = titl.Text;
             string ty = typ.Text;
             string stree = strname.Text;
@@ -37,16 +40,20 @@ namespace DreamCareer
                 name_input_error_label.Text = "Need title to make position.";
                 return;
             }
-            //Request.QueryString.GetValues(Page.PreviousPage.FindControl("nam"));
-            //Database.GetCompanyID(Page.PreviousPage.)
-            String s = Request.QueryString["value1"];
+            if (s.Equals(""))
+            {
+                compname_input_error_label.Text = "Need company name to make position.";
+                return;
+            }
+            //Comment in later START//
+            //String s = Request.QueryString["value1"];
+            //Comment in later END//
+
+            //TODO add code later to throw error if name of non-existent company
             int compid = Database.GetCompanyID(s);
             Database.CreatePosition(compid, pos, ty, stree, cit, stat, zi, sal, jobdesc);
             System.Windows.Forms.MessageBox.Show("Created!");
-            Response.Redirect("Login.aspx");
-
-            //if (Session["title"] == null)
-            //    Response.Redirect("Login.aspx");  
+            Response.Redirect("Login.aspx");  
         }
 
     }

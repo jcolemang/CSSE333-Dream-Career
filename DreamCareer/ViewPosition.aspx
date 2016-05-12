@@ -134,12 +134,12 @@
                         <asp:TextBox type="text" ID="jobdes" runat="server" MaxLength="1000" style="width: 800px" ></asp:TextBox>
                     </td>
                 </tr>
-                 <%-- <tr>
+                 <tr>
                     <td>
-                        <asp:Button ID="position_button" runat="server" Text="Insert Position"
-                            OnClick="InsertPositionButton_OnClick" OnClientClick="return nameCheck()" />
+                        <asp:Button ID="position_button" runat="server" Text="Update Position"
+                            OnClick="InsertViewPositionButton_OnClick" />
                     </td>
-                </tr>  --%>
+                </tr>  
             
         </table>
 

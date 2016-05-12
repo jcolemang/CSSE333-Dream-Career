@@ -573,43 +573,30 @@ namespace DreamCareer
 
         public static int getPosId(string oldpos)
         {
-            string sp_name = "get_positionidold";
+            string sp_name = "get_positionIdold";
             SqlConnection connection = GetSqlConnection();
             SqlCommand get_positionid = new SqlCommand(sp_name, connection);
             get_positionid.CommandType = System.Data.CommandType.StoredProcedure;
+            int posid = 0;
 
             get_positionid.Parameters.Add(
               new SqlParameter("@oldpos", oldpos));
-            SqlParameter ReturnVal = new SqlParameter("RetVal",
-               System.Data.SqlDbType.Int);
-            ReturnVal.Direction =
-                System.Data.ParameterDirection.ReturnValue;
-            get_positionid.Parameters.Add(ReturnVal);
 
-            get_positionid.ExecuteNonQuery();
-
-            connection.Close();
-            return (int)ReturnVal.Value;
+            posid = (int)get_positionid.ExecuteScalar();
+            return (int)posid;
         }
-        public static int getCompanyId(string oldpos)
+        public static int getCompanyIdview(string oldpos)
         {
-            string sp_name = "get_companyid";
+            string sp_name = "get_CompanyID";
             SqlConnection connection = GetSqlConnection();
             SqlCommand getcompid = new SqlCommand(sp_name, connection);
             getcompid.CommandType = System.Data.CommandType.StoredProcedure;
-
+            int compid = 0;
             getcompid.Parameters.Add(
               new SqlParameter("@oldpos", oldpos));
-            SqlParameter ReturnVal = new SqlParameter("RetVal",
-               System.Data.SqlDbType.Int);
-            ReturnVal.Direction =
-                System.Data.ParameterDirection.ReturnValue;
-            getcompid.Parameters.Add(ReturnVal);
 
-            getcompid.ExecuteNonQuery();
-
-            connection.Close();
-            return (int)ReturnVal.Value;
+            compid = (int)getcompid.ExecuteScalar();
+            return (int)compid;
         }
         public static void getPositionInfo(int posid)
         {
@@ -769,15 +756,8 @@ namespace DreamCareer
             get_companyid.CommandType =
                 System.Data.CommandType.StoredProcedure;
             get_companyid.Parameters.Add(
-                new SqlParameter("@name", name));
-            // try
-            //{                          
+                new SqlParameter("@name", name));                        
             companyid = (int)get_companyid.ExecuteScalar();
-            //}
-           // catch (Exception ex)
-           // {
-            //    Console.WriteLine(ex.Message);
-            //}
             return (int)companyid;
         }
 

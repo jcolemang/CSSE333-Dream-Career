@@ -13,7 +13,7 @@ namespace DreamCareer
         {
 
         }
-        protected void InsertPositionButton_OnClick(object sender, EventArgs e)
+        protected void InsertViewPositionButton_OnClick(object sender, EventArgs e)
         {
             string oldpos = oldtitle.Text;
             string newpos = newtitle.Text;
@@ -44,7 +44,7 @@ namespace DreamCareer
             {
                 pos = oldpos;
             }
-            int compid = Database.getCompanyId(oldpos);
+            int compid = Database.getCompanyIdview(oldpos);
             int posid = Database.getPosId(oldpos);
             //Database.getPositionInfo(posid);
             Database.UpdatePosition(posid, compid, pos, ty, stree, cit, stat, zi, sal, jobdesc);
