@@ -400,7 +400,7 @@ namespace DreamCareer
             insert_new_pos_sp.CommandType = System.Data.CommandType.StoredProcedure;
 
             insert_new_pos_sp.Parameters.Add(
-               new SqlParameter("@conmpanyid", companyid));
+               new SqlParameter("@companyid", companyid));
             insert_new_pos_sp.Parameters.Add(
                 new SqlParameter("@positiontitle", pos));
             insert_new_pos_sp.Parameters.Add(
@@ -422,7 +422,6 @@ namespace DreamCareer
                 System.Data.SqlDbType.Int);
             ReturnVal.Direction =
                 System.Data.ParameterDirection.ReturnValue;
-            insert_new_pos_sp.ExecuteNonQuery();
             insert_new_pos_sp.Parameters.Add(ReturnVal);
 
             insert_new_pos_sp.ExecuteNonQuery();
@@ -538,7 +537,7 @@ namespace DreamCareer
             return unames;
         }
 
-        public static int GetCompanyID(string @name)
+        public static int GetCompanyID(string name)
         {
             string sp_name = "get_inserted_companyid";
             SqlConnection connection = GetSqlConnection();
@@ -548,16 +547,16 @@ namespace DreamCareer
                 sp_name, connection);
             get_companyid.CommandType =
                 System.Data.CommandType.StoredProcedure;
-
-            try
-            {
-                connection.Open();
-                companyid = (int)get_companyid.ExecuteScalar();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            get_companyid.Parameters.Add(
+                new SqlParameter("@name", name));
+            // try
+            //{                          
+            companyid = (int)get_companyid.ExecuteScalar();
+            //}
+           // catch (Exception ex)
+           // {
+            //    Console.WriteLine(ex.Message);
+            //}
             return (int)companyid;
         }
 

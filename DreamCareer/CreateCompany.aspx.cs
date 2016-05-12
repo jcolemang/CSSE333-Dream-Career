@@ -43,7 +43,7 @@ namespace DreamCareer
             }
             Database.CreateCompany(siz, nam, descr, stree, cit, stat, zi);
             System.Windows.Forms.MessageBox.Show("Created!");
-            Response.Redirect("Position.aspx?value1=nam");
+            Response.Redirect("Position.aspx?value1="+nam.ToString());
         }
     }
 }         
