@@ -744,10 +744,15 @@ namespace DreamCareer
             if (reader.Read())
             {
                 Profile["Username"] = Username;
-                Profile["Name"] = reader.GetString(0);
-                Profile["Gender"] = reader.GetString(1);
-                Profile["Major"] = reader.GetString(2);
-                Profile["Experience"] = reader.GetString(3);
+                Profile["Name"] = reader.GetString(1);
+                Console.WriteLine("reader.length()");
+                Profile["Gender"] = reader.GetString(2);
+                Profile["Major"] = reader.GetString(3);
+                Profile["Experience"] = reader.GetString(4);
+                Profile["Street"] = reader.GetString(5);
+                Profile["City"] = reader.GetString(6);
+                Profile["State"] = reader.GetString(7);
+                Profile["Zipcode"] = reader.GetString(8);
             }
             else
             {
