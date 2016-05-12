@@ -7,8 +7,6 @@
     <link href="static/css/CreateUser.css" rel="stylesheet" type="text/css" />
 
     <%-- javascript --%>
-    <script src="scripts/jquery-2.2.3.min.js"
-        type="text/javascript"></script>
     <script src="scripts/CreateUser.js"
         type="text/javascript"></script>
 
@@ -22,6 +20,7 @@
         <div id="new-user-table-div">
             <table id="create-new-user-table">
 
+                <%-- Title row --%>
                 <tr id="title-row">
                     <th colspan="2">
                         <h2 id="table-header">

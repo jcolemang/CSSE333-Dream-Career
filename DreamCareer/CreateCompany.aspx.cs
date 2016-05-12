@@ -11,48 +11,38 @@ namespace DreamCareer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // TODO make a specific user type that can do this
+            if (Session["Username"] == null)
+                Response.Redirect("Login.aspx");
         }
         protected void InsertCompanyButton_OnClick(object sender, EventArgs e)
         {
+            string Name = CompanyName.Text;
+            int Size;
+            bool IsValid = int.TryParse(CompanySize.Text, out Size);
+            string Description = CompanyDescription.Text;
+            string Street = CompanyStreet.Text;
+            string City = CompanyCity.Text;
+            string State = CompanyStreet.Text;
+            string Zipcode = CompanyZipcode.Text;
 
-            string nam = (string)Session["name"];
-            int siz = comsize.SelectedIndex;
-            string descr = compdes.Text;
-            string stree = strname.Text;
-            string cit = cityname.Text;
-            string stat = statename.Text;
-            string zi = zipcode.Text;
-            string si = "Select";
-            if (siz == 2) { si = "Small"; }
-            else if (siz == 3) { si = "Medium"; }
-            else if (siz == 4) { si = "Big"; }
-            Boolean boo = false;
-
-
-            if (!Database.checkIfNameInDatabase(nam))
+            if (!IsValid)
             {
-                boo = true;
+                // Company size isn't a number
             }
 
-
-
-            if (boo)
+            if (Database.checkIfNameInDatabase(Name))
             {
-
-
-                //username_input_error_label.Text = "Username doesn't exist.";
-                return;
+                // Company with that name already exists
             }
             else
             {
-                //username_input_error_label.Text = "";
-                Database.CreateCompany(siz, nam, descr, stree, cit, stat, zi);
-
+                // Good to insert!
+                Database.CreateCompany(Size, Name, Description,
+                    Street, City, State, Zipcode);
             }
 
-            if (Session["name"] == null)
-                Response.Redirect("Login.aspx");
+
 
 
         }

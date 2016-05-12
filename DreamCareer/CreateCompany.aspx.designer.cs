@@ -22,67 +22,67 @@ namespace DreamCareer {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// compname control.
+        /// CompanyName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox compname;
+        protected global::System.Web.UI.WebControls.TextBox CompanyName;
         
         /// <summary>
-        /// comsize control.
+        /// CompanySize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList comsize;
+        protected global::System.Web.UI.WebControls.TextBox CompanySize;
         
         /// <summary>
-        /// strname control.
+        /// CompanyStreet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox strname;
+        protected global::System.Web.UI.WebControls.TextBox CompanyStreet;
         
         /// <summary>
-        /// cityname control.
+        /// CompanyCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox cityname;
+        protected global::System.Web.UI.WebControls.TextBox CompanyCity;
         
         /// <summary>
-        /// statename control.
+        /// CompanyState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox statename;
+        protected global::System.Web.UI.WebControls.TextBox CompanyState;
         
         /// <summary>
-        /// zipcode control.
+        /// CompanyZipcode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox zipcode;
+        protected global::System.Web.UI.WebControls.TextBox CompanyZipcode;
         
         /// <summary>
-        /// compdes control.
+        /// CompanyDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox compdes;
+        protected global::System.Web.UI.WebControls.TextBox CompanyDescription;
         
         /// <summary>
         /// company_button control.

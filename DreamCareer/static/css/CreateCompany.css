@@ -1,18 +1,22 @@
-﻿body {
-    background-color: orange;
+﻿
+
+
+#create-new-company-table {
+    padding-left: 100px;
 }
 
-#create-new-profile-table {
-    padding-left: 10%;
-}
-p{
-    color:black;
+td {
+    vertical-align: top;
+    padding-top: 20px;
 }
 
-h2{
-    color:black;
+#title-row {
+    text-align: left;
 }
 
-#profile_button{
-    color:black;
+#table-header {
+    margin-left: 20%;
 }
+
+
+

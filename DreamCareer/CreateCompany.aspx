@@ -1,116 +1,148 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="CreateCompany.aspx.cs" Inherits="DreamCareer.CreateCompany" %>
+﻿<%@ Page ValidateRequest="false" Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="CreateCompany.aspx.cs" Inherits="DreamCareer.CreateCompany" %>
 
-       <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="static/css/CreateCompany.css" rel="stylesheet" type="text/css" />
-   
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="static/css/CreateCompany.css" rel="Stylesheet" type="text/css" />
+
+    <script src="scripts/CreateCompany.js"
+        type="text/javascript"></script>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
 
     <form id="form1" runat="server">
-        <div>
-            <table id="create-new-company-table">
-                <tr id="title-row">
-                    <th colspan="2">
-                        <h2 id="table-header">Create a Company
-                        </h2>
-                    </th>
-                </tr>
+        <%-- Table with a bunch of rows and columns and such --%>
 
+        <%-- The title row --%>
+        <table id="create-new-company-table">
+            <tr id="title-row">
+                <th colspan="2">
+                    <h2 id="table-header">Create a Company
+                    </h2>
+                </th>
+            </tr>
 
-                <tr>
-                    <td>
-                        <p id="Name">
-                            Company Name
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="compname" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
+            <%-- Name input row --%>
+            <tr>
+                <td>
+                    <label id="name-label">
+                        Company Name
+                    </label>
+                </td>
+                <td>
+                    <asp:TextBox type="text" 
+                        ID="CompanyName" 
+                        CssClass="CompanyName"
+                        runat="server"></asp:TextBox>
+                </td>
 
+                <%-- Because users can't figure it out on their own --%>
+                <td class="error-row">
+                    <label id="name-input-error-label"
+                        class="error-label">
+                    </label>
+                </td>
+            </tr>
 
-                <tr>
-                    <td>
-                        <p id="CompSize">
-                            Size
-                        </p>
-                    </td>
-                    <td>
-                       <asp:DropDownList
-                            type="dropdownlist"
-                            ID="comsize"
-                            runat="server"
-                            CssClass="gender-select">
+            <%-- Size input row --%>
+            <tr>
+                <td>
+                    <label id="company-size-label">
+                        Size
+                    </label>
+                </td>
+                <td>
+                    <asp:TextBox ID="CompanySize" 
+                        CssClass="CompanySize"
+                        runat="server">
+                    </asp:TextBox>
+                </td>
+                <td>
+                    <label id="company-size-error-label"
+                        class="error-label"></label>
+                </td>
 
-                            <asp:ListItem Text="Select" Value="1" Selected="True"></asp:ListItem>
-                            <asp:ListItem Text="Small" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Medium" Value="3"></asp:ListItem>
-                            <asp:ListItem Text="Big" Value="4"></asp:ListItem>
-                        </asp:DropDownList>
-                    </td>
-                </tr>
+            </tr>
 
-                <tr>
-                    <td>
-                        <p id="Street">
-                            Street
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="strname" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
+            <%-- Street input row --%>
+            <tr>
+                <td>
+                    <label id="street-label">
+                        Street
+                    </label>
+                </td>
+                <td>
+                    <asp:TextBox type="text" ID="CompanyStreet" runat="server"></asp:TextBox>
+                </td>
+            </tr>
 
-                <tr>
-                    <td>
-                        <p id="City">
-                            City
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="cityname" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p id="State">
-                            State
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="statename" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p id="Zip">
-                            Zip
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="zipcode" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
+            <%-- City input row --%>
+            <tr>
+                <td>
+                    <label id="city-label">
+                        City
+                    </label>
+                </td>
+                <td>
+                    <asp:TextBox type="text" ID="CompanyCity" runat="server"></asp:TextBox>
+                </td>
+            </tr>
 
-                <tr>
-                    <td>
-                        <p id="CompanyDescription">
-                            Company Description
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="compdes" runat="server" MaxLength="1000" style="width: 800px" ></asp:TextBox>
-                    </td>
-                </tr>
-                 <tr>
-                    <td>
-                        <asp:Button ID="company_button" runat="server" Text="Insert Company"
-                            OnClick="InsertCompanyButton_OnClick" OnClientClick="return sizeCheck()" />
-                    </td>
-                </tr>
-            </table>
+            <%-- State input row --%>
+            <tr>
+                <td>
+                    <label id="state-label">
+                        State
+                    </label>
+                </td>
+                <td>
+                    <asp:TextBox type="text" ID="CompanyState" runat="server"></asp:TextBox>
+                </td>
+            </tr>
 
-        </div>
+            <%-- Zipcode input row --%>
+            <tr>
+                <td>
+                    <label id="Zip">
+                        Zip
+                    </label>
+                </td>
+                <td>
+                    <asp:TextBox type="text" ID="CompanyZipcode" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+
+            <%-- Description input row (large) --%>
+            <tr>
+                <td>
+                    <label id="company-description-label">
+                        Company Description
+                    </label>
+                </td>
+                <td colspan="2">
+                    <%-- Big ol' textbox for the description --%>
+                    <asp:TextBox type="text"
+                        ID="CompanyDescription"
+                        runat="server"
+                        MaxLength="1000"
+                        TextMode="MultiLine"
+                        Width="250"
+                        Height="300"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <%-- Just so the button is in the second column --%>
+                <td class="dummy-column"></td>
+                <td>
+                    <asp:Button ID="company_button"
+                        runat="server"
+                        Text="Insert Company"
+                        OnClick="InsertCompanyButton_OnClick"
+                        OnClientClick="return validateCompany()" />
+                </td>
+            </tr>
+        </table>
+
 
     </form>
 </asp:Content>
