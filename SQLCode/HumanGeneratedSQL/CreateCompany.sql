@@ -5,7 +5,7 @@ CREATE TABLE Company
 (
 	CompanyID int IDENTITY(1,1),
 	Size int NOT NULL,
-	Name varchar(50) NOT NULL,
+	Name varchar(50) NOT NULL UNIQUE,
 	CompanyDescription varchar(500),
 	Street varchar(50),
 	City varchar(50),

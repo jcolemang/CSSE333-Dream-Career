@@ -26,8 +26,16 @@ namespace DreamCareer
                 Response.Redirect("Default.aspx");
             }
 
-            Dictionary<string, string> Company =
-                Database.GetCompany(CompanyID);
+            Dictionary<string, string> Company;
+            try
+            {
+                Company = Database.GetCompany(CompanyID);
+            }
+            catch (NoDataException NoDataError)
+            {
+                Response.Redirect("ErrorPage.aspx");
+                return;
+            }
 
             CompanyName.InnerText = Company["Name"];
             CompanyDescription.InnerText = Company["Description"];
@@ -41,11 +49,18 @@ namespace DreamCareer
 
         protected void UpdateCompanyName(object sender, EventArgs e)
         {
+            // Getting the company ID
             string CompanyIDString = Request.QueryString["CompanyID"];
             int ID;
             int.TryParse(CompanyIDString, out ID);
-            Database.UpdateCompanyName(ID, "Updated");
+
+            // Getting the new name
+            string NewCompanyName = UpdateCompanyNameTextBox.Text;
+
             // Update the company's name
+            Database.UpdateCompany(ID, NewName: NewCompanyName);
+
+            CompanyName.InnerText = NewCompanyName;
         }
     }
 

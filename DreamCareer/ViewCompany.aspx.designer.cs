@@ -13,6 +13,15 @@ namespace DreamCareer {
     public partial class ViewCompany {
         
         /// <summary>
+        /// NoCompanyLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NoCompanyLabel;
+        
+        /// <summary>
         /// CompanyName control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,24 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CompanyName;
+        
+        /// <summary>
+        /// UpdateCompanyNameTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateCompanyNameTextBox;
+        
+        /// <summary>
+        /// UpdateCompanyNameButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateCompanyNameButton;
         
         /// <summary>
         /// CompanySize control.

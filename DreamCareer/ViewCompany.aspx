@@ -12,6 +12,10 @@
 
     <form runat="server">
 
+        <asp:Label runat="server"
+            ID="NoCompanyLabel">
+        </asp:Label>
+
         <%-- BLAME ASP FOR MY SELECTORS --%>
         <%-- I dont know why they thought rendering id useless was a good idea --%>
         <%-- In a couple places I use classes instead of ids when I could use ids --%>
@@ -25,19 +29,25 @@
                     <h3 id="CompanyName" class="CompanyName" runat="server">
                         
                     </h3>
-                    <asp:TextBox runat="server"
-                        CssClass="update-value UpdateCompanyName">
-
+                    <asp:TextBox 
+                        runat="server"
+                        CssClass="update-value UpdateCompanyName"
+                        ID="UpdateCompanyNameTextBox"
+                        >
                     </asp:TextBox>
+
                 </td>
                 <td>
-                    <button type="button" class="expand-update CompanyNameExpandUpdate" 
+                    <button type="button" 
+                        class="expand-update CompanyNameExpandUpdate" 
                         onclick="toggleCompanyName()">
                         Update Name
                     </button>
 
                     <%-- Note that this one has runat=server --%>
-                    <asp:Button type="button" class="submit-update CompanyNameSubmitUpdate"
+                    <asp:Button type="button" 
+                        CssClass="submit-update CompanyNameSubmitUpdate"
+                        ID="UpdateCompanyNameButton"
                         runat="server"
                         OnClick="UpdateCompanyName"
                         Text="Submit">

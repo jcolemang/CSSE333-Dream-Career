@@ -34,20 +34,17 @@ namespace DreamCareer
             if (Database.checkIfNameInDatabase(Name))
             {
                 // Company with that name already exists
+                CompanyNameErrorLabel.Text = "A company by this name already exists.";
             }
             else
             {
                 // Good to insert!
                 Database.CreateCompany(Size, Name, Description,
                     Street, City, State, Zipcode);
+                System.Windows.Forms.MessageBox.Show("Created!");
+                Response.Redirect("Position.aspx?value1="+Name.ToString());
             }
 
-
-
-
-            Database.CreateCompany(Size, Name, Description, Street, City, State, Zipcode);
-            System.Windows.Forms.MessageBox.Show("Created!");
-            Response.Redirect("Position.aspx?value1="+Name.ToString());
         }
     }
 }

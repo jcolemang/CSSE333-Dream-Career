@@ -13,6 +13,7 @@
     <form id="form1" runat="server">
         <%-- Table with a bunch of rows and columns and such --%>
 
+
         <%-- The title row --%>
         <table id="create-new-company-table">
             <tr id="title-row">
@@ -41,6 +42,10 @@
                     <label id="name-input-error-label"
                         class="error-label">
                     </label>
+                    <asp:Label runat="server" 
+                        ID="CompanyNameErrorLabel"
+                        CssClass="error-label CompanyNameErrorLabel">
+                    </asp:Label>
                 </td>
             </tr>
 

@@ -11,6 +11,7 @@ $(document).ready(function () {
 
 function validateCompanyName() {
     var nameInput = $('.CompanyName').val();
+    $('.CompanyNameErrorLabel').html('');
     if (/^\s*$/.test(nameInput))
     {
         $('#name-input-error-label').html('Your company needs a name!');
@@ -29,10 +30,10 @@ function validateCompanySize() {
         $('#company-size-error-label').html("Please enter a size.");
         return false;
     }
-    if (/\s*0+\s*/.test(sizeInput))
+    if (/^\s*0+\s*$/.test(sizeInput))
     {
         $('#company-size-error-label').html("A company with no one in" +
-            " it isn't must of a company...");
+            " it isn't much of a company...");
         return false;
     }
     if (/^\s+$/.test(sizeInput))
