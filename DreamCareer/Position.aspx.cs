@@ -12,20 +12,42 @@ namespace DreamCareer
         protected void Page_Load(object sender, EventArgs e)
         {
 
+                
+
+        }
+        protected void InsertPositionButton_OnClick(object sender, EventArgs e)
+        {
             string pos = titl.Text;
             string ty = typ.Text;
             string stree = strname.Text;
             string cit = cityname.Text;
             string stat = statename.Text;
             string zi = zipcode.Text;
-            string sal = salaryam.Text;
+            string sal =salaryam.Text;
             string jobdesc = jobdes.Text;
 
-            //Database.Position(pos, ty, stree, cit, stat, cit, stat, zi, sal, jobdesc);
+            if (!zi.Length.Equals(5) && !zi.Length.Equals(0))
+            {
+                zip_input_error_label.Text = "Invalid zip code";
+                return;
+            }
+
+            if (pos.Equals(""))
+            {
+                name_input_error_label.Text = "Need title to make position.";
+                return;
+            }
+            //Request.QueryString.GetValues(Page.PreviousPage.FindControl("nam"));
+            //Database.GetCompanyID(Page.PreviousPage.)
+            String s = Request.QueryString["value1"];
+            int compid = Database.GetCompanyID(s);
+            Database.CreatePosition(compid, pos, ty, stree, cit, stat, zi, sal, jobdesc);
+            System.Windows.Forms.MessageBox.Show("Created!");
+            Response.Redirect("Login.aspx");
 
             //if (Session["title"] == null)
-            //    Response.Redirect("Login.aspx");       
-
+            //    Response.Redirect("Login.aspx");  
         }
+
     }
 }

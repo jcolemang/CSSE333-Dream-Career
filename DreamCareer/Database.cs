@@ -391,8 +391,8 @@ namespace DreamCareer
         }
 
 
-        public static void CreatePosition(string pos, string ty, string stree, 
-            string cit, string stat, int zi, int sal, string jobdesc)
+        public static void CreatePosition(int companyid, string pos, string ty, string stree, 
+            string cit, string stat, string zi, string sal, string jobdesc)
         {
             string sp_name = "insert_new_position_gui";
             SqlConnection connection = GetSqlConnection();
@@ -400,21 +400,23 @@ namespace DreamCareer
             insert_new_pos_sp.CommandType = System.Data.CommandType.StoredProcedure;
 
             insert_new_pos_sp.Parameters.Add(
-                new SqlParameter("@title", pos));
+               new SqlParameter("@conmpanyid", companyid));
             insert_new_pos_sp.Parameters.Add(
-                new SqlParameter("@type", ty));
+                new SqlParameter("@positiontitle", pos));
+            insert_new_pos_sp.Parameters.Add(
+                new SqlParameter("@postype", ty));
             insert_new_pos_sp.Parameters.Add(
                 new SqlParameter("@street", stree));
             insert_new_pos_sp.Parameters.Add(
                 new SqlParameter("@city", cit));
             insert_new_pos_sp.Parameters.Add(
-                new SqlParameter("@statename", stat));
+                new SqlParameter("@state", stat));
             insert_new_pos_sp.Parameters.Add(
                 new SqlParameter("@zipcode", zi));
             insert_new_pos_sp.Parameters.Add(
                 new SqlParameter("@salary", sal));
             insert_new_pos_sp.Parameters.Add(
-                new SqlParameter("@jobdes", jobdesc));
+                new SqlParameter("@description", jobdesc));
 
             SqlParameter ReturnVal = new SqlParameter("RetVal",
                 System.Data.SqlDbType.Int);
@@ -519,6 +521,7 @@ namespace DreamCareer
             return ids;
         }
 
+
         public static List<string> GetAllUsernamesFromUserTable()
         {
             string sp_name = "get_all_usernames_from_user_table";
@@ -533,6 +536,29 @@ namespace DreamCareer
             reader.Close();
             connection.Close();
             return unames;
+        }
+
+        public static int GetCompanyID(string @name)
+        {
+            string sp_name = "get_inserted_companyid";
+            SqlConnection connection = GetSqlConnection();
+            int companyid = 0;
+
+            SqlCommand get_companyid = new SqlCommand(
+                sp_name, connection);
+            get_companyid.CommandType =
+                System.Data.CommandType.StoredProcedure;
+
+            try
+            {
+                connection.Open();
+                companyid = (int)get_companyid.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return (int)companyid;
         }
 
         public static void CreateUserLikes(int UserID, int ProfileID)

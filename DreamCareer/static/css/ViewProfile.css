@@ -1,0 +1,58 @@
+﻿body{
+    background-color: orange;
+}
+
+#create-user-username {
+    padding-left: 5%;
+}
+
+#main-row {
+   text-align:center;
+}
+#title-profile {
+    padding-left:100px;
+}
+
+#username {
+    padding-right:135px;
+}
+
+#name {
+    padding-right:135px;
+}
+
+#gender {
+    padding-right:125px;
+}
+
+#major {
+    padding-right:135px;
+}
+#create-user-profile{
+    padding-left:55px;
+    margin-left:50px;
+    left:50%;
+}
+
+.profile-lable {
+    padding-left: 15%;
+}
+
+.asp-user-profile-label {
+    text-align:center;
+    margin-top:200px;
+    padding-top:200px;
+    padding-left:150px;
+    font-size:x-large;
+    color: black;
+}
+
+td {
+    padding-top: 20px;
+    padding-right: 40px;
+}
+
+td p {
+    padding-bottom: 1px;
+    text-align: right;
+}
