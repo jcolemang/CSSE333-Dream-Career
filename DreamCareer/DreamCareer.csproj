@@ -97,7 +97,9 @@
   <ItemGroup>
     <Content Include="Admin.aspx" />
     <Content Include="CreateCompany.aspx" />
-    <Content Include="CreateCompany.css" />
+    <Content Include="scripts\CreateCompany.js" />
+    <Content Include="scripts\ViewCompany.js" />
+    <Content Include="static\css\CreateCompany.css" />
     <Content Include="CreateProfile.aspx" />
     <Content Include="CreateUser.aspx" />
     <Content Include="Default.aspx" />
@@ -135,6 +137,8 @@
     <Content Include="static\css\home.css" />
     <Content Include="static\css\login.css" />
     <Content Include="static\css\SearchResults.css" />
+    <Content Include="static\css\ViewCompany.css" />
+    <Content Include="ViewCompany.aspx" />
     <Content Include="ViewProfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -206,6 +210,13 @@
     </Compile>
     <Compile Include="SearchResults.aspx.designer.cs">
       <DependentUpon>SearchResults.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCompany.aspx.cs">
+      <DependentUpon>ViewCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewCompany.aspx.designer.cs">
+      <DependentUpon>ViewCompany.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewProfile.aspx.cs">
       <DependentUpon>ViewProfile.aspx</DependentUpon>

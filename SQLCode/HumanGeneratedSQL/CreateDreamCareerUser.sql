@@ -13,14 +13,14 @@ CREATE TABLE DreamCareerUser
 
 	Email varchar(100) NOT NULL UNIQUE,
 
+	UserType char(1) NOT NULL DEFAULT 'U',
+	
 	PRIMARY KEY (UserID)
 )
 
 ALTER TABLE DreamCareerUser
-ALTER COLUMN Password varchar(512)
+ADD CONSTRAINT UserType_check
+CHECK (
+	UserType IN ('U', 'C', 'A')
+);
 
-ALTER TABLE DreamCareerUser
-ALTER COLUMN Salt varchar(512)
-
-ALTER TABLE DreamCareerUser
-ALTER COLUMN HashedPassword varchar(512)

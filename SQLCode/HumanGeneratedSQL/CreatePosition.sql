@@ -4,7 +4,7 @@ GO
 CREATE TABLE Position
 (
 	PositionID int IDENTITY(1,1),
-	CompanyID int,
+	CompanyID int NOT NULL,
 	PositionTitle varchar(50),
 	PositionType varchar(50) NOT NULL,
 	Street varchar(50),
@@ -15,6 +15,7 @@ CREATE TABLE Position
 	PositionDescription varchar(5000),
 
 	PRIMARY KEY (PositionID),
+
 	FOREIGN KEY (CompanyID) REFERENCES Company(CompanyID)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE

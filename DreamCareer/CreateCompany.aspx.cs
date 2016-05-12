@@ -11,39 +11,43 @@ namespace DreamCareer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // TODO make a specific user type that can do this
+            if (Session["Username"] == null)
+                Response.Redirect("Login.aspx");
         }
         protected void InsertCompanyButton_OnClick(object sender, EventArgs e)
         {
-            name_input_error_label.Text = "";
-            zip_input_error_label.Text = "";
+            string Name = CompanyName.Text;
+            int Size;
+            bool IsValid = int.TryParse(CompanySize.Text, out Size);
+            string Description = CompanyDescription.Text;
+            string Street = CompanyStreet.Text;
+            string City = CompanyCity.Text;
+            string State = CompanyStreet.Text;
+            string Zipcode = CompanyZipcode.Text;
 
-            string nam = compname.Text;
-            int siz = comsize.SelectedIndex;
-            string descr = compdes.Text;
-            string stree = strname.Text;
-            string cit = cityname.Text;
-            string stat = statename.Text;
-            string zi = zipcode.Text;
+            if (!IsValid)
+            {
+                // Company size isn't a number
+            }
 
-            if(!zi.Length.Equals(5) && !zi.Length.Equals(0))
+            if (Database.checkIfNameInDatabase(Name))
             {
-                zip_input_error_label.Text = "Invalid zip code";
-                return;
+                // Company with that name already exists
             }
-           
-            if(nam.Equals("")) { 
-                name_input_error_label.Text = "Need company name to make company profile.";
-                return;
-            }
-            if(Database.checkIfNameInDatabase(nam))
+            else
             {
-                name_input_error_label.Text = "A profile for this company already exists.";
-                return;
+                // Good to insert!
+                Database.CreateCompany(Size, Name, Description,
+                    Street, City, State, Zipcode);
             }
+
+
+
+
             Database.CreateCompany(siz, nam, descr, stree, cit, stat, zi);
             System.Windows.Forms.MessageBox.Show("Created!");
             Response.Redirect("Position.aspx?value1="+nam.ToString());
         }
     }
-}         
+}
