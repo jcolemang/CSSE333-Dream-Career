@@ -322,6 +322,13 @@
 
         </table>
 
+        <div id="delete-button-div">
+            <asp:Button runat="server"
+                ID="DeleteCompanyButton"
+                OnClick="DeleteCompany"
+                Text="Delete Company" />
+        </div>
+
     </form>
 
 </asp:Content>

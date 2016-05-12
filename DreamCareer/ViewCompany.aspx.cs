@@ -112,6 +112,13 @@ namespace DreamCareer
             Database.UpdateCompany(this.CompanyID, NewZip: NewCompanyZipcode);
             CompanyZipcode.InnerText = NewCompanyZipcode;
         }
+
+
+        protected void DeleteCompany(object sender, EventArgs e)
+        {
+            Database.DeleteCompany(this.CompanyID);
+            Response.Redirect("Default.aspx");
+        }
     }
 
 }

@@ -318,6 +318,24 @@ namespace DreamCareer
         }
 
 
+        public static void DeleteCompany(int CompanyID)
+        {
+            string sp_name = "delete_company";
+            SqlConnection Connection = GetSqlConnection();
+
+            SqlCommand delete_company = new SqlCommand(
+                sp_name, Connection);
+            delete_company.CommandType =
+                System.Data.CommandType.StoredProcedure;
+            delete_company.Parameters.Add(
+                new SqlParameter("@CompanyID", CompanyID));
+
+            delete_company.ExecuteNonQuery();
+
+            Connection.Close();
+        }
+
+
         public static Dictionary<string, string> GetCompany(int CompanyID)
         {
             Dictionary<string, string> Company = new Dictionary<string, string>();
