@@ -2,6 +2,25 @@
     background-color: orange;
 }
 
+.edit-button {
+    margin-top:20px;
+    margin-left:500%;
+    width:250%;
+    height:80%;
+    font-size:large;
+    background-color:lightblue;
+    border-color:lightblue;
+}
+
+.like-button {
+    margin-top:20px;
+    width:400%;
+    height:80%;
+    font-size:large;
+    background-color:lightblue;
+    border-color:lightblue;
+}
+
 #create-user-username {
     padding-left: 5%;
 }
@@ -10,39 +29,67 @@
    text-align:center;
 }
 #title-profile {
+    font-size:x-large;
     padding-left:100px;
 }
 
-#username {
-    padding-right:135px;
+#basic-info {
+    padding-left:100px;
+
+}
+
+#position-info {
+    padding-left:100px;
+    padding-top:50px;
 }
 
 #name {
-    padding-right:135px;
+    padding-left:40px;
+    padding-right:105px;
 }
 
 #gender {
-    padding-right:125px;
+    padding-right:92px;
 }
 
 #major {
-    padding-right:135px;
+    padding-right:95px;
 }
+
+#city {
+    padding-right:170px;
+}
+
+#state {
+    padding-right:125px;
+}
+
+#zipcode {
+    padding-right:95px;
+}
+
+#description {
+    padding-right:190px;
+}
+
+#street {
+    padding-right: 200px;
+}
+
 #create-user-profile{
     padding-left:55px;
-    margin-left:50px;
-    left:50%;
+    margin-left:20px;
+    
 }
 
 .profile-lable {
-    padding-left: 15%;
+   
 }
 
 .asp-user-profile-label {
-    text-align:center;
-    margin-top:200px;
-    padding-top:200px;
-    padding-left:150px;
+    margin-left:120px;
+    padding-top:1px;
+ 
     font-size:x-large;
     color: black;
 }

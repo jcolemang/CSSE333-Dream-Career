@@ -36,6 +36,10 @@ namespace DreamCareer
                 GenderLabel.Text = Profile["Gender"];
                 MajorLabel.Text = Profile["Major"];
                 ExperienceLabel.Text = Profile["Experience"];
+                StreetLabel.Text = Profile["Street"];
+                CityLabel.Text = Profile["City"];
+                StateLabel.Text = Profile["State"];
+                ZipcodeLabel.Text = Profile["Zipcode"];
             }
             catch (NoDataException)
             {
@@ -46,6 +50,11 @@ namespace DreamCareer
         }
 
         protected void EditButton_OnClick(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LikeButton_OnClick(object sender, EventArgs e)
         {
 
         }
