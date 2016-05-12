@@ -27,11 +27,11 @@ namespace DreamCareer
         public const int ProfileAlreadyExistsError = -4;
 
         // TODO change the doesn't exist errors to match with this
-        public const int NoSuchData = -5; 
+        public const int NoSuchData = -5;
+        public const int RepeatData = -6;
         
         public static RNGCryptoServiceProvider RNGCSP = 
             new RNGCryptoServiceProvider();
-        public static SHA256 PasswordHasher = new System.Security.Cryptography.SHA256Managed();
         public static int SaltLength = 128;
 
         /*
@@ -182,6 +182,9 @@ namespace DreamCareer
         }
 
 
+        /*
+         * Creates a temporary table used to search for tags.
+         */
         public static DataTable CreateTagsTable(List<string> tags)
         {
             DataTable TagsTable = new DataTable();
@@ -221,11 +224,6 @@ namespace DreamCareer
             while (reader.Read())
             {
                 CurrentRow = new Dictionary<string, string>();
-                var test1 = reader.GetValue(0);
-                var test2 = reader.GetValue(1);
-                var test3 = reader.GetValue(2);
-                var test4 = reader.GetValue(3);
-                var test5 = reader.GetValue(4);
                 CurrentRow["PositionID"] = reader.GetInt32(0).ToString();
                 CurrentRow["Title"] = reader.GetString(1);
                 CurrentRow["Salary"] = reader.GetSqlMoney(2).ToString();
@@ -240,6 +238,12 @@ namespace DreamCareer
         }
 
 
+        /*
+         * A general procedure for updating the company
+         * table so I don't have to rewrite what is essentially
+         * the same function 200 different times. Uses optional
+         * parameters to avoid updating the entire row every time.
+         */
         public static void UpdateCompany(
             int CompanyID, 
             string NewName=null, 
@@ -298,12 +302,14 @@ namespace DreamCareer
                     new SqlParameter("@NewZip", NewZip));
             }
 
+            // Setting up the return value
             SqlParameter ReturnValue = new SqlParameter("RetVal", 
                 System.Data.SqlDbType.Int);
             ReturnValue.Direction = 
                 System.Data.ParameterDirection.ReturnValue;
             update.Parameters.Add(ReturnValue);
 
+            // Executing the query
             update.ExecuteNonQuery();
 
             // I don't think I can check the ReturnValue
@@ -331,6 +337,37 @@ namespace DreamCareer
                 new SqlParameter("@CompanyID", CompanyID));
 
             delete_company.ExecuteNonQuery();
+
+            Connection.Close();
+        }
+
+
+        public static void InsertCompanyTag(int CompanyID, string tag)
+        {
+            string sp_name = "insert_new_company_tag";
+            SqlConnection Connection = GetSqlConnection();
+
+            SqlCommand insert_tag = new SqlCommand(
+                sp_name, Connection);
+            insert_tag.CommandType =
+                System.Data.CommandType.StoredProcedure;
+
+            insert_tag.Parameters.Add(
+                new SqlParameter("@tagtext", tag));
+            insert_tag.Parameters.Add(
+                new SqlParameter("@CompanyID", CompanyID));
+
+            SqlParameter ReturnParam = new SqlParameter();
+            ReturnParam.Direction = ParameterDirection.ReturnValue;
+            insert_tag.Parameters.Add(ReturnParam);
+
+            insert_tag.ExecuteNonQuery();
+
+            if ((int)ReturnParam.Value == Database.RepeatData)
+            {
+                Connection.Close();
+                throw new RepeatDataException();
+            }
 
             Connection.Close();
         }
@@ -975,6 +1012,19 @@ namespace DreamCareer
         }
 
         public ProfileAlreadyExistsException(string message) : base(message)
+        {
+
+        }
+    }
+
+    public class RepeatDataException : ApplicationException
+    {
+        public RepeatDataException()
+        {
+
+        }
+
+        public RepeatDataException(string msg) : base(msg)
         {
 
         }
