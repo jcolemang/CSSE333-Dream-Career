@@ -26,25 +26,6 @@ namespace DreamCareer
             string State = CompanyStreet.Text;
             string Zipcode = CompanyZipcode.Text;
 
-            /*
-            if (!Zip.Length.Equals(5) && !Zip.Length.Equals(0))
-            {
-                zip_input_error_label.Text = "Invalid zip code";
-                return;
-            }
-
-            if (Name.Equals(""))
-            {
-                name_input_error_label.Text = "Need company name to make company profile.";
-                return;
-            }
-            if (Database.checkIfNameInDatabase(nam))
-            {
-                name_input_error_label.Text = "A profile for this company already exists.";
-                return;
-            }
-            */
-
             if (!IsValid)
             {
                 // Company size isn't a number
