@@ -8,7 +8,7 @@ Contributors:
     Aaradhana Bharill
 
 
-~~~~~~~~~~~~~~~ Dream Career ~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~ Dream Career ~~~~~~~~~~~~~~~
 
 A website for easy job searching 
 
