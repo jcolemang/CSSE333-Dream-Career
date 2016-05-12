@@ -213,7 +213,6 @@
     </Compile>
     <Compile Include="ViewCompany.aspx.cs">
       <DependentUpon>ViewCompany.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewCompany.aspx.designer.cs">
       <DependentUpon>ViewCompany.aspx</DependentUpon>
