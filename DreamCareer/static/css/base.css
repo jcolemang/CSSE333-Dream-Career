@@ -9,6 +9,11 @@
     }
 }
 
+.error-label {
+    color: red;
+    float: left;
+}
+
 body {
     animation-name: fade-in;
     animation-duration: 2s;
@@ -74,5 +79,9 @@ a, a:visited {
 
 #child-content {
     padding-top: 60px;
+}
+
+textarea {
+    resize: none;
 }
 

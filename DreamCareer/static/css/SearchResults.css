@@ -19,6 +19,7 @@
     animation-timing-function: ease;
 }
 
+
 #results-title-div {
     margin-top: 4%;
     margin-bottom: 3%;
@@ -41,12 +42,12 @@
     margin: auto;
     width: 0px;
     height: 1px;
-    transition: 1s;
+    transition: 5s;
 }
 
 .search-result:hover:after {
     width: 100%;
-    transition: 0.3s;
+    transition: 0.1s;
     background-color: black;
 }
 

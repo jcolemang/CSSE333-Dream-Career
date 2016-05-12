@@ -25,6 +25,9 @@ namespace DreamCareer
         public const int RepeatEmailError = -2;
         public const int UsernameDoesntExistError = -3;
         public const int ProfileAlreadyExistsError = -4;
+
+        // TODO change the doesn't exist errors to match with this
+        public const int NoSuchData = -5; 
         
         public static RNGCryptoServiceProvider RNGCSP = 
             new RNGCryptoServiceProvider();
@@ -49,10 +52,6 @@ namespace DreamCareer
 
         public static SqlConnection GetSqlConnection()
         {
-            //throw new Exception("Replace the *'s below with your password. " +
-            //    "I would strongly recommend NOT committing with your password " +
-            //    "in there. Be sure this is uncommented before you commit.");
-
             string remote_db_string = 
                 "Data Source=titan.csse.rose-hulman.edu;" +
                 "Initial Catalog=DreamCareer;" +
@@ -60,13 +59,16 @@ namespace DreamCareer
                 "User ID=dreamcareer;" +
                 "Password=csse333;";
 
+            // Just for Coleman's local machine. 
+            // DO NOT USE (unless you're Coleman). It just
+            // wont work.
             string local_db_string = 
                 "Data Source=localhost;" +
                 "Initial Catalog=DreamCareer;" +
                 "Integrated Security=True;";
 
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = remote_db_string;
+            connection.ConnectionString = local_db_string;
             connection.Open();
             return connection;
         }
@@ -235,6 +237,72 @@ namespace DreamCareer
             connection.Close();
             reader.Close();
             return Rows;
+        }
+
+
+        public static void UpdateCompanyName(int CompanyID, string NewName)
+        {
+            string sp_name = "update_company_name";
+            SqlConnection connection = Database.GetSqlConnection();
+
+            SqlCommand update_name = new SqlCommand(sp_name, connection);
+            update_name.CommandType = System.Data.CommandType.StoredProcedure;
+            update_name.Parameters.Add(
+                new SqlParameter("@CompanyID", CompanyID));
+            update_name.Parameters.Add(
+                new SqlParameter("@NewCompanyName", NewName));
+
+            SqlParameter ReturnValue = new SqlParameter("RetVal", 
+                System.Data.SqlDbType.Int);
+            ReturnValue.Direction = 
+                System.Data.ParameterDirection.ReturnValue;
+            update_name.Parameters.Add(ReturnValue);
+
+            update_name.ExecuteNonQuery();
+
+            if ( (int)ReturnValue.Value == Database.NoSuchData )
+            {
+                connection.Close();
+                throw new NoDataException();
+            }
+
+            connection.Close();
+        }
+
+
+        public static Dictionary<string, string> GetCompany(int CompanyID)
+        {
+            Dictionary<string, string> Company = new Dictionary<string, string>();
+
+            string sp_name = "get_company";
+            SqlConnection Connection = GetSqlConnection();
+
+            SqlCommand get_company = new SqlCommand(
+                sp_name, Connection);
+            get_company.CommandType = System.Data.CommandType.StoredProcedure;
+            get_company.Parameters.Add(
+                new SqlParameter("@CompanyID", CompanyID));
+
+            SqlDataReader reader = get_company.ExecuteReader();
+
+            if (reader.Read())
+            {
+                Company["Name"] = reader.GetString(0);
+                Company["Description"] = reader.GetString(1);
+                Company["Size"] = reader.GetInt32(2).ToString();
+                Company["Street"] = reader.GetString(3);
+                Company["City"] = reader.GetString(4);
+                Company["State"] = reader.GetString(5);
+                Company["Zipcode"] = reader.GetString(6);
+            }
+            else
+            {
+                throw new NoDataException();
+            }
+
+            reader.Close();
+            Connection.Close();
+            return Company;
         }
 
         public static bool checkIfNameInDatabase(string name)

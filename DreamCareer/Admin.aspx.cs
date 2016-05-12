@@ -73,7 +73,6 @@ namespace DreamCareer
             this.ClearLabelText();
 
             int NumToGenerate = 250;
-            //this.positionGenerator.Ge
             GeneratePositionsLabel.Text = "Insertions Complete";
         }
 
