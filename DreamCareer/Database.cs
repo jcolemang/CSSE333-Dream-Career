@@ -247,6 +247,7 @@ namespace DreamCareer
             string NewDescription=null,
             string NewStreet=null,
             string NewCity=null,
+            string NewState=null,
             string NewZip=null)
         {
             string sp_name = "update_company";
@@ -285,6 +286,11 @@ namespace DreamCareer
             {
                 update.Parameters.Add(
                     new SqlParameter("@NewCity", NewCity));
+            }
+            if (NewState != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewState", NewState));
             }
             if (NewZip != null)
             {
