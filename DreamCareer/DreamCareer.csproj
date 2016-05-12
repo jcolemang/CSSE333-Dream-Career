@@ -97,7 +97,7 @@
   <ItemGroup>
     <Content Include="Admin.aspx" />
     <Content Include="CreateCompany.aspx" />
-    <Content Include="scripts\CreateCompany.js" />
+    <Content Include="ErrorPage.aspx" />
     <Content Include="scripts\ViewCompany.js" />
     <Content Include="static\css\CreateCompany.css" />
     <Content Include="CreateProfile.aspx" />
@@ -186,6 +186,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="LinearAlgebra.cs" />
     <Compile Include="Login.aspx.cs">

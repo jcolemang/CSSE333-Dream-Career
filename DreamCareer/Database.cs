@@ -240,26 +240,74 @@ namespace DreamCareer
         }
 
 
-        public static void UpdateCompanyName(int CompanyID, string NewName)
+        public static void UpdateCompany(
+            int CompanyID, 
+            string NewName=null, 
+            int NewSize=-1,
+            string NewDescription=null,
+            string NewStreet=null,
+            string NewCity=null,
+            string NewState=null,
+            string NewZip=null)
         {
-            string sp_name = "update_company_name";
+            string sp_name = "update_company";
             SqlConnection connection = Database.GetSqlConnection();
 
-            SqlCommand update_name = new SqlCommand(sp_name, connection);
-            update_name.CommandType = System.Data.CommandType.StoredProcedure;
-            update_name.Parameters.Add(
+            SqlCommand update = new SqlCommand(sp_name, connection);
+            update.CommandType = System.Data.CommandType.StoredProcedure;
+
+            // Adding parameters
+            // This one is absolutely necessary
+            update.Parameters.Add(
                 new SqlParameter("@CompanyID", CompanyID));
-            update_name.Parameters.Add(
-                new SqlParameter("@NewCompanyName", NewName));
+
+            // A whole mess of optional parameters
+            if (NewName != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewCompanyName", NewName));
+            }
+            if (NewSize != -1)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewSize", NewSize));
+            }
+            if (NewDescription != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewDescription", NewDescription));
+            }
+            if (NewStreet != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewStreet", NewStreet));
+            }
+            if (NewCity != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewCity", NewCity));
+            }
+            if (NewState != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewState", NewState));
+            }
+            if (NewZip != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewZip", NewZip));
+            }
 
             SqlParameter ReturnValue = new SqlParameter("RetVal", 
                 System.Data.SqlDbType.Int);
             ReturnValue.Direction = 
                 System.Data.ParameterDirection.ReturnValue;
-            update_name.Parameters.Add(ReturnValue);
+            update.Parameters.Add(ReturnValue);
 
-            update_name.ExecuteNonQuery();
+            update.ExecuteNonQuery();
 
+            // I don't think I can check the ReturnValue
+            // after closing the connection
             if ( (int)ReturnValue.Value == Database.NoSuchData )
             {
                 connection.Close();
@@ -267,6 +315,24 @@ namespace DreamCareer
             }
 
             connection.Close();
+        }
+
+
+        public static void DeleteCompany(int CompanyID)
+        {
+            string sp_name = "delete_company";
+            SqlConnection Connection = GetSqlConnection();
+
+            SqlCommand delete_company = new SqlCommand(
+                sp_name, Connection);
+            delete_company.CommandType =
+                System.Data.CommandType.StoredProcedure;
+            delete_company.Parameters.Add(
+                new SqlParameter("@CompanyID", CompanyID));
+
+            delete_company.ExecuteNonQuery();
+
+            Connection.Close();
         }
 
 
@@ -789,10 +855,15 @@ namespace DreamCareer
             if (reader.Read())
             {
                 Profile["Username"] = Username;
-                Profile["Name"] = reader.GetString(0);
-                Profile["Gender"] = reader.GetString(1);
-                Profile["Major"] = reader.GetString(2);
-                Profile["Experience"] = reader.GetString(3);
+                Profile["Name"] = reader.GetString(1);
+                Console.WriteLine("reader.length()");
+                Profile["Gender"] = reader.GetString(2);
+                Profile["Major"] = reader.GetString(3);
+                Profile["Experience"] = reader.GetString(4);
+                Profile["Street"] = reader.GetString(5);
+                Profile["City"] = reader.GetString(6);
+                Profile["State"] = reader.GetString(7);
+                Profile["Zipcode"] = reader.GetString(8);
             }
             else
             {
