@@ -505,6 +505,93 @@ namespace DreamCareer
             connection.Close();
         }
 
+        public static int getPosId(string oldpos)
+        {
+            string sp_name = "get_positionidold";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand get_positionid = new SqlCommand(sp_name, connection);
+            get_positionid.CommandType = System.Data.CommandType.StoredProcedure;
+
+            get_positionid.Parameters.Add(
+              new SqlParameter("@oldpos", oldpos));
+            SqlParameter ReturnVal = new SqlParameter("RetVal",
+               System.Data.SqlDbType.Int);
+            ReturnVal.Direction =
+                System.Data.ParameterDirection.ReturnValue;
+            get_positionid.Parameters.Add(ReturnVal);
+
+            get_positionid.ExecuteNonQuery();
+
+            connection.Close();
+            return (int)ReturnVal.Value;
+        }
+        public static int getCompanyId(string oldpos)
+        {
+            string sp_name = "get_companyid";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand getcompid = new SqlCommand(sp_name, connection);
+            getcompid.CommandType = System.Data.CommandType.StoredProcedure;
+
+            getcompid.Parameters.Add(
+              new SqlParameter("@oldpos", oldpos));
+            SqlParameter ReturnVal = new SqlParameter("RetVal",
+               System.Data.SqlDbType.Int);
+            ReturnVal.Direction =
+                System.Data.ParameterDirection.ReturnValue;
+            getcompid.Parameters.Add(ReturnVal);
+
+            getcompid.ExecuteNonQuery();
+
+            connection.Close();
+            return (int)ReturnVal.Value;
+        }
+        public static void getPositionInfo(int posid)
+        {
+
+        }
+        public static void UpdatePosition(int posid, int compid, 
+            string pos, string ty, string stree, string cit, 
+            string stat, string zi, string sal, string jobdesc)
+        {
+            string sp_name = "update_position";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand updatepos = new SqlCommand(sp_name, connection);
+            updatepos.CommandType = System.Data.CommandType.StoredProcedure;
+
+            updatepos.Parameters.Add(
+              new SqlParameter("@positionid", posid));
+            updatepos.Parameters.Add(
+               new SqlParameter("@companyid", compid));
+            updatepos.Parameters.Add(
+               new SqlParameter("@positiontitle", pos));
+            updatepos.Parameters.Add(
+                new SqlParameter("@postype", ty));
+            updatepos.Parameters.Add(
+                new SqlParameter("@street", stree));
+            updatepos.Parameters.Add(
+                new SqlParameter("@city", cit));
+            updatepos.Parameters.Add(
+                new SqlParameter("@state", stat));
+            updatepos.Parameters.Add(
+                new SqlParameter("@zipcode", zi));
+            updatepos.Parameters.Add(
+                new SqlParameter("@salary", sal));
+            updatepos.Parameters.Add(
+                new SqlParameter("@description", jobdesc));
+
+            SqlParameter ReturnVal = new SqlParameter("RetVal",
+                System.Data.SqlDbType.Int);
+            ReturnVal.Direction =
+                System.Data.ParameterDirection.ReturnValue;
+            updatepos.Parameters.Add(ReturnVal);
+
+            updatepos.ExecuteNonQuery();
+
+            int ReturnValue = (int)ReturnVal.Value;
+
+            connection.Close();
+        }
+
         public static void CreateTag(string TagWord, 
             int PositionID)
         {
