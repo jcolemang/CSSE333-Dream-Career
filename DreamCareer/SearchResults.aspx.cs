@@ -82,7 +82,7 @@ namespace DreamCareer
                 response += "<tr>";
                 response += "<td>";
                 response += "<a class=\"search-result\" " + 
-                    "href=\"ViewPosition.aspx?PositionID=" +
+                    "href=\"ViewCompany.aspx?CompanyID=" +
                     HttpUtility.HtmlEncode(Row["CompanyID"]) +
                     "\">" +
                     HttpUtility.HtmlEncode(Row["CompanyName"]) + 
@@ -118,8 +118,8 @@ namespace DreamCareer
                 response += "<tr>";
                 response += "<td>";
                 response += "<a class=\"search-result\" " + 
-                    "href=\"ViewPosition.aspx?PositionID=" +
-                    HttpUtility.HtmlEncode(Row["ProfileID"]) +
+                    "href=\"ViewProfile.aspx?username=" +
+                    HttpUtility.HtmlEncode(Row["Username"]) +
                     "\">" +
                     HttpUtility.HtmlEncode(Row["Name"]) + 
                     "</a>";

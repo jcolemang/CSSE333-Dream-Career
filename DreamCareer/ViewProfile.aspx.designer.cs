@@ -22,85 +22,202 @@ namespace DreamCareer {
         protected global::System.Web.UI.HtmlControls.HtmlForm user_profile;
         
         /// <summary>
-        /// UsernameLabel control.
+        /// NameText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label UsernameLabel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NameText;
         
         /// <summary>
-        /// NameLabel control.
+        /// GenderText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NameLabel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl GenderText;
         
         /// <summary>
-        /// GenderLabel control.
+        /// UpdateGenderTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label GenderLabel;
+        protected global::System.Web.UI.WebControls.TextBox UpdateGenderTextBox;
         
         /// <summary>
-        /// MajorLabel control.
+        /// UpdateGenderButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MajorLabel;
+        protected global::System.Web.UI.WebControls.Button UpdateGenderButton;
         
         /// <summary>
-        /// ExperienceLabel control.
+        /// MajorText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ExperienceLabel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MajorText;
         
         /// <summary>
-        /// StreetLabel control.
+        /// UpdateMajorTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label StreetLabel;
+        protected global::System.Web.UI.WebControls.TextBox UpdateMajorTextBox;
         
         /// <summary>
-        /// CityLabel control.
+        /// UpdateMajorButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CityLabel;
+        protected global::System.Web.UI.WebControls.Button UpdateMajorButton;
         
         /// <summary>
-        /// StateLabel control.
+        /// ExperienceText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label StateLabel;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ExperienceText;
         
         /// <summary>
-        /// ZipcodeLabel control.
+        /// UpdateExperienceTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ZipcodeLabel;
+        protected global::System.Web.UI.WebControls.TextBox UpdateExperienceTextBox;
+        
+        /// <summary>
+        /// UpdateExperienceButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateExperienceButton;
+        
+        /// <summary>
+        /// StreetText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl StreetText;
+        
+        /// <summary>
+        /// UpdateStreetTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateStreetTextBox;
+        
+        /// <summary>
+        /// UpdateStreetButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateStreetButton;
+        
+        /// <summary>
+        /// CityText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CityText;
+        
+        /// <summary>
+        /// UpdateCityTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateCityTextBox;
+        
+        /// <summary>
+        /// UpdateCityButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateCityButton;
+        
+        /// <summary>
+        /// StateText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl StateText;
+        
+        /// <summary>
+        /// UpdateStateTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateStateTextBox;
+        
+        /// <summary>
+        /// UpdateStateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateStateButton;
+        
+        /// <summary>
+        /// ZipcodeText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ZipcodeText;
+        
+        /// <summary>
+        /// UpdateZipcodeTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateZipcodeTextBox;
+        
+        /// <summary>
+        /// UpdateZipcodeButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateZipcodeButton;
         
         /// <summary>
         /// Button1 control.
@@ -110,14 +227,5 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
-        /// Button2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
     }
 }

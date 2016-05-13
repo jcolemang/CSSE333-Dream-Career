@@ -8,7 +8,7 @@ AS
 	DECLARE @InputError smallint
 	SET @InputError = -1
 
-	SELECT Username, Name, Gender, Major, Experience
+	SELECT Username, Name, Gender, Major, Experience, Street, City, State, Zipcode
 	FROM UserProfile, DreamCareerUser
 	WHERE DreamCareerUser.UserID = UserProfile.ProfileID AND
 			LOWER(DreamCareerUser.Username) = LOWER(@username)

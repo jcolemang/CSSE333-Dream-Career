@@ -181,6 +181,22 @@ namespace DreamCareer
             return contains_data;
         }
 
+        public static List<string> ParseTags(string TagString)
+        {
+            List<string> Tags = new List<string>();
+            char[] Separators = new char[] { ',', ' ' };
+
+            foreach (string tag in TagString.Split(Separators))
+            {
+                // Why does split give me the empty string?
+                if (tag.Length < 1)
+                    continue;
+                Tags.Add(tag);
+            }
+
+            return Tags;
+        }
+
 
         /*
          * Creates a temporary table used to search for tags.
@@ -265,6 +281,7 @@ namespace DreamCareer
                 CurrentRow = new Dictionary<string, string>();
                 CurrentRow["ProfileID"] = Reader.GetInt32(0).ToString();
                 CurrentRow["Name"] = Reader.GetString(1);
+                CurrentRow["Username"] = Reader.GetString(2);
                 Companies.Add(CurrentRow);
             }
 
@@ -395,7 +412,104 @@ namespace DreamCareer
             connection.Close();
         }
 
+        public static void DeleteProfile(int ProfileID)
+        {
+            string sp_name = "delete_profile";
+            SqlConnection Connection = GetSqlConnection();
 
+            SqlCommand delete_profile = new SqlCommand(
+                sp_name, Connection);
+            delete_profile.CommandType =
+                System.Data.CommandType.StoredProcedure;
+            delete_profile.Parameters.Add(
+                new SqlParameter("@ProfileID", ProfileID));
+
+            delete_profile.ExecuteNonQuery();
+
+            Connection.Close();
+        }
+
+        public static void UpdateProfile(
+            int ProfileID,
+ //           string Name,
+            string NewGender = null,
+            string NewExperience = null,
+            string NewStreet = null,
+            string NewCity = null,
+            string NewMajor = null,
+            string NewState = null,
+            string NewZipcode = null)
+        {
+            string sp_name = "update_profile";
+            SqlConnection connection = Database.GetSqlConnection();
+
+            SqlCommand update = new SqlCommand(sp_name, connection);
+            update.CommandType = System.Data.CommandType.StoredProcedure;
+
+            // Adding parameters
+            // This one is absolutely necessary
+            update.Parameters.Add(
+                new SqlParameter("@ProfileID", ProfileID));
+ //           update.Parameters.Add(
+ //               new SqlParameter("@Name", Name));
+            // A whole mess of optional parameters
+            //           if (NewName != null)
+            //           {
+            //               update.Parameters.Add(
+            //                   new SqlParameter("@NewName", NewName));
+            //           }
+
+
+
+            if (NewGender != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewGender", NewGender));
+            }
+            if (NewExperience != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewExperience", NewExperience));
+            }
+            if (NewStreet != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewStreet", NewStreet));
+            }
+            if (NewCity != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewCity", NewCity));
+            }
+            if (NewMajor != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewMajor", NewMajor));
+            }
+            if (NewZipcode != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewZipcode", NewZipcode));
+            }
+
+            SqlParameter ReturnValue = new SqlParameter("RetVal",
+                System.Data.SqlDbType.Int);
+            ReturnValue.Direction =
+                System.Data.ParameterDirection.ReturnValue;
+            update.Parameters.Add(ReturnValue);
+
+            update.ExecuteNonQuery();
+
+            if ((int)ReturnValue.Value == Database.NoSuchData)
+            {
+                connection.Close();
+                throw new NoDataException();
+            }
+
+            connection.Close();
+        }
+
+       
         public static void DeleteCompany(int CompanyID)
         {
             string sp_name = "delete_company";

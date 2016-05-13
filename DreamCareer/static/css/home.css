@@ -11,7 +11,7 @@
     font-size: 150%;
 }
 
-#search-bar-div {
+#search-bar-div, #button-div {
     margin-left: 20%;
     margin-right: 20%;
     text-align: center;

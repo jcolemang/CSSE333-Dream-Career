@@ -11,3 +11,7 @@
 .cancel-update {
     display: none;
 }
+
+td {
+    margin-right: 1000px;
+}

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="ViewCompany.aspx.cs" Inherits="DreamCareer.ViewCompany" %>
+﻿<%@ Page Title="" ValidateRequest="false" Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="ViewCompany.aspx.cs" Inherits="DreamCareer.ViewCompany" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -115,7 +115,9 @@
 
                     <asp:TextBox runat="server"
                         ID="UpdateCompanyDescriptionTextBox"
-                        CssClass="update-value UpdateCompanyDescription">
+                        CssClass="update-value UpdateCompanyDescription"
+                        TextMode="MultiLine"
+                        Height="200">
                     </asp:TextBox>
 
                 </td>
@@ -245,7 +247,9 @@
 
                 <td>
 
-                    <p runat="server" id="CompanyState"></p>
+                    <p runat="server" 
+                        id="CompanyState"
+                        class="CompanyState"></p>
 
                     <asp:TextBox runat="server"
                         ID="UpdateCompanyStateTextBox"
@@ -287,7 +291,9 @@
 
                 <td>
 
-                    <p runat="server" id="CompanyZipcode"></p>
+                    <p runat="server" 
+                        id="CompanyZipcode"
+                        class="CompanyZipcode"></p>
 
                     <asp:TextBox runat="server"
                         ID="UpdateCompanyZipcodeTextBox"
@@ -321,6 +327,18 @@
             </tr>
 
         </table>
+
+        <div id="add-tags-div">
+            <asp:TextBox runat="server"
+                ID="TagInput">
+            </asp:TextBox>
+
+            <asp:Button runat="server"
+                ID="SubmitTagButton"
+                Text="Add Tag" 
+                OnClick="InsertCompanyTag"/>
+
+        </div>
 
         <div id="delete-button-div">
             <asp:Button runat="server"
