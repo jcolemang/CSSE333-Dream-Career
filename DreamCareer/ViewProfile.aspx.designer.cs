@@ -31,24 +31,6 @@ namespace DreamCareer {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NameText;
         
         /// <summary>
-        /// UpdateNameTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UpdateNameTextBox;
-        
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
         /// GenderText control.
         /// </summary>
         /// <remarks>
@@ -56,6 +38,24 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl GenderText;
+        
+        /// <summary>
+        /// UpdateGenderTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateGenderTextBox;
+        
+        /// <summary>
+        /// UpdateGenderButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateGenderButton;
         
         /// <summary>
         /// MajorText control.
@@ -67,6 +67,24 @@ namespace DreamCareer {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MajorText;
         
         /// <summary>
+        /// UpdateMajorTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateMajorTextBox;
+        
+        /// <summary>
+        /// UpdateMajorButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateMajorButton;
+        
+        /// <summary>
         /// ExperienceText control.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,24 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ExperienceText;
+        
+        /// <summary>
+        /// UpdateExperienceTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateExperienceTextBox;
+        
+        /// <summary>
+        /// UpdateExperienceButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateExperienceButton;
         
         /// <summary>
         /// StreetText control.
@@ -85,6 +121,24 @@ namespace DreamCareer {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl StreetText;
         
         /// <summary>
+        /// UpdateStreetTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateStreetTextBox;
+        
+        /// <summary>
+        /// UpdateStreetButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateStreetButton;
+        
+        /// <summary>
         /// CityText control.
         /// </summary>
         /// <remarks>
@@ -92,6 +146,24 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CityText;
+        
+        /// <summary>
+        /// UpdateCityTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateCityTextBox;
+        
+        /// <summary>
+        /// UpdateCityButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateCityButton;
         
         /// <summary>
         /// StateText control.
@@ -103,6 +175,24 @@ namespace DreamCareer {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl StateText;
         
         /// <summary>
+        /// UpdateStateTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateStateTextBox;
+        
+        /// <summary>
+        /// UpdateStateButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateStateButton;
+        
+        /// <summary>
         /// ZipcodeText control.
         /// </summary>
         /// <remarks>
@@ -110,5 +200,23 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ZipcodeText;
+        
+        /// <summary>
+        /// UpdateZipcodeTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UpdateZipcodeTextBox;
+        
+        /// <summary>
+        /// UpdateZipcodeButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdateZipcodeButton;
     }
 }

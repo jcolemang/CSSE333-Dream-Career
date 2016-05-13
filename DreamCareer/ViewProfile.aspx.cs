@@ -9,9 +9,14 @@ namespace DreamCareer
 {
     public partial class ViewProfile : System.Web.UI.Page
     {
+        protected string username;
+        protected int ProfileID;
+        protected string name;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+      //      string username;
+           
+           
             if (Session["username"] == null)
                 Response.Redirect("Login.aspx");
 
@@ -26,12 +31,13 @@ namespace DreamCareer
                 // Response.Redirect(Session["username"] + ".aspx");
                 Response.Redirect("ViewProfile.aspx?username=" + Session["username"]);
             }
-
+            Dictionary<string, string> Profile=
+                    Database.GetProfile(UsernameParameter);
             try
             {
-                Dictionary<string, string> Profile =
-                    Database.GetProfile(UsernameParameter);
+          //      username = Database.GetProfile(UsernameParameter);
 
+                this.ProfileID = ProfileID;
                 NameText.InnerText = Profile["Name"];
                 GenderText.InnerText = Profile["Gender"];
                 MajorText.InnerText = Profile["Major"];
@@ -49,42 +55,66 @@ namespace DreamCareer
 
         }
 
-        protected void EditButton_OnClick(object sender, EventArgs e)
-        {
-           
-            //get the current username
-                      string usernameString = Request.QueryString["username"];
-                      int username;
-                      int.TryParse(usernameString, out username);
-
-            //get the new field
-                      String NewName = UpdateNameTextBox.Text;
-
-            //update with new field
-                       Database.UpdateProfile(username, NewName: NewName);
-                      NameText.InnerText = NewName;
-        }
-
-        protected void Like_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Edit_Click(object sender, EventArgs e)
-        {
+//        protected void Edit_Click(object sender, EventArgs e)
+//        {
             //if it has a valid username, then go on
-            if(Request.QueryString["username"] != null)
-            {
-                string usernameString = Request.QueryString["usernmae"];
-                int username;
-                int.TryParse(usernameString, out username);
-                String newName = NameText.InnerText;
-                Database.UpdateProfile(username, NewName: newName);
-            }
+            
+//             string newName = UpdateNameTextBox.Text;
+//             Database.UpdateProfile(this.ProfileID, NewName: newName);
+//             NameText.InnerText = newName;
                
+//        }
+
+        protected void UpdateGender(object sender, EventArgs e)
+        {
+            string newGender = UpdateGenderTextBox.Text;
+            Database.UpdateProfile(this.ProfileID, NewGender: newGender);
+            GenderText.InnerText = newGender;
         }
 
-        protected void Commit_Click(object sender, EventArgs e)
+        protected void UpdateMajor(object sender, EventArgs e)
+        {
+            string newMajor = UpdateMajorTextBox.Text;
+            Database.UpdateProfile(this.ProfileID,  NewMajor: newMajor);
+            MajorText.InnerText = newMajor;
+        }
+
+        protected void UpdateExperience(object sender, EventArgs e)
+        {
+            string newExperience = UpdateExperienceTextBox.Text;
+            Database.UpdateProfile(this.ProfileID, NewExperience: newExperience);
+            ExperienceText.InnerText = newExperience;
+        }
+
+        protected void UpdateStreet(object sender, EventArgs e)
+        {
+            string newStreet = UpdateStreetTextBox.Text;
+            Database.UpdateProfile(this.ProfileID, NewStreet: newStreet);
+            StreetText.InnerText = newStreet;
+        }
+
+        protected void UpdateCity(object sender, EventArgs e)
+        {
+            string newCity = UpdateCityTextBox.Text;
+            Database.UpdateProfile(this.ProfileID, NewCity: newCity);
+            StreetText.InnerText = newCity;
+        }
+
+        protected void UpdateState(object sender, EventArgs e)
+        {
+            string newState = UpdateStateTextBox.Text;
+            Database.UpdateProfile(this.ProfileID, NewState: newState);
+            StateText.InnerText = newState;
+        }
+
+        protected void UpdateZipcode(object sender, EventArgs e)
+        {
+            string newZipcode = UpdateZipcodeTextBox.Text;
+            Database.UpdateProfile(this.ProfileID, NewZipcode: newZipcode);
+            ZipcodeText.InnerText = newZipcode;
+        }
+
+        protected void UpdateGenderTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
