@@ -265,6 +265,7 @@ namespace DreamCareer
                 CurrentRow = new Dictionary<string, string>();
                 CurrentRow["ProfileID"] = Reader.GetInt32(0).ToString();
                 CurrentRow["Name"] = Reader.GetString(1);
+                CurrentRow["Username"] = Reader.GetString(2);
                 Companies.Add(CurrentRow);
             }
 

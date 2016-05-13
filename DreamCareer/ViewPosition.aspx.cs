@@ -11,18 +11,15 @@ namespace DreamCareer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-        protected void ViewPositionButton_OnClick(object sender, EventArgs e)
-        {
             //TODO add company textbox too
-            string pos = postitle.Text;
+            string pos = Request.QueryString["PositionID"];
             
-            if (pos.Equals(""))
+            if (pos == null || pos == "")
             {
                 return;
             }
-            int posid = Database.getPosId(pos);
+            int posid;
+            int.TryParse(pos, out posid);
             if (!posid.Equals(0))
             {
                 Dictionary<string, string> positioninfo = Database.GetPosition(posid);
@@ -49,6 +46,10 @@ namespace DreamCareer
                 name_dne_error_label.Text = "Not an existing position.";
                 return;
             }
+
+        }
+        protected void ViewPositionButton_OnClick(object sender, EventArgs e)
+        {
         }
 
     }
