@@ -6,6 +6,7 @@ MODERATE:
 2. Add a constraint limiting the number of tags a position can have
     (probably something like 10)
 6. Move the connection string to a config file
+7. Create position button on company page
 
 PROBABLY DON'T EVEN WORRY ABOUT IT:
 1. In the admin page the insert profile thing doesn't always insert all of them.

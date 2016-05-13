@@ -13,43 +13,43 @@ namespace DreamCareer
         {
 
         }
-        protected void InsertViewPositionButton_OnClick(object sender, EventArgs e)
+        protected void ViewPositionButton_OnClick(object sender, EventArgs e)
         {
-            string oldpos = oldtitle.Text;
-            string newpos = newtitle.Text;
-            string ty = typ.Text;
-            string stree = strname.Text;
-            string cit = cityname.Text;
-            string stat = statename.Text;
-            string zi = zipcode.Text;
-            string sal = salaryam.Text;
-            string jobdesc = jobdes.Text;
+            //TODO add company textbox too
+            string pos = postitle.Text;
+            
+            if (pos.Equals(""))
+            {
+                return;
+            }
+            int posid = Database.getPosId(pos);
+            if (!posid.Equals(0))
+            {
+                Dictionary<string, string> positioninfo = Database.GetPosition(posid);
+                string title = positioninfo["Title"];
+                string type = positioninfo["Type"];
+                string salary = positioninfo["Salary"];
+                string description = positioninfo["Description"];
+                string street = positioninfo["Street"];
+                string city = positioninfo["City"];
+                string state = positioninfo["State"];
+                string zip = positioninfo["Zipcode"];
 
-            if (!zi.Length.Equals(5) && !zi.Length.Equals(0))
-            {
-                zip_input_error_label.Text = "Invalid zip code";
-                return;
-            }
-            if (oldpos.Length <= 0)
-            {
-                name_dne_error_label.Text = "Need title to update position info.";
-                return;
-            }
-            string pos = "";
-            if (newpos.Length > 0)
-            {
-                pos = newpos;
+                positiontitle.Text = "Title:" + title;
+                positiontype.Text = "Type:" + type;
+                salaryamount.Text = "Salary:" + salary;
+                job.Text = "Description:" + description;
+                streetname.Text = "Street:" + street;
+                cityname.Text = "City:" + city;
+                statename.Text = "State:" + state;
+                zipcode.Text = "Zipcode:" + zip;
             }
             else
             {
-                pos = oldpos;
+                name_dne_error_label.Text = "Not an existing position.";
+                return;
             }
-            int compid = Database.getCompanyIdview(oldpos);
-            int posid = Database.getPosId(oldpos);
-            //Database.getPositionInfo(posid);
-            Database.UpdatePosition(posid, compid, pos, ty, stree, cit, stat, zi, sal, jobdesc);
-            System.Windows.Forms.MessageBox.Show("Updated!");
-            Response.Redirect("Login.aspx");
         }
+
     }
 }

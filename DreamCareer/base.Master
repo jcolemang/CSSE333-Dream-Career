@@ -61,6 +61,11 @@
                 </a>
             </li>
             <li>
+                <a class="link-button" href="AlterPosition.aspx" runat="server">
+                    Alter Position
+                </a>
+            </li>
+            <li>
                 <a class="link-button" href="ViewPosition.aspx" runat="server">
                     View Position
                 </a>

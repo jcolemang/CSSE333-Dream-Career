@@ -12,132 +12,99 @@
 
     <form runat="server">
 
-        <table id="position-info-table">
+        <table id="viewposition-info-table">
             <tr>
                 <td colspan="2"> 
                     <h3 id="UpdatePosition" class="UpdatePosition" runat="server">
-                           Update Position
+                           Position Info
                     </h3>
                 </td>
             </tr>
 
-             <tr>
+             <tr>                  
                     <td>
-                        <p id="OldPosTitle">
-                           Old Title
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="oldtitle" runat="server"></asp:TextBox>
+                        <asp:TextBox type="text" ID="postitle" runat="server"></asp:TextBox>
                     </td>
                      <td>
                         <asp:Label ID="name_dne_error_label"
                             class="error-label asp-name-dne-error-label" 
                             runat="server"></asp:Label>
                     </td>
+                 <td>
+                        <asp:Button ID="info" runat="server" Text="Get Info!"
+                            OnClick="ViewPositionButton_OnClick" />  
+                    </td>
                 </tr>
 
               <tr>
-                    <td>
-                        <p id="NewPosTitle">
-                            New Title
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="newtitle" runat="server"></asp:TextBox>
+                   
+                     <td>
+                        <asp:Label ID="positiontitle"
+                            class="position-title" 
+                            runat="server"></asp:Label>
                     </td>
                 </tr>
 
 
                 <tr>
+                  
                     <td>
-                        <p id="PositionType">
-                            Position Type
-                        </p>
+                        <asp:Label ID="positiontype"
+                            class="position-type" 
+                            runat="server"></asp:Label>
                     </td>
-                    <td>
-
-                              <asp:TextBox type="text" ID="typ" runat="server"></asp:TextBox>
-
-
-                    </td>
-                    <td>
-                        <label id="gender-not-selected-error"></label>
-                    </td>
+                    
                 </tr>
 
                 <tr>
+                    
                     <td>
-                        <p id="Street">
-                            Street
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="strname" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <p id="City">
-                            City
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="cityname" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p id="State">
-                            State
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="statename" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p id="Zip">
-                            Zip
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="zipcode" runat="server"></asp:TextBox>
-                    </td>
-                    <td>
-                        <asp:Label ID="zip_input_error_label"
-                            class="error-label asp-zip-input-error-label" 
+                        <asp:Label ID="streetname"
+                            class="street-name" 
                             runat="server"></asp:Label>
                     </td>
                 </tr>
 
                 <tr>
+                   
                     <td>
-                        <p id="Salary">
-                            Salary
-                        </p>
+                        <asp:Label ID="cityname"
+                            class="city-name" 
+                            runat="server"></asp:Label>
                     </td>
+                </tr>
+                <tr>
+                   
                     <td>
-                        <asp:TextBox type="text" ID="salaryam" runat="server"></asp:TextBox>
+                        <asp:Label ID="statename"
+                            class="state-name" 
+                            runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                   
+                   <td>
+                        <asp:Label ID="zipcode"
+                            class="zip-code" 
+                            runat="server"></asp:Label>
                     </td>
                 </tr>
 
                 <tr>
+                    
                     <td>
-                        <p id="JobDescription">
-                            Job Description
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="jobdes" runat="server" MaxLength="1000" style="width: 800px" ></asp:TextBox>
+                        <asp:Label ID="salaryamount"
+                            class="salary-amount" 
+                            runat="server"></asp:Label>
                     </td>
                 </tr>
-                 <tr>
+
+                <tr>
+                    
                     <td>
-                        <asp:Button ID="position_button" runat="server" Text="Update Position"
-                            OnClick="InsertViewPositionButton_OnClick" />
+                        <asp:Label ID="job"
+                            class="job-d" 
+                            runat="server"></asp:Label>
                     </td>
                 </tr>  
             
@@ -146,4 +113,3 @@
     </form>
 
 </asp:Content>
-

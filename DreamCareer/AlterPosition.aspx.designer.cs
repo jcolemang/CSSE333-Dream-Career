@@ -10,7 +10,7 @@
 namespace DreamCareer {
     
     
-    public partial class ViewPosition {
+    public partial class AlterPosition {
         
         /// <summary>
         /// UpdatePosition control.
@@ -22,13 +22,13 @@ namespace DreamCareer {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UpdatePosition;
         
         /// <summary>
-        /// postitle control.
+        /// oldtitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox postitle;
+        protected global::System.Web.UI.WebControls.TextBox oldtitle;
         
         /// <summary>
         /// name_dne_error_label control.
@@ -40,40 +40,31 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.Label name_dne_error_label;
         
         /// <summary>
-        /// info control.
+        /// newtitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button info;
+        protected global::System.Web.UI.WebControls.TextBox newtitle;
         
         /// <summary>
-        /// positiontitle control.
+        /// typ control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label positiontitle;
+        protected global::System.Web.UI.WebControls.TextBox typ;
         
         /// <summary>
-        /// positiontype control.
+        /// strname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label positiontype;
-        
-        /// <summary>
-        /// streetname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label streetname;
+        protected global::System.Web.UI.WebControls.TextBox strname;
         
         /// <summary>
         /// cityname control.
@@ -82,7 +73,7 @@ namespace DreamCareer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label cityname;
+        protected global::System.Web.UI.WebControls.TextBox cityname;
         
         /// <summary>
         /// statename control.
@@ -91,7 +82,7 @@ namespace DreamCareer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label statename;
+        protected global::System.Web.UI.WebControls.TextBox statename;
         
         /// <summary>
         /// zipcode control.
@@ -100,24 +91,42 @@ namespace DreamCareer {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label zipcode;
+        protected global::System.Web.UI.WebControls.TextBox zipcode;
         
         /// <summary>
-        /// salaryamount control.
+        /// zip_input_error_label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label salaryamount;
+        protected global::System.Web.UI.WebControls.Label zip_input_error_label;
         
         /// <summary>
-        /// job control.
+        /// salaryam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label job;
+        protected global::System.Web.UI.WebControls.TextBox salaryam;
+        
+        /// <summary>
+        /// jobdes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox jobdes;
+        
+        /// <summary>
+        /// position_button control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button position_button;
     }
 }

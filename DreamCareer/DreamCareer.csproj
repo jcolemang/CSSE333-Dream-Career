@@ -139,6 +139,7 @@
     <Content Include="static\css\SearchResults.css" />
     <Content Include="static\css\ViewCompany.css" />
     <Content Include="ViewCompany.aspx" />
+    <Content Include="AlterPosition.aspx" />
     <Content Include="ViewPosition.aspx" />
     <Content Include="ViewProfile.aspx" />
     <Content Include="Web.config" />
@@ -225,6 +226,13 @@
     </Compile>
     <Compile Include="ViewCompany.aspx.designer.cs">
       <DependentUpon>ViewCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AlterPosition.aspx.cs">
+      <DependentUpon>AlterPosition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AlterPosition.aspx.designer.cs">
+      <DependentUpon>AlterPosition.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewPosition.aspx.cs">
       <DependentUpon>ViewPosition.aspx</DependentUpon>
