@@ -62,6 +62,20 @@ namespace DreamCareer
         }
 
 
+        protected void InsertCompanyTag(object sender, EventArgs e)
+        {
+            string TagText = TagInput.Text;
+            List<string> Tags = Database.ParseTags(TagText);
+
+            foreach (string tag in Tags)
+            {
+                Database.InsertCompanyTag(this.CompanyID, tag);
+            }
+
+            TagInput.Text = "";
+        }
+
+
         protected void UpdateCompanySize(object sender, EventArgs e)
         {
             string NewCompanySize = UpdateCompanySizeTextBox.Text;

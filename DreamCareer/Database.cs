@@ -68,7 +68,7 @@ namespace DreamCareer
                 "Integrated Security=True;";
 
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = remote_db_string;
+            connection.ConnectionString = local_db_string;
             connection.Open();
             return connection;
         }
@@ -179,6 +179,22 @@ namespace DreamCareer
 
             // If there is a matching username and password the credentials must be valid
             return contains_data;
+        }
+
+        public static List<string> ParseTags(string TagString)
+        {
+            List<string> Tags = new List<string>();
+            char[] Separators = new char[] { ',', ' ' };
+
+            foreach (string tag in TagString.Split(Separators))
+            {
+                // Why does split give me the empty string?
+                if (tag.Length < 1)
+                    continue;
+                Tags.Add(tag);
+            }
+
+            return Tags;
         }
 
 
