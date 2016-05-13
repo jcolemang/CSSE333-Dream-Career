@@ -31,21 +31,30 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox SearchBar;
         
         /// <summary>
-        /// SearchBarButton control.
+        /// SearchPositionButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SearchBarButton;
+        protected global::System.Web.UI.WebControls.Button SearchPositionButton;
         
         /// <summary>
-        /// AdvancedSearchBarButton control.
+        /// SearchCompanyButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AdvancedSearchBarButton;
+        protected global::System.Web.UI.WebControls.Button SearchCompanyButton;
+        
+        /// <summary>
+        /// SearchProfileButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SearchProfileButton;
     }
 }

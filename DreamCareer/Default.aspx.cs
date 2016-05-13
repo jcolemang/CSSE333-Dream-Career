@@ -14,9 +14,24 @@ namespace DreamCareer
 
         }
 
-        protected void SearchBarButton_OnClick(object sender, EventArgs e)
+
+        protected void SearchPositionButton_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("SearchResults.aspx?Search=" +
+            Response.Redirect("SearchResults.aspx?Type=Position&Search=" +
+                SearchBar.Text);
+        }
+
+
+        protected void SearchCompanyButton_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("SearchResults.aspx?Type=Company&Search=" +
+                SearchBar.Text);
+        }
+
+
+        protected void SearchProfileButton_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("SearchResults.aspx?Type=Profile&Search=" +
                 SearchBar.Text);
         }
     }

@@ -13,7 +13,7 @@ GRANT EXECUTE ON TYPE :: TagWordsTableType TO dreamcareer
 
 
 GO
-ALTER PROCEDURE search_by_tags
+CREATE PROCEDURE search_positions_by_tags
 	(@Tags AS TagWordsTableType READONLY)
 AS	
 	-- Used later
@@ -24,9 +24,9 @@ AS
 			Position.PositionTitle AS Title,
 			Position.Salary AS Salary, 
 			Position.City AS City, Position.State as State
-	FROM Position, HasTag, Tag
-	WHERE Position.PositionID = HasTag.PositionID AND
-			HasTag.TagID = Tag.TagID AND
+	FROM Position, PositionHasTag, Tag
+	WHERE Position.PositionID = PositionHasTag.PositionID AND
+			PositionHasTag.TagID = Tag.TagID AND
 			LOWER(Tag.TagWord) IN (SELECT TagWords FROM @Tags)
 
 	-- Extra groups so I can select those columns
@@ -37,7 +37,7 @@ AS
 	HAVING COUNT(Position.PositionID) = @NumTags
 	
 GO
-GRANT EXECUTE ON search_by_tags TO dreamcareer
+GRANT EXECUTE ON search_positions_by_tags TO dreamcareer
 	
 
 	
