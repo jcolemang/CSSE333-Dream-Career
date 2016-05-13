@@ -114,9 +114,10 @@ namespace DreamCareer
             ZipcodeText.InnerText = newZipcode;
         }
 
-        protected void UpdateGenderTextBox_TextChanged(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-
+            Database.DeleteProfile(this.ProfileID);
+            Response.Redirect("Default.aspx");
         }
     }
 }

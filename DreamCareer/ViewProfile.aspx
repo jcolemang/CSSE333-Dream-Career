@@ -51,7 +51,8 @@
                     <p runat="server" id="GenderText" class="GenderText"></p>
                     <asp:TextBox runat="server"
                         ID="UpdateGenderTextBox"
-                        CssClass="update-value UpdateGender" OnTextChanged="UpdateGenderTextBox_TextChanged"></asp:TextBox>
+                        CssClass="update-value UpdateGender">
+                    </asp:TextBox>
                 </td>
 
                 <td>
@@ -59,7 +60,8 @@
                         id="profile-gender-expand-update"
                         class="expand-update"
                         onclick="toggleProfileGender()">
-                        Update</button>
+                        Update
+                    </button>
 
                     <asp:Button runat="server"
                         CssClass="submit-update GenderSubmitUpdate"
@@ -102,7 +104,7 @@
                     <h2>Experience</h2>
                 </td>
                 <td>
-                    <p runat="server" id="ExperienceText" class="ExperienceText"></p>
+                    <p runat="server" id="ExperienceText" class="ExperienceText">&nbsp;</p>
                     <asp:TextBox runat="server"
                         ID="UpdateExperienceTextBox"
                         CssClass="update-value UpdateExperience">
@@ -269,6 +271,9 @@
          </table>       
             --%>
             <%--        <asp:Button Css-Class="edit-button" ID="Button2" runat="server" Height="30px" OnClick="Edit_Click" Text="Edit Profile" Width="122px" BackColor="#6699FF" BorderStyle="None" Font-Bold="True" Font-Italic="True" Font-Size="Medium" />--%>
+        
+
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Delete" />
         
 
     </form>

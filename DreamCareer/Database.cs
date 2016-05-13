@@ -412,6 +412,23 @@ namespace DreamCareer
             connection.Close();
         }
 
+        public static void DeleteProfile(int ProfileID)
+        {
+            string sp_name = "delete_profile";
+            SqlConnection Connection = GetSqlConnection();
+
+            SqlCommand delete_profile = new SqlCommand(
+                sp_name, Connection);
+            delete_profile.CommandType =
+                System.Data.CommandType.StoredProcedure;
+            delete_profile.Parameters.Add(
+                new SqlParameter("@ProfileID", ProfileID));
+
+            delete_profile.ExecuteNonQuery();
+
+            Connection.Close();
+        }
+
         public static void UpdateProfile(
             int ProfileID,
  //           string Name,
@@ -492,6 +509,7 @@ namespace DreamCareer
             connection.Close();
         }
 
+       
         public static void DeleteCompany(int CompanyID)
         {
             string sp_name = "delete_company";
