@@ -27,61 +27,95 @@
                    </tr>
                   
                </table>
-               <table id="create-user-profile">
-                    <tr id="main-row">
-                       <th id="name">
-                           <h2>
-                               Name            
-                           </h2>
-                       </th>
-                        <th id="gender">
-                            <h2>
-                                Gender
-                            </h2>
-                        </th>
-                        <th id="major">
-                            <h2>
-                                Major
-                            </h2>
-                        </th>
-                        <th id="description">
-                            <h2>
-                                Description
-                            </h2>
-                        </th>
-                        <th id="street">
-                            <h2>
-                                Street
-                            </h2>
-                        </th>
-                         <th id="city">
-                            <h2>
-                                City
-                            </h2>
-                        </th>
-                         <th id="state">
-                            <h2>
-                                State
-                            </h2>
-                        </th>
-                         <th id="zipcode">
-                            <h2>
-                                Zipcode
-                            </h2>
-                        </th>
-                   </tr>
-               </table>
-           
-       
+               
+<table id="profile-info-table">
+    <tr>
+        <td colspan="2">
+             <h3 id="NameText" class="NameText" runat="server"></h3>
+    <asp:Textbox ID="UpdateNameTextBox" CssClass="update-value Edit_Click" runat="server">
+     </asp:Textbox>
+        </td> 
+        <td>
+             <button type="button" 
+                        class="expand-update ProfileExpandUpdate" 
+                        onclick="toggleCompanyName()">
+                        Update
+                    </button>
 
-    <asp:Label ID="UsernameLabel" runat="server">
-       
-    </asp:Label>
+             <asp:Button type="button" 
+                        CssClass="submit-update ProfileSubmitUpdate"
+                        ID="Button1"
+                        runat="server"
+                        OnClick="Edit_Click"
+                        Text="Submit">
+                    </asp:Button>
 
-    <asp:Label ID="NameLabel" CssClass="profile-label asp-user-profile-label" style="text-align:center" runat="server">
-         
-    </asp:Label>
+             <button type="button" class="cancel-update ProfileCancelUpdate"
+                   onclick="toggleProfile()">
+                   Cancel
+               </button>
 
+        </td>
+    </tr>
+ 
+    <tr>
+        <td>
+             <p runat="server" id="GenderText">
+
+             </p>
+         </td>
+    </tr>
+
+    <tr>
+        <td>
+             <p runat="server" id="MajorText">
+
+             </p>
+         </td>
+    </tr>
+
+    <tr>
+        <td>
+             <p runat="server" id="ExperienceText">
+
+             </p>
+         </td>
+    </tr>
+
+    <tr>
+        <td>
+             <p runat="server" id="StreetText">
+
+             </p>
+         </td>
+    </tr>
+
+    <tr>
+        <td>
+             <p runat="server" id="CityText">
+
+             </p>
+         </td>
+    </tr>
+
+    <tr>
+        <td>
+             <p runat="server" id="StateText">
+
+             </p>
+         </td>
+    </tr>
+
+    <tr>
+        <td>
+             <p runat="server" id="ZipcodeText">
+
+             </p>
+         </td>
+    </tr>
+
+
+    <%-- 
     <asp:Label ID="GenderLabel" CssClass="profile-label asp-user-profile-label" runat="server">
 
     </asp:Label>
@@ -110,29 +144,23 @@
     <asp:Label ID="ZipcodeLabel" CssClass="profile-label asp-user-profile-label" runat="server">
      
     </asp:Label>
-     <div>
-         <table>
-             <tr>
-                 <td class="buttom-column"></td>
-                    <td id="edit-button-container">
-                        <asp:Button CssClass="edit-button" ID="Button1" runat="server" Text="Edit Profile" OnClick="EditButton_OnClick"/>
-                    </td>
-                 <td id="like-button-container">
-                        <asp:Button CssClass="like-button" ID="Button2" runat="server" Text="Like" OnClick="LikeButton_OnClick"/>
-                    </td>
-             </tr>
-         </table>
-     </div>
+     </table>
          <table id="position-info">
              <tr id="profile-position-info">
                  <th colspan="3">
                       <h1>
-                         Position Info
-                      </h1>
+                         </h1>
                   </th>    
              </tr>
                   
-         </table>
+         </table>       
+     --%>         
+        <%--        <asp:Button Css-Class="edit-button" ID="Button2" runat="server" Height="30px" OnClick="Edit_Click" Text="Edit Profile" Width="122px" BackColor="#6699FF" BorderStyle="None" Font-Bold="True" Font-Italic="True" Font-Size="Medium" />--%>
+              
+             
+              
+   </table>            
    </div>
     </form>
+    <h1>Position Info </h1>
 </asp:Content>

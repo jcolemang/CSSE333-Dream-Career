@@ -412,6 +412,83 @@ namespace DreamCareer
             connection.Close();
         }
 
+        public static void UpdateProfile(
+            int ProfileID,
+            string NewName = null,
+            string NewGender = null,
+            string NewExperience = null,
+            string NewStreet = null,
+            string NewCity = null,
+            string NewMajor = null,
+            string NewState = null,
+            string NewZipcode = null)
+        {
+            string sp_name = "update_profile";
+            SqlConnection connection = Database.GetSqlConnection();
+
+            SqlCommand update = new SqlCommand(sp_name, connection);
+            update.CommandType = System.Data.CommandType.StoredProcedure;
+
+            // Adding parameters
+            // This one is absolutely necessary
+            update.Parameters.Add(
+                new SqlParameter("@ProfileID", ProfileID));
+
+            // A whole mess of optional parameters
+            if (NewName != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewName", NewName));
+            }
+            if (NewGender != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewGender", NewGender));
+            }
+            if (NewExperience != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewExperience", NewExperience));
+            }
+            if (NewStreet != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewStreet", NewStreet));
+            }
+            if (NewCity != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewCity", NewCity));
+            }
+            if (NewMajor != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewMajor", NewMajor));
+            }
+            if (NewZipcode != null)
+            {
+                update.Parameters.Add(
+                    new SqlParameter("@NewZipcode", NewZipcode));
+            }
+
+            SqlParameter ReturnValue = new SqlParameter("RetVal",
+                System.Data.SqlDbType.Int);
+            ReturnValue.Direction =
+                System.Data.ParameterDirection.ReturnValue;
+            update.Parameters.Add(ReturnValue);
+
+            update.ExecuteNonQuery();
+
+            // I don't think I can check the ReturnValue
+            // after closing the connection
+            if ((int)ReturnValue.Value == Database.NoSuchData)
+            {
+                connection.Close();
+                throw new NoDataException();
+            }
+
+            connection.Close();
+        }
 
         public static void DeleteCompany(int CompanyID)
         {

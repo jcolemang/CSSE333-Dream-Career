@@ -2,7 +2,7 @@
     background-color: orange;
 }
 
-.edit-button {
+.like-button {
     margin-top:20px;
     margin-left:500%;
     width:250%;
@@ -12,8 +12,16 @@
     border-color:lightblue;
 }
 
-.like-button {
+.edit-button {
     margin-top:20px;
+    width:400%;
+    height:80%;
+    font-size:large;
+    background-color:lightblue;
+    border-color:lightblue;
+}
+.commit-button {
+     margin-top:20px;
     width:400%;
     height:80%;
     font-size:large;
