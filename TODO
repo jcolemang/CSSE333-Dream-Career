@@ -7,6 +7,7 @@ MODERATE:
     (probably something like 10)
 6. Move the connection string to a config file
 7. Create position button on company page
+8. No such position exists error handling for update and delete position
 
 PROBABLY DON'T EVEN WORRY ABOUT IT:
 1. In the admin page the insert profile thing doesn't always insert all of them.

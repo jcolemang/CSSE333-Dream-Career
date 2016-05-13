@@ -51,5 +51,17 @@ namespace DreamCareer
             System.Windows.Forms.MessageBox.Show("Updated!");
             Response.Redirect("Login.aspx");
         }
+        protected void DeletePositionButton_OnClick(object sender, EventArgs e)
+        {
+            string oldpos = oldtitle.Text;
+            if (oldpos.Length <= 0)
+            {
+                name_dne_error_label.Text = "Need title to update position info.";
+                return;
+            }
+            Database.deletePosition(oldpos);
+            System.Windows.Forms.MessageBox.Show("Deleted!");
+            Response.Redirect("Login.aspx");
+        }
     }
 }

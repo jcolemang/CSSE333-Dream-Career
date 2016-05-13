@@ -679,7 +679,19 @@ namespace DreamCareer
 
             connection.Close();
         }
+        
+        public static void deletePosition(string pos)
+        {
+            string sp_name = "delete_position";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand del = new SqlCommand(sp_name, connection);
+            del.CommandType = System.Data.CommandType.StoredProcedure;
 
+            del.Parameters.Add(
+              new SqlParameter("@pos", pos));
+            del.ExecuteNonQuery();
+            connection.Close();
+        }
         public static int getPosId(string oldpos)
         {
             string sp_name = "get_positionIdold";
