@@ -24,11 +24,18 @@
                 CssClass="search-bar-class" >
             </asp:TextBox>
 
-            <asp:Button ID="SearchBarButton" runat="server"
-                Text="Search" CssClass="inline-button"
-                OnClick="SearchBarButton_OnClick"/>
-            <asp:Button ID="AdvancedSearchBarButton" runat="server"
-                Text="Advanced" CssClass="inline-button"/>
+            <asp:Button ID="SearchPositionButton" runat="server"
+                Text="Search Positions" 
+                OnClick="SearchPositionButton_OnClick"/>
+
+            <asp:Button ID="SearchCompanyButton" runat="server"
+                Text="Search Companies" 
+                OnClick="SearchCompanyButton_OnClick"/>
+
+            <asp:Button ID="SearchProfileButton" runat="server"
+                Text="Search Companies" 
+                OnClick="SearchProfileButton_OnClick"/>
+
         </form>
 
     </div>

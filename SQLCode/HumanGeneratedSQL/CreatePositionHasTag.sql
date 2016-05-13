@@ -2,7 +2,7 @@
 USE DreamCareer
 GO
 
-CREATE TABLE HasTag
+CREATE TABLE PositionHasTag
 (
 	TagID int,
 	PositionID int,

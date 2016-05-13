@@ -199,7 +199,7 @@ namespace DreamCareer
 
         public static List<Dictionary<string, string>> SearchForPositionsWithTags(List<string> Tags)
         {
-            string sp_name = "search_by_tags";
+            string sp_name = "search_positions_by_tags";
             SqlConnection connection = GetSqlConnection();
 
             // Setting up the command
@@ -235,6 +235,78 @@ namespace DreamCareer
             connection.Close();
             reader.Close();
             return Rows;
+        }
+
+
+        public static List<Dictionary<string, string>> SearchForProfilesWithTags(List<string> Tags)
+        {
+            List<Dictionary<string, string>> Companies = new List<Dictionary<string, string>>();
+            SqlConnection Connection = GetSqlConnection();
+            string sp_name = "search_profiles_by_tags";
+
+            // Setting up the command
+            SqlCommand Search = new SqlCommand(sp_name, Connection);
+            Search.CommandType = System.Data.CommandType.StoredProcedure;
+
+            // Setting up the table parameter
+            SqlParameter TagsTableParameter =
+                new SqlParameter("@Tags", System.Data.SqlDbType.Structured);
+            TagsTableParameter.TypeName = "TagWordsTableType";
+            TagsTableParameter.Value = Database.CreateTagsTable(Tags);
+
+            // Adding the parameter to the command
+            Search.Parameters.Add(TagsTableParameter);
+
+            SqlDataReader Reader = Search.ExecuteReader();
+
+            Dictionary<string, string> CurrentRow;
+            while (Reader.Read())
+            {
+                CurrentRow = new Dictionary<string, string>();
+                CurrentRow["ProfileID"] = Reader.GetInt32(0).ToString();
+                CurrentRow["Name"] = Reader.GetString(1);
+                Companies.Add(CurrentRow);
+            }
+
+            Connection.Close();
+            Reader.Close();
+            return Companies;
+        }
+
+
+        public static List<Dictionary<string, string>> SearchForCompaniesWithTags(List<string> Tags)
+        {
+            List<Dictionary<string, string>> Companies = new List<Dictionary<string, string>>();
+            SqlConnection Connection = GetSqlConnection();
+            string sp_name = "search_companies_by_tags";
+
+            // Setting up the command
+            SqlCommand Search = new SqlCommand(sp_name, Connection);
+            Search.CommandType = System.Data.CommandType.StoredProcedure;
+
+            // Setting up the table parameter
+            SqlParameter TagsTableParameter =
+                new SqlParameter("@Tags", System.Data.SqlDbType.Structured);
+            TagsTableParameter.TypeName = "TagWordsTableType";
+            TagsTableParameter.Value = Database.CreateTagsTable(Tags);
+
+            // Adding the parameter to the command
+            Search.Parameters.Add(TagsTableParameter);
+
+            SqlDataReader Reader = Search.ExecuteReader();
+
+            Dictionary<string, string> CurrentRow;
+            while (Reader.Read())
+            {
+                CurrentRow = new Dictionary<string, string>();
+                CurrentRow["CompanyID"] = Reader.GetInt32(0).ToString();
+                CurrentRow["CompanyName"] = Reader.GetString(1);
+                Companies.Add(CurrentRow);
+            }
+
+            Connection.Close();
+            Reader.Close();
+            return Companies;
         }
 
 
