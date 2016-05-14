@@ -412,9 +412,26 @@ namespace DreamCareer
             connection.Close();
         }
 
+        public static void DeleteProfile(int ProfileID)
+        {
+            string sp_name = "delete_profile";
+            SqlConnection Connection = GetSqlConnection();
+
+            SqlCommand delete_profile = new SqlCommand(
+                sp_name, Connection);
+            delete_profile.CommandType =
+                System.Data.CommandType.StoredProcedure;
+            delete_profile.Parameters.Add(
+                new SqlParameter("@ProfileID", ProfileID));
+
+            delete_profile.ExecuteNonQuery();
+
+            Connection.Close();
+        }
+
         public static void UpdateProfile(
             int ProfileID,
-            string NewName = null,
+ //           string Name,
             string NewGender = null,
             string NewExperience = null,
             string NewStreet = null,
@@ -433,13 +450,17 @@ namespace DreamCareer
             // This one is absolutely necessary
             update.Parameters.Add(
                 new SqlParameter("@ProfileID", ProfileID));
-
+ //           update.Parameters.Add(
+ //               new SqlParameter("@Name", Name));
             // A whole mess of optional parameters
-            if (NewName != null)
-            {
-                update.Parameters.Add(
-                    new SqlParameter("@NewName", NewName));
-            }
+            //           if (NewName != null)
+            //           {
+            //               update.Parameters.Add(
+            //                   new SqlParameter("@NewName", NewName));
+            //           }
+
+
+
             if (NewGender != null)
             {
                 update.Parameters.Add(
@@ -479,8 +500,6 @@ namespace DreamCareer
 
             update.ExecuteNonQuery();
 
-            // I don't think I can check the ReturnValue
-            // after closing the connection
             if ((int)ReturnValue.Value == Database.NoSuchData)
             {
                 connection.Close();
@@ -490,6 +509,7 @@ namespace DreamCareer
             connection.Close();
         }
 
+       
         public static void DeleteCompany(int CompanyID)
         {
             string sp_name = "delete_company";
@@ -773,7 +793,19 @@ namespace DreamCareer
 
             connection.Close();
         }
+        
+        public static void deletePosition(string pos)
+        {
+            string sp_name = "delete_position";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand del = new SqlCommand(sp_name, connection);
+            del.CommandType = System.Data.CommandType.StoredProcedure;
 
+            del.Parameters.Add(
+              new SqlParameter("@pos", pos));
+            del.ExecuteNonQuery();
+            connection.Close();
+        }
         public static int getPosId(string oldpos)
         {
             string sp_name = "get_positionIdold";

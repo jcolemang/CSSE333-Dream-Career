@@ -2,98 +2,17 @@
     background-color: orange;
 }
 
-.like-button {
-    margin-top:20px;
-    margin-left:500%;
-    width:250%;
-    height:80%;
-    font-size:large;
-    background-color:lightblue;
-    border-color:lightblue;
+.update-value {
+   display:contents;
 }
 
-.edit-button {
-    margin-top:20px;
-    width:400%;
-    height:80%;
-    font-size:large;
-    background-color:lightblue;
-    border-color:lightblue;
-}
-.commit-button {
-     margin-top:20px;
-    width:400%;
-    height:80%;
-    font-size:large;
-    background-color:lightblue;
-    border-color:lightblue;
-}
-
-#create-user-username {
-    padding-left: 5%;
-}
-
-#main-row {
-   text-align:center;
-}
-#title-profile {
-    font-size:x-large;
-    padding-left:100px;
-}
-
-#basic-info {
-    padding-left:100px;
-
-}
-
-#position-info {
-    padding-left:100px;
-    padding-top:50px;
-}
-
-#name {
-    padding-left:40px;
-    padding-right:105px;
-}
-
-#gender {
-    padding-right:92px;
-}
-
-#major {
-    padding-right:95px;
-}
-
-#city {
-    padding-right:170px;
-}
-
-#state {
-    padding-right:125px;
-}
-
-#zipcode {
-    padding-right:95px;
-}
-
-#description {
-    padding-right:190px;
-}
-
-#street {
-    padding-right: 200px;
-}
-
-#create-user-profile{
-    padding-left:55px;
-    margin-left:20px;
+.submit-update {
     
 }
 
-.profile-lable {
-   
+.profile-info-table {
+    margin-left: 100px;
 }
-
 .asp-user-profile-label {
     margin-left:120px;
     padding-top:1px;
@@ -103,11 +22,5 @@
 }
 
 td {
-    padding-top: 20px;
-    padding-right: 40px;
-}
-
-td p {
-    padding-bottom: 1px;
-    text-align: right;
+   margin-right:1000px;
 }

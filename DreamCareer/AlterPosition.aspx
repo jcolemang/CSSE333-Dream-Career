@@ -139,6 +139,12 @@
                         <asp:Button ID="position_button" runat="server" Text="Update Position"
                             OnClick="InsertAlterPositionButton_OnClick" />
                     </td>
+                </tr>
+            <tr>
+                    <td>
+                        <asp:Button ID="delete_position" runat="server" Text="Delete Position"
+                            OnClick="DeletePositionButton_OnClick" />
+                    </td>
                 </tr>  
             
         </table>
