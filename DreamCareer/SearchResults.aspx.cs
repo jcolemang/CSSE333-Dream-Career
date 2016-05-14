@@ -14,21 +14,6 @@ namespace DreamCareer
 
         }
 
-        private List<string> ParseTags(string TagString)
-        {
-            List<string> Tags = new List<string>();
-            char[] Separators = new char[] { ',', ' ' };
-
-            foreach (string tag in TagString.Split(Separators))
-            {
-                // Why does split give me the empty string?
-                if (tag.Length < 1)
-                    continue;
-                Tags.Add(tag);
-            }
-
-            return Tags;
-        }
 
 
         protected string BuildPositionResponse(List<Dictionary<string, string>> Results)
@@ -179,7 +164,7 @@ namespace DreamCareer
                 return "";
             }
 
-            List<string> Tags = ParseTags(Request.QueryString["Search"]);
+            List<string> Tags = Database.ParseTags(Request.QueryString["Search"]);
             List<Dictionary<string, string>> Results = this.GetResults(SearchType, Tags);
 
             if (SearchType == "Position")
