@@ -29,31 +29,34 @@
     display: inline;
 }
 
+.text-div {
+    display: inline-block;
+}
+
 .search-result {
     color: blue;
     transition: 0.2s;
 }
 
-
 .search-result:after {
     content: '';
-    background-color: transparent;
+    background-color: black;
     display: block;
-    margin: auto;
     width: 0px;
-    height: 1px;
-    transition: 5s;
+    height: 2px;
+    transition: 2s;
+    transition-timing-function: cubic-bezier(0.25, 0.15, 1, 0.7);
 }
 
 .search-result:hover:after {
     width: 100%;
-    transition: 0.1s;
+    transition: 0.0s;
     background-color: black;
 }
 
 .search-result:hover {
-    color: black;
-    transition: 0.3s;
+    color: red;
+    font-size: 20px;
 }
 
 

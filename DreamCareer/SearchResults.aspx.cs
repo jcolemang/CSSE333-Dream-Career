@@ -26,6 +26,7 @@ namespace DreamCareer
 
                 response += "<tr>";
                 response += "<td>";
+                response += "<div class=\"text-div\">";
                 response += "<a class=\"search-result\" " + 
                     "href=\"ViewPosition.aspx?PositionID=" +
                     HttpUtility.HtmlEncode(Row["PositionID"]) +
@@ -36,6 +37,7 @@ namespace DreamCareer
                     ", " +
                     HttpUtility.HtmlEncode("$" + Row["Salary"]) +
                     "</a>";
+                response += "</div>";
                 response += "</td>";
                 response += "</tr>";
             }
@@ -66,12 +68,14 @@ namespace DreamCareer
 
                 response += "<tr>";
                 response += "<td>";
+                response += "<div class=\"text-div\">";
                 response += "<a class=\"search-result\" " + 
                     "href=\"ViewCompany.aspx?CompanyID=" +
                     HttpUtility.HtmlEncode(Row["CompanyID"]) +
                     "\">" +
                     HttpUtility.HtmlEncode(Row["CompanyName"]) + 
                     "</a>";
+                response += "</div>";
                 response += "</td>";
                 response += "</tr>";
             }
@@ -102,12 +106,14 @@ namespace DreamCareer
 
                 response += "<tr>";
                 response += "<td>";
+                response += "<div class=\"text-div\">";
                 response += "<a class=\"search-result\" " + 
                     "href=\"ViewProfile.aspx?username=" +
                     HttpUtility.HtmlEncode(Row["Username"]) +
                     "\">" +
                     HttpUtility.HtmlEncode(Row["Name"]) + 
                     "</a>";
+                response += "</div>";
                 response += "</td>";
                 response += "</tr>";
             }
@@ -184,11 +190,5 @@ namespace DreamCareer
             return "";
         }
 
-        protected void RepeatSearchButton_Click(object sender, EventArgs e)
-        {
-            string NewSearch = RepeatSearchTextBox.Text;
-            Response.Redirect("SearchResults.aspx?Search=" +
-                NewSearch);
-        }
     }
 }

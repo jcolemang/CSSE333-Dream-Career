@@ -11,11 +11,11 @@ namespace DreamCareer
     {
         private string[] AllowedUsers = new string[] { "coleman", "Coleman" };
 
-        UserGenerator userGenerator;
-        ProfileGenerator profileGenerator;
-        CompanyGenerator companyGenerator;
-        PositionGenerator positionGenerator;
-        RelationGenerator relationGenerator;
+        UserGenerator UserGenerator;
+        ProfileGenerator ProfileGenerator;
+        CompanyGenerator CompanyGenerator;
+        PositionGenerator PositionGenerator;
+        RelationGenerator RelationGenerator;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,11 +24,11 @@ namespace DreamCareer
             if (!AllowedUsers.Contains(Session["username"].ToString()))
                 Response.Redirect("Login.aspx");
 
-            this.userGenerator = new UserGenerator();
-            this.profileGenerator = new ProfileGenerator();
-            this.companyGenerator = new CompanyGenerator();
-            this.positionGenerator = new PositionGenerator();
-            this.relationGenerator = new RelationGenerator();
+            this.UserGenerator = new UserGenerator();
+            this.ProfileGenerator = new ProfileGenerator();
+            this.CompanyGenerator = new CompanyGenerator();
+            this.PositionGenerator = new PositionGenerator();
+            this.RelationGenerator = new RelationGenerator();
         }
 
         protected void ClearLabelText()
@@ -38,6 +38,9 @@ namespace DreamCareer
             GenerateCompaniesLabel.Text = "";
             GeneratePositionsLabel.Text = "";
             GenerateLikesLabel.Text = "";
+            GenerateCompanyTagsLabel.Text = "";
+            GenerateProfileTagsLabel.Text = "";
+            GeneratePositionTagsLabel.Text = "";
         }
 
         protected void GenerateUsersButton_OnClick(object sender, 
@@ -45,7 +48,7 @@ namespace DreamCareer
         {
             this.ClearLabelText();
             int NumToGenerate = 50;
-            this.userGenerator.GenerateUsers(NumToGenerate);
+            this.UserGenerator.GenerateUsers(NumToGenerate);
             GenerateUsersText.Text = "Insertions Complete";
         }
 
@@ -53,8 +56,8 @@ namespace DreamCareer
             object sender, EventArgs e)
         {
             this.ClearLabelText();
-            int NumToGenerate = 250;
-            this.profileGenerator.GenerateProfiles(NumToGenerate);
+            int NumToGenerate = 50;
+            this.ProfileGenerator.GenerateProfiles(NumToGenerate);
             GenerateProfilesText.Text = "Insertions Complete";
         }
 
@@ -62,8 +65,8 @@ namespace DreamCareer
             object sender, EventArgs e)
         {
             this.ClearLabelText();
-            int NumToGenerate = 1000;
-            this.companyGenerator.GenerateCompanies(NumToGenerate);
+            int NumToGenerate = 50;
+            this.CompanyGenerator.GenerateCompanies(NumToGenerate);
             GenerateCompaniesLabel.Text = "Insertions Complete";
         }
 
@@ -71,9 +74,31 @@ namespace DreamCareer
             object sender, EventArgs e)
         {
             this.ClearLabelText();
-
-            int NumToGenerate = 250;
+            int NumToGenerate = 50;
+            this.PositionGenerator.GeneratePositions(NumToGenerate);
             GeneratePositionsLabel.Text = "Insertions Complete";
+        }
+
+        protected void GenerateCompanyTagsButton_OnClick( object sender, EventArgs e)
+        {
+            this.ClearLabelText();
+            int NumToGenerate = 50;
+            this.RelationGenerator.GenerateCompanyTags(NumToGenerate);
+            this.GenerateCompanyTagsLabel.Text = "Insertions Complete";
+        }
+        protected void GeneratePositionTagsButton_OnClick( object sender, EventArgs e)
+        {
+            this.ClearLabelText();
+            int NumToGenerate = 50;
+            this.RelationGenerator.GeneratePositionTags(NumToGenerate);
+            this.GeneratePositionTagsLabel.Text = "Insertions Complete";
+        }
+        protected void GenerateProfileTagsButton_OnClick( object sender, EventArgs e)
+        {
+            this.ClearLabelText();
+            int NumToGenerate = 50;
+            this.RelationGenerator.GenerateProfileTags(NumToGenerate);
+            this.GenerateProfileTagsLabel.Text = "Insertions Complete";
         }
 
         protected void GenerateLikesButton_OnClick(
@@ -83,7 +108,7 @@ namespace DreamCareer
 
             int NumToGenerate = 100;
 
-            this.relationGenerator.GenerateLikes(NumToGenerate);
+            this.RelationGenerator.GenerateLikes(NumToGenerate);
 
             GenerateLikesLabel.Text = "Insertions Complete";
         }

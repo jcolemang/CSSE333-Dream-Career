@@ -87,11 +87,57 @@
                 </td>
             </tr>
 
+            <%-- --%>
             <tr>
                 <td>
                     <asp:Button ID="PageRankButton"
                         runat="server" Text="Rank Profiles"
                         OnClick="PageRankButton_OnClick" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <asp:Button ID="GenerateCompanyTagsButton"
+                        runat="server"
+                        Text="Insert Company Tags"
+                        OnClick="GenerateCompanyTagsButton_OnClick" />
+                </td>
+                <td>
+                    <asp:Label ID="GenerateCompanyTagsLabel"
+                        runat="server"
+                        Text="">
+                    </asp:Label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <asp:Button ID="GeneratePositionTagsButton"
+                        runat="server"
+                        Text="Insert Position Tags"
+                        OnClick="GeneratePositionTagsButton_OnClick" />
+                </td>
+                <td>
+                    <asp:Label ID="GeneratePositionTagsLabel"
+                        runat="server"
+                        Text="">
+                    </asp:Label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <asp:Button ID="GenerateProfileTagsButton"
+                        runat="server"
+                        Text="Insert Profile Tags"
+                        OnClick="GenerateProfileTagsButton_OnClick" />
+                </td>
+                <td>
+                    <asp:Label ID="GenerateProfileTagsLabel"
+                        runat="server"
+                        Text="">
+                    </asp:Label>
                 </td>
             </tr>
 
