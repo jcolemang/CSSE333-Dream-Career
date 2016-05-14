@@ -10,6 +10,7 @@ namespace DreamCareer
     public partial class ViewProfile : System.Web.UI.Page
     {
         protected string username;
+        //     protected Dictionary<string, string> ProfileID;
         protected int ProfileID;
         protected string name;
         protected void Page_Load(object sender, EventArgs e)
@@ -31,11 +32,11 @@ namespace DreamCareer
                 // Response.Redirect(Session["username"] + ".aspx");
                 Response.Redirect("ViewProfile.aspx?username=" + Session["username"]);
             }
-            Dictionary<string, string> Profile=
+            Dictionary<string, string> Profile =
                     Database.GetProfile(UsernameParameter);
             try
             {
-          //      username = Database.GetProfile(UsernameParameter);
+                ProfileID = Database.getProfileID(UsernameParameter);
 
                 this.ProfileID = ProfileID;
                 NameText.InnerText = Profile["Name"];
