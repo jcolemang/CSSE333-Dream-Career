@@ -25,6 +25,7 @@ namespace DreamCareer
         public const int RepeatEmailError = -2;
         public const int UsernameDoesntExistError = -3;
         public const int ProfileAlreadyExistsError = -4;
+        public const int RepeatCompanyNameError = -7;
 
         // TODO change the doesn't exist errors to match with this
         public const int NoSuchData = -5;
@@ -68,7 +69,7 @@ namespace DreamCareer
                 "Integrated Security=True;";
 
             SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = remote_db_string;
+            connection.ConnectionString = local_db_string;
             connection.Open();
             return connection;
         }
@@ -527,6 +528,66 @@ namespace DreamCareer
             Connection.Close();
         }
 
+        public static void InsertProfileTag(int ProfileID, string tag)
+        {
+            string sp_name = "insert_new_profile_tag";
+            SqlConnection Connection = GetSqlConnection();
+
+            SqlCommand insert_tag = new SqlCommand(
+                sp_name, Connection);
+            insert_tag.CommandType =
+                System.Data.CommandType.StoredProcedure;
+
+            insert_tag.Parameters.Add(
+                new SqlParameter("@tagtext", tag));
+            insert_tag.Parameters.Add(
+                new SqlParameter("@ProfileID", ProfileID));
+
+            SqlParameter ReturnParam = new SqlParameter();
+            ReturnParam.Direction = ParameterDirection.ReturnValue;
+            insert_tag.Parameters.Add(ReturnParam);
+
+            insert_tag.ExecuteNonQuery();
+
+            if ((int)ReturnParam.Value == Database.RepeatData)
+            {
+                Connection.Close();
+                throw new RepeatDataException();
+            }
+
+            Connection.Close();
+        }
+
+        public static void InsertPositionTag(int PositionID, string tag)
+        {
+            string sp_name = "insert_new_position_tag";
+            SqlConnection Connection = GetSqlConnection();
+
+            SqlCommand insert_tag = new SqlCommand(
+                sp_name, Connection);
+            insert_tag.CommandType =
+                System.Data.CommandType.StoredProcedure;
+
+            insert_tag.Parameters.Add(
+                new SqlParameter("@tagtext", tag));
+            insert_tag.Parameters.Add(
+                new SqlParameter("@posid", PositionID));
+
+            SqlParameter ReturnParam = new SqlParameter();
+            ReturnParam.Direction = ParameterDirection.ReturnValue;
+            insert_tag.Parameters.Add(ReturnParam);
+
+            insert_tag.ExecuteNonQuery();
+
+            if ((int)ReturnParam.Value == Database.RepeatData)
+            {
+                Connection.Close();
+                throw new RepeatDataException();
+            }
+
+            Connection.Close();
+        }
+
 
         public static void InsertCompanyTag(int CompanyID, string tag)
         {
@@ -743,7 +804,17 @@ namespace DreamCareer
             insert_new_company_sp.Parameters.Add(
                 new SqlParameter("@zip", zip));
 
+            SqlParameter ReturnParam = new SqlParameter("ReturnVal", SqlDbType.Int);
+            ReturnParam.Direction = ParameterDirection.ReturnValue;
+            insert_new_company_sp.Parameters.Add(ReturnParam);
+
             insert_new_company_sp.ExecuteNonQuery();
+
+            if ((int)ReturnParam.Value == Database.RepeatCompanyNameError)
+            {
+                throw new RepeatCompanyNameException();
+            }
+
             connection.Close();
         }
 
@@ -784,7 +855,6 @@ namespace DreamCareer
             insert_new_pos_sp.ExecuteNonQuery();
 
             int ReturnValue = (int)ReturnVal.Value;
-
             if (ReturnValue == Database.ProfileAlreadyExistsError)
             {
                 connection.Close();
@@ -1202,7 +1272,7 @@ namespace DreamCareer
                 get_random_company_id.ExecuteReader();
 
             int companyid;
-            if (reader.HasRows)
+            if (reader.Read())
                 companyid = reader.GetInt32(0);
             else
             {
@@ -1213,6 +1283,31 @@ namespace DreamCareer
             reader.Close();
             connection.Close();
             return companyid; 
+        }
+
+        public static int GetRandomTagID()
+        {
+            SqlConnection Connection = GetSqlConnection();
+            string sp_name = "get_random_tag_id";
+            SqlCommand get_random = new SqlCommand(
+                sp_name, Connection);
+            get_random.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlDataReader reader = get_random.ExecuteReader();
+
+            if (reader.Read())
+            {
+                reader.Close();
+                Connection.Close();
+                return reader.GetInt32(0);
+            }
+            else
+            {
+                reader.Close();
+                Connection.Close();
+                throw new NoDataException("No Data in table");
+            }
+
+
         }
 
         public static int GetRandomProfileID()
@@ -1245,7 +1340,7 @@ namespace DreamCareer
 
     }
 
-    public class RepeatEmailException : ApplicationException
+    public class RepeatEmailException : RepeatDataException 
     {
         public RepeatEmailException()
         {
@@ -1258,7 +1353,7 @@ namespace DreamCareer
         }
     }
 
-    public class RepeatUsernameException : ApplicationException
+    public class RepeatUsernameException : RepeatDataException 
     {
         public RepeatUsernameException()
         {
@@ -1285,7 +1380,7 @@ namespace DreamCareer
         }
     }
 
-    public class ProfileAlreadyExistsException : ApplicationException
+    public class ProfileAlreadyExistsException : RepeatDataException 
     {
         public ProfileAlreadyExistsException() : base()
         {
@@ -1300,7 +1395,7 @@ namespace DreamCareer
 
     public class RepeatDataException : ApplicationException
     {
-        public RepeatDataException()
+        public RepeatDataException() : base()
         {
 
         }
@@ -1313,12 +1408,25 @@ namespace DreamCareer
 
     public class NoDataException : ApplicationException
     {
-        public NoDataException()
+        public NoDataException() : base()
         {
 
         }
 
         public NoDataException( string message ) : base(message)
+        {
+
+        }
+    }
+
+    public class RepeatCompanyNameException : RepeatDataException
+    {
+        public RepeatCompanyNameException() : base()
+        {
+
+        }
+
+        public RepeatCompanyNameException(string msg) : base(msg)
         {
 
         }

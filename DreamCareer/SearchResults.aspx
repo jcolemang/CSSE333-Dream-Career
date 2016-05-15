@@ -14,18 +14,6 @@
                 <h2 id="results-title">
                     Search results
                 </h2>
-
-                <asp:Button ID="RepeatSearchButton"
-                    CssClass="repeat-search-button"
-                    runat="server" Text="Search"
-                    OnClick="RepeatSearchButton_Click">
-                </asp:Button>
-
-                <asp:TextBox ID="RepeatSearchTextBox"
-                    CssClass="repeat-search-box"
-                    runat="server">
-                </asp:TextBox>
-
             </div>
 
             <div id="results-content-div">

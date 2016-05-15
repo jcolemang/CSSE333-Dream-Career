@@ -31,6 +31,7 @@ namespace DreamCareer
         protected string[] PossibleCities;
         protected string[] PossibleDirections;
         protected string[] PossibleStates;
+        protected string[] PossibleTags;
         protected int MaxRoadNumber;
 
         // for names
@@ -39,13 +40,20 @@ namespace DreamCareer
 
         public Generator()
         {
+
             this.RandomGenerator = new Random();
 
             this.MaxRoadNumber = 9999;
 
+            this.PossibleTags = new string[] {
+                "SQL", "C#", "Web", "Design",
+                "Python", "Ruby", "Systems",
+                "Security"
+            };
+
             this.PossibleDirections = new string[] {
-            "N", "S", "E", "W", ""
-        };
+                "N", "S", "E", "W", ""
+            };
 
             this.PossibleRoadNames = new string[] {
             "Hulman", "40th",
@@ -159,6 +167,11 @@ namespace DreamCareer
             return Zip;
         }
 
+        public string GenerateTag()
+        {
+            return this.PossibleTags[this.RandomGenerator.Next(this.PossibleTags.Length)];
+        }
+
         protected string RandomString(int MaxLength)
         {
             // python string.printable
@@ -169,6 +182,7 @@ namespace DreamCareer
                 S += chars[this.RandomGenerator.Next(chars.Length)];
             return S;
         }
+
 
     }
 
@@ -218,9 +232,15 @@ namespace DreamCareer
                 email = this.GenerateEmail(fname, lname);
                 password = this.RandomString(10);
 
-                Console.WriteLine(username, email, password);
+                try
+                {
+                    Database.CreateUser(username, password, email);
+                }
+                catch (RepeatDataException)
+                {
+                    // do nothing
+                }
 
-                Database.CreateUser(username, password, email);
             }
         }
 
@@ -301,13 +321,15 @@ namespace DreamCareer
             this.MaxCompanySize = 100000;
 
             this.PossibleNamesStart = new string[] {
-            "", "The"
+            "The", "The Best", "The Greatest", "One of the"
         };
 
             this.PossibleNamesMiddle = new string[] {
             "Technology", "Steel", "Car",
             "Bicycle", "Dog", "Toy", "Baby",
-            "People"
+            "People", "Database", "Programming",
+            "Security", "Animal", "Telescope",
+            "Computer", "Monster"
         };
 
             this.PossibleNamesEnd = new string[] {
@@ -366,9 +388,16 @@ namespace DreamCareer
                 state = this.GenerateState();
                 zip = this.GenerateZip();
 
-                Database.CreateCompany(size, name, 
-                    description, street, city, state,
-                    zip);
+                try
+                {
+                    Database.CreateCompany(size, name,
+                        description, street, city, state,
+                        zip);
+                }
+                catch (RepeatDataException)
+                {
+                    // do nothing
+                }
             }
         }
 
@@ -378,6 +407,7 @@ namespace DreamCareer
     class PositionGenerator : Generator
     {
         private string[] PossibleTypes;
+        private string[] PossibleTitles;
         private int MaxSalary;
         private int MinSalary;
         private string[] PossibleTags;
@@ -390,18 +420,26 @@ namespace DreamCareer
             this.MaxDescriptionLength = 500;
 
             this.PossibleTypes = new string[] {
-            "Internship", "Full Time",
-            "Part Time"
-        };
+                "Internship", "Full Time",
+                "Part Time"
+            };
+
+            this.PossibleTitles = new string[] {
+                "Manager",
+                "Systems Administrator",
+                "Sucker",
+                "Intern",
+                "Programmer",
+                "Engineer",
+                "Software Engineer",
+                "Office Loser",
+                "Office Cool Guy"
+            };
 
             this.MaxSalary = 2000000;
             this.MinSalary = 10000;
 
-            this.PossibleTags = new string[] {
-            "SQL", "C#", "Web", "Design",
-            "Python", "Ruby", "Systems",
-            "Security"
-        };
+
         }
 
 
@@ -440,10 +478,42 @@ namespace DreamCareer
             return Tags;
         }
 
+        private string GenerateTitle()
+        {
+            return this.PossibleTitles[this.RandomGenerator.Next(this.PossibleTitles.Length)];
+        }
 
-        private string GenerateDecription()
+
+        private string GenerateDescription()
         {
             return this.RandomString(this.MaxDescriptionLength);
+        }
+
+        public void GeneratePositions(int NumToGenerate)
+        {
+            for (int i = 0; i < NumToGenerate; i++)
+            {
+                int CompanyID = Database.GetRandomCompanyID();
+                string PositionTitle = GenerateTitle();
+                string type = GenerateType();
+                string street = GenerateStreet();
+                string city = GenerateCity();
+                string state = GenerateState();
+                string zip = GenerateZip();
+                int salary = GenerateSalary();
+                string description = GenerateDescription();
+
+                try
+                {
+                    Database.CreatePosition(CompanyID, PositionTitle,
+                        type, street, city, state, zip, salary.ToString(),
+                        description);
+                }
+                catch (RepeatDataException)
+                {
+                    // do nothing
+                }
+            }
         }
     }
 
@@ -510,7 +580,7 @@ namespace DreamCareer
             int i;
             for (i = 0; i < NumProfiles; i++)
             {
-                name = this.GenerateFirstName() + " " + 
+                name = this.GenerateFirstName() + " " +
                     this.GenerateLastName();
                 gender = this.GenerateGender();
                 major = this.GenerateMajor();
@@ -544,6 +614,58 @@ namespace DreamCareer
         public RelationGenerator()
         {
 
+        }
+
+        public void GeneratePositionTags(int num)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                int ProfileID = Database.GetRandomPositionID();
+                string tag = this.GenerateTag();
+                try
+                {
+                    Database.InsertPositionTag(ProfileID, tag);
+                }
+                catch (RepeatDataException)
+                {
+
+                }
+            }
+        }
+
+        public void GenerateProfileTags(int num)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                int ProfileID = Database.GetRandomProfileID();
+                string tag = this.GenerateTag();
+                try
+                {
+                    Database.InsertProfileTag(ProfileID, tag);
+                }
+                catch (RepeatDataException)
+                {
+
+                }
+            }
+        }
+
+        public void GenerateCompanyTags(int num)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                int CompanyID = Database.GetRandomCompanyID();
+                string Tag = this.GenerateTag();
+
+                try
+                {
+                    Database.InsertCompanyTag(CompanyID, Tag);
+                }
+                catch (RepeatDataException)
+                {
+                    // do nothing
+                }
+            }
         }
 
         public void GenerateLikes(int num)
