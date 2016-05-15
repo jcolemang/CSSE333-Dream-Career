@@ -67,6 +67,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.Button UpdateCompanySizeButton;
         
         /// <summary>
+        /// CompanySizeErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CompanySizeErrorLabel;
+        
+        /// <summary>
         /// CompanyDescription control.
         /// </summary>
         /// <remarks>
@@ -182,6 +191,15 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label CompanyTagsLabel;
+        
+        /// <summary>
+        /// CompanyTagsErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CompanyTagsErrorLabel;
         
         /// <summary>
         /// TagInput control.

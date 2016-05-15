@@ -26,10 +26,10 @@ namespace DreamCareer
         public const int UsernameDoesntExistError = -3;
         public const int ProfileAlreadyExistsError = -4;
         public const int RepeatCompanyNameError = -7;
-
-        // TODO change the doesn't exist errors to match with this
         public const int NoSuchData = -5;
         public const int RepeatData = -6;
+
+        public const int MaxTagLength = 50;
         
         public static RNGCryptoServiceProvider RNGCSP = 
             new RNGCryptoServiceProvider();
@@ -217,7 +217,7 @@ namespace DreamCareer
 
         public static List<string> GetCompanyTags(int CompanyID)
         {
-            return _GetTagsHelper("sp_name", CompanyID, "@CompanyID");
+            return _GetTagsHelper("get_company_tags", CompanyID, "@CompanyID");
         }
 
 
@@ -230,6 +230,7 @@ namespace DreamCareer
             SqlConnection connection = GetSqlConnection();
 
             SqlCommand command = new SqlCommand(sp_name, connection);
+            command.CommandType = CommandType.StoredProcedure;
 
             command.Parameters.Add(
                 new SqlParameter(IDParamName, ID));

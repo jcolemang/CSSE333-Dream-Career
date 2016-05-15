@@ -97,6 +97,13 @@
 
                 </td>
 
+                <td>
+                    <asp:Label runat="server"
+                        ID="CompanySizeErrorLabel"
+                        CssClass="CompanySizeErrorLabel error-label">
+                    </asp:Label>
+                </td>
+
             </tr>
 
             <%-- Company Description row --%>
@@ -326,6 +333,7 @@
                 </td>
             </tr>
 
+            <%-- Viewing tags --%>
             <tr id="tag-row">
                 <td>
                     <h3>Company Tags</h3>
@@ -334,6 +342,13 @@
                 <td>
                     <asp:Label runat="server"
                         ID="CompanyTagsLabel">
+                    </asp:Label>
+                </td>
+
+                <td>
+                    <asp:Label runat="server"
+                        ID="CompanyTagsErrorLabel"
+                        CssClass="error-label">
                     </asp:Label>
                 </td>
             </tr>
@@ -354,8 +369,6 @@
                 OnClick="InsertCompanyTag"/>
 
         </div>
-
-        <%-- Viewing tags --%>
         
 
         <%-- Deleting the company --%>

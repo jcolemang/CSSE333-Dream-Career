@@ -28,6 +28,8 @@ namespace DreamCareer
                 Response.Redirect("Default.aspx");
             }
 
+            this.CompanyID = CompanyID;
+
             Dictionary<string, string> Company;
             try
             {
@@ -39,14 +41,28 @@ namespace DreamCareer
                 return;
             }
 
-            this.CompanyID = CompanyID;
-            CompanyName.InnerText = Company["Name"];
-            CompanyDescription.InnerText = Company["Description"];
-            CompanySize.InnerText = Company["Size"];
-            CompanyStreet.InnerText = Company["Street"];
-            CompanyCity.InnerText = Company["City"];
-            CompanyState.InnerText = Company["State"];
-            CompanyZipcode.InnerText = Company["Zipcode"];
+            CompanyName.InnerText = HttpUtility.HtmlEncode(Company["Name"]);
+            CompanyDescription.InnerText = HttpUtility.HtmlEncode(Company["Description"]);
+            CompanySize.InnerText = HttpUtility.HtmlEncode(Company["Size"]);
+            CompanyStreet.InnerText = HttpUtility.HtmlEncode(Company["Street"]);
+            CompanyCity.InnerText = HttpUtility.HtmlEncode(Company["City"]);
+            CompanyState.InnerText = HttpUtility.HtmlEncode(Company["State"]);
+            CompanyZipcode.InnerText = HttpUtility.HtmlEncode(Company["Zipcode"]);
+            CompanyTagsLabel.Text = HttpUtility.HtmlEncode(GetCompanyTagsString(CompanyID));
+        }
+
+
+        protected string GetCompanyTagsString(int CompanyID)
+        {
+            List<string> Tags = Database.GetCompanyTags(CompanyID);
+            if (Tags.Count == 0)
+                return "";
+            if (Tags.Count == 1)
+                return Tags[0];
+            string TagString = Tags[0];
+            for (int i = 1; i < Tags.Count; i++)
+                TagString += ", " + Tags[i];
+            return TagString;
         }
 
 
@@ -58,7 +74,7 @@ namespace DreamCareer
             // Update the company's name
             Database.UpdateCompany(this.CompanyID, NewName: NewCompanyName);
 
-            CompanyName.InnerText = NewCompanyName;
+            CompanyName.InnerText = HttpUtility.HtmlEncode(NewCompanyName);
         }
 
 
@@ -66,10 +82,32 @@ namespace DreamCareer
         {
             string TagText = TagInput.Text;
             List<string> Tags = Database.ParseTags(TagText);
+            CompanyTagsErrorLabel.Text = "";
+            string NewTag;
 
             foreach (string tag in Tags)
             {
-                Database.InsertCompanyTag(this.CompanyID, tag);
+                // Checking the length of the tag
+                if (tag.Length > Database.MaxTagLength)
+                {
+                    CompanyTagsErrorLabel.Text = "One of the given tags has been truncated";
+                    NewTag = tag.Substring(0, Database.MaxTagLength);
+                }
+                else
+                {
+                    NewTag = tag;
+                }
+
+                // inserting the tag
+                try
+                {
+                    Database.InsertCompanyTag(this.CompanyID, NewTag);
+                    CompanyTagsLabel.Text += ", " + HttpUtility.HtmlEncode(NewTag);
+                }
+                catch (RepeatDataException)
+                {
+                    // do nothing
+                }
             }
 
             TagInput.Text = "";
@@ -80,11 +118,20 @@ namespace DreamCareer
         {
             string NewCompanySize = UpdateCompanySizeTextBox.Text;
             int NewSize;
-            int.TryParse(NewCompanySize, out NewSize);
+            if (!int.TryParse(NewCompanySize, out NewSize))
+            {
+                CompanySizeErrorLabel.Text = "Not a valid company size.";
+                return;
+            }
+            if (NewSize <= 0)
+            {
+                CompanySizeErrorLabel.Text = "Company size must be greater than 0.";
+                return;
+            }
 
+            CompanySizeErrorLabel.Text = "";
             Database.UpdateCompany(this.CompanyID, NewSize: NewSize);
-
-            CompanySize.InnerText = NewCompanySize;
+            CompanySize.InnerText = HttpUtility.HtmlEncode(NewCompanySize);
         }
 
 
@@ -92,7 +139,7 @@ namespace DreamCareer
         {
             string NewCompanyDescription = UpdateCompanyDescriptionTextBox.Text;
             Database.UpdateCompany(this.CompanyID, NewDescription: NewCompanyDescription);
-            CompanyDescription.InnerText = NewCompanyDescription;
+            CompanyDescription.InnerText = HttpUtility.HtmlEncode(NewCompanyDescription);
         }
 
 
@@ -100,7 +147,7 @@ namespace DreamCareer
         {
             string NewCompanyStreet = UpdateCompanyStreetTextBox.Text;
             Database.UpdateCompany(this.CompanyID, NewStreet: NewCompanyStreet);
-            CompanyStreet.InnerText = NewCompanyStreet;
+            CompanyStreet.InnerText = HttpUtility.HtmlEncode(NewCompanyStreet);
         }
 
 
@@ -108,7 +155,7 @@ namespace DreamCareer
         {
             string NewCompanyCity = UpdateCompanyCityTextBox.Text;
             Database.UpdateCompany(this.CompanyID, NewCity: NewCompanyCity);
-            CompanyCity.InnerText = NewCompanyCity;
+            CompanyCity.InnerText = HttpUtility.HtmlEncode(NewCompanyCity);
         }
 
 
@@ -116,7 +163,7 @@ namespace DreamCareer
         {
             string NewCompanyState = UpdateCompanyStateTextBox.Text;
             Database.UpdateCompany(this.CompanyID, NewState: NewCompanyState);
-            CompanyState.InnerText = NewCompanyState;
+            CompanyState.InnerText = HttpUtility.HtmlEncode(NewCompanyState);
         }
 
 
@@ -124,7 +171,7 @@ namespace DreamCareer
         {
             string NewCompanyZipcode = UpdateCompanyZipcodeTextBox.Text;
             Database.UpdateCompany(this.CompanyID, NewZip: NewCompanyZipcode);
-            CompanyZipcode.InnerText = NewCompanyZipcode;
+            CompanyZipcode.InnerText = HttpUtility.HtmlEncode(NewCompanyZipcode);
         }
 
 

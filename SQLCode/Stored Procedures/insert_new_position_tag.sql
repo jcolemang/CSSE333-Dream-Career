@@ -4,7 +4,7 @@ USE DreamCareer
 -- some Position
 Go
 ALTER PROCEDURE insert_new_position_tag
-	(@tagtext varchar(20),
+	(@tagtext varchar(50),
 	@posid int)
 AS
 
