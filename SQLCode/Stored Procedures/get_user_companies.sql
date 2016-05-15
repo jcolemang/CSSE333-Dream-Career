@@ -16,7 +16,7 @@ AS
 		RETURN @UserDoesntExistError
 	END
 
-	SELECT *
+	SELECT Company.CompanyID, Company.Name
 	FROM DreamCareerUser, Company, OwnsCompany
 	WHERE DreamCareerUser.UserID = OwnsCompany.UserID AND
 			OwnsCompany.CompanyID = Company.CompanyID AND

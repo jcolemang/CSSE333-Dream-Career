@@ -181,6 +181,13 @@ namespace DreamCareer
             Response.Redirect("Default.aspx");
         }
 
+
+        protected void AddPosition(object sender, EventArgs e)
+        {
+            Response.Redirect("Position.aspx");
+        }
+
+
         protected string GetCompanyPositions()
         {
             string ResponseString = "";

@@ -11,9 +11,9 @@ namespace DreamCareer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-                
-
+            // Check that the query string is valid
+            // Should include a CompanyID
+            // Should check that the current user owns the company
         }
         protected void InsertPositionButton_OnClick(object sender, EventArgs e)
         {

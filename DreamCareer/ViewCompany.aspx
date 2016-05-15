@@ -365,6 +365,14 @@
                 <td>
                     <%= GetCompanyPositions() %>
                 </td>
+
+                <td>
+                    <asp:LinkButton runat="server"
+                        ID="InsertPositionButton"
+                        Text="Create Position"
+                        OnClick="AddPosition">
+                    </asp:LinkButton>
+                </td>
             </tr>
 
 
