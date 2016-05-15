@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="static/css/ViewProfile.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/SearchResults.css" rel="stylesheet" type="text/css" />
     <script src="scripts/Profile.js" type="text/javascript"></script>
 </asp:Content>
 
@@ -17,12 +18,12 @@
             </tr>
         </table>
 
-<%--name --%>
+        <%--name --%>
         <table id="profile-info-table" style="height: 618px; width: 634px">
             <tr>
                 <td colspan="2">
                     <h2 id="NameText" class="NameText" runat="server"></h2>
-            <%--        <asp:TextBox ID="UpdateNameTextBox" CssClass="update-value Edit_Click" runat="server">
+                    <%--        <asp:TextBox ID="UpdateNameTextBox" CssClass="update-value Edit_Click" runat="server">
                     </asp:TextBox>--%> 
                 </td>
                 <%--
@@ -42,7 +43,7 @@
                         Text="Submit"></asp:Button>
                 </td>name --%>
             </tr>
-<%--gender --%>
+            <%--gender --%>
             <tr>
                 <td id="Profile-gender-label-column">
                     <h2>Gender</h2>
@@ -70,7 +71,7 @@
                         Text="Submit" />
                 </td>
             </tr>
-<%-- major --%>
+            <%-- major --%>
             <tr>
                 <td id="Profile-major-label-column">
                     <h2>Major</h2>
@@ -98,7 +99,7 @@
                         Text="Submit" />
                 </td>
             </tr>
-<%-- experience --%>
+            <%-- experience --%>
             <tr>
                 <td id="Profile-experience-label-column">
                     <h2>Experience</h2>
@@ -124,7 +125,7 @@
                         Text="Submit" />
                 </td>
             </tr>
-<%-- street --%>
+            <%-- street --%>
             <tr>
                 <td id="Profile-street-label-column">
                     <h2>Street</h2>
@@ -150,9 +151,9 @@
                         Text="Submit" />
                 </td>
             </tr>
-<%-- city --%>
+            <%-- city --%>
             <tr>
-               <td id="Profile-city-label-column">
+                <td id="Profile-city-label-column">
                     <h2>City</h2>
                 </td>
                 <td>
@@ -176,7 +177,7 @@
                         Text="Submit" />
                 </td>
             </tr>
-<%-- state --%>
+            <%-- state --%>
             <tr>
                 <td id="Profile-state-label-column">
                     <h2>State</h2>
@@ -202,7 +203,7 @@
                         Text="Submit" />
                 </td>
             </tr>
-<%-- zipcode --%>
+            <%-- zipcode --%>
             <tr>
                 <td id="Profile-zipcode-label-column">
                     <h2>Zipcode</h2>
@@ -228,9 +229,20 @@
                         Text="Submit" />
                 </td>
             </tr>
+
+            <tr>
+                <td>
+                    <h2>Companies</h2>
+                </td>
+
+                <td>
+                    <%= WriteUserCompanies() %>
+                </td>
+            </tr>
         </table>
 
-            <%-- 
+
+        <%-- 
     <asp:Label ID="GenderLabel" CssClass="profile-label asp-user-profile-label" runat="server">
 
     </asp:Label>
@@ -269,13 +281,13 @@
              </tr>
                   
          </table>       
-            --%>
-            <%--        <asp:Button Css-Class="edit-button" ID="Button2" runat="server" Height="30px" OnClick="Edit_Click" Text="Edit Profile" Width="122px" BackColor="#6699FF" BorderStyle="None" Font-Bold="True" Font-Italic="True" Font-Size="Medium" />--%>
-        
+        --%>
+        <%--        <asp:Button Css-Class="edit-button" ID="Button2" runat="server" Height="30px" OnClick="Edit_Click" Text="Edit Profile" Width="122px" BackColor="#6699FF" BorderStyle="None" Font-Bold="True" Font-Italic="True" Font-Size="Medium" />--%>
+
 
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Delete" />
-        
+
 
     </form>
-   
+
 </asp:Content>

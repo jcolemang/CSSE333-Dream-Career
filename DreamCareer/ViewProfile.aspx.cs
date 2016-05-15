@@ -10,7 +10,6 @@ namespace DreamCareer
     public partial class ViewProfile : System.Web.UI.Page
     {
         protected string username;
-        //     protected Dictionary<string, string> ProfileID;
         protected int ProfileID;
         protected int UserID;
         protected string name;
@@ -71,7 +70,7 @@ namespace DreamCareer
         protected void UpdateMajor(object sender, EventArgs e)
         {
             string newMajor = UpdateMajorTextBox.Text;
-            Database.UpdateProfile(this.ProfileID,  NewMajor: newMajor);
+            Database.UpdateProfile(this.ProfileID, NewMajor: newMajor);
             MajorText.InnerText = newMajor;
         }
 
@@ -118,6 +117,34 @@ namespace DreamCareer
         {
             Database.DeleteProfile(this.ProfileID);
             Response.Redirect("Default.aspx");
+        }
+
+        protected string WriteUserCompanies()
+        {
+            string ResponseString = "";
+
+            List<Dictionary<string, string>> Companies =
+                Database.GetUserCompanies(this.UserID);
+
+            foreach (Dictionary<string, string> Company in Companies)
+            {
+                ResponseString += "<div>";
+                ResponseString += "<div class=\"text-div\">";
+
+                ResponseString += String.Format(
+                    "<a class=\"search-result\" " + 
+                    "href=\"ViewCompany.aspx?CompanyID={0}\">" + 
+                    "{1}" + 
+                    "</a>",
+                    HttpUtility.HtmlEncode(Company["CompanyID"]),
+                    HttpUtility.HtmlEncode(Company["CompanyName"])
+                    );
+
+                ResponseString += "</div>";
+                ResponseString += "</div>";
+            }
+
+            return ResponseString;
         }
     }
 }

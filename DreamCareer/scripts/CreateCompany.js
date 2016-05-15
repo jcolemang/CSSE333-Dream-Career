@@ -56,6 +56,11 @@ function validateCompanySize() {
 }
 
 function validateZipcode() {
+
+    // Because it is optional
+    if ($('.ZipcodeTextBox').val() === "")
+        return true;
+
     if (!zipcodeIsValid($('.ZipcodeTextBox').val())) {
         $('#zipcode-error-label').html('Not a valid zipcode');
         return false;

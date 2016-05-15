@@ -194,7 +194,7 @@ namespace DreamCareer
                 ResponseString += "<div class=\"text-div\">"; // Make this inline-block
 
                 ResponseString += String.Format(
-                    "<a class=\"search-result\"" +
+                    "<a class=\"search-result\" " +
                     "href=\"ViewPosition.aspx?PositionID={0}\">" + 
                     "{1}, {2}, {3}" +  
                     "</a>", 
