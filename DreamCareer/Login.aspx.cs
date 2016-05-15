@@ -16,25 +16,28 @@ namespace DreamCareer
 
         protected void LoginButton_OnClick(object sender, EventArgs e)
         {
-            string Username = username.Text;
+            string Username = username.Text.ToLower();
             string Password = password.Text;
-       //     var temp = Database.GetProfile("xuy2");
-        //    Console.WriteLine("test");
-            //           try
-            //          {
-            //              Database.
-            //         }
             if (!Database.IsAUser(Username, Password))
             {
 
-                // Write an error
-                //Response.Redirect("CreateUser.aspx");
                 login_username_input_error.Text = "The password and username don't match, try again!";
             }
             else
             {
-                Session["username"] = Username;
                 // logged in
+                Session["username"] = Username;
+
+                try
+                {
+                    Session["UserID"] = Database.GetUserID(Username);
+                }
+                catch (UsernameDoesntExistException)
+                {
+                    // I have no idea how this could ever happen
+                    Response.Redirect("ErrorPage.aspx");
+                }
+
                 Response.Redirect("Default.aspx");
             }
 

@@ -180,6 +180,35 @@ namespace DreamCareer
             Database.DeleteCompany(this.CompanyID);
             Response.Redirect("Default.aspx");
         }
+
+        protected string GetCompanyPositions()
+        {
+            string ResponseString = "";
+
+            List<Dictionary<string, string>> Positions = 
+                Database.GetCompanyPositions(this.CompanyID);
+
+            foreach (Dictionary<string, string> Position in Positions)
+            {
+                ResponseString += "<div>";
+                ResponseString += "<div class=\"text-div\">"; // Make this inline-block
+
+                ResponseString += String.Format(
+                    "<a class=\"search-result\"" +
+                    "href=\"ViewPosition.aspx?PositionID={0}\">" + 
+                    "{1}, {2}, {3}" +  
+                    "</a>", 
+                    HttpUtility.HtmlEncode(Position["PositionID"]),
+                    HttpUtility.HtmlEncode(Position["Title"]), 
+                    HttpUtility.HtmlEncode(Position["Type"]), 
+                    HttpUtility.HtmlEncode(Position["Salary"]));
+
+                ResponseString += "</div>";
+                ResponseString += "</div>";
+            }
+
+            return ResponseString;
+        }
     }
 
 }

@@ -5,6 +5,7 @@
     <script src="scripts/ViewCompany.js" type="text/javascript"></script>
 
     <link rel="Stylesheet" type="text/css" href="static/css/ViewCompany.css" />
+    <link rel="Stylesheet" type="text/css" href="static/css/SearchResults.css" />
 
 </asp:Content>
 
@@ -352,6 +353,20 @@
                     </asp:Label>
                 </td>
             </tr>
+
+            <%-- Open positions --%>
+            <tr>
+                <td>
+                    <h3>
+                        Company Positions
+                    </h3>
+                </td>
+
+                <td>
+                    <%= GetCompanyPositions() %>
+                </td>
+            </tr>
+
 
         </table>
 

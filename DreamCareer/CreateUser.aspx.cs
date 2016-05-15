@@ -30,7 +30,7 @@ namespace DreamCareer
 
             try
             {
-                Database.CreateUser(UName, UserPassword, UserEmail);
+                Session["UserID"] = Database.CreateUser(UName, UserPassword, UserEmail);
             }
             catch (RepeatUsernameException)
             {

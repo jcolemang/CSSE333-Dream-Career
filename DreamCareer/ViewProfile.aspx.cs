@@ -12,14 +12,18 @@ namespace DreamCareer
         protected string username;
         //     protected Dictionary<string, string> ProfileID;
         protected int ProfileID;
+        protected int UserID;
         protected string name;
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-      //      string username;
-           
-           
             if (Session["username"] == null)
                 Response.Redirect("Login.aspx");
+            if (Session["UserID"] == null)
+                Response.Redirect("Login.aspx");
+
+            this.UserID = (int)Session["UserID"];
 
             string UsernameParameter = "";
             if (Request.QueryString["username"] != null)
@@ -29,7 +33,6 @@ namespace DreamCareer
             else
             {
                 // The default if they gave no parameter
-                // Response.Redirect(Session["username"] + ".aspx");
                 Response.Redirect("ViewProfile.aspx?username=" + Session["username"]);
             }
             Dictionary<string, string> Profile =
@@ -56,15 +59,6 @@ namespace DreamCareer
 
         }
 
-//        protected void Edit_Click(object sender, EventArgs e)
-//        {
-            //if it has a valid username, then go on
-            
-//             string newName = UpdateNameTextBox.Text;
-//             Database.UpdateProfile(this.ProfileID, NewName: newName);
-//             NameText.InnerText = newName;
-               
-//        }
 
         protected void UpdateGender(object sender, EventArgs e)
         {
@@ -73,12 +67,14 @@ namespace DreamCareer
             GenderText.InnerText = newGender;
         }
 
+
         protected void UpdateMajor(object sender, EventArgs e)
         {
             string newMajor = UpdateMajorTextBox.Text;
             Database.UpdateProfile(this.ProfileID,  NewMajor: newMajor);
             MajorText.InnerText = newMajor;
         }
+
 
         protected void UpdateExperience(object sender, EventArgs e)
         {
@@ -87,12 +83,14 @@ namespace DreamCareer
             ExperienceText.InnerText = newExperience;
         }
 
+
         protected void UpdateStreet(object sender, EventArgs e)
         {
             string newStreet = UpdateStreetTextBox.Text;
             Database.UpdateProfile(this.ProfileID, NewStreet: newStreet);
             StreetText.InnerText = newStreet;
         }
+
 
         protected void UpdateCity(object sender, EventArgs e)
         {
@@ -107,6 +105,7 @@ namespace DreamCareer
             Database.UpdateProfile(this.ProfileID, NewState: newState);
             StateText.InnerText = newState;
         }
+
 
         protected void UpdateZipcode(object sender, EventArgs e)
         {

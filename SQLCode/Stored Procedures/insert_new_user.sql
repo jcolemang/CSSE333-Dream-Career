@@ -5,11 +5,12 @@ USE DreamCareer
 -- this case
 
 GO
-CREATE PROCEDURE insert_new_user 
+ALTER PROCEDURE insert_new_user 
 	(@Uname varchar(20),
 	@password varchar(512),
 	@salt varchar(512),
-	@email varchar(20))
+	@email varchar(20),
+	@UserID int OUTPUT)
 AS
 
 	DECLARE @RepeatUsernameError smallint
@@ -39,6 +40,7 @@ AS
 	VALUES
 	(@Uname, HASHBYTES('SHA1', @password + @salt), @salt, @email)
 
+	SET @UserID = (SELECT SCOPE_IDENTITY())
 	RETURN 0
 
 GO

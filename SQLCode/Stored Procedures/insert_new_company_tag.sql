@@ -17,7 +17,6 @@ AS
 	IF ( @tagid IS NULL )
 	BEGIN
 		exec insert_new_tag @tagword=@tagtext
-		-- TODO Pretty sure this is super inefficient
 		SET @tagid = (SELECT TagID FROM Tag WHERE TagWord=@tagtext)
 	END
 

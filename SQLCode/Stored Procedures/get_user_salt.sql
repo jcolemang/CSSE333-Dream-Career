@@ -2,7 +2,7 @@
 USE DreamCareer
 GO
 
-CREATE PROCEDURE get_user_salt
+ALTER PROCEDURE get_user_salt
 	(@uname varchar(100))
 AS
 
@@ -21,3 +21,6 @@ AS
 	FROM DreamCareerUser
 	WHERE Username=@uname
 	RETURN 0
+
+GO
+GRANT EXECUTE ON get_user_salt TO dreamcareer

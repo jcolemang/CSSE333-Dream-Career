@@ -1,0 +1,16 @@
+USE DreamCareer
+GO
+
+CREATE TABLE OwnsCompany
+(
+	UserID int,
+	CompanyID int,
+
+	FOREIGN KEY (UserID) REFERENCES DreamCareerUser(UserID)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE,
+
+	FOREIGN KEY (CompanyID) REFERENCES Company(CompanyID)
+	ON UPDATE CASCADE
+	ON DELETE CASCADE
+)

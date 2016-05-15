@@ -376,6 +376,7 @@ namespace DreamCareer
             string city;
             string state;
             string zip;
+            int UserID;
 
             int i;
             for (i = 0; i < NumCompanies; i++)
@@ -387,10 +388,12 @@ namespace DreamCareer
                 city = this.GenerateCity();
                 state = this.GenerateState();
                 zip = this.GenerateZip();
+                UserID = Database.GetRandomUserID();
+
 
                 try
                 {
-                    Database.CreateCompany(size, name,
+                    Database.CreateCompany(UserID, size, name,
                         description, street, city, state,
                         zip);
                 }

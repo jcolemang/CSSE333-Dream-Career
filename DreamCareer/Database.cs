@@ -28,6 +28,7 @@ namespace DreamCareer
         public const int RepeatCompanyNameError = -7;
         public const int NoSuchData = -5;
         public const int RepeatData = -6;
+        public const int UserDoesntExist = -8;
 
         public const int MaxTagLength = 50;
         
@@ -50,6 +51,7 @@ namespace DreamCareer
             RNGCSP.GetBytes(Bytes);
             return System.Text.Encoding.ASCII.GetString(Bytes);
         }
+
 
         public static SqlConnection GetSqlConnection()
         {
@@ -74,7 +76,8 @@ namespace DreamCareer
             return connection;
         }
 
-        public static void CreateUser( string Username, string Password, string Email )
+
+        public static int CreateUser( string Username, string Password, string Email )
         {
             string Salt = GenerateSaltValue();
 
@@ -94,6 +97,12 @@ namespace DreamCareer
                 new SqlParameter("@salt", Salt));
             insert_user.Parameters.Add(
                 new SqlParameter("@email", Email));
+
+            // Output parameter
+            SqlParameter OutputParam =
+                new SqlParameter("@UserID", SqlDbType.Int);
+            OutputParam.Direction = ParameterDirection.Output;
+            insert_user.Parameters.Add(OutputParam);
 
             // Setting up a return value container
             SqlParameter ReturnVal = new SqlParameter("RetVal", 
@@ -115,7 +124,7 @@ namespace DreamCareer
             if (val != 0)
                 throw new Exception("Unknown error");
 
-            // nothing to return
+            return (int)OutputParam.Value;
         }
 
 
@@ -221,6 +230,12 @@ namespace DreamCareer
         }
 
 
+        /*
+         * So I don't have to write the exact same code
+         * three times for Company, Position, and Profile
+         * I should have done this for search but it isn't 
+         * worth rewriting them to have fewer lines of code.
+         */
         public static List<string> _GetTagsHelper(
             string sp_name, 
             int ID, 
@@ -246,6 +261,40 @@ namespace DreamCareer
             connection.Close();
             return Tags;
         }
+
+
+        public static List<Dictionary<string, string>> GetCompanyPositions(int CompanyID)
+        {
+            // Setting up the command
+            SqlConnection Connection = GetSqlConnection();
+            string SP_Name = "get_company_positions";
+            SqlCommand Command = new SqlCommand(SP_Name, Connection);
+            Command.CommandType = CommandType.StoredProcedure;
+
+            // Adding parameters
+            Command.Parameters.Add(
+                new SqlParameter("@CompanyID", CompanyID));
+
+            // Executing the command
+            SqlDataReader Reader = Command.ExecuteReader();
+
+            // Getting the results
+            List<Dictionary<string, string>> Positions = 
+                new List<Dictionary<string, string>>();
+            Dictionary<string, string> Position;
+            while (Reader.Read())
+            {
+                Position = new Dictionary<string, string>();
+                Position["PositionID"] = Reader.GetInt32(0).ToString();
+                Position["Title"] = Reader.GetString(1);
+                Position["Type"] = Reader.GetString(2);
+                Position["Salary"] = Reader.GetSqlMoney(3).ToString();
+                Positions.Add(Position);
+            }
+
+            return Positions;
+        }
+
 
         /*
          * The three Search functions are nearly identical
@@ -826,7 +875,7 @@ namespace DreamCareer
         }
 
 
-        public static int CreateCompany(int size, 
+        public static int CreateCompany(int UserID, int size, 
             string name, string description, string street,
             string city, string state, string zip)
         {
@@ -835,6 +884,8 @@ namespace DreamCareer
             SqlCommand insert_new_company_sp = new SqlCommand(sp_name, connection);
             insert_new_company_sp.CommandType = System.Data.CommandType.StoredProcedure;
 
+            insert_new_company_sp.Parameters.Add(
+                new SqlParameter("@UserID", UserID));
             insert_new_company_sp.Parameters.Add(
                 new SqlParameter("@size", size));
             insert_new_company_sp.Parameters.Add(
@@ -869,6 +920,32 @@ namespace DreamCareer
             int CompanyID = (int)CompanyIDParam.Value;
             connection.Close();
             return CompanyID;
+        }
+
+
+        public static int GetUserID(string Username)
+        {
+            SqlConnection Connection = GetSqlConnection();
+            string sp_name = "get_user_id";
+
+            SqlCommand Command = new SqlCommand(sp_name, Connection);
+            Command.CommandType = CommandType.StoredProcedure;
+            Command.Parameters.Add(
+                new SqlParameter("@Username", Username));
+
+            SqlDataReader Reader = Command.ExecuteReader();
+
+            if (Reader.Read())
+            {
+                int UserID = Reader.GetInt32(0);
+                Reader.Close();
+                Connection.Close();
+                return UserID;
+            }
+
+            Reader.Close();
+            Connection.Close();
+            throw new UsernameDoesntExistException();
         }
 
 
@@ -947,6 +1024,7 @@ namespace DreamCareer
             return (int)posid;
         }
 
+        
         public static int getProfileID(string profName)
         {
             string sp_name = "get_profileID";
@@ -958,9 +1036,18 @@ namespace DreamCareer
             getprofid.Parameters.Add(
               new SqlParameter("@oldpos", profName));
 
-            posid = (int)getprofid.ExecuteScalar();
+            var Result = getprofid.ExecuteScalar();
+            if (Result == null)
+            {
+                throw new ProfileDoesntExistException();
+            }
+
+            posid = (int)Result;
+            connection.Close();
             return (int)posid;
+            
         }
+
 
         public static int getCompanyIdview(string oldpos)
         {
@@ -1152,6 +1239,36 @@ namespace DreamCareer
                 throw new Exception("Problem in SQL code");
         }
 
+
+        public static List<Dictionary<string, string>> GetUserCompanies(int UserID)
+        {
+            // Setting up the command
+            SqlConnection Connection = GetSqlConnection();
+            string sp_name = "get_user_companies";
+            SqlCommand command = new SqlCommand(sp_name, Connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(
+                new SqlParameter("@UserID", UserID));
+
+            // Exectuing the command
+            SqlDataReader Reader = command.ExecuteReader();
+
+            // Getting the results
+            Dictionary<string, string> Company;
+            List<Dictionary<string, string>> Companies =
+                new List<Dictionary<string, string>>();
+            while (Reader.Read())
+            {
+                Company = new Dictionary<string, string>();
+                Company["CompanyID"] = Reader.GetInt32(0).ToString();
+                Company["CompanyName"] = Reader.GetString(1);
+                Companies.Add(Company);
+            }
+
+            return Companies;
+        }
+
+
         public static List<int> GetUserLikes( int user )
         {
             string sp_name = "get_user_likes";
@@ -1211,7 +1328,7 @@ namespace DreamCareer
         }
 
 
-        // These really wont be used in the actual product. 
+        // These really wouldnt be used in the actual product. 
         // Just for testing with batch inserts
 
         public static string GetRandomUsername()
@@ -1240,6 +1357,7 @@ namespace DreamCareer
             return username;
         }
 
+
         public static int GetRandomUserID()
         {
             string sp_name = "get_random_userid";
@@ -1266,6 +1384,7 @@ namespace DreamCareer
             return userid;
 
         }
+
 
         public static int GetRandomPositionID()
         {
@@ -1294,6 +1413,7 @@ namespace DreamCareer
             return posid;
         }
 
+
         public static int GetRandomCompanyID()
         {
             SqlConnection connection = GetSqlConnection();
@@ -1320,6 +1440,7 @@ namespace DreamCareer
             connection.Close();
             return companyid; 
         }
+
 
         public static int GetRandomTagID()
         {
@@ -1427,6 +1548,19 @@ namespace DreamCareer
         }
 
         public ProfileAlreadyExistsException(string message) : base(message)
+        {
+
+        }
+    }
+
+    public class ProfileDoesntExistException : NoDataException
+    {
+        public ProfileDoesntExistException() : base()
+        {
+
+        }
+
+        public ProfileDoesntExistException(string msg) : base(msg)
         {
 
         }

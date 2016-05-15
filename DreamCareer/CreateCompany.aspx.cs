@@ -9,11 +9,18 @@ namespace DreamCareer
 {
     public partial class CreateCompany : System.Web.UI.Page
     {
+
+        protected int UserID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // TODO make a specific user type that can do this
             if (Session["Username"] == null)
                 Response.Redirect("Login.aspx");
+
+            //TODO Error check this.
+            int.TryParse(Session["UserID"].ToString(), out this.UserID);
+
         }
         protected void InsertCompanyButton_OnClick(object sender, EventArgs e)
         {
@@ -42,7 +49,7 @@ namespace DreamCareer
             else
             {
                 // Good to insert!
-                int CompanyID = Database.CreateCompany(Size, Name, Description,
+                int CompanyID = Database.CreateCompany(this.UserID, Size, Name, Description,
                     Street, City, State, Zipcode);
 
                 foreach (string tag in Tags)
