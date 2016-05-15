@@ -182,6 +182,7 @@ namespace DreamCareer
             return contains_data;
         }
 
+        
         public static List<string> ParseTags(string TagString)
         {
             List<string> Tags = new List<string>();
@@ -214,6 +215,43 @@ namespace DreamCareer
         }
 
 
+        public static List<string> GetCompanyTags(int CompanyID)
+        {
+            return _GetTagsHelper("sp_name", CompanyID, "@CompanyID");
+        }
+
+
+        public static List<string> _GetTagsHelper(
+            string sp_name, 
+            int ID, 
+            string IDParamName)
+        {
+            List<string> Tags = new List<string>();
+            SqlConnection connection = GetSqlConnection();
+
+            SqlCommand command = new SqlCommand(sp_name, connection);
+
+            command.Parameters.Add(
+                new SqlParameter(IDParamName, ID));
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Tags.Add(reader.GetString(0));
+            }
+
+            reader.Close();
+            connection.Close();
+            return Tags;
+        }
+
+        /*
+         * The three Search functions are nearly identical
+         * both here and in the database. I should try
+         * to combine them but there are more important things
+         * to do
+         */
         public static List<Dictionary<string, string>> SearchForPositionsWithTags(List<string> Tags)
         {
             string sp_name = "search_positions_by_tags";
@@ -413,6 +451,7 @@ namespace DreamCareer
             connection.Close();
         }
 
+
         public static void DeleteProfile(int ProfileID)
         {
             string sp_name = "delete_profile";
@@ -430,9 +469,9 @@ namespace DreamCareer
             Connection.Close();
         }
 
+
         public static void UpdateProfile(
             int ProfileID,
- //           string Name,
             string NewGender = null,
             string NewExperience = null,
             string NewStreet = null,
@@ -528,6 +567,7 @@ namespace DreamCareer
             Connection.Close();
         }
 
+
         public static void InsertProfileTag(int ProfileID, string tag)
         {
             string sp_name = "insert_new_profile_tag";
@@ -557,6 +597,7 @@ namespace DreamCareer
 
             Connection.Close();
         }
+
 
         public static void InsertPositionTag(int PositionID, string tag)
         {
@@ -655,6 +696,7 @@ namespace DreamCareer
             return Company;
         }
 
+
         public static bool checkIfNameInDatabase(string name)
         {
             SqlConnection connection = GetSqlConnection();
@@ -683,6 +725,8 @@ namespace DreamCareer
             connection.Close();
             return contains_data;
         }
+
+
         public static bool checkIfUsernameInProfile(string uname)
         {
             SqlConnection connection = GetSqlConnection();
@@ -744,6 +788,7 @@ namespace DreamCareer
             connection.Close();
         }       
 
+
         public static Dictionary<string, string> GetPosition(int PositionID)
         {
             SqlConnection connection = Database.GetSqlConnection();
@@ -780,7 +825,7 @@ namespace DreamCareer
         }
 
 
-        public static void CreateCompany(int size, 
+        public static int CreateCompany(int size, 
             string name, string description, string street,
             string city, string state, string zip)
         {
@@ -804,6 +849,11 @@ namespace DreamCareer
             insert_new_company_sp.Parameters.Add(
                 new SqlParameter("@zip", zip));
 
+            SqlParameter CompanyIDParam =
+                new SqlParameter("@CompanyID", SqlDbType.Int);
+            CompanyIDParam.Direction = ParameterDirection.Output;
+            insert_new_company_sp.Parameters.Add(CompanyIDParam);
+
             SqlParameter ReturnParam = new SqlParameter("ReturnVal", SqlDbType.Int);
             ReturnParam.Direction = ParameterDirection.ReturnValue;
             insert_new_company_sp.Parameters.Add(ReturnParam);
@@ -815,7 +865,9 @@ namespace DreamCareer
                 throw new RepeatCompanyNameException();
             }
 
+            int CompanyID = (int)CompanyIDParam.Value;
             connection.Close();
+            return CompanyID;
         }
 
 
@@ -864,6 +916,7 @@ namespace DreamCareer
             connection.Close();
         }
         
+
         public static void deletePosition(string pos)
         {
             string sp_name = "delete_position";
@@ -876,6 +929,8 @@ namespace DreamCareer
             del.ExecuteNonQuery();
             connection.Close();
         }
+
+
         public static int getPosId(string oldpos)
         {
             string sp_name = "get_positionIdold";
@@ -890,6 +945,8 @@ namespace DreamCareer
             posid = (int)get_positionid.ExecuteScalar();
             return (int)posid;
         }
+
+
         public static int getCompanyIdview(string oldpos)
         {
             string sp_name = "get_CompanyID";
@@ -903,10 +960,8 @@ namespace DreamCareer
             compid = (int)getcompid.ExecuteScalar();
             return (int)compid;
         }
-        public static void getPositionInfo(int posid)
-        {
 
-        }
+
         public static void UpdatePosition(int posid, int compid, 
             string pos, string ty, string stree, string cit, 
             string stat, string zi, string sal, string jobdesc)
@@ -947,23 +1002,6 @@ namespace DreamCareer
 
             int ReturnValue = (int)ReturnVal.Value;
 
-            connection.Close();
-        }
-
-        public static void CreateTag(string TagWord, 
-            int PositionID)
-        {
-            string sp_name = "insert_position_tag";
-            SqlConnection connection = GetSqlConnection();
-            SqlCommand insert_new_pos_sp = new SqlCommand(sp_name, connection);
-            insert_new_pos_sp.CommandType = System.Data.CommandType.StoredProcedure;
-
-            insert_new_pos_sp.Parameters.Add(
-                new SqlParameter("@tagtext", TagWord));
-            insert_new_pos_sp.Parameters.Add(
-                new SqlParameter("@posid", PositionID));
-
-            insert_new_pos_sp.ExecuteNonQuery();
             connection.Close();
         }
 
@@ -1050,6 +1088,7 @@ namespace DreamCareer
             return unames;
         }
 
+
         public static int GetCompanyID(string name)
         {
             string sp_name = "get_inserted_companyid";
@@ -1065,6 +1104,7 @@ namespace DreamCareer
             companyid = (int)get_companyid.ExecuteScalar();
             return (int)companyid;
         }
+
 
         public static void CreateUserLikes(int UserID, int ProfileID)
         {
@@ -1123,8 +1163,6 @@ namespace DreamCareer
 
         public static Dictionary<string, string> GetProfile(string Username)
         {
-            int InputError = -1;
-
             SqlConnection connection = GetSqlConnection();
             string sp_name = "get_profile";
 
@@ -1141,7 +1179,6 @@ namespace DreamCareer
             {
                 Profile["Username"] = Username;
                 Profile["Name"] = reader.GetString(1);
-                Console.WriteLine("reader.length()");
                 Profile["Gender"] = reader.GetString(2);
                 Profile["Major"] = reader.GetString(3);
                 Profile["Experience"] = reader.GetString(4);
@@ -1324,6 +1361,9 @@ namespace DreamCareer
 
     }
 
+    // Exceptions. They don't do anything specific, I just
+    // Wanted to be able to distinguish between some
+    // different kinds of issues
     public class RepeatEmailException : RepeatDataException 
     {
         public RepeatEmailException()

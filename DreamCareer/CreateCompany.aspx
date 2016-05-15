@@ -4,6 +4,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="static/css/CreateCompany.css" rel="Stylesheet" type="text/css" />
 
+    <script src="scripts/ValidateInputs.js"
+        type="text/javascript"></script>
     <script src="scripts/CreateCompany.js"
         type="text/javascript"></script>
 </asp:Content>
@@ -113,7 +115,31 @@
                     </label>
                 </td>
                 <td>
-                    <asp:TextBox type="text" ID="CompanyZipcode" runat="server"></asp:TextBox>
+                    <asp:TextBox type="text" 
+                        ID="CompanyZipcode" 
+                        CssClass="ZipcodeTextBox"
+                        runat="server"></asp:TextBox>
+                </td>
+
+                <td>
+                    <label id="zipcode-error-label"
+                        class="error-label">
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label id="tags-label">
+                        Tags
+                    </label>
+                </td>
+
+                <td>
+                    <asp:TextBox runat="server"
+                        ID="TagsTextBox"
+                        type="text">
+                    </asp:TextBox>
                 </td>
             </tr>
 

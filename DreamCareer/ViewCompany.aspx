@@ -326,8 +326,23 @@
                 </td>
             </tr>
 
+            <tr id="tag-row">
+                <td>
+                    <h3>Company Tags</h3>
+                </td>
+
+                <td>
+                    <asp:Label runat="server"
+                        ID="CompanyTagsLabel">
+                    </asp:Label>
+                </td>
+            </tr>
+
         </table>
 
+        <%-- Company Tags --%>
+
+        <%-- Adding tags --%>
         <div id="add-tags-div">
             <asp:TextBox runat="server"
                 ID="TagInput">
@@ -340,6 +355,10 @@
 
         </div>
 
+        <%-- Viewing tags --%>
+        
+
+        <%-- Deleting the company --%>
         <div id="delete-button-div">
             <asp:Button runat="server"
                 ID="DeleteCompanyButton"

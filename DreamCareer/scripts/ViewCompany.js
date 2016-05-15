@@ -1,16 +1,7 @@
 ﻿
 $(document).ready(function () {
 
-    /*
-    if ( $('.CompanyDescription').html() === "" )
-        $('#company-description-row').hide();
-
-    if ($('.CompanyStreet').html() === "")
-        $('#company-street-row').hide();
-
-    if ($('.CompanyCity').html() === "")
-        $('#company-city-row').hide();
-        */
+   
 })
 
 function toggleCompanyName() {

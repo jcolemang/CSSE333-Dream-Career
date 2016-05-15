@@ -17,6 +17,13 @@ AS
 	ORDER BY NEWID()
 
 GO
+CREATE PROCEDURE get_random_tag_id
+AS
+	SELECT TOP 1 TagID
+	FROM Tag
+	ORDER BY NEWID()
+
+GO
 CREATE PROCEDURE get_random_profile_id
 AS
 	SELECT TOP 1 ProfileID

@@ -10,7 +10,8 @@ CREATE PROCEDURE insert_new_company
 	@street varchar(50),
 	@city varchar(50),
 	@state varchar(50),
-	@zip varchar(5))
+	@zip varchar(5),
+	@CompanyID int OUTPUT)
 AS
 
 	DECLARE @RepeatCompanyName smallint
@@ -30,7 +31,7 @@ AS
 	VALUES
 	(@size, @name, @description, @street, @city, @state, @zip)
 
-	RETURN 0
+	SET @CompanyID = (SELECT SCOPE_IDENTITY())
 
 GO
 GRANT EXECUTE ON insert_new_company TO dreamcareer

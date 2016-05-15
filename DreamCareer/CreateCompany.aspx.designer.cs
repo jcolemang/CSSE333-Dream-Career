@@ -85,6 +85,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox CompanyZipcode;
         
         /// <summary>
+        /// TagsTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TagsTextBox;
+        
+        /// <summary>
         /// CompanyDescription control.
         /// </summary>
         /// <remarks>

@@ -6,6 +6,9 @@ $(document).ready(function () {
     $('.CompanySize').change(function () {
         validateCompanySize()
     });
+    $('.ZipcodeTextBox').change(function () {
+        validateZipcode();
+    });
 })
 
 
@@ -52,11 +55,21 @@ function validateCompanySize() {
 
 }
 
+function validateZipcode() {
+    if (!zipcodeIsValid($('.ZipcodeTextBox').val())) {
+        $('#zipcode-error-label').html('Not a valid zipcode');
+        return false;
+    }
+
+    $('#zipcode-error-label').html('');
+    return true;
+}
+
 
 function validateCompany() {
-    if (!validateCompanyName())
-        return false;
-    if (!validateCompanySize())
-        return false;
-    return true;
+    var isValid = true;
+    isValid = isValid && validateCompanyName();
+    isValid = isValid && validateCompanySize();
+    isValid = isValid && validateZipcode();
+    return isValid;
 }
