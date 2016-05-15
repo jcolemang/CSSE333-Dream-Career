@@ -946,6 +946,20 @@ namespace DreamCareer
             return (int)posid;
         }
 
+        public static int getProfileID(string profName)
+        {
+            string sp_name = "get_profileID";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand getprofid = new SqlCommand(sp_name, connection);
+            getprofid.CommandType = System.Data.CommandType.StoredProcedure;
+            int posid = 0;
+
+            getprofid.Parameters.Add(
+              new SqlParameter("@oldpos", profName));
+
+            posid = (int)getprofid.ExecuteScalar();
+            return (int)posid;
+        }
 
         public static int getCompanyIdview(string oldpos)
         {
