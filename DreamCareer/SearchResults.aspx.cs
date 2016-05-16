@@ -11,7 +11,8 @@ namespace DreamCareer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["username"] == null)
+                Response.Redirect("Login.aspx");
         }
 
 
@@ -157,11 +158,13 @@ namespace DreamCareer
         protected string WriteResults()
         {
             string Search = Request.QueryString["Search"];
+            /*
             if (Search == "" || Search == null)
             {
                 Response.Redirect("Default.aspx");
                 return "";
             }
+            */
 
             string SearchType = Request.QueryString["Type"];
             if (SearchType == "" || SearchType == null)

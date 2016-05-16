@@ -2,7 +2,7 @@
 USE DreamCareer
 GO
 
-CREATE PROCEDURE search_profiles_by_tags
+ALTER PROCEDURE search_profiles_by_tags
 	(@Tags AS TagWordsTableType READONLY)
 AS
 	-- The number of tags in the given table
@@ -15,9 +15,10 @@ AS
 	WHERE UserProfile.ProfileID = UserProfileHasTag.ProfileID AND
 			UserProfileHasTag.TagID = Tag.TagID AND
 			DreamCareerUser.UserID = UserProfile.ProfileID AND
-			LOWER(Tag.TagWord) IN (SELECT TagWords FROM @Tags)
+			(LOWER(Tag.TagWord) IN (SELECT TagWords FROM @Tags) OR
+			@NumTagsGiven = 0)
 	GROUP BY UserProfile.ProfileID, DreamCareerUser.Username, UserProfile.Name
-	HAVING COUNT(UserProfile.ProfileID) = @NumTagsGiven
+	HAVING COUNT(UserProfile.ProfileID) >= @NumTagsGiven
 
 GO
 GRANT EXECUTE ON search_profiles_by_tags TO dreamcareer

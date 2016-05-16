@@ -3,6 +3,7 @@ GO
 
 -- A table type
 
+GO
 CREATE TYPE TagWordsTableType AS TABLE
 (
 	TagWords varchar(20)
@@ -13,7 +14,7 @@ GRANT EXECUTE ON TYPE :: TagWordsTableType TO dreamcareer
 
 
 GO
-CREATE PROCEDURE search_positions_by_tags
+ALTER PROCEDURE search_positions_by_tags
 	(@Tags AS TagWordsTableType READONLY)
 AS	
 	-- Used later
@@ -27,14 +28,15 @@ AS
 	FROM Position, PositionHasTag, Tag
 	WHERE Position.PositionID = PositionHasTag.PositionID AND
 			PositionHasTag.TagID = Tag.TagID AND
-			LOWER(Tag.TagWord) IN (SELECT TagWords FROM @Tags)
+			(LOWER(Tag.TagWord) IN (SELECT TagWords FROM @Tags) OR
+			@NumTags = 0)
 
 	-- Extra groups so I can select those columns
 	GROUP BY Position.PositionID, PositionTitle, Salary, 
 			Position.City, Position.State
 
 	-- I can only use this because the actual tag words are unique
-	HAVING COUNT(Position.PositionID) = @NumTags
+	HAVING COUNT(Position.PositionID) >= @NumTags
 	
 GO
 GRANT EXECUTE ON search_positions_by_tags TO dreamcareer
