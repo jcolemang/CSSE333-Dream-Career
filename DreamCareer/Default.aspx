@@ -7,8 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
 
     <div id="page-title-div">
-        <h1 id="page-header-text">
-            Welcome to Dream Career
+        <h1 id="page-header-text">Welcome to Dream Career
         </h1>
 
 
@@ -18,29 +17,27 @@
     </div>
 
 
-    <form id="search_bar_form" runat="server">
 
-        <div id="search-bar-div">
-            <asp:TextBox ID="SearchBar" runat="server" 
-                CssClass="search-bar-class" >
-            </asp:TextBox>
-        </div>
+    <div id="search-bar-div">
+        <asp:TextBox ID="SearchBar" runat="server"
+            CssClass="search-bar-class">
+        </asp:TextBox>
+    </div>
 
-        <div id="button-div">
-            <asp:Button ID="SearchPositionButton" runat="server"
-                Text="Search Positions" 
-                OnClick="SearchPositionButton_OnClick"/>
+    <div id="button-div">
+        <asp:Button ID="SearchPositionButton" runat="server"
+            Text="Search Positions"
+            OnClick="SearchPositionButton_OnClick" />
 
-            <asp:Button ID="SearchCompanyButton" runat="server"
-                Text="Search Companies" 
-                OnClick="SearchCompanyButton_OnClick"/>
+        <asp:Button ID="SearchCompanyButton" runat="server"
+            Text="Search Companies"
+            OnClick="SearchCompanyButton_OnClick" />
 
-            <asp:Button ID="SearchProfileButton" runat="server"
-                Text="Search Profiles" 
-                OnClick="SearchProfileButton_OnClick"/>
-        </div>
+        <asp:Button ID="SearchProfileButton" runat="server"
+            Text="Search Profiles"
+            OnClick="SearchProfileButton_OnClick" />
+    </div>
 
-    </form>
 
 
 </asp:Content>

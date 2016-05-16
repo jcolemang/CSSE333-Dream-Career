@@ -7,7 +7,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
-    <form id="user_profile" runat="server">
 
         <table id="title-profile">
             <tr id="profile-title">
@@ -288,6 +287,5 @@
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Delete" />
 
 
-    </form>
 
 </asp:Content>

@@ -13,15 +13,6 @@ namespace DreamCareer {
     public partial class ViewProfile {
         
         /// <summary>
-        /// user_profile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm user_profile;
-        
-        /// <summary>
         /// NameText control.
         /// </summary>
         /// <remarks>

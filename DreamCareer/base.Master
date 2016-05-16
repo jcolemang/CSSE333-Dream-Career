@@ -21,82 +21,93 @@
 </head>
 <body>
 
+    <form runat="server">
 
-    <div id="toolbar">
-        <ul id="toolbar-links">
+        <div id="toolbar">
+            <ul id="toolbar-links">
 
-            <li>
-                <a class="link-button" href="Default.aspx" runat="server">
-                    Home
-                </a>
-            </li>
+                <li>
+                    <a class="link-button" href="Default.aspx" runat="server">
+                        Home
+                    </a>
+                </li>
 
-            <li>
-                <a class="link-button" href="Login.aspx" runat="server">
-                    Login
-                </a>
-            </li>
+                <% if (!this.IsUser)
+                    { %>
+                    <li>
+                        <a class="link-button" href="Login.aspx" runat="server">
+                            Login
+                        </a>
+                    </li>
+                <% } %>
 
-            <li>
-                <a class="link-button" href="CreateUser.aspx" runat="server">
-                    Create User
-                </a>
-            </li>
+                <% if (!this.IsUser)
+                    { %>
+                    <li>
+                        <a class="link-button" href="CreateUser.aspx" runat="server">
+                            Create User
+                        </a>
+                    </li>
+                <% } %>
 
-            <li>
-                <a class="link-button" href="CreateProfile.aspx" runat="server">
-                    Create Profile
-                </a>
-            </li>
+                <% if (!this.HasProfile)
+                    { %>
+                    <li>
+                        <a class="link-button" href="CreateProfile.aspx" runat="server">
+                            Create Profile
+                        </a>
+                    </li>
+                <% } %>
 
-            <li>
-                <a class="link-button" href="CreateCompany.aspx" runat="server">
-                    Create Company
-                </a>
-            </li>
-            
-            <li>
-                <a class="link-button" href="Position.aspx" runat="server">
-                    Create Position
-                </a>
-            </li>
-            <li>
-                <a class="link-button" href="AlterPosition.aspx" runat="server">
-                    Alter Position
-                </a>
-            </li>
-            <li>
-                <a class="link-button" href="ViewPosition.aspx" runat="server">
-                    View Position
-                </a>
-            </li>
+                <li>
+                    <a class="link-button" href="CreateCompany.aspx" runat="server">
+                        Create Company
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="link-button" href="Admin.aspx" runat="server">
+                        Admin
+                    </a>
+                </li>
 
-            <li>
-                <a class="link-button" href="Admin.aspx" runat="server">
-                    Admin
-                </a>
-            </li>
+                <% if (this.IsUser)
+                    { %>
+                    <li>
+                        <asp:LinkButton runat="server"
+                            ID="LogoutButton"
+                            CssClass="link-button"
+                            OnClick="LogoutButton_OnClick">
+                            Logout
+                        </asp:LinkButton>
+                    </li>
+                <% } %>
 
-             <li>
-                <a class="user-button" href="ViewProfile.aspx" runat="server">
-                    Welcome back <%:Session["username"] %>!
-                </a>
-            </li>
 
-        </ul>
-    </div>
+                <% if (this.IsUser) { %>
+                    <li>
+                        <a class="user-button" href="ViewProfile.aspx" runat="server">
+                            Welcome back <%:Session["username"] %>!
+                        </a>
+                    </li>
+                <% } %>
+
+            </ul>
+        </div>
     
-    <div id="child-content">
-        <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
-        
-            <h1>
-                Header
-            </h1>
-            <p>
-                Content
-            </p>
+        <div id="child-content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
+            
+                <h1>
+                    Header
+                </h1>
+                <p>
+                    Content
+                </p>
 
-        </asp:ContentPlaceHolder>
-    </div>
+            </asp:ContentPlaceHolder>
+        </div>
+
+    </form>
 </body>
 </html>

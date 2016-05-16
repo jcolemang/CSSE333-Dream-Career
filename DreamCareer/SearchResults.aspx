@@ -6,20 +6,17 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
-    <form id="SearchResultsForm" runat="server">
 
-        <div id="search-results-div">
+    <div id="search-results-div">
 
-            <div id="results-title-div">
-                <h2 id="results-title">
-                    Search results
-                </h2>
-            </div>
-
-            <div id="results-content-div">
-                <%= WriteResults() %>
-            </div>
+        <div id="results-title-div">
+            <h2 id="results-title">Search results
+            </h2>
         </div>
 
-    </form>
+        <div id="results-content-div">
+            <%= WriteResults() %>
+        </div>
+    </div>
+
 </asp:Content>

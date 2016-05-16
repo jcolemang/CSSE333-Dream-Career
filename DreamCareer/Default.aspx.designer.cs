@@ -13,15 +13,6 @@ namespace DreamCareer {
     public partial class Default1 {
         
         /// <summary>
-        /// search_bar_form control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm search_bar_form;
-        
-        /// <summary>
         /// SearchBar control.
         /// </summary>
         /// <remarks>

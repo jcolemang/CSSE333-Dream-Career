@@ -15,121 +15,126 @@
 <%-- inserted into body --%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
 
-    <form id="user_form" runat="server">
 
-        <div id="new-user-table-div">
-            <table id="create-new-user-table">
+    <div id="new-user-table-div">
+        <table id="create-new-user-table">
 
-                <%-- Title row --%>
-                <tr id="title-row">
-                    <th colspan="2">
-                        <h2 id="table-header">
-                            Create New User
+            <%-- Title row --%>
+            <tr id="title-row">
+                <th colspan="2">
+                    <h2 id="table-header">Create New User
 
-                        </h2>
-                    </th>
-                </tr>
+                    </h2>
+                </th>
+            </tr>
 
-                <tr id="username-row">
-                    <td>
-                        <p>                       
-                            Username
-                        </p>
-                    </td>
-                    <td>
-                        <asp:TextBox type="text" ID="username" 
-                            CssClass="asp-username-input" 
-                            runat="server"></asp:TextBox>
-                    </td>
+            <tr id="username-row">
+                <td>
+                    <p>
+                        Username
+                    </p>
+                </td>
+                <td>
+                    <asp:TextBox type="text" ID="username"
+                        CssClass="asp-username-input"
+                        runat="server"></asp:TextBox>
+                </td>
 
-                    <td>
+                <td>
 
-                        <%-- For the client --%>
-                        <label id="username-input-error-label">
-                        </label>
+                    <%-- For the client --%>
+                    <label id="username-input-error-label">
+                    </label>
 
-                        <%-- For the server --%>
-                        <asp:Label ID="username_input_error_label"
-                            CssClass="error-label asp-username-input-error-label"
-                             runat="server"></asp:Label>
-                    </td>
-                </tr>
+                    <%-- For the server --%>
+                    <asp:Label ID="username_input_error_label"
+                        CssClass="error-label asp-username-input-error-label"
+                        runat="server"></asp:Label>
+                </td>
+            </tr>
 
-                <tr id="password-row">
+            <tr id="password-row">
 
-                    <td><p>Password</p></td>
+                <td>
+                    <p>Password</p>
+                </td>
 
-                    <td>
-                        <asp:TextBox TextMode="Password" ID="password" 
-                            class="password-input" runat="server"></asp:TextBox>
-                    </td>
+                <td>
+                    <asp:TextBox TextMode="Password" ID="password"
+                        class="password-input" runat="server"></asp:TextBox>
+                </td>
 
-                </tr>
+            </tr>
 
-                <tr id="confirm-password-row">
+            <tr id="confirm-password-row">
 
-                    <td><p>Confirm Password</p></td>
+                <td>
+                    <p>Confirm Password</p>
+                </td>
 
-                    <td>
-                        <asp:TextBox TextMode="Password" ID="confirm_password" 
-                            class="password-input" runat="server"></asp:TextBox>
-                    </td>
+                <td>
+                    <asp:TextBox TextMode="Password" ID="confirm_password"
+                        class="password-input" runat="server"></asp:TextBox>
+                </td>
 
-                    <td>
-                        <label id="password-input-error-label"
-                            class="error-label">
-                        </label>
-                    </td>
+                <td>
+                    <label id="password-input-error-label"
+                        class="error-label">
+                    </label>
+                </td>
 
-                </tr>
+            </tr>
 
-                <tr id="email-row">
+            <tr id="email-row">
 
-                    <td><p>Email</p></td>
-                    
-                    <td>
-                        <asp:TextBox type="text" class="email-input"
-                            ID="email" runat="server"></asp:TextBox>
-                    </td>
+                <td>
+                    <p>Email</p>
+                </td>
 
-                </tr>
+                <td>
+                    <asp:TextBox type="text" class="email-input"
+                        ID="email" runat="server"></asp:TextBox>
+                </td>
 
-                <tr id="confirm-email-row">
-                    <td><p>Confirm Email</p></td>
+            </tr>
 
-                    <td>
-                        <asp:TextBox type="text" class="email-input"
-                            ID="confirm_email" runat="server"></asp:TextBox>
-                    </td>
+            <tr id="confirm-email-row">
+                <td>
+                    <p>Confirm Email</p>
+                </td>
 
-                    <td>
-                        <%-- For the client --%>
-                        <label id="email-input-error-label"
-                            class="error-label">
-                        </label>
+                <td>
+                    <asp:TextBox type="text" class="email-input"
+                        ID="confirm_email" runat="server"></asp:TextBox>
+                </td>
 
-                        <%-- For the server --%>
-                        <asp:Label ID="email_input_error_label"
-                            class="error-label asp-email-input-error-label" 
-                            runat="server"></asp:Label>
-                    </td>
-                </tr>
+                <td>
+                    <%-- For the client --%>
+                    <label id="email-input-error-label"
+                        class="error-label">
+                    </label>
 
-                <tr id="submit-button-row">
+                    <%-- For the server --%>
+                    <asp:Label ID="email_input_error_label"
+                        class="error-label asp-email-input-error-label"
+                        runat="server"></asp:Label>
+                </td>
+            </tr>
 
-                    <td class="dummy-column"></td>
+            <tr id="submit-button-row">
 
-                    <td id="submit-button-container">
-                        <asp:Button CssClass="submit-button" 
-                            ID="user_button" runat="server" 
-                            Text="Create User"
-                            OnClientClick="return validate()"
-                            OnClick="InsertUserButton_OnClick" />
-                    </td>
+                <td class="dummy-column"></td>
 
-                </tr>
-            </table>
-        </div>
-    </form>
+                <td id="submit-button-container">
+                    <asp:Button CssClass="submit-button"
+                        ID="user_button" runat="server"
+                        Text="Create User"
+                        OnClientClick="return validate()"
+                        OnClick="InsertUserButton_OnClick" />
+                </td>
+
+            </tr>
+        </table>
+    </div>
 
 </asp:Content>
