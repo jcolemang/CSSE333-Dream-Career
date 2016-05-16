@@ -13,7 +13,6 @@ PROBABLY DON'T EVEN WORRY ABOUT IT:
 1. In the admin page the insert profile thing doesn't always insert all of them.
 
 
-
 Create Position page has errors
     Throws an exception on insert
     doesnt do any validation
@@ -21,5 +20,7 @@ Create Position page has errors
 
 Profile page has errors
     Can't update or delete    
+
+Create Company sent me to the error page
 
 
