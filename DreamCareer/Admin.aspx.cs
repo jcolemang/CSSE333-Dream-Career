@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace DreamCareer
 {
-    public partial class Admin : System.Web.UI.Page
+    public partial class Admin : AdminPage
     {
         private string[] AllowedUsers = new string[] { "coleman", "Coleman" };
 
@@ -17,12 +17,11 @@ namespace DreamCareer
         PositionGenerator PositionGenerator;
         RelationGenerator RelationGenerator;
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
-            if (Session["username"] == null)
-                Response.Redirect("Login.aspx");
-            if (!AllowedUsers.Contains(Session["username"].ToString()))
-                Response.Redirect("Login.aspx");
+            base.Page_Load(sender, e);
+            if (this.LoadError)
+                return;
 
             this.UserGenerator = new UserGenerator();
             this.ProfileGenerator = new ProfileGenerator();

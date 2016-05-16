@@ -7,22 +7,17 @@ using System.Web.UI.WebControls;
 
 namespace DreamCareer
 {
-    public partial class ViewProfile : System.Web.UI.Page
+    public partial class ViewProfile : UserPage
     {
-        protected string username;
         protected int ProfileID;
-        protected int UserID;
         protected string name;
 
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
-            if (Session["username"] == null)
-                Response.Redirect("Login.aspx");
-            if (Session["UserID"] == null)
-                Response.Redirect("Login.aspx");
-
-            this.UserID = (int)Session["UserID"];
+            base.Page_Load(sender, e);
+            if (this.LoadError)
+                return;
 
             string UsernameParameter = "";
             if (Request.QueryString["username"] != null)
@@ -33,29 +28,37 @@ namespace DreamCareer
             {
                 // The default if they gave no parameter
                 Response.Redirect("ViewProfile.aspx?username=" + Session["username"]);
+                return;
             }
-            Dictionary<string, string> Profile =
-                    Database.GetProfile(UsernameParameter);
+
+            // Getting the profile
+            Dictionary<string, string> Profile;
             try
             {
-                ProfileID = Database.getProfileID(UsernameParameter);
-
-                this.ProfileID = ProfileID;
-                NameText.InnerText = Profile["Name"];
-                GenderText.InnerText = Profile["Gender"];
-                MajorText.InnerText = Profile["Major"];
-                ExperienceText.InnerText = Profile["Experience"];
-                StreetText.InnerText = Profile["Street"];
-                CityText.InnerText = Profile["City"];
-                StateText.InnerText = Profile["State"];
-                ZipcodeText.InnerText = Profile["Zipcode"];
+                Profile = Database.GetProfile(UsernameParameter);
             }
-            catch (NoDataException)
+            catch (ProfileDoesntExistException)
             {
-                Response.Redirect("CreateProfile.aspx");
+                if (this.Username == UsernameParameter)
+                {
+                    Response.Redirect("CreateProfile.aspx");
+                }
+                else
+                {
+                    this.SendToErrorPage("User has no profile");
+                }
+
+                return;
             }
 
-
+            NameText.InnerText = Profile["Name"];
+            GenderText.InnerText = Profile["Gender"];
+            MajorText.InnerText = Profile["Major"];
+            ExperienceText.InnerText = Profile["Experience"];
+            StreetText.InnerText = Profile["Street"];
+            CityText.InnerText = Profile["City"];
+            StateText.InnerText = Profile["State"];
+            ZipcodeText.InnerText = Profile["Zipcode"];
         }
 
 

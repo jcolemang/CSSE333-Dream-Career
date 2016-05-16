@@ -3,7 +3,7 @@
 USE DreamCareer
 GO
 
-CREATE PROCEDURE get_user_companies
+ALTER PROCEDURE get_user_companies
 	(@UserID int)
 AS
 
@@ -22,3 +22,6 @@ AS
 			OwnsCompany.CompanyID = Company.CompanyID AND
 			DreamCareerUser.UserID = @UserID
 	RETURN 0
+
+GO
+GRANT EXECUTE ON get_user_companies TO dreamcareer

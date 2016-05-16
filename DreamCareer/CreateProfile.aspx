@@ -48,13 +48,14 @@
                         <asp:ListItem Text="Male" Value="2"></asp:ListItem>
                         <asp:ListItem Text="Female" Value="3"></asp:ListItem>
                         <asp:ListItem Text="Other" Value="4"></asp:ListItem>
+                        <asp:ListItem Text="Prefer not to say" Value="5"></asp:ListItem>
 
                     </asp:DropDownList>
 
 
                 </td>
                 <td>
-                    <label id="gender-not-selected-error"></label>
+                    <label id="gender-not-selected-error" class="error-label"></label>
                 </td>
             </tr>
 

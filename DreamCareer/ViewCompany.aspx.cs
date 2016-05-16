@@ -7,17 +7,17 @@ using System.Web.UI.WebControls;
 
 namespace DreamCareer
 {
-    public partial class ViewCompany : System.Web.UI.Page
+    public partial class ViewCompany : UserPage
     {
 
         protected int CompanyID;
         protected bool UserOwnsCompany = false;
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
-
-            if (Session["username"] == null)
-                Response.Redirect("Login.aspx");
+            base.Page_Load(sender, e);
+            if (this.LoadError)
+                return;
 
             string CompanyIDString = Request.QueryString["CompanyID"];
 

@@ -5,7 +5,7 @@ CREATE TABLE UserProfile
 (
 	ProfileID int NOT NULL,
 	Name varchar(50) NOT NULL,
-	Gender varchar(10),
+	Gender varchar(20),
 	Major varchar(50),
 	Experience varchar(5000),
 	Street varchar(128),

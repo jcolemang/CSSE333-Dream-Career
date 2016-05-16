@@ -1335,7 +1335,7 @@ namespace DreamCareer
             {
                 Profile["Username"] = Username;
                 Profile["Name"] = reader.GetString(1);
-                Profile["Gender"] = reader.GetString(2);
+                Profile["Gender"] = reader.GetString(2) ?? "";
                 Profile["Major"] = reader.GetString(3);
                 Profile["Experience"] = reader.GetString(4);
                 Profile["Street"] = reader.GetString(5);
@@ -1345,7 +1345,7 @@ namespace DreamCareer
             }
             else
             {
-                throw new NoDataException();
+                throw new ProfileDoesntExistException();
             }
 
             return Profile;

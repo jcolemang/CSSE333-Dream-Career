@@ -7,11 +7,13 @@ using System.Web.UI.WebControls;
 
 namespace DreamCareer
 {
-    public partial class AlterPosition : System.Web.UI.Page
+    public partial class AlterPosition : UserPage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
-
+            base.Page_Load(sender, e);
+            if (this.LoadError)
+                return;
         }
         protected void InsertAlterPositionButton_OnClick(object sender, EventArgs e)
         {

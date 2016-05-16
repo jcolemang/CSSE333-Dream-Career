@@ -7,17 +7,8 @@ using System.Web.UI.WebControls;
 
 namespace DreamCareer
 {
-    public partial class Default1 : System.Web.UI.Page
+    public partial class Default1 : UserPage 
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (Session["username"] == null)
-            {
-                Response.Redirect("Login.aspx");
-            }
-        }
-
-
         protected void SearchPositionButton_OnClick(object sender, EventArgs e)
         {
             Response.Redirect("SearchResults.aspx?Type=Position&Search=" +

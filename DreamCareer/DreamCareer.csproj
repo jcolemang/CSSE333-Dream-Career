@@ -222,6 +222,9 @@
     <Compile Include="SearchResults.aspx.designer.cs">
       <DependentUpon>SearchResults.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="ViewCompany.aspx.cs">
       <DependentUpon>ViewCompany.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

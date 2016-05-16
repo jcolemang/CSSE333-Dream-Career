@@ -2,23 +2,12 @@
 
 namespace DreamCareer
 {
-    public partial class CreateProfile : System.Web.UI.Page
+    public partial class CreateProfile : UserPage
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (Session["username"] == null)
-            {
-                Response.Redirect("Login.aspx");
-            }
-        }
-
 
         protected void InsertProfileButton_OnClick(object sender, EventArgs e)
         {
-            if (Session["username"] == null)
-                Response.Redirect("Login.aspx");
-
-            string uname = (string)Session["username"];
+            string uname = this.Username;
             string n = name.Text;
             int gend = gender.SelectedIndex;
             //string gend = gender.Text; not sure about gender part----------------------------------------------------------------------
@@ -28,18 +17,18 @@ namespace DreamCareer
             string stat = state.Text;
             string zi = zip.Text;
             string exp = experience.Text;
-            string gende = "Select";
-            if (gend == 2) { gende = "Male"; }
-            else if (gend == 3) { gende = "Female"; }
-            else if (gend == 4) { gende = "Other"; }
-            Boolean boo = false;
+            string GenderString;
+            if (gend == 1) { GenderString = "Male"; }
+            else if (gend == 2) { GenderString = "Female"; }
+            else if (gend == 3) { GenderString = "Other"; }
+            else { GenderString = "Prefer not to say"; }
             
             
             if (Database.checkIfUsernameInDatabase(uname))
             {
                 try
                 {
-                    Database.CreateUserProfile(n, gende, maj, exp, stree, cit, stat, zi, uname);
+                    Database.CreateUserProfile(n, GenderString, maj, exp, stree, cit, stat, zi, uname);
                 }
                 catch (ProfileAlreadyExistsException)
                 {

@@ -7,21 +7,8 @@ using System.Web.UI.WebControls;
 
 namespace DreamCareer
 {
-    public partial class CreateCompany : System.Web.UI.Page
+    public partial class CreateCompany : UserPage
     {
-
-        protected int UserID;
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            // TODO make a specific user type that can do this
-            if (Session["Username"] == null)
-                Response.Redirect("Login.aspx");
-
-            //TODO Error check this.
-            int.TryParse(Session["UserID"].ToString(), out this.UserID);
-
-        }
         protected void InsertCompanyButton_OnClick(object sender, EventArgs e)
         {
             string Name = CompanyName.Text;

@@ -7,12 +7,13 @@ using System.Web.UI.WebControls;
 
 namespace DreamCareer
 {
-    public partial class SearchResults : System.Web.UI.Page
+    public partial class SearchResults : UserPage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
-            if (Session["username"] == null)
-                Response.Redirect("Login.aspx");
+            base.Page_Load(sender, e);
+            if (this.LoadError)
+                return;
         }
 
 

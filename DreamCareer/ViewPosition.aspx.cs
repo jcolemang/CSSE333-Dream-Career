@@ -7,10 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace DreamCareer
 {
-    public partial class ViewPosition : System.Web.UI.Page
+    public partial class ViewPosition : UserPage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
+            base.Page_Load(sender, e);
+            if (this.LoadError)
+                return;
+
             //TODO add company textbox too
             string pos = Request.QueryString["PositionID"];
             

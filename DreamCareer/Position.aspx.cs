@@ -7,19 +7,22 @@ using System.Web.UI.WebControls;
 
 namespace DreamCareer
 {
-    public partial class Position : System.Web.UI.Page
+    
+
+    public partial class Position : UserPage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
-            // Check that the query string is valid
-            // Should include a CompanyID
-            // Should check that the current user owns the company
+            base.Page_Load(sender, e);
+            if (this.LoadError)
+                return;
+
+            // Set the company ID
         }
+
+
         protected void InsertPositionButton_OnClick(object sender, EventArgs e)
         {
-            //comment out later START//
-            string s = compname.Text;
-            //comment out later END//
             string pos = titl.Text;
             string ty = typ.Text;
             string stree = strname.Text;
@@ -40,17 +43,13 @@ namespace DreamCareer
                 name_input_error_label.Text = "Need title to make position.";
                 return;
             }
-            if (s.Equals(""))
-            {
-                compname_input_error_label.Text = "Need company name to make position.";
-                return;
-            }
+
             //Comment in later START//
             //String s = Request.QueryString["value1"];
             //Comment in later END//
 
             //TODO add code later to throw error if name of non-existent company
-            int compid = Database.GetCompanyID(s);
+            int compid = Database.GetCompanyID(this.Username);
             Database.CreatePosition(compid, pos, ty, stree, cit, stat, zi, sal, jobdesc);
             System.Windows.Forms.MessageBox.Show("Created!");
             Response.Redirect("Login.aspx");  
