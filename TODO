@@ -14,8 +14,12 @@ PROBABLY DON'T EVEN WORRY ABOUT IT:
 
 
 
-Fix size string
-Company Tags
-Dropdown (Dont make them manually enter it in)
+Create Position page has errors
+    Throws an exception on insert
+    doesnt do any validation
+        - Salary!
+
+Profile page has errors
+    Can't update or delete    
 
 

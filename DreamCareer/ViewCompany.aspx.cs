@@ -185,6 +185,21 @@ namespace DreamCareer
         protected void UpdateCompanyZipcode(object sender, EventArgs e)
         {
             string NewCompanyZipcode = UpdateCompanyZipcodeTextBox.Text;
+            CompanyZipcodeErrorLabel.Text = "";
+
+            // Checking the zipcode for errors
+            int dummy;
+            if (!int.TryParse(NewCompanyZipcode, out dummy))
+            {
+                CompanyZipcodeErrorLabel.Text = "Invalid zipcode";
+                return;
+            }
+            if (NewCompanyZipcode.Length != 5)
+            {
+                CompanyZipcodeErrorLabel.Text = "Invalid zipcode";
+                return;
+            }
+
             Database.UpdateCompany(this.CompanyID, NewZip: NewCompanyZipcode);
             CompanyZipcode.InnerText = HttpUtility.HtmlEncode(NewCompanyZipcode);
         }

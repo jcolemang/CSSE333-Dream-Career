@@ -1,9 +1,4 @@
 ﻿
-$(document).ready(function () {
-
-   
-})
-
 function toggleCompanyName() {
     $('.UpdateCompanyName').val($('.CompanyName').html());
     $('.UpdateCompanyName').toggle();

@@ -8,16 +8,18 @@ using System.Web.UI.WebControls;
 namespace DreamCareer
 {
     
-
     public partial class Position : UserPage
     {
+
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
             if (this.LoadError)
                 return;
 
-            // Set the company ID
+            if (!this.SetCompanyID())
+                return;
+
         }
 
 
@@ -44,13 +46,7 @@ namespace DreamCareer
                 return;
             }
 
-            //Comment in later START//
-            //String s = Request.QueryString["value1"];
-            //Comment in later END//
-
-            //TODO add code later to throw error if name of non-existent company
-            int compid = Database.GetCompanyID(this.Username);
-            Database.CreatePosition(compid, pos, ty, stree, cit, stat, zi, sal, jobdesc);
+            Database.CreatePosition(this.CompanyID, pos, ty, stree, cit, stat, zi, sal, jobdesc);
             System.Windows.Forms.MessageBox.Show("Created!");
             Response.Redirect("Login.aspx");  
         }

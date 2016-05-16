@@ -10,6 +10,14 @@ AS
 	DECLARE @NumTagsGiven int
 	SET @NumTagsGiven = (SELECT COUNT(*) FROM @Tags)
 
+	IF @NumTagsGiven = 0
+	BEGIN
+		SELECT UserProfile.ProfileID, UserProfile.Name, DreamCareerUser.Username
+		FROM UserProfile, DreamCareerUser
+		WHERE UserProfile.ProfileID = DreamCareerUser.UserID
+		RETURN
+	END
+
 	SELECT UserProfile.ProfileID, UserProfile.Name, DreamCareerUser.Username
 	FROM UserProfile, UserProfileHasTag, Tag, DreamCareerUser
 	WHERE UserProfile.ProfileID = UserProfileHasTag.ProfileID AND

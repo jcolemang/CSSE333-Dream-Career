@@ -356,6 +356,13 @@
 
             </td>
             <% } %>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="CompanyZipcodeErrorLabel"
+                    CssClass="error-label CompanyZipcodeErrorLabel">
+                </asp:Label>
+            </td>
         </tr>
 
         <%-- Viewing tags --%>
