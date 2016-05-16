@@ -1,11 +1,11 @@
 
 IMPORTANT:
 2. Fix permissions for get_all_userids
+3. delete_profile sp is not in the repo
 
 MODERATE:
 2. Add a constraint limiting the number of tags a position can have
     (probably something like 10)
-6. Move the connection string to a config file
 7. Create position button on company page
 8. No such position exists error handling for update and delete position
 

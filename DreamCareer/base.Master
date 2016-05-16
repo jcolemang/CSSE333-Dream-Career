@@ -50,7 +50,7 @@
                     </li>
                 <% } %>
 
-                <% if (!this.HasProfile)
+                <% if (this.IsUser && !this.HasProfile)
                     { %>
                     <li>
                         <a class="link-button" href="CreateProfile.aspx" runat="server">
@@ -59,17 +59,23 @@
                     </li>
                 <% } %>
 
+                <% if (this.IsUser)
+                    { %>
                 <li>
                     <a class="link-button" href="CreateCompany.aspx" runat="server">
                         Create Company
                     </a>
                 </li>
+                <% } %>
                 
+                <% if (Session["username"] != null && Session["username"].ToString() == "coleman")
+                    { %>
                 <li>
                     <a class="link-button" href="Admin.aspx" runat="server">
                         Admin
                     </a>
                 </li>
+                <% } %>
 
                 <% if (this.IsUser)
                     { %>

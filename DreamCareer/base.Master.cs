@@ -31,10 +31,6 @@ namespace DreamCareer
                 this.UserID = Database.GetUserID(this.Username);
                 this.HasProfile = this.UserHasProfile();
             }
-
-           
-
-
         }
 
         protected void LogoutButton_OnClick(object sender, EventArgs e)

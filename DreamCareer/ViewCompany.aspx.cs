@@ -15,6 +15,10 @@ namespace DreamCareer
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (Session["username"] == null)
+                Response.Redirect("Login.aspx");
+
             string CompanyIDString = Request.QueryString["CompanyID"];
 
             if (CompanyIDString == null || CompanyIDString == "")
@@ -88,7 +92,7 @@ namespace DreamCareer
 
         protected void InsertCompanyTag(object sender, EventArgs e)
         {
-            string TagText = TagInput.Text;
+            string TagText = TagInput.Text.ToLower();
             List<string> Tags = Database.ParseTags(TagText);
             CompanyTagsErrorLabel.Text = "";
             string NewTag;
@@ -110,7 +114,10 @@ namespace DreamCareer
                 try
                 {
                     Database.InsertCompanyTag(this.CompanyID, NewTag);
-                    CompanyTagsLabel.Text += ", " + HttpUtility.HtmlEncode(NewTag);
+                    if (CompanyTagsLabel.Text.Length == 0)
+                        CompanyTagsLabel.Text = HttpUtility.HtmlEncode(NewTag);
+                    else
+                        CompanyTagsLabel.Text += ", " + HttpUtility.HtmlEncode(NewTag);
                 }
                 catch (RepeatDataException)
                 {
@@ -208,7 +215,7 @@ namespace DreamCareer
             foreach (Dictionary<string, string> Position in Positions)
             {
                 ResponseString += "<div>";
-                ResponseString += "<div class=\"text-div\">"; // Make this inline-block
+                ResponseString += "<div class=\"text-div\">"; 
 
                 ResponseString += String.Format(
                     "<a class=\"search-result\" " +

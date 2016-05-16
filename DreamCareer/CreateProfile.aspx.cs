@@ -6,7 +6,10 @@ namespace DreamCareer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["username"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
 
 
@@ -32,26 +35,17 @@ namespace DreamCareer
             Boolean boo = false;
             
             
-            if (!Database.checkIfUsernameInDatabase(uname))
+            if (Database.checkIfUsernameInDatabase(uname))
             {
-                boo = true;
+                try
+                {
+                    Database.CreateUserProfile(n, gende, maj, exp, stree, cit, stat, zi, uname);
+                }
+                catch (ProfileAlreadyExistsException)
+                {
+                    Response.Redirect("ErrorPage.aspx");
+                }
             }
-            
-            
-            
-            if (boo)
-            {
-               
-
-                //username_input_error_label.Text = "Username doesn't exist.";
-                return;
-            }
-            else
-            {
-                //username_input_error_label.Text = "";
-                Database.CreateUserProfile(n, gende, maj, exp, stree, cit, stat, zi, uname);
-            }
-            
         }
     }
 }
