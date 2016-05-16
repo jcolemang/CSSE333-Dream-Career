@@ -3,7 +3,7 @@ USE DreamCareer
 -- Simple insert to connect a tag to
 -- some Position
 Go
-ALTER PROCEDURE insert_new_position_tag
+CREATE PROCEDURE insert_new_position_tag
 	(@tagtext varchar(50),
 	@posid int)
 AS

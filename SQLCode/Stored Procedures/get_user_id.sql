@@ -3,7 +3,7 @@
 USE DreamCareer
 GO
 
-ALTER PROCEDURE get_user_id
+CREATE PROCEDURE get_user_id
 	(@Username varchar(50))
 AS
 

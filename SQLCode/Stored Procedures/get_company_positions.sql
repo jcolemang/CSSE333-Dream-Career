@@ -3,7 +3,7 @@
 USE DreamCareer
 GO
 
-ALTER PROCEDURE get_company_positions
+CREATE PROCEDURE get_company_positions
 	(@CompanyID int)
 AS
 

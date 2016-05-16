@@ -3,7 +3,7 @@ USE DreamCareer
 -- A simple insert stored procedure
 -- Inserts a company into the database
 Go
-ALTER PROCEDURE insert_new_company
+CREATE PROCEDURE insert_new_company
 	(@size int,
 	@name varchar(50),
 	@description varchar(100),
@@ -19,7 +19,7 @@ AS
 	SET @UserDoesntExist = -3
 
 	DECLARE @RepeatCompanyName smallint
-	SET @RepeatCompanyName = -8
+	SET @RepeatCompanyName = -7
 
 	IF NOT EXISTS (SELECT * FROM DreamCareerUser WHERE UserID = @UserID)
 	BEGIN

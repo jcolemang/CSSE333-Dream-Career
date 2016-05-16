@@ -9,7 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-create procedure [dbo].[checkif_username_in_database]
+CREATE procedure [dbo].[checkif_username_in_database]
 (@uname varchar(50))
 as
 if(@uname in (select Username from DreamCareerUser)) 

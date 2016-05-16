@@ -3,7 +3,7 @@
 USE DreamCareer
 GO
 
-ALTER PROCEDURE insert_new_tag
+CREATE PROCEDURE insert_new_tag
 	(@tagword varchar(50))
 AS
 	DECLARE @RepeatTagError smallint

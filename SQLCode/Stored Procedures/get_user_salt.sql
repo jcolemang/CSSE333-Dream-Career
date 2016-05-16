@@ -2,7 +2,7 @@
 USE DreamCareer
 GO
 
-ALTER PROCEDURE get_user_salt
+CREATE PROCEDURE get_user_salt
 	(@uname varchar(100))
 AS
 

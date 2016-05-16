@@ -5,7 +5,7 @@ USE DreamCareer
 -- this case
 
 GO
-ALTER PROCEDURE insert_new_user 
+CREATE PROCEDURE insert_new_user 
 	(@Uname varchar(20),
 	@password varchar(512),
 	@salt varchar(512),

@@ -1,7 +1,7 @@
 USE DreamCareer
 GO
 
-ALTER PROCEDURE insert_new_profile_tag
+CREATE PROCEDURE insert_new_profile_tag
 	(@tagtext varchar(50),
 	@ProfileID int)
 AS
