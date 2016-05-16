@@ -31,6 +31,10 @@
                     </asp:TextBox>
 
                 </td>
+
+                <% if (this.UserOwnsCompany)
+                    {%>
+
                 <td>
                     <button type="button"
                         class="expand-update"
@@ -55,6 +59,8 @@
                     </button>
 
                 </td>
+
+                <% } %>
             </tr>
 
             <%-- Company size row --%>
@@ -74,6 +80,9 @@
                         CssClass="update-value UpdateCompanySize">
                     </asp:TextBox>
                 </td>
+
+                <% if (this.UserOwnsCompany)
+                    { %>
 
                 <td>
                     <button type="button"
@@ -97,6 +106,8 @@
                     </button>
 
                 </td>
+
+                <% } %>
 
                 <td>
                     <asp:Label runat="server"
@@ -130,6 +141,8 @@
 
                 </td>
 
+                <% if (this.UserOwnsCompany)
+                    { %>
                 <td>
 
                     <button type="button"
@@ -153,6 +166,8 @@
                     </button>
 
                 </td>
+
+                <% } %>
             </tr>
 
             <%-- Company location--%>
@@ -177,6 +192,8 @@
 
                 </td>
 
+                <% if (this.UserOwnsCompany)
+                    { %>
                 <td>
 
                     <button type="button"
@@ -200,6 +217,8 @@
                     </button>
 
                 </td>
+
+                <% } %>
             </tr>
 
             <%-- City --%>
@@ -221,6 +240,8 @@
 
                 </td>
 
+                <% if (this.UserOwnsCompany)
+                    { %>
                 <td>
 
                     <button type="button"
@@ -244,6 +265,7 @@
 
                 </td>
 
+                <% } %>
             </tr>
 
             <%-- State --%>
@@ -255,9 +277,10 @@
 
                 <td>
 
-                    <p runat="server" 
+                    <p runat="server"
                         id="CompanyState"
-                        class="CompanyState"></p>
+                        class="CompanyState">
+                    </p>
 
                     <asp:TextBox runat="server"
                         ID="UpdateCompanyStateTextBox"
@@ -265,6 +288,9 @@
                     </asp:TextBox>
 
                 </td>
+
+                <% if (this.UserOwnsCompany)
+                    { %>
 
                 <td>
 
@@ -288,6 +314,8 @@
                     </button>
 
                 </td>
+
+                <% } %>
             </tr>
 
             <%-- Zipcode --%>
@@ -299,9 +327,10 @@
 
                 <td>
 
-                    <p runat="server" 
+                    <p runat="server"
                         id="CompanyZipcode"
-                        class="CompanyZipcode"></p>
+                        class="CompanyZipcode">
+                    </p>
 
                     <asp:TextBox runat="server"
                         ID="UpdateCompanyZipcodeTextBox"
@@ -309,6 +338,9 @@
                     </asp:TextBox>
 
                 </td>
+
+                <% if (this.UserOwnsCompany)
+                    { %>
 
                 <td>
 
@@ -332,6 +364,8 @@
                     </button>
 
                 </td>
+
+                <% } %>
             </tr>
 
             <%-- Viewing tags --%>
@@ -357,8 +391,7 @@
             <%-- Open positions --%>
             <tr>
                 <td>
-                    <h3>
-                        Company Positions
+                    <h3>Company Positions
                     </h3>
                 </td>
 
@@ -366,19 +399,22 @@
                     <%= GetCompanyPositions() %>
                 </td>
 
+                <% if (this.UserOwnsCompany)
+                    { %>
                 <td>
-                    <asp:LinkButton runat="server"
+                    <asp:Button runat="server"
                         ID="InsertPositionButton"
                         Text="Create Position"
-                        OnClick="AddPosition">
-                    </asp:LinkButton>
+                        OnClick="AddPosition" />
                 </td>
+                <% } %>
             </tr>
 
 
         </table>
 
-        <%-- Company Tags --%>
+        <% if (this.UserOwnsCompany)
+            { %>
 
         <%-- Adding tags --%>
         <div id="add-tags-div">
@@ -388,11 +424,11 @@
 
             <asp:Button runat="server"
                 ID="SubmitTagButton"
-                Text="Add Tag" 
-                OnClick="InsertCompanyTag"/>
+                Text="Add Tag"
+                OnClick="InsertCompanyTag" />
 
         </div>
-        
+
 
         <%-- Deleting the company --%>
         <div id="delete-button-div">
@@ -402,6 +438,7 @@
                 Text="Delete Company" />
         </div>
 
+        <% } %>
     </form>
 
 </asp:Content>

@@ -296,6 +296,30 @@ namespace DreamCareer
         }
 
 
+        public static bool UserInCompany(int CompanyID, int UserID)
+        {
+            SqlConnection Connection = GetSqlConnection();
+            string sp_name = "user_in_company";
+
+            SqlCommand user_in_company = 
+                new SqlCommand(sp_name, Connection);
+            user_in_company.CommandType = CommandType.StoredProcedure;
+
+            user_in_company.Parameters.Add(
+                new SqlParameter("@UserID", UserID));
+            user_in_company.Parameters.Add(
+                new SqlParameter("@CompanyID", CompanyID));
+
+            SqlDataReader Reader = user_in_company.ExecuteReader();
+
+            bool UserInCompany = Reader.HasRows;
+
+            Reader.Close();
+            Connection.Close();
+            return UserInCompany; 
+        }
+
+
         /*
          * The three Search functions are nearly identical
          * both here and in the database. I should try

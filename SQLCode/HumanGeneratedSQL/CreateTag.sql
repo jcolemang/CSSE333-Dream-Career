@@ -11,3 +11,6 @@ CREATE TABLE Tag
 
 ALTER TABLE Tag
 ADD UNIQUE(TagWord)
+
+CREATE INDEX tag_index ON Tag (TagWord)
+

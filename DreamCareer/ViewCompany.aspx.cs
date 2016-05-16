@@ -11,6 +11,7 @@ namespace DreamCareer
     {
 
         protected int CompanyID;
+        protected bool UserOwnsCompany = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -39,6 +40,13 @@ namespace DreamCareer
             {
                 Response.Redirect("ErrorPage.aspx");
                 return;
+            }
+
+            this.UserOwnsCompany = false;
+            int UserID;
+            if (int.TryParse(Session["UserID"].ToString(), out UserID))
+            {
+                this.UserOwnsCompany = Database.UserInCompany(this.CompanyID, UserID);
             }
 
             CompanyName.InnerText = HttpUtility.HtmlEncode(Company["Name"]);
@@ -184,7 +192,9 @@ namespace DreamCareer
 
         protected void AddPosition(object sender, EventArgs e)
         {
-            Response.Redirect("Position.aspx");
+            Response.Redirect(String.Format(
+                "Position.aspx?CompanyID={0}",
+                this.CompanyID));
         }
 
 
