@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="Position.aspx.cs" Inherits="DreamCareer.Position" %>
+﻿<%@ Page Language="C#" ValidateRequest="false" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="Position.aspx.cs" Inherits="DreamCareer.Position" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="static/css/Position.css" rel="stylesheet" type="text/css" />

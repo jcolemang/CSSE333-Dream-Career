@@ -17,7 +17,6 @@ namespace DreamCareer
         }
 
 
-
         protected string BuildPositionResponse(List<Dictionary<string, string>> Results)
         {
             string response = "";

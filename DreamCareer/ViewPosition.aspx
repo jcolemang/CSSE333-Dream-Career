@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="ViewPosition.aspx.cs" Inherits="DreamCareer.ViewPosition" %>
+﻿<%@ Page Title="" ValidateRequest="false" Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="ViewPosition.aspx.cs" Inherits="DreamCareer.ViewPosition" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
