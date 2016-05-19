@@ -526,11 +526,11 @@ namespace DreamCareer
         private string[] PossibleGenders;
         private string[] PossibleMajors;
         private int MaxExperienceLength;
-        HashSet<int> UsedUserIDs;
+        HashSet<string> UsedUsernames;
 
         public ProfileGenerator() : base()
         {
-            this.UsedUserIDs = new HashSet<int>();
+            this.UsedUsernames = new HashSet<string>();
             this.MaxExperienceLength = 500;
 
             this.PossibleGenders = new string[] {
@@ -578,7 +578,7 @@ namespace DreamCareer
             string city;
             string state;
             string zip;
-            int userid;
+            string username;
 
             int i;
             for (i = 0; i < NumProfiles; i++)
@@ -592,22 +592,30 @@ namespace DreamCareer
                 city = this.GenerateCity();
                 state = this.GenerateState();
                 zip = this.GenerateZip();
-                userid = Database.GetRandomUserID();
+                username = Database.GetRandomUsername();
+
 
                 int counter = 0;
-                while (this.UsedUserIDs.Contains(userid))
+                while (this.UsedUsernames.Contains(username))
                 {
-                    userid = Database.GetRandomUserID();
+                    username = Database.GetRandomUsername();
                     counter++;
                     if (counter > 20)
                         return;
                 }
 
-                this.UsedUserIDs.Add(userid);
+                this.UsedUsernames.Add(username);
 
-                //Database.CreateUserProfile(name, gender,
-                //    major, experience, street, city,
-                //    state, zip, userid);
+                try
+                {
+                    Database.CreateUserProfile(name, gender,
+                        major, experience, street, city,
+                        state, zip, username);
+                }
+                catch (ProfileAlreadyExistsException)
+                {
+                    continue;
+                }
             }
         }
 

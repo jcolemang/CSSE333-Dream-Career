@@ -762,7 +762,9 @@ namespace DreamCareer
             }
             else
             {
-                throw new NoDataException();
+                reader.Close();
+                Connection.Close();
+                throw new CompanyDoesntExistException();
             }
 
             reader.Close();
@@ -1397,7 +1399,7 @@ namespace DreamCareer
             SqlDataReader reader = get_random_username.ExecuteReader();
 
             string username;
-            if (reader.HasRows)
+            if (reader.Read())
                 username = reader.GetString(0);
             else
             {
@@ -1653,6 +1655,19 @@ namespace DreamCareer
         }
 
         public RepeatCompanyNameException(string msg) : base(msg)
+        {
+
+        }
+    }
+
+    public class CompanyDoesntExistException: NoDataException
+    {
+        public CompanyDoesntExistException() : base()
+        {
+
+        }
+
+        public CompanyDoesntExistException(string msg) : base(msg)
         {
 
         }

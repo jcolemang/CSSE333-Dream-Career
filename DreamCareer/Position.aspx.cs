@@ -8,16 +8,18 @@ using System.Web.UI.WebControls;
 namespace DreamCareer
 {
     
-
     public partial class Position : UserPage
     {
+
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
             if (this.LoadError)
                 return;
 
-            // Set the company ID
+            if (!this.SetCompanyID())
+                return;
+
         }
 
 

@@ -8,6 +8,7 @@ namespace DreamCareer
     public class UserPage : System.Web.UI.Page
     {
         protected int UserID;
+        protected int CompanyID;
         protected string Username;
         protected bool LoadError;
         
@@ -41,10 +42,34 @@ namespace DreamCareer
             }
             catch (UsernameDoesntExistException)
             {
-
+                this.SendToErrorPage("Username doesn't exist");
             }
 
             return false;
+        }
+
+        /*
+         * converts the CompanyID into an integer and checks if it is valid
+         */
+        protected bool SetCompanyID()
+        {
+            string CompanyIDString = Request.QueryString["CompanyID"] ?? "Unparseable";
+            if (!int.TryParse(CompanyIDString, out this.CompanyID))
+            {
+                this.SendToErrorPage("Invalid CompanyID");
+                return false;
+            }
+            try
+            {
+                Database.GetCompany(this.CompanyID);
+            }
+            catch (CompanyDoesntExistException)
+            {
+                this.SendToErrorPage("Company doesn't exist.");
+                return false;
+            }
+
+            return true;
         }
 
         protected void SendToErrorPage(string message)

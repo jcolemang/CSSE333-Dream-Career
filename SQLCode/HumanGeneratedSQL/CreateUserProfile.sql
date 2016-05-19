@@ -17,3 +17,5 @@ CREATE TABLE UserProfile
 	ON DELETE CASCADE
 	ON UPDATE CASCADE
 )
+
+CREATE INDEX profile_name_index ON UserProfile (Name)
