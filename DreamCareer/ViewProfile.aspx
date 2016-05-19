@@ -22,25 +22,9 @@
             <tr>
                 <td colspan="2">
                     <h2 id="NameText" class="NameText" runat="server"></h2>
-                    <%--        <asp:TextBox ID="UpdateNameTextBox" CssClass="update-value Edit_Click" runat="server">
-                    </asp:TextBox>--%> 
+                    
                 </td>
-                <%--
-                <td>
-                    <button type="button"
-                        class="expand-update ProfileExpandUpdate"
-                        id="profile-name-expand-update"
-                        onclick="toggleProfile()">
-                        Update
-                    </button>
-
-                    <asp:Button type="button"
-                        CssClass="submit-update ProfileSubmitUpdate"
-                        ID="Button1"
-                        runat="server"
-                        OnClick="Edit_Click"
-                        Text="Submit"></asp:Button>
-                </td>name --%>
+               
             </tr>
             <%--gender --%>
             <tr>
