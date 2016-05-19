@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -22,8 +23,21 @@ namespace DreamCareer
             string UserEmail = email.Text.ToLower().Trim();
             string UserPassword = password.Text.ToLower().Trim();
 
+            string MustMatch = @"^\w+$";
+
             username_input_error_label.Text = "";
             email_input_error_label.Text = "";
+
+            if (UName.Length > Database.MaxUsernameLength)
+            {
+                username_input_error_label.Text = "Username too long.";
+                return;
+            }
+            if (UserEmail.Length > Database.MaxEmailLength)
+            {
+                email_input_error_label.Text = "Username too long.";
+                return;
+            }
 
             try
             {

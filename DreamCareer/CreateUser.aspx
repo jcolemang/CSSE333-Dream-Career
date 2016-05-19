@@ -22,8 +22,8 @@
             <%-- Title row --%>
             <tr id="title-row">
                 <th colspan="2">
-                    <h2 id="table-header">Create New User
-
+                    <h2 id="table-header">
+                        Create New User
                     </h2>
                 </th>
             </tr>
@@ -62,6 +62,12 @@
                 <td>
                     <asp:TextBox TextMode="Password" ID="password"
                         class="password-input" runat="server"></asp:TextBox>
+                </td>
+
+                <td>
+                    <asp:Label ID="password_input_error_label"
+                        CssClass="error-label asp-username-input-error-label"
+                        runat="server"></asp:Label>
                 </td>
 
             </tr>

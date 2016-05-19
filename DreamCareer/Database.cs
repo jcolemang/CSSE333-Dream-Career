@@ -31,6 +31,8 @@ namespace DreamCareer
         public const int UserDoesntExist = -8;
 
         public const int MaxTagLength = 50;
+        public const int MaxUsernameLength = 50;
+        public const int MaxEmailLength = 100;
         
         public static RNGCryptoServiceProvider RNGCSP = 
             new RNGCryptoServiceProvider();
