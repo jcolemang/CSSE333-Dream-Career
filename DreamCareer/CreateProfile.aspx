@@ -25,7 +25,14 @@
                     </p>
                 </td>
                 <td>
-                    <asp:TextBox type="text" ID="name" runat="server"></asp:TextBox>
+                    <asp:TextBox type="text" 
+                        ID="name" 
+                        CssClass="name-input"
+                        runat="server"></asp:TextBox>
+                </td>
+
+                <td>
+                    <label id="name-error-label" class="error-label"></label>
                 </td>
             </tr>
 
@@ -122,9 +129,17 @@
                 </td>
             </tr>
             <tr>
+                <td></td>
                 <td>
-                    <asp:Button ID="profile_button" runat="server" Text="Insert Profile"
-                        OnClick="InsertProfileButton_OnClick" OnClientClick="return genderCheck()" />
+                    <asp:Button ID="profile_button" 
+                        runat="server" Text="Insert Profile"
+                        OnClick="InsertProfileButton_OnClick" 
+                        OnClientClick="return checkAll()" />
+                </td>
+
+                <td>
+                    <asp:Label ID="ProfileAlreadyExistsLabel" 
+                        runat="server" CssClass="error-label"></asp:Label>
                 </td>
             </tr>
         </table>

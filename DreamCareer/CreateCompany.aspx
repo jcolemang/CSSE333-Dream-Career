@@ -67,6 +67,9 @@
                 <label id="company-size-error-label"
                     class="error-label">
                 </label>
+                <asp:Label runat="server"
+                    ID="CompanySizeErrorLabel"
+                    CssClass="error-label"></asp:Label>
             </td>
 
         </tr>
