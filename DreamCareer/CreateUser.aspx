@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="CreateUser.aspx.cs" Inherits="DreamCareer.CreateUser" %>
+﻿<%@ Page Title="" ValidateRequest="false" Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="CreateUser.aspx.cs" Inherits="DreamCareer.CreateUser" %>
 
 <%-- inerted into head --%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

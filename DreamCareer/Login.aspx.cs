@@ -18,9 +18,14 @@ namespace DreamCareer
         {
             string Username = username.Text.ToLower();
             string Password = password.Text;
+
+            if (Username.Length > Database.MaxUsernameLength)
+            {
+                login_username_input_error.Text = "Username is too long";
+            }
+
             if (!Database.IsAUser(Username, Password))
             {
-
                 login_username_input_error.Text = "The password and username don't match, try again!";
             }
             else
