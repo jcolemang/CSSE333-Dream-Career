@@ -9,6 +9,7 @@ namespace DreamCareer
 {
     public partial class ViewPosition : UserPage
     {
+
         protected override void Page_Load(object sender, EventArgs e)
         {
             base.Page_Load(sender, e);
@@ -17,7 +18,7 @@ namespace DreamCareer
 
             //TODO add company textbox too
             string pos = Request.QueryString["PositionID"];
-            
+
             if (pos == null || pos == "")
             {
                 return;
@@ -47,13 +48,20 @@ namespace DreamCareer
             }
             else
             {
-                name_dne_error_label.Text = "Not an existing position.";
+               // name_dne_error_label.Text = "Not an existing position.";
                 return;
             }
 
         }
-        protected void ViewPositionButton_OnClick(object sender, EventArgs e)
+ 
+        protected void ApplyButton_OnClick(object sender, EventArgs e)
         {
+            String posid = Request.QueryString["PositionID"];
+            String userid = Request.QueryString["userid"];
+            Database.insertUserIDPositionID(userid, posid);
+            System.Windows.Forms.MessageBox.Show("Applied!");
+            Response.Redirect("Login.aspx");
+            return;
         }
 
     }

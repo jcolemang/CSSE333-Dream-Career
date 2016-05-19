@@ -11,7 +11,8 @@ namespace DreamCareer
     {
         protected void SearchPositionButton_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("SearchResults.aspx?Type=Position&Search=" +
+            string userid = Request.QueryString["field1"];
+            Response.Redirect("SearchResults.aspx?field2=" + userid + "&Type=Position&Search=" +
                 SearchBar.Text);
         }
 

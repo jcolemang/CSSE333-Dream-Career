@@ -38,7 +38,7 @@ namespace DreamCareer
                     Response.Redirect("ErrorPage.aspx");
                 }
 
-                Response.Redirect("Default.aspx");
+                Response.Redirect("Default.aspx?field1=" + Database.GetUserID(Username));
             }
 
 

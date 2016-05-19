@@ -29,8 +29,9 @@ namespace DreamCareer
                 response += "<tr>";
                 response += "<td>";
                 response += "<div class=\"text-div\">";
+                string uid = Request.QueryString["field2"];
                 response += "<a class=\"search-result\" " + 
-                    "href=\"ViewPosition.aspx?PositionID=" +
+                    "href=\"ViewPosition.aspx?userid="+ uid + "&PositionID=" +
                     HttpUtility.HtmlEncode(Row["PositionID"]) +
                     "\">" +
                     HttpUtility.HtmlEncode(Row["Title"]) +

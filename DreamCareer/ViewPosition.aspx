@@ -20,21 +20,6 @@
         </tr>
 
         <tr>
-            <td>
-                <asp:TextBox type="text" ID="postitle" runat="server"></asp:TextBox>
-            </td>
-            <td>
-                <asp:Label ID="name_dne_error_label"
-                    class="error-label asp-name-dne-error-label"
-                    runat="server"></asp:Label>
-            </td>
-            <td>
-                <asp:Button ID="info" runat="server" Text="Get Info!"
-                    OnClick="ViewPositionButton_OnClick" />
-            </td>
-        </tr>
-
-        <tr>
 
             <td>
                 <asp:Label ID="positiontitle"
@@ -105,7 +90,33 @@
                     runat="server"></asp:Label>
             </td>
         </tr>
-
+        
+        <tr>
+            <td>
+                <asp:FileUpload ID="FileUpload1" runat="server" />
+                <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="Upload" />
+                <hr />
+                <asp:GridView ID="GridView1" runat="server" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White"
+                    RowStyle-BackColor="#A1DCF2" AlternatingRowStyle-BackColor="White" AlternatingRowStyle-ForeColor="#000"
+                    AutoGenerateColumns="false">
+                    <Columns>
+                        <asp:BoundField DataField="Name" HeaderText="File Name"/>
+                        <asp:TemplateField ItemStyle-HorizontalAlign = "Center">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkDownload" runat="server" Text="Download" OnClick="DownloadFile"
+                                    CommandArgument='<%# Eval("Id") %>'></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Button ID="Apply" runat="server" Text="Apply!"
+                    OnClick="ApplyButton_OnClick" />
+            </td>
+         </tr>
     </table>
 
 

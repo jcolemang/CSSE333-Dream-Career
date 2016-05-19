@@ -101,6 +101,7 @@
     <Content Include="scripts\ValidateInputs.js" />
     <Content Include="scripts\ViewProfile.js" />
     <Content Include="scripts\ViewCompany.js" />
+    <Content Include="static\css\Apply.css" />
     <Content Include="static\css\CreateCompany.css" />
     <Content Include="CreateProfile.aspx" />
     <Content Include="CreateUser.aspx" />

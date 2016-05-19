@@ -1017,7 +1017,36 @@ namespace DreamCareer
 
             connection.Close();
         }
-        
+
+        public static void insertUserIDPositionID(string userid, string posid)
+        {
+            string sp_name = "insert_apply";
+            SqlConnection connection = GetSqlConnection();
+            SqlCommand applyInsert = new SqlCommand(sp_name, connection);
+            applyInsert.CommandType = System.Data.CommandType.StoredProcedure;
+
+            applyInsert.Parameters.Add(
+               new SqlParameter("@userid", userid));
+            applyInsert.Parameters.Add(
+                new SqlParameter("@posid", posid));
+
+            SqlParameter ReturnVal = new SqlParameter("RetVal",
+                System.Data.SqlDbType.Int);
+            ReturnVal.Direction =
+                System.Data.ParameterDirection.ReturnValue;
+            applyInsert.Parameters.Add(ReturnVal);
+
+            applyInsert.ExecuteNonQuery();
+
+            int ReturnValue = (int)ReturnVal.Value;
+            if (ReturnValue == Database.ProfileAlreadyExistsError)
+            {
+                connection.Close();
+                throw new Exception();
+            }
+
+            connection.Close();
+        }
 
         public static void deletePosition(string pos)
         {
