@@ -3,14 +3,14 @@
 USE DreamCareer
 GO
 
-CREATE PROCEDURE get_user_id
+ALTER PROCEDURE get_user_id
 	(@Username varchar(50))
 AS
 
 	DECLARE @UserDoesntExistError smallint
 	SET @UserDoesntExistError = -8
 
-	IF NOT EXISTS (SELECT * FROM DreamCareerUser WHERE @Username = Username)
+	IF NOT EXISTS (SELECT * FROM DreamCareerUser WHERE LOWER(@Username) = Username)
 	BEGIN
 		PRINT 'User doesnt exist'
 		RETURN @UserDoesntExistError 
@@ -18,7 +18,7 @@ AS
 
 	SELECT UserID
 	FROM DreamCareerUser
-	WHERE Username = @Username
+	WHERE Username = LOWER(@Username)
 	RETURN 0
 
 GO

@@ -1,17 +1,14 @@
 
 
-CREATE TRIGGER delete_likes
+ALTER TRIGGER delete_likes
 ON DreamCareerUser
 INSTEAD OF DELETE
 AS
-	DECLARE @DeletedUserID int
-	SET @DeletedUserID = (SELECT UserID
-						FROM deleted)
 
 	DELETE FROM Likes
-	WHERE Likes.UserIDLikes = @DeletedUserID OR 
-		Likes.ProfileLikedUserID = @DeletedUserID
+	WHERE Likes.UserIDLikes IN (SELECT UserID FROM deleted) OR 
+		Likes.ProfileLikedUserID IN (SELECT UserID FROM deleted)
 
 	-- TODO is this needed?
 	DELETE FROM DreamCareerUser
-	WHERE UserID = @DeletedUserID
+	WHERE UserID IN (SELECT UserID FROM deleted)

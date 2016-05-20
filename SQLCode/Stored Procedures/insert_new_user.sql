@@ -5,11 +5,11 @@ USE DreamCareer
 -- this case
 
 GO
-CREATE PROCEDURE insert_new_user 
-	(@Uname varchar(20),
+ALTER PROCEDURE insert_new_user 
+	(@Uname varchar(50),
 	@password varchar(512),
 	@salt varchar(512),
-	@email varchar(20),
+	@email varchar(100),
 	@UserID int OUTPUT)
 AS
 
@@ -21,7 +21,7 @@ AS
 
 	IF (EXISTS (SELECT *
 				FROM DreamCareerUser
-				WHERE Username = @Uname))
+				WHERE Username = LOWER(@Uname)))
 	BEGIN
 		PRINT 'Username already exists.'
 		RETURN @RepeatUsernameError
@@ -29,7 +29,7 @@ AS
 
 	IF (EXISTS (SELECT *
 				FROM DreamCareerUser
-				WHERE Email = @email))
+				WHERE Email = LOWER(@email)))
 	BEGIN
 		PRINT 'Email already exists.'
 		RETURN @RepeatEmailError
@@ -38,7 +38,7 @@ AS
 	INSERT INTO DreamCareerUser
 	(Username, HashedPassword, Salt, Email)	
 	VALUES
-	(@Uname, HASHBYTES('SHA1', @password + @salt), @salt, @email)
+	(LOWER(@Uname), HASHBYTES('SHA1', @password + @salt), @salt, LOWER(@email))
 
 	SET @UserID = (SELECT SCOPE_IDENTITY())
 	RETURN 0
