@@ -85,14 +85,6 @@
             </td>
         </tr>
 
-        <%-- --%>
-        <tr>
-            <td>
-                <asp:Button ID="PageRankButton"
-                    runat="server" Text="Rank Profiles"
-                    OnClick="PageRankButton_OnClick" />
-            </td>
-        </tr>
 
         <tr>
             <td>
