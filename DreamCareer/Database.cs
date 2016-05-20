@@ -985,7 +985,7 @@ namespace DreamCareer
         public static void CreatePosition(int companyid, string pos, string ty, string stree, 
             string cit, string stat, string zi, string sal, string jobdesc)
         {
-            string sp_name = "insert_new_position_gui";
+            string sp_name = "insert_new_position";
             SqlConnection connection = GetSqlConnection();
             SqlCommand insert_new_pos_sp = new SqlCommand(sp_name, connection);
             insert_new_pos_sp.CommandType = System.Data.CommandType.StoredProcedure;

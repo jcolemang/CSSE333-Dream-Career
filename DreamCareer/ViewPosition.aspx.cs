@@ -37,14 +37,14 @@ namespace DreamCareer
                 string state = positioninfo["State"];
                 string zip = positioninfo["Zipcode"];
 
-                positiontitle.Text = "Title:" + title;
-                positiontype.Text = "Type:" + type;
-                salaryamount.Text = "Salary:" + salary;
-                job.Text = "Description:" + description;
-                streetname.Text = "Street:" + street;
-                cityname.Text = "City:" + city;
-                statename.Text = "State:" + state;
-                zipcode.Text = "Zipcode:" + zip;
+                positiontitle.Text = "Title:" + HttpUtility.HtmlEncode(title);
+                positiontype.Text = "Type:" + HttpUtility.HtmlEncode(type);
+                salaryamount.Text = "Salary:" + HttpUtility.HtmlEncode(salary);
+                job.Text = "Description:" + HttpUtility.HtmlEncode(description);
+                streetname.Text = "Street:" + HttpUtility.HtmlEncode(street);
+                cityname.Text = "City:" + HttpUtility.HtmlEncode(city);
+                statename.Text = "State:" + HttpUtility.HtmlEncode(state);
+                zipcode.Text = "Zipcode:" + HttpUtility.HtmlEncode(zip);
             }
             else
             {
@@ -64,5 +64,14 @@ namespace DreamCareer
             return;
         }
 
+        protected void Upload(object sender, EventArgs e)
+        {
+            // Dummy to make this thing compile
+        }
+
+        protected void DownloadFile(object sender, EventArgs e)
+        {
+            // Same
+        }
     }
 }
