@@ -14,6 +14,14 @@ AS
 	DECLARE @NumTagsGiven int
 	SET @NumTagsGiven = (SELECT COUNT(DISTINCT TagWords) FROM @Tags)
 
+	IF @NumTagsGiven = 0
+	BEGIN
+		SELECT Company.CompanyID, Company.Name
+		FROM Company
+		ORDER BY Company.Name
+		RETURN
+	END
+
 	SELECT Company.CompanyID, Company.Name
 	FROM Company, CompanyHasTag, Tag
 	WHERE Company.CompanyID = CompanyHasTag.CompanyID AND
@@ -22,6 +30,7 @@ AS
 			(@NumTagsGiven = 0))
 	GROUP BY Company.CompanyID, Company.Name
 	HAVING COUNT(Company.CompanyID) >= @NumTagsGiven
+	ORDER BY Company.Name
 
 GO
 GRANT EXECUTE ON search_companies_by_tags TO dreamcareer

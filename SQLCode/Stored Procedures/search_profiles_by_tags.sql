@@ -15,6 +15,7 @@ AS
 		SELECT UserProfile.ProfileID, UserProfile.Name, DreamCareerUser.Username
 		FROM UserProfile, DreamCareerUser
 		WHERE UserProfile.ProfileID = DreamCareerUser.UserID
+		ORDER BY UserProfile.Name
 		RETURN
 	END
 
@@ -27,6 +28,7 @@ AS
 			@NumTagsGiven = 0)
 	GROUP BY UserProfile.ProfileID, DreamCareerUser.Username, UserProfile.Name
 	HAVING COUNT(UserProfile.ProfileID) >= @NumTagsGiven
+	ORDER BY UserProfile.Name
 
 GO
 GRANT EXECUTE ON search_profiles_by_tags TO dreamcareer

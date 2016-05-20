@@ -2,8 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="static/css/Position.css" rel="stylesheet" type="text/css" />
-
+    <script src="scripts/CreatePosition.js" type="text/javascript"></script>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
 
     <div>
@@ -22,7 +23,10 @@
                     </p>
                 </td>
                 <td>
-                    <asp:TextBox type="text" ID="titl" runat="server"></asp:TextBox>
+                    <asp:TextBox type="text" 
+                        ID="titl" 
+                        runat="server"
+                        CssClass="PositionTitle"></asp:TextBox>
                 </td>
                 <td>
                     <asp:Label ID="name_input_error_label"
@@ -45,7 +49,9 @@
 
                 </td>
                 <td>
-                    <label id="gender-not-selected-error"></label>
+                    <asp:Label runat="server"
+                        ID="PositionTypeErrorLabel"
+                        CssClass="error-label"></asp:Label>
                 </td>
             </tr>
 
@@ -57,6 +63,12 @@
                 </td>
                 <td>
                     <asp:TextBox type="text" ID="strname" runat="server"></asp:TextBox>
+                </td>
+
+                <td>
+                    <asp:Label runat="server"
+                        ID="StreetErrorLabel"
+                        CssClass="error-label"></asp:Label>
                 </td>
             </tr>
 
@@ -78,6 +90,11 @@
                 </td>
                 <td>
                     <asp:TextBox type="text" ID="statename" runat="server"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:Label runat="server"
+                        ID="StateErrorLabel"
+                        CssClass="error-label"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -105,6 +122,12 @@
                 <td>
                     <asp:TextBox type="text" ID="salaryam" runat="server"></asp:TextBox>
                 </td>
+
+                <td>
+                    <asp:Label runat="server"
+                        ID="SalaryErrorLabel"
+                        CssClass="error-label"></asp:Label>
+                </td>
             </tr>
 
             <tr>
@@ -114,13 +137,27 @@
                     </p>
                 </td>
                 <td>
-                    <asp:TextBox type="text" ID="jobdes" runat="server" MaxLength="1000" Style="width: 800px"></asp:TextBox>
+                    <asp:TextBox type="text" 
+                        ID="jobdes" 
+                        runat="server" 
+                        MaxLength="1000" 
+                        Width="400"
+                        Height="200"></asp:TextBox>
+                </td>
+
+                <td>
+                    <asp:Label runat="server"
+                        ID="DescriptionErrorLabel"
+                        CssClass="error-label"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <asp:Button ID="position_button" runat="server" Text="Insert Position"
-                        OnClick="InsertPositionButton_OnClick" OnClientClick="return nameCheck()" />
+                    <asp:Button runat="server"
+                        ID="position_button"  
+                        Text="Insert Position"
+                        OnClick="InsertPositionButton_OnClick" 
+                        OnClientClick="return checkAll()" />
                 </td>
             </tr>
         </table>

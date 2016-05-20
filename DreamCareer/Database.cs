@@ -38,6 +38,8 @@ namespace DreamCareer
         public const int MaxStreetLength = 50;
         public const int MaxCityLength = 50;
         public const int MaxStateLength = 50;
+        public const int MaxTitleLength = 50;
+        public const int MaxTypeLength = 50;
 
         public static RNGCryptoServiceProvider RNGCSP = 
             new RNGCryptoServiceProvider();

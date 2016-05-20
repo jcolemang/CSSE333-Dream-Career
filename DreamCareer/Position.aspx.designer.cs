@@ -40,6 +40,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox typ;
         
         /// <summary>
+        /// PositionTypeErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PositionTypeErrorLabel;
+        
+        /// <summary>
         /// strname control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox strname;
+        
+        /// <summary>
+        /// StreetErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label StreetErrorLabel;
         
         /// <summary>
         /// cityname control.
@@ -65,6 +83,15 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox statename;
+        
+        /// <summary>
+        /// StateErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label StateErrorLabel;
         
         /// <summary>
         /// zipcode control.
@@ -94,6 +121,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox salaryam;
         
         /// <summary>
+        /// SalaryErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SalaryErrorLabel;
+        
+        /// <summary>
         /// jobdes control.
         /// </summary>
         /// <remarks>
@@ -101,6 +137,15 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox jobdes;
+        
+        /// <summary>
+        /// DescriptionErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DescriptionErrorLabel;
         
         /// <summary>
         /// position_button control.

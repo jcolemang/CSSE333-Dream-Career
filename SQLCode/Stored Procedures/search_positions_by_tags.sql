@@ -20,6 +20,18 @@ AS
 	-- Used later
 	DECLARE @NumTags int
 	SET @NumTags = (SELECT COUNT(*) FROM @Tags)
+
+	IF @NumTags = 0
+	BEGIN
+		SELECT Position.PositionID,
+				Position.PositionTitle AS Title,
+				Position.Salary AS Salary,
+				Position.City AS City, 
+				Position.State AS State
+		FROM Position
+		ORDER BY Salary DESC
+		RETURN
+	END
 	
 	SELECT Position.PositionID, 
 			Position.PositionTitle AS Title,
@@ -37,6 +49,7 @@ AS
 
 	-- I can only use this because the actual tag words are unique
 	HAVING COUNT(Position.PositionID) >= @NumTags
+	ORDER BY Salary DESC
 	
 GO
 GRANT EXECUTE ON search_positions_by_tags TO dreamcareer
