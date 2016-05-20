@@ -225,50 +225,8 @@
         </table>
 
 
-        <%-- 
-    <asp:Label ID="GenderLabel" CssClass="profile-label asp-user-profile-label" runat="server">
-
-    </asp:Label>
-
-
-    <asp:Label ID="MajorLabel" CssClass="profile-label asp-user-profile-label" runat="server">
-
-    </asp:Label>
-
-    <asp:Label ID="ExperienceLabel" CssClass="profile-label asp-user-profile-label" runat="server">
-     
-    </asp:Label>
-
-    <asp:Label ID="StreetLabel" CssClass="profile-label asp-user-profile-label" runat="server">
-     
-    </asp:Label>
-
-    <asp:Label ID="CityLabel" CssClass="profile-label asp-user-profile-label" runat="server">
-     
-    </asp:Label>
-
-    <asp:Label ID="StateLabel" CssClass="profile-label asp-user-profile-label" runat="server">
-     
-    </asp:Label>
-
-    <asp:Label ID="ZipcodeLabel" CssClass="profile-label asp-user-profile-label" runat="server">
-     
-    </asp:Label>
-     </table>
-         <table id="position-info">
-             <tr id="profile-position-info">
-                 <th colspan="3">
-                      <h1>
-                         </h1>
-                  </th>    
-             </tr>
-                  
-         </table>       
-        --%>
-        <%--        <asp:Button Css-Class="edit-button" ID="Button2" runat="server" Height="30px" OnClick="Edit_Click" Text="Edit Profile" Width="122px" BackColor="#6699FF" BorderStyle="None" Font-Bold="True" Font-Italic="True" Font-Size="Medium" />--%>
-
-
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Delete" />
+         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Like" />
 
 
 

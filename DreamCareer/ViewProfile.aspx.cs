@@ -36,6 +36,13 @@ namespace DreamCareer
             try
             {
                 Profile = Database.GetProfile(UsernameParameter);
+                bool ValidProfileID = int.TryParse(Profile["ProfileID"], out this.ProfileID);
+                if (!ValidProfileID)
+                {
+                    Response.Redirect("ErrorPage.aspx");
+                    return;
+                }
+                    
             }
             catch (ProfileDoesntExistException)
             {
@@ -119,6 +126,12 @@ namespace DreamCareer
         protected void Button1_Click(object sender, EventArgs e)
         {
             Database.DeleteProfile(this.ProfileID);
+            Response.Redirect("Default.aspx");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Database.LikeProfile(this.ProfileID);
             Response.Redirect("Default.aspx");
         }
 
