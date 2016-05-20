@@ -59,6 +59,12 @@
 
             </td>
 
+            <td>
+                <asp:Label runat="server"
+                    ID="CompanyNameErrorLabel"
+                    CssClass="error-label"></asp:Label>
+            </td>
+
             <% } %>
         </tr>
 
@@ -102,9 +108,7 @@
                     onclick="toggleCompanySize()">
                     Cancel
                 </button>
-
             </td>
-            <% } %>
 
             <td>
                 <asp:Label runat="server"
@@ -112,6 +116,9 @@
                     CssClass="CompanySizeErrorLabel error-label">
                 </asp:Label>
             </td>
+
+            <% } %>
+
 
         </tr>
 
@@ -123,7 +130,6 @@
             </td>
 
             <td>
-
                 <p runat="server"
                     id="CompanyDescription"
                     class="CompanyDescription">
@@ -162,6 +168,12 @@
                     Cancel
                 </button>
 
+            </td>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="CompanyDescriptionErrorLabel"
+                    CssClass="error-label"></asp:Label>
             </td>
             <% } %>
         </tr>
@@ -213,6 +225,12 @@
                 </button>
 
             </td>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="CompanyStreetErrorLabel"
+                    CssClass="error-label"></asp:Label>
+            </td>
             <% } %>
         </tr>
 
@@ -259,6 +277,13 @@
                 </button>
 
             </td>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="CompanyCityErrorLabel"
+                    CssClass="error-label"></asp:Label>
+            </td>
+
             <% } %>
         </tr>
 
@@ -306,6 +331,12 @@
                     Cancel
                 </button>
 
+            </td>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="CompanyStateErrorLabel"
+                    CssClass="error-label"></asp:Label>
             </td>
             <% } %>
         </tr>
@@ -355,7 +386,7 @@
                 </button>
 
             </td>
-            <% } %>
+
 
             <td>
                 <asp:Label runat="server"
@@ -363,6 +394,9 @@
                     CssClass="error-label CompanyZipcodeErrorLabel">
                 </asp:Label>
             </td>
+
+            <% } %>
+
         </tr>
 
         <%-- Viewing tags --%>

@@ -27,29 +27,34 @@ namespace DreamCareer
                 CompanyNameErrorLabel.Text = "Too long";
                 return;
             }
-
             if (!IsValid)
             {
                 CompanySizeErrorLabel.Text = "Not a number";
                 return;
             }
-
             if (Database.checkIfNameInDatabase(Name))
             {
                 CompanyNameErrorLabel.Text = "A company by this name already exists.";
                 return;
             }
-            else
+            if (Description.Length > Database.MaxDescriptionLength)
             {
-                // Good to insert!
-                int CompanyID = Database.CreateCompany(this.UserID, Size, Name, Description,
-                    Street, City, State, Zipcode);
-
-                foreach (string tag in Tags)
-                    Database.InsertCompanyTag(CompanyID, tag);
-
-                System.Windows.Forms.MessageBox.Show("Created!");
+                DescriptionErrorLabel.Text = String.Format(
+                    "Description above max length. " +
+                    "Number above: {0}", 
+                    Description.Length - Database.MaxDescriptionLength);
+                return;
             }
+
+
+            // Good to insert!
+            int CompanyID = Database.CreateCompany(this.UserID, Size, Name, Description,
+                Street, City, State, Zipcode);
+
+            foreach (string tag in Tags)
+                Database.InsertCompanyTag(CompanyID, tag);
+
+            System.Windows.Forms.MessageBox.Show("Created!");
 
         }
     }

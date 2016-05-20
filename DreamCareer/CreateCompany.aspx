@@ -163,6 +163,12 @@
                     Width="250"
                     Height="300"></asp:TextBox>
             </td>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="DescriptionErrorLabel"
+                    CssClass="error-label"></asp:Label>
+            </td>
         </tr>
         <tr>
             <%-- Just so the button is in the second column --%>
