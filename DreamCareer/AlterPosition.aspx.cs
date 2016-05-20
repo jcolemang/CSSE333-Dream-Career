@@ -18,6 +18,7 @@ namespace DreamCareer
 
             if (!this.SetCompanyID())
                 return;
+
         }
 
 
@@ -56,12 +57,33 @@ namespace DreamCareer
             if (!AllGood)
                 return;
 
-            // CHECK THIS
+            int PosID;
             string oldposid = Request.QueryString["oldposid"];
+            if (!int.TryParse(oldposid, out PosID))
+            {
+                Response.Redirect("ErrorPage.aspx");
+                return;
+            }
 
-            Database.UpdatePosition(Convert.ToInt32(oldposid), this.CompanyID, pos, ty, stree, cit, stat, zi, sal, jobdesc);
+            // this is super inefficient but I am tired and don't want to write more SQL
+            bool Safe = false;
+            List<Dictionary<string, string>> Positions = Database.GetCompanyPositions(this.CompanyID);
+            foreach (Dictionary<string, string> Position in Positions)
+            {
+                if (PosID == int.Parse(Position["PositionID"]))
+                {
+                    Safe = true;
+                }
+            }
+            if (!Safe)
+            {
+                Response.Redirect("ErrorPage.aspx");
+                return;
+            }
+
+            Database.UpdatePosition(PosID, this.CompanyID, pos, ty, stree, cit, stat, zi, sal, jobdesc);
             System.Windows.Forms.MessageBox.Show("Updated!");
-            Response.Redirect("Login.aspx");
+            Response.Redirect("Default.aspx");
         }
 
 
@@ -70,18 +92,12 @@ namespace DreamCareer
             string oldposid = Request.QueryString["oldposid"];
             Database.deletePosition(Convert.ToInt32(oldposid));
             System.Windows.Forms.MessageBox.Show("Deleted!");
-            Response.Redirect("Login.aspx");
+            Response.Redirect("Default.aspx");
         }
 
         protected bool CheckTitle(string Title)
         {
             TitleErrorLabel.Text = "";
-            if (Title.Length == 0)
-            {
-                TitleErrorLabel.Text = "You must enter a title";
-                return false;
-            }
-
             if (Title.Length > Database.MaxTitleLength)
             {
                 TitleErrorLabel.Text = "Title is too long!";
@@ -96,12 +112,6 @@ namespace DreamCareer
         {
 
             TypeErrorLabel.Text = "";
-            if (PosType.Length == 0)
-            {
-                TypeErrorLabel.Text = "You must enter a position type";
-                return false;
-            }
-
             if (PosType.Length > Database.MaxTypeLength)
             {
                 TypeErrorLabel.Text = "Position type too long";
@@ -174,6 +184,9 @@ namespace DreamCareer
         {
             SalaryErrorLabel.Text = "";
             decimal Salary;
+
+            if (SalaryString == "")
+                return true;
 
             if (!Decimal.TryParse(SalaryString, out Salary))
             {

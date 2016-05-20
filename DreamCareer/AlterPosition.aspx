@@ -146,7 +146,12 @@
                 </p>
             </td>
             <td>
-                <asp:TextBox type="text" ID="jobdes" runat="server" MaxLength="1000" Style="width: 800px"></asp:TextBox>
+                <asp:TextBox type="text" 
+                    ID="jobdes" 
+                    runat="server" 
+                    MaxLength="1000" 
+                    Width="400"
+                    Height="300"></asp:TextBox>
             </td>
 
             <td>
