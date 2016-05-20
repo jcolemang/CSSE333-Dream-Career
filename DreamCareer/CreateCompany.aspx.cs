@@ -22,29 +22,39 @@ namespace DreamCareer
             string TagString = TagsTextBox.Text;
             List<string> Tags = Database.ParseTags(TagString);
 
+            if (Name.Length > Database.MaxCompanyNameLength)
+            {
+                CompanyNameErrorLabel.Text = "Too long";
+                return;
+            }
             if (!IsValid)
             {
-                // Company size isn't a number
+                CompanySizeErrorLabel.Text = "Not a number";
+                return;
             }
-
             if (Database.checkIfNameInDatabase(Name))
             {
-                // Company with that name already exists
                 CompanyNameErrorLabel.Text = "A company by this name already exists.";
                 return;
             }
-            else
+            if (Description.Length > Database.MaxDescriptionLength)
             {
-                // Good to insert!
-                int CompanyID = Database.CreateCompany(this.UserID, Size, Name, Description,
-                    Street, City, State, Zipcode);
-
-                foreach (string tag in Tags)
-                    Database.InsertCompanyTag(CompanyID, tag);
-
-                System.Windows.Forms.MessageBox.Show("Created!");
-                Response.Redirect("Position.aspx?value1="+Name.ToString());
+                DescriptionErrorLabel.Text = String.Format(
+                    "Description above max length. " +
+                    "Number above: {0}", 
+                    Description.Length - Database.MaxDescriptionLength);
+                return;
             }
+
+
+            // Good to insert!
+            int CompanyID = Database.CreateCompany(this.UserID, Size, Name, Description,
+                Street, City, State, Zipcode);
+
+            foreach (string tag in Tags)
+                Database.InsertCompanyTag(CompanyID, tag);
+
+            System.Windows.Forms.MessageBox.Show("Created!");
 
         }
     }

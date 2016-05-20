@@ -31,7 +31,14 @@ namespace DreamCareer
         public const int UserDoesntExist = -8;
 
         public const int MaxTagLength = 50;
-        
+        public const int MaxUsernameLength = 50;
+        public const int MaxEmailLength = 100;
+        public const int MaxCompanyNameLength = 50;
+        public const int MaxDescriptionLength = 500;
+        public const int MaxStreetLength = 50;
+        public const int MaxCityLength = 50;
+        public const int MaxStateLength = 50;
+
         public static RNGCryptoServiceProvider RNGCSP = 
             new RNGCryptoServiceProvider();
         public static int SaltLength = 128;
@@ -762,7 +769,9 @@ namespace DreamCareer
             }
             else
             {
-                throw new NoDataException();
+                reader.Close();
+                Connection.Close();
+                throw new CompanyDoesntExistException();
             }
 
             reader.Close();
@@ -1397,7 +1406,7 @@ namespace DreamCareer
             SqlDataReader reader = get_random_username.ExecuteReader();
 
             string username;
-            if (reader.HasRows)
+            if (reader.Read())
                 username = reader.GetString(0);
             else
             {
@@ -1653,6 +1662,19 @@ namespace DreamCareer
         }
 
         public RepeatCompanyNameException(string msg) : base(msg)
+        {
+
+        }
+    }
+
+    public class CompanyDoesntExistException: NoDataException
+    {
+        public CompanyDoesntExistException() : base()
+        {
+
+        }
+
+        public CompanyDoesntExistException(string msg) : base(msg)
         {
 
         }

@@ -29,10 +29,11 @@ namespace DreamCareer
                 try
                 {
                     Database.CreateUserProfile(n, GenderString, maj, exp, stree, cit, stat, zi, uname);
+                    Response.Redirect("Default.aspx");
                 }
                 catch (ProfileAlreadyExistsException)
                 {
-                    Response.Redirect("ErrorPage.aspx");
+                    ProfileAlreadyExistsLabel.Text = "You already have a profile!";
                 }
             }
         }

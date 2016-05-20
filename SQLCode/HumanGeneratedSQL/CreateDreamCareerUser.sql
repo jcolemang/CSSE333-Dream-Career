@@ -24,3 +24,5 @@ CHECK (
 	UserType IN ('U', 'C', 'A')
 );
 
+CREATE INDEX username_index ON DreamCareerUser (username)
+

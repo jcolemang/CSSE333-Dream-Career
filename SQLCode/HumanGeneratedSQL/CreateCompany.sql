@@ -14,3 +14,5 @@ CREATE TABLE Company
 
 	PRIMARY KEY (CompanyID)
 )
+
+CREATE INDEX company_name_index ON Company (Name)

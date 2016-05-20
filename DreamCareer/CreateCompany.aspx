@@ -67,6 +67,9 @@
                 <label id="company-size-error-label"
                     class="error-label">
                 </label>
+                <asp:Label runat="server"
+                    ID="CompanySizeErrorLabel"
+                    CssClass="error-label"></asp:Label>
             </td>
 
         </tr>
@@ -159,6 +162,12 @@
                     TextMode="MultiLine"
                     Width="250"
                     Height="300"></asp:TextBox>
+            </td>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="DescriptionErrorLabel"
+                    CssClass="error-label"></asp:Label>
             </td>
         </tr>
         <tr>

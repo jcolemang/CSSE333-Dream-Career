@@ -2,7 +2,34 @@
     $('.gender-select').change(function () {
         genderCheck();
     })
+    $('.name-input').change(function () {
+        nameCheck();
+    })
 })
+
+
+function checkAll() {
+    if (!nameCheck())
+        return false;
+    if (!genderCheck())
+        return false;
+    return true;
+}
+
+
+function nameCheck() {
+    var name = $('.name-input').val();
+
+    if (!/[\-a-zA-Z ]+/.test(name))
+    {
+        $('#name-error-label').text('I don\'t believe you.');
+        $('#name-error-label').show();
+        return false;
+    }
+
+    $('#name-error-label').hide();
+    return true;
+}
 
 
 function genderCheck() {

@@ -31,6 +31,7 @@ namespace DreamCareer
             if (!int.TryParse(CompanyIDString, out CompanyID))
             {
                 Response.Redirect("Default.aspx");
+                return;
             }
 
             this.CompanyID = CompanyID;
@@ -50,6 +51,7 @@ namespace DreamCareer
             int UserID;
             if (int.TryParse(Session["UserID"].ToString(), out UserID))
             {
+                // used in in-line aspx code
                 this.UserOwnsCompany = Database.UserInCompany(this.CompanyID, UserID);
             }
 
@@ -80,8 +82,15 @@ namespace DreamCareer
 
         protected void UpdateCompanyName(object sender, EventArgs e)
         {
+
             // Getting the new name
             string NewCompanyName = UpdateCompanyNameTextBox.Text;
+
+            if (NewCompanyName.Length > Database.MaxCompanyNameLength)
+            {
+                CompanyNameErrorLabel.Text = "Company name too long";
+                return;
+            }
 
             // Update the company's name
             Database.UpdateCompany(this.CompanyID, NewName: NewCompanyName);
@@ -102,11 +111,12 @@ namespace DreamCareer
                 // Checking the length of the tag
                 if (tag.Length > Database.MaxTagLength)
                 {
-                    CompanyTagsErrorLabel.Text = "One of the given tags has been truncated";
-                    NewTag = tag.Substring(0, Database.MaxTagLength);
+                    CompanyTagsErrorLabel.Text = "One of the tags is too long";
+                    return;
                 }
                 else
                 {
+                    // was previously actually useful
                     NewTag = tag;
                 }
 
@@ -153,6 +163,16 @@ namespace DreamCareer
         protected void UpdateCompanyDescription(object sender, EventArgs e)
         {
             string NewCompanyDescription = UpdateCompanyDescriptionTextBox.Text;
+
+            if (NewCompanyDescription.Length > Database.MaxDescriptionLength)
+            {
+                CompanyDescriptionErrorLabel.Text =
+                    String.Format(
+                        "Description too long. Remove {0} characters.",
+                        NewCompanyDescription.Length - Database.MaxDescriptionLength);
+                return;
+            }
+
             Database.UpdateCompany(this.CompanyID, NewDescription: NewCompanyDescription);
             CompanyDescription.InnerText = HttpUtility.HtmlEncode(NewCompanyDescription);
         }
@@ -161,6 +181,13 @@ namespace DreamCareer
         protected void UpdateCompanyStreet(object sender, EventArgs e)
         {
             string NewCompanyStreet = UpdateCompanyStreetTextBox.Text;
+
+            if (NewCompanyStreet.Length > Database.MaxStreetLength)
+            {
+                CompanyStreetErrorLabel.Text = "Too long";
+                return;
+            }
+
             Database.UpdateCompany(this.CompanyID, NewStreet: NewCompanyStreet);
             CompanyStreet.InnerText = HttpUtility.HtmlEncode(NewCompanyStreet);
         }
@@ -169,6 +196,13 @@ namespace DreamCareer
         protected void UpdateCompanyCity(object sender, EventArgs e)
         {
             string NewCompanyCity = UpdateCompanyCityTextBox.Text;
+
+            if (NewCompanyCity.Length > Database.MaxCityLength)
+            {
+                CompanyCityErrorLabel.Text = "Too long";
+                return;
+            }
+
             Database.UpdateCompany(this.CompanyID, NewCity: NewCompanyCity);
             CompanyCity.InnerText = HttpUtility.HtmlEncode(NewCompanyCity);
         }
@@ -177,6 +211,13 @@ namespace DreamCareer
         protected void UpdateCompanyState(object sender, EventArgs e)
         {
             string NewCompanyState = UpdateCompanyStateTextBox.Text;
+
+            if (NewCompanyState.Length > Database.MaxStateLength)
+            {
+                CompanyStateErrorLabel.Text = "Too long";
+                return;
+            }
+
             Database.UpdateCompany(this.CompanyID, NewState: NewCompanyState);
             CompanyState.InnerText = HttpUtility.HtmlEncode(NewCompanyState);
         }
@@ -184,7 +225,22 @@ namespace DreamCareer
 
         protected void UpdateCompanyZipcode(object sender, EventArgs e)
         {
-            string NewCompanyZipcode = UpdateCompanyZipcodeTextBox.Text;
+            string NewCompanyZipcode = UpdateCompanyZipcodeTextBox.Text.Trim(new char[] { ' ' });
+            CompanyZipcodeErrorLabel.Text = "";
+
+            // Checking the zipcode for errors
+            int dummy;
+            if (!int.TryParse(NewCompanyZipcode, out dummy))
+            {
+                CompanyZipcodeErrorLabel.Text = "Invalid zipcode";
+                return;
+            }
+            if (NewCompanyZipcode.Length != 5)
+            {
+                CompanyZipcodeErrorLabel.Text = "Invalid zipcode";
+                return;
+            }
+
             Database.UpdateCompany(this.CompanyID, NewZip: NewCompanyZipcode);
             CompanyZipcode.InnerText = HttpUtility.HtmlEncode(NewCompanyZipcode);
         }
