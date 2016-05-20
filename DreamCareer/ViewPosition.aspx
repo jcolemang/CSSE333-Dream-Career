@@ -92,12 +92,6 @@
         </tr>
         <tr>
         <td>
-                <button type="button"
-                    class="expand-update"
-                    id="apply-expand-update"
-                    onclick="toggleApply()">
-                    Apply
-                </button>
 
                 <%-- Note that this one has runat=server --%>
                 <asp:FileUpload ID="FileUpload1" runat="server" />
@@ -110,14 +104,16 @@
                         <asp:BoundField DataField="Name" HeaderText="File Name"/>
                         <asp:TemplateField ItemStyle-HorizontalAlign = "Center">
                             <ItemTemplate>
-                                <asp:LinkButton ID="lnkDownload" runat="server" Text="Download" OnClick="DownloadFile"
+                                <asp:LinkButton ID="lnkDownload" runat="server" 
+                                    Text="Download" 
+                                    OnClick="DownloadFile"
                                     CommandArgument='<%#Eval("id")%>'></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
           
-                <asp:Button ID="Apply" runat="server" Text="Submit!"
+                <asp:Button ID="Apply" runat="server" Text="Apply!"
                     OnClick="ApplyButton_OnClick" />
           
 

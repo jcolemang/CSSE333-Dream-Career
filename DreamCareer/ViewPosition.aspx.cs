@@ -98,7 +98,7 @@ namespace DreamCareer
                     //using (
                     SqlConnection con = Database.GetSqlConnection();
                     //{
-                    string sp_name = "uploadProc";
+                    string sp_name = "upload";
                     String posid = Request.QueryString["PositionID"];
                     String userid = Request.QueryString["userid"];
                     Database.insertUserIDPositionID(userid, posid);
@@ -129,12 +129,7 @@ namespace DreamCareer
 
         protected void DownloadFile(object sender, EventArgs e)
         {
-            string[] arg = new string[2];
-            //arg = e.CommandArgument.ToString().Split(';');
-            var argument = ((Button)sender).CommandArgument;
-            arg = argument.ToString().Split(';');
-        Session["userid"] = arg[0];
-            Session["positionid"] = arg[1];
+            int id = int.Parse((sender as LinkButton).CommandArgument);
             byte[] bytes;
             string fileName, contentType;
             //string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
@@ -144,14 +139,12 @@ namespace DreamCareer
              string sp_name = "download";
              SqlCommand downloadable = new SqlCommand(sp_name, con);
              downloadable.CommandType = System.Data.CommandType.StoredProcedure;
-             downloadable.Parameters.Add(new SqlParameter("@userid", arg[0]));
-            downloadable.Parameters.Add(new SqlParameter("@positionid", arg[1]));
-
+             downloadable.Parameters.Add(new SqlParameter("@id", id));
             using (SqlDataReader sdr = downloadable.ExecuteReader())
                     {
                         sdr.Read();
                         bytes = (byte[])sdr["Data"];
-                        contentType = sdr["ContentType"].ToString();
+                        contentType = sdr["Content Type"].ToString();
                         fileName = sdr["Name"].ToString();
                     }
             con.Close();
@@ -168,9 +161,11 @@ namespace DreamCareer
 
         protected void ApplyButton_OnClick(object sender, EventArgs e)
         {
-            String posid = Request.QueryString["PositionID"];
-            String userid = Request.QueryString["userid"];
-            Database.insertUserIDPositionID(userid, posid);
+            // String posid = Request.QueryString["PositionID"];
+            // String userid = Request.QueryString["userid"];
+            // Database.insertUserIDPositionID(userid, posid);
+            System.Windows.Forms.MessageBox.Show("Applied!");
+            Response.Redirect("SearchResults.aspx?field2=" + this.UserID + "&Type=Position&Search=");
             return;
         }
 
