@@ -140,6 +140,9 @@ namespace DreamCareer
         protected void DownloadFile(object sender, EventArgs e)
         {
             int id = int.Parse((sender as LinkButton).CommandArgument);
+            string posid = Request.QueryString["PositionID"];
+            int userid = this.UserID;
+            
             byte[] bytes;
             string fileName, contentType;
             //string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
@@ -150,6 +153,10 @@ namespace DreamCareer
             SqlCommand downloadable = new SqlCommand(sp_name, con);
             downloadable.CommandType = System.Data.CommandType.StoredProcedure;
             downloadable.Parameters.Add(new SqlParameter("@id", id));
+            downloadable.Parameters.Add(new SqlParameter("@posid", posid));
+            downloadable.Parameters.Add(new SqlParameter("@userid", userid));
+
+
             using (SqlDataReader sdr = downloadable.ExecuteReader())
             {
                 sdr.Read();
