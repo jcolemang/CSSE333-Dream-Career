@@ -532,6 +532,40 @@ namespace DreamCareer
             connection.Close();
         }
 
+        public static void LikeProfile(
+            int UserID,
+            string UserName=null,
+            int ProfileID=-1)
+        {
+            string sp_name = "insert_new_like";
+            SqlConnection Connection = GetSqlConnection();
+
+            SqlCommand insert_new_like = new SqlCommand(
+                sp_name, Connection);
+            insert_new_like.CommandType =
+                System.Data.CommandType.StoredProcedure;
+            if (UserID != 0)
+            {
+                insert_new_like.Parameters.Add(
+                    new SqlParameter("@userid", UserID));
+            }
+
+            if (UserName != null)
+            {
+                insert_new_like.Parameters.Add(
+                    new SqlParameter("@username", UserName));
+            }
+
+            if (ProfileID != 0)
+            {
+                insert_new_like.Parameters.Add(
+                    new SqlParameter("@profileid", ProfileID));
+            }
+
+            insert_new_like.ExecuteNonQuery();
+
+            Connection.Close();
+        }
 
         public static void DeleteProfile(int ProfileID)
         {
@@ -1380,6 +1414,7 @@ namespace DreamCareer
                 Profile["City"] = reader.GetString(6);
                 Profile["State"] = reader.GetString(7);
                 Profile["Zipcode"] = reader.GetString(8);
+                Profile["ProfileID"] = reader.GetInt32(9).ToString();
             }
             else
             {
