@@ -81,6 +81,12 @@
                 <td>
                     <asp:TextBox type="text" ID="cityname" runat="server"></asp:TextBox>
                 </td>
+
+                <td>
+                    <asp:Label runat="server"
+                        ID="CityErrorLabel"
+                        CssClass="error-label"></asp:Label>
+                </td>
             </tr>
             <tr>
                 <td>

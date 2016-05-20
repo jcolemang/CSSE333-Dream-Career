@@ -80,6 +80,18 @@ namespace DreamCareer
         }
 
 
+        protected bool CheckCity(string City)
+        {
+            CityErrorLabel.Text = "";
+            if (City.Length > Database.MaxCityLength)
+            {
+                CityErrorLabel.Text = "City too long";
+                return false;
+            }
+            return true;
+        }
+
+
         protected bool CheckState(string State)
         {
             StateErrorLabel.Text = "";
@@ -151,15 +163,9 @@ namespace DreamCareer
             string zi = zipcode.Text;
             string salar =salaryam.Text;
             decimal variable2;
-            if ((!salar.Length.Equals(0) && !decimal.TryParse(salar, out variable2)) || salar.Contains(" "))
-            {
-                sal_input_error_label.Text = "Invalid salary value";
-                return;
-            }
             double salval = Convert.ToDouble(salar);
             double sal = System.Math.Round(salval, 2);
             string jobdesc = jobdes.Text;
-            int variable;
 
             bool AllGood = true;
             if (!CheckType(ty))
@@ -174,9 +180,11 @@ namespace DreamCareer
                 AllGood = false;
             if (!CheckZip(zi))
                 AllGood = false;
-            if (!CheckSalary(sal))
+            if (!CheckSalary(sal.ToString()))
                 AllGood = false;
             if (!CheckDescription(jobdesc))
+                AllGood = false;
+            if (!CheckCity(cit))
                 AllGood = false;
 
             if (!AllGood)
