@@ -20,8 +20,10 @@ namespace DreamCareer
 
         protected void InsertAlterPositionButton_OnClick(object sender, EventArgs e)
         {
-            string oldpos = oldtitle.Text;
-            string newpos = newtitle.Text;
+            string oldposid = Request.QueryString["oldposid"];
+            string companyid = Request.QueryString["companyid"];
+
+            string pos = newtitle.Text;
             string ty = typ.Text;
             string stree = strname.Text;
             string cit = cityname.Text;
@@ -53,7 +55,7 @@ namespace DreamCareer
             int compid = Database.getCompanyIdview(oldpos);
             int posid = Database.getPosId(oldpos);
             //Database.getPositionInfo(posid);
-            Database.UpdatePosition(posid, compid, pos, ty, stree, cit, stat, zi, sal, jobdesc);
+            Database.UpdatePosition(Convert.ToInt32(oldposid), Convert.ToInt32(companyid), pos, ty, stree, cit, stat, zi, sal, jobdesc);
             System.Windows.Forms.MessageBox.Show("Updated!");
             Response.Redirect("Login.aspx");
         }
@@ -61,13 +63,8 @@ namespace DreamCareer
 
         protected void DeletePositionButton_OnClick(object sender, EventArgs e)
         {
-            string oldpos = oldtitle.Text;
-            if (oldpos.Length <= 0)
-            {
-                name_dne_error_label.Text = "Need title to update position info.";
-                return;
-            }
-            Database.deletePosition(oldpos);
+            string oldposid = Request.QueryString["oldposid"];
+            Database.deletePosition(Convert.ToInt32(oldposid));
             System.Windows.Forms.MessageBox.Show("Deleted!");
             Response.Redirect("Login.aspx");
         }

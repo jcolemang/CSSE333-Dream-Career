@@ -104,6 +104,9 @@ namespace DreamCareer
                     Database.insertUserIDPositionID(userid, posid);
                     SqlCommand uploadable = new SqlCommand(sp_name, con);
                     uploadable.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+
                     uploadable.Parameters.Add(new SqlParameter("@userid", userid));
                     uploadable.Parameters.Add(new SqlParameter("@posid", posid));
                     uploadable.Parameters.Add(new SqlParameter("@Name", filename));
@@ -166,6 +169,13 @@ namespace DreamCareer
             // Database.insertUserIDPositionID(userid, posid);
             System.Windows.Forms.MessageBox.Show("Applied!");
             Response.Redirect("SearchResults.aspx?field2=" + this.UserID + "&Type=Position&Search=");
+            return;
+        }
+
+        protected void AlterPosition_OnClick(object sender, EventArgs e)
+        {
+            string pos = Request.QueryString["PositionID"];
+            Response.Redirect("AlterPosition.aspx?oldposid="+ pos +"&companyid=" + this.CompanyID);
             return;
         }
     }

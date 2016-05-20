@@ -14,28 +14,27 @@
         <p>
             Created by Aaradhana, Coleman, and Joyce for CSSE333 Databases
         </p>
-    </div>
-
-
-
-    <div id="search-bar-div">
         <asp:TextBox ID="SearchBar" runat="server"
-            CssClass="search-bar-class">
-        </asp:TextBox>
+            CssClass="search-bar-class" Height="46px" Width="690px"></asp:TextBox>
     </div>
 
     <div id="button-div">
         <asp:Button ID="SearchPositionButton" runat="server"
             Text="Search Positions"
-            OnClick="SearchPositionButton_OnClick" />
+            OnClick="SearchPositionButton_OnClick" Height="50px" Width="205px" />
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
         <asp:Button ID="SearchCompanyButton" runat="server"
             Text="Search Companies"
-            OnClick="SearchCompanyButton_OnClick" />
+            OnClick="SearchCompanyButton_OnClick" Height="50px" Width="205px" />
+
+        <br />
+        <br />
 
         <asp:Button ID="SearchProfileButton" runat="server"
             Text="Search Profiles"
-            OnClick="SearchProfileButton_OnClick" />
+            OnClick="SearchProfileButton_OnClick" Height="50px" Width="205px" />
     </div>
 
 

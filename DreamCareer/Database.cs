@@ -536,8 +536,8 @@ namespace DreamCareer
 
         public static void LikeProfile(
             int UserID,
-            string UserName=null,
-            int ProfileID=-1)
+            string UserName,
+            int ProfileID)
         {
             string sp_name = "insert_new_like";
             SqlConnection Connection = GetSqlConnection();
@@ -546,25 +546,18 @@ namespace DreamCareer
                 sp_name, Connection);
             insert_new_like.CommandType =
                 System.Data.CommandType.StoredProcedure;
-            if (UserID != 0)
-            {
-                insert_new_like.Parameters.Add(
-                    new SqlParameter("@userid", UserID));
-            }
+            insert_new_like.Parameters.Add(
+                new SqlParameter("@userid", UserID));
+            insert_new_like.Parameters.Add(
+                new SqlParameter("@profileid", ProfileID));
 
-            if (UserName != null)
-            {
-                insert_new_like.Parameters.Add(
-                    new SqlParameter("@username", UserName));
-            }
-
-            if (ProfileID != 0)
-            {
-                insert_new_like.Parameters.Add(
-                    new SqlParameter("@profileid", ProfileID));
-            }
+            SqlParameter RetVal = new SqlParameter("RetVal", SqlDbType.Int);
+            RetVal.Direction = ParameterDirection.ReturnValue;
+            insert_new_like.Parameters.Add(RetVal);
 
             insert_new_like.ExecuteNonQuery();
+
+            int dummy = (int)RetVal.Value;
 
             Connection.Close();
         }
@@ -1063,7 +1056,7 @@ namespace DreamCareer
             connection.Close();
         }
 
-        public static void insertUserIDPositionID(string userid, string posid)
+        public static int insertUserIDPositionID(string userid, string posid)
         {
             string sp_name = "insert_apply";
             SqlConnection connection = GetSqlConnection();
@@ -1084,7 +1077,7 @@ namespace DreamCareer
             applyInsert.ExecuteNonQuery();
 
             int ReturnValue = (int)ReturnVal.Value;
-            if (ReturnValue == Database.ProfileAlreadyExistsError)
+            if (ReturnValue == -1)
             {
                 connection.Close();
                 throw new Exception();
@@ -1093,7 +1086,7 @@ namespace DreamCareer
             connection.Close();
         }
 
-        public static void deletePosition(string pos)
+        public static void deletePosition(int pos)
         {
             string sp_name = "delete_position";
             SqlConnection connection = GetSqlConnection();
@@ -1175,21 +1168,31 @@ namespace DreamCareer
               new SqlParameter("@positionid", posid));
             updatepos.Parameters.Add(
                new SqlParameter("@companyid", compid));
-            updatepos.Parameters.Add(
-               new SqlParameter("@positiontitle", pos));
-            updatepos.Parameters.Add(
+            if (pos != "")
+            {
+                updatepos.Parameters.Add(
+                   new SqlParameter("@positiontitle", pos));
+            }
+            if (ty != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@postype", ty));
-            updatepos.Parameters.Add(
+            if (stree != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@street", stree));
-            updatepos.Parameters.Add(
+            if (cit != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@city", cit));
-            updatepos.Parameters.Add(
+            if (stat != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@state", stat));
-            updatepos.Parameters.Add(
+            if (zi != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@zipcode", zi));
-            updatepos.Parameters.Add(
+            if (sal != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@salary", sal));
-            updatepos.Parameters.Add(
+            if (jobdesc != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@description", jobdesc));
 
             SqlParameter ReturnVal = new SqlParameter("RetVal",
@@ -1232,7 +1235,7 @@ namespace DreamCareer
         public static void LikeProfile(int UserID, 
             int ProfileID)
         {
-            string sp_name = "like_profile";
+            string sp_name = "insert_new_like";
             SqlConnection connection = GetSqlConnection();
 
             SqlCommand like = 
@@ -1240,10 +1243,14 @@ namespace DreamCareer
             like.CommandType =
                 System.Data.CommandType.StoredProcedure;
 
+            SqlParameter RetVal = new SqlParameter("RetVal", SqlDbType.Int);
+            RetVal.Direction = ParameterDirection.ReturnValue;
+            like.Parameters.Add(RetVal);
+
             like.Parameters.Add(
                 new SqlParameter("@userid", UserID));
             like.Parameters.Add(
-                new SqlParameter("@posid", ProfileID));
+                new SqlParameter("@profileid", ProfileID));
 
             like.ExecuteNonQuery();
             connection.Close();
