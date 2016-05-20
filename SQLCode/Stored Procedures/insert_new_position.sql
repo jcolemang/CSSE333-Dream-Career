@@ -4,16 +4,16 @@ USE DreamCareer
 -- Inserts a Position into the database
 -- Which is connected to a specific company
 Go
-CREATE PROCEDURE insert_new_position
+ALTER PROCEDURE insert_new_position
 	(@companyid int,
-	@positiontitle varchar(20),
-	@postype varchar(20),
-	@street varchar(20),
-	@city varchar(20),
-	@state varchar(20),
-	@zipcode varchar(20),
+	@positiontitle varchar(50),
+	@postype varchar(50),
+	@street varchar(50),
+	@city varchar(50),
+	@state varchar(50),
+	@zipcode varchar(50),
 	@salary money,
-	@description varchar(100))
+	@description varchar(500))
 AS
 	-- Good ol' insert
 	INSERT INTO Position

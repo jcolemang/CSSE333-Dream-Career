@@ -16,3 +16,5 @@ CREATE TABLE Company
 )
 
 CREATE INDEX company_name_index ON Company (Name)
+
+

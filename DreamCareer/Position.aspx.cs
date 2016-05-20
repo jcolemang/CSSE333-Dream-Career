@@ -51,11 +51,10 @@ namespace DreamCareer
             //Comment in later END//
                                                          
             //TODO add code later to throw error if name of non-existent company
-            int compid = Database.GetCompanyID(this.Username);
-            int posid = Database.getPosId(pos);
-            Database.CreatePosition(compid, pos, ty, stree, cit, stat, zi, sal, jobdesc);
+            //int posid = Database.getPosId(pos);
+            Database.CreatePosition(this.CompanyID, pos, ty, stree, cit, stat, zi, sal, jobdesc);
             System.Windows.Forms.MessageBox.Show("Created!");
-            Response.Redirect("Login.aspx?value1 = " + pos);  
+            Response.Redirect("Default.aspx");  
         }
 
     }

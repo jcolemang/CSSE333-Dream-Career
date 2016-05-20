@@ -3,10 +3,10 @@ USE DreamCareer
 -- A simple insert stored procedure
 -- Inserts a company into the database
 Go
-CREATE PROCEDURE insert_new_company
+ALTER PROCEDURE insert_new_company
 	(@size int,
 	@name varchar(50),
-	@description varchar(100),
+	@description varchar(500),
 	@street varchar(50),
 	@city varchar(50),
 	@state varchar(50),
