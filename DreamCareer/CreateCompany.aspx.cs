@@ -55,7 +55,7 @@ namespace DreamCareer
                 Database.InsertCompanyTag(CompanyID, tag);
 
             System.Windows.Forms.MessageBox.Show("Created!");
-            Response.Redirect("Position.aspx");
+            Response.Redirect("Position.aspx?CompanyID=" + CompanyID);
 
         }
     }
