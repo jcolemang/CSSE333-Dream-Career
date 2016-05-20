@@ -118,7 +118,7 @@
                     <p id="Salary">
                         Salary
                     </p>
-                </td>
+                </td>               
                 <td>
                     <asp:TextBox type="text" ID="salaryam" runat="server"></asp:TextBox>
                 </td>

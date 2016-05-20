@@ -1019,7 +1019,7 @@ namespace DreamCareer
 
 
         public static void CreatePosition(int companyid, string pos, string ty, string stree, 
-            string cit, string stat, string zi, string sal, string jobdesc)
+            string cit, string stat, string zi, double sal, string jobdesc)
         {
             string sp_name = "insert_new_position";
             SqlConnection connection = GetSqlConnection();

@@ -54,7 +54,7 @@ namespace DreamCareer
             }
             else
             {
-               // name_dne_error_label.Text = "Not an existing position.";
+                // name_dne_error_label.Text = "Not an existing position.";
                 return;
             }
             if (!IsPostBack)
@@ -69,18 +69,18 @@ namespace DreamCareer
             //string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
             using (SqlConnection con = Database.GetSqlConnection())
             {
-               // using (SqlCommand cmd = new SqlCommand())
-               // {
-                    //cmd.CommandText = "use DreamCareer go select Id, Name from ApplyTo go GRANT SELECT ON OBJECT::dbo.ApplyTo TO DreamCareer;";
-                    //cmd.Connection = con;
-                    //con.Open();
-                    string sp_name = "idnameapply";
-                    SqlCommand applysel = new SqlCommand(sp_name, con);
-                    applysel.CommandType = System.Data.CommandType.StoredProcedure;
-                    GridView1.DataSource = applysel.ExecuteReader();
-                    GridView1.DataBind();
-                    con.Close();
-               // }
+                // using (SqlCommand cmd = new SqlCommand())
+                // {
+                //cmd.CommandText = "use DreamCareer go select Id, Name from ApplyTo go GRANT SELECT ON OBJECT::dbo.ApplyTo TO DreamCareer;";
+                //cmd.Connection = con;
+                //con.Open();
+                string sp_name = "idnameapply";
+                SqlCommand applysel = new SqlCommand(sp_name, con);
+                applysel.CommandType = System.Data.CommandType.StoredProcedure;
+                GridView1.DataSource = applysel.ExecuteReader();
+                GridView1.DataBind();
+                con.Close();
+                // }
             }
         }
 
@@ -114,12 +114,12 @@ namespace DreamCareer
                     //{
                     //cmd.Connection = con;
                     //cmd.Parameters.AddWithValue("@Name", filename);
-                        //    cmd.Parameters.AddWithValue("@ContentType", contentType);
-                         //   cmd.Parameters.AddWithValue("@Data", bytes);
-                            //con.Open();
-                            uploadable.ExecuteNonQuery();
-                            con.Close();
-                        //}
+                    //    cmd.Parameters.AddWithValue("@ContentType", contentType);
+                    //   cmd.Parameters.AddWithValue("@Data", bytes);
+                    //con.Open();
+                    uploadable.ExecuteNonQuery();
+                    con.Close();
+                    //}
                     //}
                 }
             }
@@ -136,17 +136,17 @@ namespace DreamCareer
             //using (
             SqlConnection con = Database.GetSqlConnection();
             //{
-             string sp_name = "download";
-             SqlCommand downloadable = new SqlCommand(sp_name, con);
-             downloadable.CommandType = System.Data.CommandType.StoredProcedure;
-             downloadable.Parameters.Add(new SqlParameter("@id", id));
+            string sp_name = "download";
+            SqlCommand downloadable = new SqlCommand(sp_name, con);
+            downloadable.CommandType = System.Data.CommandType.StoredProcedure;
+            downloadable.Parameters.Add(new SqlParameter("@id", id));
             using (SqlDataReader sdr = downloadable.ExecuteReader())
-                    {
-                        sdr.Read();
-                        bytes = (byte[])sdr["Data"];
-                        contentType = sdr["Content Type"].ToString();
-                        fileName = sdr["Name"].ToString();
-                    }
+            {
+                sdr.Read();
+                bytes = (byte[])sdr["Data"];
+                contentType = sdr["Content Type"].ToString();
+                fileName = sdr["Name"].ToString();
+            }
             con.Close();
             Response.Clear();
             Response.Buffer = true;
@@ -168,6 +168,5 @@ namespace DreamCareer
             Response.Redirect("SearchResults.aspx?field2=" + this.UserID + "&Type=Position&Search=");
             return;
         }
-
     }
 }
