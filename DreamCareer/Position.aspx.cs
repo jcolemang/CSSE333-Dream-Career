@@ -153,7 +153,7 @@ namespace DreamCareer
             decimal variable2;
             if ((!salar.Length.Equals(0) && !decimal.TryParse(salar, out variable2)) || salar.Contains(" "))
             {
-                sal_input_error_label.Text = "Invalid salary value";
+                //sal_input_error_label.Text = "Invalid salary value";
                 return;
             }
             double salval = Convert.ToDouble(salar);
@@ -174,8 +174,8 @@ namespace DreamCareer
                 AllGood = false;
             if (!CheckZip(zi))
                 AllGood = false;
-            if (!CheckSalary(sal))
-                AllGood = false;
+            //if (!CheckSalary(sal))
+                //AllGood = false;
             if (!CheckDescription(jobdesc))
                 AllGood = false;
 

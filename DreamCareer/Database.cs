@@ -1080,10 +1080,12 @@ namespace DreamCareer
             if (ReturnValue == -1)
             {
                 connection.Close();
-                throw new Exception();
+                return -1;
+                //throw new Exception();
             }
-
+            
             connection.Close();
+            return 0;
         }
 
         public static void deletePosition(int pos)
