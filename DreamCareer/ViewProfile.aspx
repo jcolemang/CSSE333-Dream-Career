@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="ViewProfile.aspx.cs" Inherits="DreamCareer.ViewProfile" %>
+﻿<%@ Page Title="" ValidateRequest="false" Language="C#" MasterPageFile="~/base.Master" AutoEventWireup="true" CodeBehind="ViewProfile.aspx.cs" Inherits="DreamCareer.ViewProfile" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="static/css/ViewProfile.css" rel="stylesheet" type="text/css" />
@@ -40,12 +41,12 @@
                 </td>
 
                 <td>
-                    <button type="button"
+                <%--    <button type="button"
                         id="profile-gender-expand-update"
                         class="expand-update"
                         onclick="toggleProfileGender()">
                         Update
-                    </button>
+                    </button> --%>
 
                     <asp:Button runat="server"
                         CssClass="submit-update GenderSubmitUpdate"
@@ -68,12 +69,12 @@
                 </td>
 
                 <td>
-                    <button type="button"
+              <%--      <button type="button"
                         id="profile-major-expand-update"
                         class="expand-update"
                         onclick="toggleProfileMajor()">
                         Update
-                    </button>
+                    </button> --%>
 
                     <asp:Button runat="server"
                         CssClass="submit-update MajorSubmitUpdate"
@@ -95,12 +96,13 @@
                     </asp:TextBox>
                 </td>
                 <td>
-                    <button type="button"
+              <%--      <button type="button"
                         id="profile-experience-expand-update"
                         class="expand-update"
                         onclick="toggleProfileExperience()">
                         Update
-                    </button>
+                    </button>   --%>
+
                     <asp:Button runat="server"
                         CssClass="submit-update ExperienceSubmitUpdate"
                         ID="UpdateExperienceButton"
@@ -121,12 +123,12 @@
                     </asp:TextBox>
                 </td>
                 <td>
-                    <button type="button"
+              <%--      <button type="button"
                         id="profile-street-expand-update"
                         class="expand-update"
                         onclick="toggleProfileStreet()">
                         Update
-                    </button>
+                    </button>  --%>
                     <asp:Button runat="server"
                         CssClass="submit-update StreetSubmitUpdate"
                         ID="UpdateStreetButton"
@@ -147,12 +149,12 @@
                     </asp:TextBox>
                 </td>
                 <td>
-                    <button type="button"
+               <%--     <button type="button"
                         id="profile-city-expand-update"
                         class="expand-update"
                         onclick="toggleProfileCity()">
                         Update
-                    </button>
+                    </button> --%>
                     <asp:Button runat="server"
                         CssClass="submit-update CitySubmitUpdate"
                         ID="UpdateCityButton"
@@ -173,12 +175,12 @@
                     </asp:TextBox>
                 </td>
                 <td>
-                    <button type="button"
+                <%--    <button type="button"
                         id="profile-state-expand-update"
                         class="expand-update"
                         onclick="toggleProfileState()">
                         Update
-                    </button>
+                    </button>  --%>
                     <asp:Button runat="server"
                         CssClass="submit-update StateSubmitUpdate"
                         ID="UpdateStateButton"
@@ -199,12 +201,12 @@
                     </asp:TextBox>
                 </td>
                 <td>
-                    <button type="button"
+                <%--    <button type="button"
                         id="profile-zipcode-expand-update"
                         class="expand-update"
                         onclick="toggleProfileZipcode()">
                         Update
-                    </button>
+                    </button>  --%>
                     <asp:Button runat="server"
                         CssClass="submit-update ZipcodeSubmitUpdate"
                         ID="UpdateZipcodeButton"

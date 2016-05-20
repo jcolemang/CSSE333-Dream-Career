@@ -131,8 +131,8 @@ namespace DreamCareer
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Database.LikeProfile(this.ProfileID);
-            Response.Redirect("Default.aspx");
+            Database.LikeProfile(this.UserID, this.ProfileID);
+        //    Response.Redirect("Default.aspx");
         }
 
         protected string WriteUserCompanies()

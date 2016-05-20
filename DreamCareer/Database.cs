@@ -536,8 +536,8 @@ namespace DreamCareer
 
         public static void LikeProfile(
             int UserID,
-            string UserName=null,
-            int ProfileID=-1)
+            string UserName,
+            int ProfileID)
         {
             string sp_name = "insert_new_like";
             SqlConnection Connection = GetSqlConnection();
@@ -546,25 +546,18 @@ namespace DreamCareer
                 sp_name, Connection);
             insert_new_like.CommandType =
                 System.Data.CommandType.StoredProcedure;
-            if (UserID != 0)
-            {
-                insert_new_like.Parameters.Add(
-                    new SqlParameter("@userid", UserID));
-            }
+            insert_new_like.Parameters.Add(
+                new SqlParameter("@userid", UserID));
+            insert_new_like.Parameters.Add(
+                new SqlParameter("@profileid", ProfileID));
 
-            if (UserName != null)
-            {
-                insert_new_like.Parameters.Add(
-                    new SqlParameter("@username", UserName));
-            }
-
-            if (ProfileID != 0)
-            {
-                insert_new_like.Parameters.Add(
-                    new SqlParameter("@profileid", ProfileID));
-            }
+            SqlParameter RetVal = new SqlParameter("RetVal", SqlDbType.Int);
+            RetVal.Direction = ParameterDirection.ReturnValue;
+            insert_new_like.Parameters.Add(RetVal);
 
             insert_new_like.ExecuteNonQuery();
+
+            int dummy = (int)RetVal.Value;
 
             Connection.Close();
         }
@@ -1232,7 +1225,7 @@ namespace DreamCareer
         public static void LikeProfile(int UserID, 
             int ProfileID)
         {
-            string sp_name = "like_profile";
+            string sp_name = "insert_new_like";
             SqlConnection connection = GetSqlConnection();
 
             SqlCommand like = 
@@ -1240,10 +1233,14 @@ namespace DreamCareer
             like.CommandType =
                 System.Data.CommandType.StoredProcedure;
 
+            SqlParameter RetVal = new SqlParameter("RetVal", SqlDbType.Int);
+            RetVal.Direction = ParameterDirection.ReturnValue;
+            like.Parameters.Add(RetVal);
+
             like.Parameters.Add(
                 new SqlParameter("@userid", UserID));
             like.Parameters.Add(
-                new SqlParameter("@posid", ProfileID));
+                new SqlParameter("@profileid", ProfileID));
 
             like.ExecuteNonQuery();
             connection.Close();
