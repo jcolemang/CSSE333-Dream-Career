@@ -51,9 +51,7 @@ namespace DreamCareer
                 AllGood = false;
             if (!CheckCity(cit))
                 AllGood = false;
-
-            int compid = Database.getCompanyIdview(oldpos);
-            int posid = Database.getPosId(oldpos);
+         
             //Database.getPositionInfo(posid);
             Database.UpdatePosition(Convert.ToInt32(oldposid), Convert.ToInt32(companyid), pos, ty, stree, cit, stat, zi, sal, jobdesc);
             System.Windows.Forms.MessageBox.Show("Updated!");
