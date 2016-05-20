@@ -98,6 +98,7 @@
     <Content Include="Admin.aspx" />
     <Content Include="CreateCompany.aspx" />
     <Content Include="ErrorPage.aspx" />
+    <Content Include="scripts\CreatePosition.js" />
     <Content Include="scripts\ValidateInputs.js" />
     <Content Include="scripts\ViewPosition.js" />
     <Content Include="scripts\ViewProfile.js" />

@@ -11,7 +11,10 @@
 }
 
 .profile-info-table {
-    margin-left: 100px;
+    margin-left: 1000px;
+    padding-left: 1000px;
+    margin-right: 500px;
+    padding-right: 500px;
 }
 .asp-user-profile-label {
     margin-left:120px;
@@ -24,3 +27,4 @@
 td {
    margin-right:1000px;
 }
+

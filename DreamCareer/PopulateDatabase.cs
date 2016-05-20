@@ -688,7 +688,14 @@ namespace DreamCareer
             {
                 userid = Database.GetRandomUserID();
                 profileid = Database.GetRandomProfileID();
-                Database.CreateUserLikes(userid, profileid);
+                try
+                {
+                    Database.CreateUserLikes(userid, profileid);
+                }
+                catch (Exception)
+                {
+
+                }
             }
         }
     }
