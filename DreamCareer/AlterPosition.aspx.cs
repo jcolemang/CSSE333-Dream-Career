@@ -15,13 +15,14 @@ namespace DreamCareer
             base.Page_Load(sender, e);
             if (this.LoadError)
                 return;
+
+            if (!this.SetCompanyID())
+                return;
         }
 
 
         protected void InsertAlterPositionButton_OnClick(object sender, EventArgs e)
         {
-            string oldposid = Request.QueryString["oldposid"];
-            string companyid = Request.QueryString["companyid"];
 
             string pos = newtitle.Text;
             string ty = typ.Text;
@@ -52,10 +53,13 @@ namespace DreamCareer
             if (!CheckCity(cit))
                 AllGood = false;
 
-            int compid = Database.getCompanyIdview(oldpos);
-            int posid = Database.getPosId(oldpos);
-            //Database.getPositionInfo(posid);
-            Database.UpdatePosition(Convert.ToInt32(oldposid), Convert.ToInt32(companyid), pos, ty, stree, cit, stat, zi, sal, jobdesc);
+            if (!AllGood)
+                return;
+
+            // CHECK THIS
+            string oldposid = Request.QueryString["oldposid"];
+
+            Database.UpdatePosition(Convert.ToInt32(oldposid), this.CompanyID, pos, ty, stree, cit, stat, zi, sal, jobdesc);
             System.Windows.Forms.MessageBox.Show("Updated!");
             Response.Redirect("Login.aspx");
         }
