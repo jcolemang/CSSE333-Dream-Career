@@ -101,9 +101,14 @@
                     <p id="Salary">
                         Salary
                     </p>
-                </td>
+                </td>               
                 <td>
                     <asp:TextBox type="text" ID="salaryam" runat="server"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:Label ID="sal_input_error_label"
+                        class="error-label asp-sal-input-error-label"
+                        runat="server"></asp:Label>
                 </td>
             </tr>
 

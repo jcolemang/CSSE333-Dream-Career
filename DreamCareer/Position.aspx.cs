@@ -31,10 +31,19 @@ namespace DreamCareer
             string cit = cityname.Text;
             string stat = statename.Text;
             string zi = zipcode.Text;
-            string sal =salaryam.Text;
+            string salar =salaryam.Text;
+            decimal variable2;
+            if ((!salar.Length.Equals(0) && !decimal.TryParse(salar, out variable2)) || salar.Contains(" "))
+            {
+                sal_input_error_label.Text = "Invalid salary value";
+                return;
+            }
+            double salval = Convert.ToDouble(salar);
+            double sal = System.Math.Round(salval, 2);
             string jobdesc = jobdes.Text;
+            int variable;
 
-            if (!zi.Length.Equals(5) && !zi.Length.Equals(0))
+            if ((!zi.Length.Equals(5) && !zi.Length.Equals(0)) || (!zi.Length.Equals(0) && !int.TryParse(zi, out variable)) || zi.Contains(" "))
             {
                 zip_input_error_label.Text = "Invalid zip code";
                 return;

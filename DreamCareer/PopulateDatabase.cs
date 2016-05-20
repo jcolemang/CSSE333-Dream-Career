@@ -509,7 +509,7 @@ namespace DreamCareer
                 try
                 {
                     Database.CreatePosition(CompanyID, PositionTitle,
-                        type, street, city, state, zip, salary.ToString(),
+                        type, street, city, state, zip, salary,
                         description);
                 }
                 catch (RepeatDataException)
