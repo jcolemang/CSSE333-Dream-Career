@@ -30,6 +30,12 @@
             <td>
                 <asp:TextBox type="text" ID="newtitle" runat="server"></asp:TextBox>
             </td>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="TitleErrorLabel"
+                    CssClass="error-label"></asp:Label>
+            </td>
         </tr>
 
 
@@ -43,10 +49,11 @@
 
                 <asp:TextBox type="text" ID="typ" runat="server"></asp:TextBox>
 
-
             </td>
             <td>
-                <label id="gender-not-selected-error"></label>
+                <asp:Label runat="server"
+                    ID="TypeErrorLabel"
+                    CssClass="error-label"></asp:Label>
             </td>
         </tr>
 
@@ -59,6 +66,12 @@
             <td>
                 <asp:TextBox type="text" ID="strname" runat="server"></asp:TextBox>
             </td>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="StreetErrorLabel"
+                    CssClass="error-label"></asp:Label>
+            </td>
         </tr>
 
         <tr>
@@ -70,6 +83,12 @@
             <td>
                 <asp:TextBox type="text" ID="cityname" runat="server"></asp:TextBox>
             </td>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="CityErrorLabel"
+                    CssClass="error-label"></asp:Label>
+            </td>
         </tr>
         <tr>
             <td>
@@ -79,6 +98,12 @@
             </td>
             <td>
                 <asp:TextBox type="text" ID="statename" runat="server"></asp:TextBox>
+            </td>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="StateErrorLabel"
+                    CssClass="error-label"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -106,6 +131,12 @@
             <td>
                 <asp:TextBox type="text" ID="salaryam" runat="server"></asp:TextBox>
             </td>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="SalaryErrorLabel"
+                    CssClass="error-label"></asp:Label>
+            </td>
         </tr>
 
         <tr>
@@ -116,6 +147,12 @@
             </td>
             <td>
                 <asp:TextBox type="text" ID="jobdes" runat="server" MaxLength="1000" Style="width: 800px"></asp:TextBox>
+            </td>
+
+            <td>
+                <asp:Label runat="server"
+                    ID="DescriptionErrorLabel"
+                    CssClass="error-label"></asp:Label>
             </td>
         </tr>
         <tr>

@@ -73,7 +73,7 @@ namespace DreamCareer
         {
             string newGender = UpdateGenderTextBox.Text;
             Database.UpdateProfile(this.ProfileID, NewGender: newGender);
-            GenderText.InnerText = newGender;
+            GenderText.InnerText = HttpUtility.HtmlEncode(newGender);
         }
 
 
@@ -81,7 +81,7 @@ namespace DreamCareer
         {
             string newMajor = UpdateMajorTextBox.Text;
             Database.UpdateProfile(this.ProfileID, NewMajor: newMajor);
-            MajorText.InnerText = newMajor;
+            MajorText.InnerText = HttpUtility.HtmlEncode(newMajor);
         }
 
 
@@ -89,7 +89,7 @@ namespace DreamCareer
         {
             string newExperience = UpdateExperienceTextBox.Text;
             Database.UpdateProfile(this.ProfileID, NewExperience: newExperience);
-            ExperienceText.InnerText = newExperience;
+            ExperienceText.InnerText = HttpUtility.HtmlEncode(newExperience);
         }
 
 
@@ -97,7 +97,7 @@ namespace DreamCareer
         {
             string newStreet = UpdateStreetTextBox.Text;
             Database.UpdateProfile(this.ProfileID, NewStreet: newStreet);
-            StreetText.InnerText = newStreet;
+            StreetText.InnerText = HttpUtility.HtmlEncode(newStreet);
         }
 
 
@@ -105,14 +105,14 @@ namespace DreamCareer
         {
             string newCity = UpdateCityTextBox.Text;
             Database.UpdateProfile(this.ProfileID, NewCity: newCity);
-            StreetText.InnerText = newCity;
+            StreetText.InnerText = HttpUtility.HtmlEncode(newCity);
         }
 
         protected void UpdateState(object sender, EventArgs e)
         {
             string newState = UpdateStateTextBox.Text;
             Database.UpdateProfile(this.ProfileID, NewState: newState);
-            StateText.InnerText = newState;
+            StateText.InnerText = HttpUtility.HtmlEncode(newState);
         }
 
 
@@ -120,7 +120,7 @@ namespace DreamCareer
         {
             string newZipcode = UpdateZipcodeTextBox.Text;
             Database.UpdateProfile(this.ProfileID, NewZipcode: newZipcode);
-            ZipcodeText.InnerText = newZipcode;
+            ZipcodeText.InnerText = HttpUtility.HtmlEncode(newZipcode);
         }
 
         protected void Button1_Click(object sender, EventArgs e)

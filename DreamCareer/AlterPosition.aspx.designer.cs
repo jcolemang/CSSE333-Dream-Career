@@ -31,6 +31,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox newtitle;
         
         /// <summary>
+        /// TitleErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TitleErrorLabel;
+        
+        /// <summary>
         /// typ control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox typ;
+        
+        /// <summary>
+        /// TypeErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TypeErrorLabel;
         
         /// <summary>
         /// strname control.
@@ -49,6 +67,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox strname;
         
         /// <summary>
+        /// StreetErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label StreetErrorLabel;
+        
+        /// <summary>
         /// cityname control.
         /// </summary>
         /// <remarks>
@@ -58,6 +85,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox cityname;
         
         /// <summary>
+        /// CityErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CityErrorLabel;
+        
+        /// <summary>
         /// statename control.
         /// </summary>
         /// <remarks>
@@ -65,6 +101,15 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox statename;
+        
+        /// <summary>
+        /// StateErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label StateErrorLabel;
         
         /// <summary>
         /// zipcode control.
@@ -94,6 +139,15 @@ namespace DreamCareer {
         protected global::System.Web.UI.WebControls.TextBox salaryam;
         
         /// <summary>
+        /// SalaryErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SalaryErrorLabel;
+        
+        /// <summary>
         /// jobdes control.
         /// </summary>
         /// <remarks>
@@ -101,6 +155,15 @@ namespace DreamCareer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox jobdes;
+        
+        /// <summary>
+        /// DescriptionErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DescriptionErrorLabel;
         
         /// <summary>
         /// position_button control.
