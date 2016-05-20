@@ -169,14 +169,5 @@ namespace DreamCareer
             return;
         }
 
-        protected void Upload(object sender, EventArgs e)
-        {
-            // Dummy to make this thing compile
-        }
-
-        protected void DownloadFile(object sender, EventArgs e)
-        {
-            // Same
-        }
     }
 }
