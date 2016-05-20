@@ -101,27 +101,34 @@ namespace DreamCareer
                     string sp_name = "upload";
                     String posid = Request.QueryString["PositionID"];
                     String userid = Request.QueryString["userid"];
-                    Database.insertUserIDPositionID(userid, posid);
+                    int retval = Database.insertUserIDPositionID(userid, posid);
                     SqlCommand uploadable = new SqlCommand(sp_name, con);
                     uploadable.CommandType = System.Data.CommandType.StoredProcedure;
 
+                    if (retval == 0)
+                    {
+                        uploadable.Parameters.Add(new SqlParameter("@userid", userid));
+                        uploadable.Parameters.Add(new SqlParameter("@posid", posid));
+                        uploadable.Parameters.Add(new SqlParameter("@Name", filename));
+                        uploadable.Parameters.Add(new SqlParameter("@ContentType", contentType));
+                        uploadable.Parameters.Add(new SqlParameter("@Data", bytes));
+                        //string query = "insert into ApplyTo values (@Name, @ContentType, @Data)";
+                        //using (SqlCommand cmd = new SqlCommand(query))
+                        //{
+                        //cmd.Connection = con;
+                        //cmd.Parameters.AddWithValue("@Name", filename);
+                        //    cmd.Parameters.AddWithValue("@ContentType", contentType);
+                        //   cmd.Parameters.AddWithValue("@Data", bytes);
+                        //con.Open();
+                        uploadable.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    else
+                    {
+                        con.Close();
+                        System.Windows.Forms.MessageBox.Show("Already added resume!");
 
-
-                    uploadable.Parameters.Add(new SqlParameter("@userid", userid));
-                    uploadable.Parameters.Add(new SqlParameter("@posid", posid));
-                    uploadable.Parameters.Add(new SqlParameter("@Name", filename));
-                    uploadable.Parameters.Add(new SqlParameter("@ContentType", contentType));
-                    uploadable.Parameters.Add(new SqlParameter("@Data", bytes));
-                    //string query = "insert into ApplyTo values (@Name, @ContentType, @Data)";
-                    //using (SqlCommand cmd = new SqlCommand(query))
-                    //{
-                    //cmd.Connection = con;
-                    //cmd.Parameters.AddWithValue("@Name", filename);
-                    //    cmd.Parameters.AddWithValue("@ContentType", contentType);
-                    //   cmd.Parameters.AddWithValue("@Data", bytes);
-                    //con.Open();
-                    uploadable.ExecuteNonQuery();
-                    con.Close();
+                    }
                     //}
                     //}
                 }
