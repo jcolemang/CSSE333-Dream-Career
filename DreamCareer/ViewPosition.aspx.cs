@@ -22,6 +22,9 @@ namespace DreamCareer
             if (this.LoadError)
                 return;
 
+            if (!this.SetCompanyID())
+                return;
+
             //TODO add company textbox too
             string pos = Request.QueryString["PositionID"];
 
@@ -55,6 +58,7 @@ namespace DreamCareer
             else
             {
                 // name_dne_error_label.Text = "Not an existing position.";
+                Response.Redirect("ErrorPage.aspx");
                 return;
             }
             if (!IsPostBack)
@@ -189,7 +193,7 @@ namespace DreamCareer
         protected void AlterPosition_OnClick(object sender, EventArgs e)
         {
             string pos = Request.QueryString["PositionID"];
-            Response.Redirect("AlterPosition.aspx?oldposid="+ pos +"&companyid=" + this.CompanyID);
+            Response.Redirect("AlterPosition.aspx?oldposid="+ pos +"&CompanyID=" + this.CompanyID);
             return;
         }
     }

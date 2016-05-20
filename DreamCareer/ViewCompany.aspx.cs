@@ -275,13 +275,14 @@ namespace DreamCareer
 
                 ResponseString += String.Format(
                     "<a class=\"search-result\" " +
-                    "href=\"ViewPosition.aspx?PositionID={0}\">" + 
+                    "href=\"ViewPosition.aspx?PositionID={0}&CompanyID={4}\">" + 
                     "{1}, {2}, {3}" +  
                     "</a>", 
                     HttpUtility.HtmlEncode(Position["PositionID"]),
                     HttpUtility.HtmlEncode(Position["Title"]), 
                     HttpUtility.HtmlEncode(Position["Type"]), 
-                    HttpUtility.HtmlEncode(Position["Salary"]));
+                    HttpUtility.HtmlEncode(Position["Salary"]),
+                    this.CompanyID);
 
                 ResponseString += "</div>";
                 ResponseString += "</div>";
