@@ -99,6 +99,7 @@
     <Content Include="CreateCompany.aspx" />
     <Content Include="ErrorPage.aspx" />
     <Content Include="scripts\ValidateInputs.js" />
+    <Content Include="scripts\ViewPosition.js" />
     <Content Include="scripts\ViewProfile.js" />
     <Content Include="scripts\ViewCompany.js" />
     <Content Include="static\css\Apply.css" />

@@ -90,9 +90,10 @@
                     runat="server"></asp:Label>
             </td>
         </tr>
-        
         <tr>
-            <td>
+        <td>
+
+                <%-- Note that this one has runat=server --%>
                 <asp:FileUpload ID="FileUpload1" runat="server" />
                 <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="Upload" />
                 <hr />
@@ -103,20 +104,21 @@
                         <asp:BoundField DataField="Name" HeaderText="File Name"/>
                         <asp:TemplateField ItemStyle-HorizontalAlign = "Center">
                             <ItemTemplate>
-                                <asp:LinkButton ID="lnkDownload" runat="server" Text="Download" OnClick="DownloadFile"
-                                    CommandArgument='<%# Eval("Id") %>'></asp:LinkButton>
+                                <asp:LinkButton ID="lnkDownload" runat="server" 
+                                    Text="Download" 
+                                    OnClick="DownloadFile"
+                                    CommandArgument='<%#Eval("id")%>'></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-            </td>
-        </tr>
-        <tr>
-            <td>
+          
                 <asp:Button ID="Apply" runat="server" Text="Apply!"
                     OnClick="ApplyButton_OnClick" />
+          
+
             </td>
-         </tr>
+        </tr> 
     </table>
 
 
