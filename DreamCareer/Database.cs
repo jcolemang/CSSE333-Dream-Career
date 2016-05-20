@@ -1061,7 +1061,7 @@ namespace DreamCareer
             connection.Close();
         }
 
-        public static void insertUserIDPositionID(string userid, string posid)
+        public static int insertUserIDPositionID(string userid, string posid)
         {
             string sp_name = "insert_apply";
             SqlConnection connection = GetSqlConnection();
@@ -1082,7 +1082,7 @@ namespace DreamCareer
             applyInsert.ExecuteNonQuery();
 
             int ReturnValue = (int)ReturnVal.Value;
-            if (ReturnValue == Database.ProfileAlreadyExistsError)
+            if (ReturnValue == -1)
             {
                 connection.Close();
                 throw new Exception();
@@ -1091,7 +1091,7 @@ namespace DreamCareer
             connection.Close();
         }
 
-        public static void deletePosition(string pos)
+        public static void deletePosition(int pos)
         {
             string sp_name = "delete_position";
             SqlConnection connection = GetSqlConnection();
@@ -1173,21 +1173,31 @@ namespace DreamCareer
               new SqlParameter("@positionid", posid));
             updatepos.Parameters.Add(
                new SqlParameter("@companyid", compid));
-            updatepos.Parameters.Add(
-               new SqlParameter("@positiontitle", pos));
-            updatepos.Parameters.Add(
+            if (pos != "")
+            {
+                updatepos.Parameters.Add(
+                   new SqlParameter("@positiontitle", pos));
+            }
+            if (ty != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@postype", ty));
-            updatepos.Parameters.Add(
+            if (stree != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@street", stree));
-            updatepos.Parameters.Add(
+            if (cit != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@city", cit));
-            updatepos.Parameters.Add(
+            if (stat != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@state", stat));
-            updatepos.Parameters.Add(
+            if (zi != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@zipcode", zi));
-            updatepos.Parameters.Add(
+            if (sal != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@salary", sal));
-            updatepos.Parameters.Add(
+            if (jobdesc != "")
+                updatepos.Parameters.Add(
                 new SqlParameter("@description", jobdesc));
 
             SqlParameter ReturnVal = new SqlParameter("RetVal",

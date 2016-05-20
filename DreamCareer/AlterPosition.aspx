@@ -3,6 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <script src="scripts/AlterPosition.js" type="text/javascript"></script>
+        <link href="static/css/AlterPosition.css" rel="stylesheet" type="text/css" />
+
 
     <link rel="Stylesheet" type="text/css" href="static/css/AlterPosition.css" />
 
@@ -16,22 +18,6 @@
             <td colspan="2">
                 <h3 id="UpdatePosition" class="UpdatePosition" runat="server">Update Position
                 </h3>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <p id="OldPosTitle">
-                    Old Title
-                </p>
-            </td>
-            <td>
-                <asp:TextBox type="text" ID="oldtitle" runat="server"></asp:TextBox>
-            </td>
-            <td>
-                <asp:Label ID="name_dne_error_label"
-                    class="error-label asp-name-dne-error-label"
-                    runat="server"></asp:Label>
             </td>
         </tr>
 

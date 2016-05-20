@@ -90,6 +90,10 @@
                     runat="server"></asp:Label>
             </td>
         </tr>
+        <td>
+               <asp:Button ID="alter" runat="server" Text="Alter Position!"
+                    OnClick="AlterPosition_OnClick" />
+                </td>
         <tr>
         <td>
 

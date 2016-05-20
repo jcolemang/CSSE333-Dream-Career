@@ -102,6 +102,7 @@
     <Content Include="scripts\ViewPosition.js" />
     <Content Include="scripts\ViewProfile.js" />
     <Content Include="scripts\ViewCompany.js" />
+    <Content Include="static\css\AlterPosition.css" />
     <Content Include="static\css\Apply.css" />
     <Content Include="static\css\CreateCompany.css" />
     <Content Include="CreateProfile.aspx" />
